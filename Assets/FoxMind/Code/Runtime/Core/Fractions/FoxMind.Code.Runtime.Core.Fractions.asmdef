@@ -1,0 +1,4 @@
+{
+	"name": "FoxMind.Code.Runtime.Core.Fractions",
+	"references":[ "GUID:bab34afca1e418344a71a0930ba6bdae" ]
+}

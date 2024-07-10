@@ -1,0 +1,4 @@
+{
+	"name": "FoxMind.Code.Runtime.Core.StandaloneComponents",
+	"references":[ "GUID:bab34afca1e418344a71a0930ba6bdae", "GUID:4c25c05f410a3a447a75c3b0909152ef" ]
+}

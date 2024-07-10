@@ -1,0 +1,20 @@
+{
+    "name": "FoxMind.Code.Runtime.Core.AcpectTest",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:f5f01a091e0d746659b4380253d52f4e",
+        "GUID:bab34afca1e418344a71a0930ba6bdae",
+        "GUID:50b335cff16dfbf4d95ca1ee7195c900",
+        "GUID:eebb51e96c829c3498a7789b8ce86a32"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

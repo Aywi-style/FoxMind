@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af39eb9c9d145b9a4aefe7c0888911f, type: 3}
+  m_Name: PlayerEntity
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Player
+  _features:
+  - rid: 6181360948224458797
+  - rid: 6181360990120312844
+  - rid: 6181360990120312852
+  - rid: 6181360990120312921
+  - rid: 6181361137347723316
+  references:
+    version: 2
+    RefIds:
+    - rid: 6181360948224458797
+      type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data: 
+    - rid: 6181360990120312844
+      type: {class: FractionComp, ns: FoxMind.Code.Runtime.Core.Fractions.Components, asm: FoxMind.Code.Runtime.Core.Fractions}
+      data:
+        Fraction: 0
+    - rid: 6181360990120312852
+      type: {class: MoveableComp, ns: FoxMind.Code.Runtime.Core.Moving.Components, asm: FoxMind.Code.Runtime.Core.Moving}
+      data:
+        NormalizedMoveDirection: {x: 0, y: 0, z: 0}
+        Speed: 10
+    - rid: 6181360990120312921
+      type: {class: JumpableComp, ns: FoxMind.Code.Runtime.Core.Moving.Components, asm: FoxMind.Code.Runtime.Core.Moving}
+      data:
+        IsJumping: 0
+        IsGrounded: 0
+        JumpImpulse: 15
+    - rid: 6181361137347723316
+      type: {class: MotionAnimationComp, ns: FoxMind.Code.Runtime.Core.Moving.Components, asm: FoxMind.Code.Runtime.Core.Moving}
+      data:
+        Move:
+          rid: 6181361137347723317
+    - rid: 6181361137347723317
+      type: {class: MixerTransition2D, ns: Animancer, asm: Animancer}
+      data:
+        _FadeDuration: 0.25
+        _Events:
+          _NormalizedTimes: []
+          _Callbacks: []
+          _Names: []
+        _Speed: NaN
+        _Animations:
+        - {fileID: -203655887218126122, guid: 4c375b06839fd0f45accd679b20154d9, type: 3}
+        - {fileID: -203655887218126122, guid: 5264c02548d44a44a8fc4cad013ce3e0, type: 3}
+        - {fileID: -203655887218126122, guid: b6395f768caaec94e8908a25fdd9326f, type: 3}
+        - {fileID: -203655887218126122, guid: 1957345adb939e64bbb2b87e075631c4, type: 3}
+        - {fileID: -203655887218126122, guid: 1957345adb939e64bbb2b87e075631c4, type: 3}
+        _Speeds: []
+        _SynchronizeChildren: 00
+        _Thresholds:
+        - {x: 0, y: 0}
+        - {x: 0, y: 1}
+        - {x: 1, y: 0}
+        - {x: 0, y: -1}
+        - {x: -1, y: 0}
+        _DefaultParameter: {x: 0, y: 0}
+        _Type: 1

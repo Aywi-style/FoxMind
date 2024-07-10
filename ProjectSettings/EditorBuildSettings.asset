@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/FoxMond/Scenes/SampleScene.unity
+    path: Assets/FoxMind/Scenes/Gameplay.unity
     guid: 2680cb17683e4f04891a101d5751a194
   - enabled: 1
-    path: Assets/FoxMond/Scenes/Bootstrap.unity
+    path: Assets/FoxMind/Scenes/Bootstrap.unity
     guid: 2a9eca3532fe6d1498b594abfaae7a7c
   m_configObjects: {}

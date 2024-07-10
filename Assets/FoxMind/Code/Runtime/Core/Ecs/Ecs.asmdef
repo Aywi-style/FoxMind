@@ -1,0 +1,25 @@
+{
+    "name": "Ecs",
+    "rootNamespace": "",
+    "references": [
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:0d4e31319d399d344b6a3fa24167c030",
+        "GUID:a555aad33a934e54680f3adebb64a561",
+        "GUID:a946f2de08f93e34fa5800439d0a3c67",
+        "GUID:206779980ac58453ea65e900299ccf71",
+        "GUID:a22362b82293644e1bbe51356c008d63",
+        "GUID:f5f01a091e0d746659b4380253d52f4e",
+        "GUID:f3c20c68e14bda74d8c4ed2aff1eb9c6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
