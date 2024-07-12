@@ -16,4 +16,17 @@ MonoBehaviour:
   defaultEditorBehaviour: 11
   processMouseMoveInInspector: 1
   drawingConfig:
-    configs: []
+    configs:
+    - DrawnTypeName: Animancer.EndEventReceiver, Animancer
+      EditorTypeName: 
+    - DrawnTypeName: Animancer.PixelPerfectPositioning, Animancer
+      EditorTypeName: 
+    - DrawnTypeName: Animancer.SimpleEventReceiver, Animancer
+      EditorTypeName: 
+    - DrawnTypeName: Animancer.Editor.DummySerializableCallback, Animancer
+      EditorTypeName: 
+    - DrawnTypeName: Animancer.Editor.TransitionPreviewWindow+Scene+RedirectRootMotion,
+        Animancer
+      EditorTypeName: 
+    - DrawnTypeName: Animancer.Editor.TemporarySettings, Animancer
+      EditorTypeName: 

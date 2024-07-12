@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Moving.Systems
 {
-    public class RegisterMotionAnimationsSystem : BaseEcsVisitable, IEcsRunSystem
+    public class RegisterMotionAnimationsSystem : BaseEcsVisitable, IEcsRunSystem, IEcsInitSystem
     {
         private readonly EcsFilterInject<Inc<MotionAnimationComp, AnimancerComp>> _movableFilter = default;
 
@@ -27,12 +27,22 @@ namespace FoxMind.Code.Runtime.Core.Moving.Systems
                 {
                     ref var animancer = ref _animancerPool.Value.Get(movableEntity);
                     
-                    //motionAnimation.MoveState = (MixerState<Vector2>)animancer.Value.States.GetOrCreate(motionAnimation.Move);
                     var state = animancer.Value.States.GetOrCreate(motionAnimation.Move);
                     motionAnimation.MoveState = (MixerState<Vector2>)state;
-                    animancer.Value.Play(motionAnimation.Move);
+                    animancer.Value.Play(motionAnimation.MoveState);
                 }
             }
+        }
+
+        public void Init(IEcsSystems systems)
+        {
+            /*foreach (var movableEntity in _movableFilter.Value)
+            {
+                ref var motionAnimation = ref _motionAnimationPool.Value.Get(movableEntity);
+                ref var animancer = ref _animancerPool.Value.Get(movableEntity);
+                var state = animancer.Value.Play(motionAnimation.Move);
+                motionAnimation.MoveState = (MixerState<Vector2>)state;
+            }*/
         }
     }
 }

@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
 
 using System;
 using System.Collections;
@@ -48,12 +48,11 @@ namespace Animancer
             get => _Animator;
             set
             {
+                // It doesn't seem to be possible to stop the old Animator from playing the graph.
+
                 _Animator = value;
                 if (IsPlayableInitialized)
-                {
-                    _Playable.DestroyOutput();
-                    _Playable.CreateOutput(value, this);
-                }
+                    _Playable.SetOutput(value, this);
             }
         }
 
@@ -80,31 +79,26 @@ namespace Animancer
         }
 
         /// <summary>Indicates whether the <see cref="Playable"/> has been initialized.</summary>
-        public bool IsPlayableInitialized 
-            => _Playable != null && _Playable.IsValid;
+        public bool IsPlayableInitialized => _Playable != null && _Playable.IsValid;
 
         /************************************************************************************************************************/
 
         /// <summary>The states managed by this component.</summary>
-        public AnimancerPlayable.StateDictionary States
-            => Playable.States;
+        public AnimancerPlayable.StateDictionary States => Playable.States;
 
         /// <summary>The layers which each manage their own set of animations.</summary>
-        public AnimancerPlayable.LayerList Layers 
-            => Playable.Layers;
+        public AnimancerPlayable.LayerList Layers => Playable.Layers;
 
         /// <summary>Returns the <see cref="Playable"/>.</summary>
-        public static implicit operator AnimancerPlayable(AnimancerComponent animancer) 
-            => animancer.Playable;
+        public static implicit operator AnimancerPlayable(AnimancerComponent animancer) => animancer.Playable;
 
         /// <summary>Returns layer 0.</summary>
-        public static implicit operator AnimancerLayer(AnimancerComponent animancer) 
-            => animancer.Playable.Layers[0];
+        public static implicit operator AnimancerLayer(AnimancerComponent animancer) => animancer.Playable.Layers[0];
 
         /************************************************************************************************************************/
 
         [SerializeField, Tooltip("Determines what happens when this component is disabled" +
-            " or its " + nameof(GameObject) + " becomes inactive (i.e. in OnDisable):" +
+            " or its " + nameof(GameObject) + " becomes inactive (i.e. in " + nameof(OnDisable) + "):" +
             "\n• " + nameof(DisableAction.Stop) + " all animations" +
             "\n• " + nameof(DisableAction.Pause) + " all animations" +
             "\n• " + nameof(DisableAction.Continue) + " playing" +
@@ -113,11 +107,8 @@ namespace Animancer
         private DisableAction _ActionOnDisable;
 
 #if UNITY_EDITOR
-        /// <summary>[Editor-Only]
-        /// The name of the serialized backing field for the <see cref="ActionOnDisable"/> property.
-        /// </summary>
-        string IAnimancerComponent.ActionOnDisableFieldName
-            => nameof(_ActionOnDisable);
+        /// <summary>[Editor-Only] The name of the serialized backing field for the <see cref="ActionOnDisable"/> property.</summary>
+        string IAnimancerComponent.ActionOnDisableFieldName => nameof(_ActionOnDisable);
 #endif
 
         /// <summary>[<see cref="SerializeField"/>]
@@ -125,12 +116,10 @@ namespace Animancer
         /// (i.e. in <see cref="OnDisable"/>).
         /// </summary>
         /// <remarks>The default value is <see cref="DisableAction.Stop"/>.</remarks>
-        public ref DisableAction ActionOnDisable 
-            => ref _ActionOnDisable;
+        public ref DisableAction ActionOnDisable => ref _ActionOnDisable;
 
         /// <inheritdoc/>
-        bool IAnimancerComponent.ResetOnDisable
-            => _ActionOnDisable == DisableAction.Reset;
+        bool IAnimancerComponent.ResetOnDisable => _ActionOnDisable == DisableAction.Reset;
 
         /// <summary>
         /// An action to perform when disabling an <see cref="AnimancerComponent"/>. See <see cref="ActionOnDisable"/>.
@@ -168,7 +157,7 @@ namespace Animancer
             /// states referenced by other scripts will no longer be valid so they will need to be recreated if you
             /// want to use this object again.
             /// </summary>
-            /// <remarks>Calls <see cref="AnimancerPlayable.DestroyGraph()"/>.</remarks>
+            /// <remarks>Calls <see cref="AnimancerPlayable.Destroy()"/>.</remarks>
             Destroy,
         }
 
@@ -206,13 +195,8 @@ namespace Animancer
                 else if (UnityEditor.EditorApplication.isPlaying)
                 {
                     if (AnimancerPlayable.HasChangedToOrFromAnimatePhysics(InitialUpdateMode, value))
-                        Debug.LogWarning($"Changing the {nameof(Animator)}.{nameof(Animator.updateMode)} to or from " +
-#if UNITY_2023_1_OR_NEWER
-                            $"{nameof(AnimatorUpdateMode.Fixed)}" +
-#else
-                            $"{nameof(AnimatorUpdateMode.AnimatePhysics)}" +
-#endif
-                            $" at runtime will have no effect." +
+                        Debug.LogWarning($"Changing the {nameof(Animator)}.{nameof(Animator.updateMode)}" +
+                            $" to or from {nameof(AnimatorUpdateMode.AnimatePhysics)} at runtime will have no effect." +
                             " You must set it in the Unity Editor or on startup.", this);
                 }
 #endif
@@ -231,7 +215,7 @@ namespace Animancer
         /************************************************************************************************************************/
         #endregion
         /************************************************************************************************************************/
-        #region Initialization
+        #region Initialisation
         /************************************************************************************************************************/
 
 #if UNITY_EDITOR
@@ -239,6 +223,10 @@ namespace Animancer
         /// Destroys the <see cref="Playable"/> if it was initialized and searches for an <see cref="Animator"/> on
         /// this object, or it's children or parents.
         /// </summary>
+        /// <remarks>
+        /// Called by the Unity Editor when this component is first added (in Edit Mode) and whenever the Reset command
+        /// is executed from its context menu.
+        /// </remarks>
         protected virtual void Reset()
         {
             OnDestroy();
@@ -249,6 +237,7 @@ namespace Animancer
         /************************************************************************************************************************/
 
         /// <summary>Ensures that the <see cref="PlayableGraph"/> is playing.</summary>
+        /// <remarks>Called by Unity when this component becomes enabled and active.</remarks>
         protected virtual void OnEnable()
         {
             if (IsPlayableInitialized)
@@ -256,6 +245,7 @@ namespace Animancer
         }
 
         /// <summary>Acts according to the <see cref="ActionOnDisable"/>.</summary>
+        /// <remarks>Called by Unity when this component becomes disabled or inactive.</remarks>
         protected virtual void OnDisable()
         {
             if (!IsPlayableInitialized)
@@ -292,7 +282,7 @@ namespace Animancer
                     break;
 
                 case DisableAction.Destroy:
-                    _Playable.DestroyGraph();
+                    _Playable.Destroy();
                     _Playable = null;
                     break;
 
@@ -303,121 +293,64 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
-        /// <summary>Creates and initializes the <see cref="Playable"/> if it wasn't already initialized.</summary>
+        /// <summary>Creates a new <see cref="AnimancerPlayable"/> if it doesn't already exist.</summary>
         public void InitializePlayable()
         {
             if (IsPlayableInitialized)
                 return;
 
-            TryGetAnimator();
-
-            AnimancerPlayable.SetNextGraphName(name + " (Animancer)");
-            _Playable = AnimancerPlayable.Create();
-            _Playable.CreateOutput(_Animator, this);
-            OnInitializePlayable();
-        }
-
-        /************************************************************************************************************************/
-
-        /// <summary>Sets the <see cref="Playable"/> and connects it to the <see cref="Animator"/>.</summary>
-        /// <exception cref="InvalidOperationException">
-        /// The <see cref="AnimancerPlayable"/> is already initialized.
-        /// You must call <see cref="AnimancerPlayable.DestroyGraph"/> before re-initializing it.
-        /// </exception>
-        public void InitializePlayable(AnimancerPlayable playable)
-        {
-            if (IsPlayableInitialized)
-                throw new InvalidOperationException($"The {nameof(AnimancerPlayable)} is already initialized." +
-                    $" Either call this method before anything else uses it or call" +
-                    $" animancerComponent.{nameof(Playable)}.{nameof(AnimancerPlayable.DestroyGraph)}" +
-                    $" before re-initializing it.");
-
-            TryGetAnimator();
-
-            _Playable = playable;
-            _Playable.CreateOutput(_Animator, this);
-            OnInitializePlayable();
-        }
-
-        /************************************************************************************************************************/
-
-        /// <summary>Called right after the <see cref="Playable"/> is initialized.</summary>
-        protected virtual void OnInitializePlayable()
-        {
 #if UNITY_ASSERTIONS
-            ValidatePlayableInitialization();
-#endif
-        }
-
-        /************************************************************************************************************************/
-
-        /// <summary>
-        /// Tries to ensure that an <see cref="Animator"/> is present using
-        /// <see cref="Component.TryGetComponent{T}(out T)"/> if necessary.
-        /// </summary>
-        public bool TryGetAnimator()
-            => _Animator != null
-            || TryGetComponent(out _Animator);
-
-        /************************************************************************************************************************/
-
-#if UNITY_ASSERTIONS
-        /// <summary>[Assert-Only] Validates various conditions relating to <see cref="AnimancerPlayable"/> initialization.</summary>
-        private void ValidatePlayableInitialization()
-        {
 #if UNITY_EDITOR
-            if (_Animator != null)
-                InitialUpdateMode = UpdateMode;
-
-            if (OptionalWarning.CreateGraphDuringGuiEvent.IsEnabled())
-            {
-                var currentEvent = Event.current;
-                if (currentEvent != null)
-                {
-                    if (currentEvent.type == EventType.Layout ||
-                        currentEvent.type == EventType.Repaint)
-                    {
-                        OptionalWarning.CreateGraphDuringGuiEvent.Log(
-                            $"An {nameof(AnimancerPlayable)} is being initialized during a {currentEvent.type} event" +
-                            $" which is likely undesirable.", this);
-                    }
-                }
-            }
-
             if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
 #endif
             {
                 if (!gameObject.activeInHierarchy)
-                    OptionalWarning.CreateGraphWhileDisabled.Log(
-                        $"An {nameof(AnimancerPlayable)} is being created for '{this}'" +
+                    OptionalWarning.CreateGraphWhileDisabled.Log($"An {nameof(AnimancerPlayable)} is being created for '{this}'" +
                         $" which is attached to an inactive {nameof(GameObject)}." +
                         $" If that object is never activated then Unity will not call {nameof(OnDestroy)}" +
-                        $" so {nameof(AnimancerPlayable)}.{nameof(AnimancerPlayable.DestroyGraph)}" +
-                        $" will need to be called manually.", this);
+                        $" so {nameof(AnimancerPlayable)}.{nameof(AnimancerPlayable.Destroy)} will need to be called manually.", this);
             }
 
-            if (_Animator != null)
+#if UNITY_EDITOR
+            if (OptionalWarning.CreateGraphDuringGuiEvent.IsEnabled())
             {
-                if (!_Animator.enabled)
-                    OptionalWarning.AnimatorDisabled.Log(Strings.AnimatorDisabledMessage, this);
-
-                if (_Animator.isHuman &&
-                    _Animator.runtimeAnimatorController != null)
-                    OptionalWarning.NativeControllerHumanoid.Log($"An Animator Controller is assigned to the" +
-                        $" {nameof(Animator)} component but the Rig is Humanoid so it can't be blended with Animancer." +
-                        $" See the documentation for more information: {Strings.DocsURLs.AnimatorControllersNative}", this);
+                var currentEvent = Event.current;
+                if (currentEvent != null && (currentEvent.type == EventType.Layout || currentEvent.type == EventType.Repaint))
+                    OptionalWarning.CreateGraphDuringGuiEvent.Log(
+                        $"Creating an {nameof(AnimancerPlayable)} during a {currentEvent.type} event is likely undesirable.", this);
             }
-        }
 #endif
+#endif
+
+            if (_Animator == null)
+                _Animator = GetComponent<Animator>();
+
+#if UNITY_ASSERTIONS
+            if (_Animator != null && _Animator.isHuman && _Animator.runtimeAnimatorController != null)
+                OptionalWarning.NativeControllerHumanoid.Log($"An Animator Controller is assigned to the" +
+                    $" {nameof(Animator)} component but the Rig is Humanoid so it can't be blended with Animancer." +
+                    $" See the documentation for more information: {Strings.DocsURLs.AnimatorControllersNative}", this);
+#endif
+
+            AnimancerPlayable.SetNextGraphName(name + " (Animancer)");
+            _Playable = AnimancerPlayable.Create();
+            _Playable.SetOutput(_Animator, this);
+
+#if UNITY_EDITOR
+            if (_Animator != null)
+                InitialUpdateMode = UpdateMode;
+#endif
+        }
 
         /************************************************************************************************************************/
 
         /// <summary>Ensures that the <see cref="Playable"/> is properly cleaned up.</summary>
+        /// <remarks>Called by Unity when this component is destroyed.</remarks>
         protected virtual void OnDestroy()
         {
             if (IsPlayableInitialized)
             {
-                _Playable.DestroyGraph();
+                _Playable.Destroy();
                 _Playable = null;
             }
         }
@@ -448,13 +381,12 @@ namespace Animancer
         #region Play Management
         /************************************************************************************************************************/
 
-        /// <summary>Returns the `clip` itself.</summary>
-        /// <remarks>
-        /// This method is used to determine the dictionary key to use for an animation when none is specified by the
-        /// caller, such as in <see cref="Play(AnimationClip)"/>.
-        /// </remarks>
-        public virtual object GetKey(AnimationClip clip) 
-            => clip;
+        /// <summary>
+        /// Returns the `clip` itself. This method is used to determine the dictionary key to use for an animation
+        /// when none is specified by the user, such as in <see cref="Play(AnimationClip)"/>. It can be overridden by
+        /// child classes to use something else as the key.
+        /// </summary>
+        public virtual object GetKey(AnimationClip clip) => clip;
 
         /************************************************************************************************************************/
         // Play Immediately.
@@ -589,26 +521,25 @@ namespace Animancer
         /// <summary>
         /// Gets the state associated with the `clip`, stops and rewinds it to the start, then returns it.
         /// </summary>
-        public AnimancerState Stop(AnimationClip clip)
-            => Stop(GetKey(clip));
+        public AnimancerState Stop(AnimationClip clip) => Stop(GetKey(clip));
 
         /// <summary>
         /// Gets the state registered with the <see cref="IHasKey.Key"/>, stops and rewinds it to the start, then
         /// returns it.
         /// </summary>
-        public AnimancerState Stop(IHasKey hasKey) 
-            => _Playable?.Stop(hasKey);
+        public AnimancerState Stop(IHasKey hasKey) => _Playable?.Stop(hasKey);
 
         /// <summary>
         /// Gets the state associated with the `key`, stops and rewinds it to the start, then returns it.
         /// </summary>
-        public AnimancerState Stop(object key) 
-            => _Playable?.Stop(key);
+        public AnimancerState Stop(object key) => _Playable?.Stop(key);
 
-        /// <summary>Stops all animations and rewinds them to the start.</summary>
+        /// <summary>
+        /// Stops all animations and rewinds them to the start.
+        /// </summary>
         public void Stop()
         {
-            if (IsPlayableInitialized)
+            if (_Playable != null)
                 _Playable.Stop();
         }
 
@@ -619,29 +550,22 @@ namespace Animancer
         /// <para></para>
         /// The actual dictionary key is determined using <see cref="GetKey"/>.
         /// </summary>
-        public bool IsPlaying(AnimationClip clip)
-            => IsPlaying(GetKey(clip));
+        public bool IsPlaying(AnimationClip clip) => IsPlaying(GetKey(clip));
 
         /// <summary>
         /// Returns true if a state is registered with the <see cref="IHasKey.Key"/> and it is currently playing.
         /// </summary>
-        public bool IsPlaying(IHasKey hasKey)
-            => IsPlayableInitialized
-            && _Playable.IsPlaying(hasKey);
+        public bool IsPlaying(IHasKey hasKey) => _Playable != null && _Playable.IsPlaying(hasKey);
 
         /// <summary>
         /// Returns true if a state is registered with the `key` and it is currently playing.
         /// </summary>
-        public bool IsPlaying(object key) 
-            => IsPlayableInitialized 
-            && _Playable.IsPlaying(key);
+        public bool IsPlaying(object key) => _Playable != null && _Playable.IsPlaying(key);
 
         /// <summary>
         /// Returns true if at least one animation is being played.
         /// </summary>
-        public bool IsPlaying()
-            => IsPlayableInitialized
-            && _Playable.IsPlaying();
+        public bool IsPlaying() => _Playable != null && _Playable.IsPlaying();
 
         /************************************************************************************************************************/
 
@@ -651,24 +575,20 @@ namespace Animancer
         /// This method is inefficient because it searches through every state to find any that are playing the `clip`,
         /// unlike <see cref="IsPlaying(AnimationClip)"/> which only checks the state registered using the `clip`s key.
         /// </summary>
-        public bool IsPlayingClip(AnimationClip clip) 
-            => IsPlayableInitialized 
-            && _Playable.IsPlayingClip(clip);
+        public bool IsPlayingClip(AnimationClip clip) => _Playable != null && _Playable.IsPlayingClip(clip);
 
         /************************************************************************************************************************/
 
         /// <summary>
-        /// Immediately applies the current states of all animations to the animated objects.
+        /// Evaluates all of the currently playing animations to apply their states to the animated objects.
         /// </summary>
-        public void Evaluate() 
-            => Playable.Evaluate();
+        public void Evaluate() => Playable.Evaluate();
 
         /// <summary>
-        /// Advances time by the specified value (in seconds) and immediately applies the current states of all
-        /// animations to the animated objects.
+        /// Advances all currently playing animations by the specified amount of time (in seconds) and evaluates the
+        /// graph to apply their states to the animated objects.
         /// </summary>
-        public void Evaluate(float deltaTime) 
-            => Playable.Evaluate(deltaTime);
+        public void Evaluate(float deltaTime) => Playable.Evaluate(deltaTime);
 
         /************************************************************************************************************************/
         #region Key Error Methods
@@ -694,8 +614,7 @@ namespace Animancer
         /// Just check <see cref="AnimancerState.IsPlaying"/>.
         /// </summary>
         [Obsolete("You should not use an AnimancerState as a key. Just check AnimancerState.IsPlaying.", true)]
-        public bool IsPlaying(AnimancerState key) 
-            => key.IsPlaying;
+        public bool IsPlaying(AnimancerState key) => key.IsPlaying;
 
         /************************************************************************************************************************/
 #endif
@@ -722,8 +641,10 @@ namespace Animancer
         /// <summary>Returns null.</summary>
         object IEnumerator.Current => null;
 
+#pragma warning disable UNT0006 // Incorrect message signature.
         /// <summary>Does nothing.</summary>
         void IEnumerator.Reset() { }
+#pragma warning restore UNT0006 // Incorrect message signature.
 
         /************************************************************************************************************************/
 

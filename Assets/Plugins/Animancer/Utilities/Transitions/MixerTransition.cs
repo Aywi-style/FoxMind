@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
 
 #pragma warning disable CS0649 // Field is never assigned to, and will always have its default value.
 
@@ -6,7 +6,6 @@ using System;
 using UnityEngine;
 
 #if UNITY_EDITOR
-using Animancer.Editor;
 using UnityEditor;
 using UnityEditorInternal;
 #endif
@@ -16,16 +15,12 @@ namespace Animancer
     /// <inheritdoc/>
     /// https://kybernetik.com.au/animancer/api/Animancer/MixerTransition_2
     [Serializable]
-#if ! UNITY_EDITOR
-    [System.Obsolete(Validate.ProOnlyMessage)]
-#endif
-    public abstract class MixerTransition<TMixer, TParameter> : ManualMixerTransition<TMixer>,
-        ICopyable<MixerTransition<TMixer, TParameter>>
+    public abstract class MixerTransition<TMixer, TParameter> : ManualMixerTransition<TMixer>
         where TMixer : MixerState<TParameter>
     {
         /************************************************************************************************************************/
 
-        [SerializeField]
+        [SerializeField, HideInInspector]
         private TParameter[] _Thresholds;
 
         /// <summary>[<see cref="SerializeField"/>]
@@ -61,24 +56,6 @@ namespace Animancer
         }
 
         /************************************************************************************************************************/
-
-        /// <inheritdoc/>
-        public virtual void CopyFrom(MixerTransition<TMixer, TParameter> copyFrom)
-        {
-            CopyFrom((ManualMixerTransition<TMixer>)copyFrom);
-
-            if (copyFrom == null)
-            {
-                _DefaultParameter = default;
-                _Thresholds = default;
-                return;
-            }
-
-            _DefaultParameter = copyFrom._DefaultParameter;
-            AnimancerUtilities.CopyExactArray(copyFrom._Thresholds, ref _Thresholds);
-        }
-
-        /************************************************************************************************************************/
     }
 
     /************************************************************************************************************************/
@@ -111,7 +88,7 @@ namespace Animancer
             get
             {
                 if (_StandardThresholdWidth == 0)
-                    _StandardThresholdWidth = AnimancerGUI.CalculateWidth(EditorStyles.popup, "Threshold");
+                    _StandardThresholdWidth = Editor.AnimancerGUI.CalculateWidth(EditorStyles.popup, "Threshold");
                 return _StandardThresholdWidth;
             }
         }
@@ -121,15 +98,12 @@ namespace Animancer
         /// <summary>
         /// Creates a new <see cref="MixerTransitionDrawer"/> using the default <see cref="StandardThresholdWidth"/>.
         /// </summary>
-        public MixerTransitionDrawer()
-            : this(StandardThresholdWidth)
-        { }
+        public MixerTransitionDrawer() : this(StandardThresholdWidth) { }
 
         /// <summary>
         /// Creates a new <see cref="MixerTransitionDrawer"/> using a custom width for its threshold labels.
         /// </summary>
-        protected MixerTransitionDrawer(float thresholdWidth)
-            => ThresholdWidth = thresholdWidth;
+        protected MixerTransitionDrawer(float thresholdWidth) => ThresholdWidth = thresholdWidth;
 
         /************************************************************************************************************************/
 
@@ -146,11 +120,12 @@ namespace Animancer
         {
             base.GatherSubProperties(property);
 
+            if (CurrentAnimations == null)
+                return;
+
             CurrentThresholds = property.FindPropertyRelative(MixerTransition2D.ThresholdsField);
 
-            if (CurrentAnimations == null ||
-                CurrentThresholds == null ||
-                property.hasMultipleDifferentValues)
+            if (CurrentThresholds == null)
                 return;
 
             var count = Math.Max(CurrentAnimations.arraySize, CurrentThresholds.arraySize);
@@ -163,54 +138,16 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
-        /// <inheritdoc/>
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            var height = base.GetPropertyHeight(property, label);
-
-            if (property.isExpanded)
-            {
-                if (CurrentThresholds != null)
-                {
-                    height -= AnimancerGUI.StandardSpacing +
-                        EditorGUI.GetPropertyHeight(CurrentThresholds, label);
-                }
-            }
-
-            return height;
-        }
-
-        /************************************************************************************************************************/
-
-        /// <inheritdoc/>
-        protected override void DoChildPropertyGUI(ref Rect area, SerializedProperty rootProperty, SerializedProperty property, GUIContent label)
-        {
-            if (property.propertyPath.EndsWith($".{MixerTransition2D.ThresholdsField}"))
-                return;
-
-            base.DoChildPropertyGUI(ref area, rootProperty, property, label);
-        }
-
-        /************************************************************************************************************************/
-
         /// <summary>Splits the specified `area` into separate sections.</summary>
-        protected void SplitListRect(Rect area, bool isHeader,
-            out Rect animation, out Rect threshold, out Rect speed, out Rect sync)
+        protected void SplitListRect(Rect area, bool isHeader, out Rect animation, out Rect threshold, out Rect speed, out Rect sync)
         {
             SplitListRect(area, isHeader, out animation, out speed, out sync);
 
-            if (TwoLineMode && !isHeader)
-            {
-                threshold = AnimancerGUI.StealFromLeft(ref speed, ThresholdWidth, AnimancerGUI.StandardSpacing);
-            }
-            else
-            {
-                threshold = animation;
+            threshold = animation;
 
-                var xMin = threshold.xMin = EditorGUIUtility.labelWidth + AnimancerGUI.IndentSize;
+            var xMin = threshold.xMin = EditorGUIUtility.labelWidth + Editor.AnimancerGUI.IndentSize;
 
-                animation.xMax = xMin - AnimancerGUI.StandardSpacing;
-            }
+            animation.xMax = xMin - Editor.AnimancerGUI.StandardSpacing;
         }
 
         /************************************************************************************************************************/
@@ -222,10 +159,8 @@ namespace Animancer
 
             DoAnimationHeaderGUI(animationArea);
 
-            var attribute = AttributeCache<ThresholdLabelAttribute>.FindAttribute(CurrentThresholds);
-            var text = attribute != null
-                ? attribute.Label
-                : "Threshold";
+            var attribute = Editor.AttributeCache<ThresholdLabelAttribute>.FindAttribute(CurrentThresholds);
+            var text = attribute != null ? attribute.Label : "Threshold";
 
             using (ObjectPool.Disposable.AcquireContent(out var label, text,
                 "The parameter values at which each child state will be fully active"))
@@ -240,15 +175,13 @@ namespace Animancer
 
         /// <inheritdoc/>
         protected override void DoElementGUI(Rect area, int index,
-            SerializedProperty animation, SerializedProperty speed)
+            SerializedProperty clip, SerializedProperty speed)
         {
-            SplitListRect(area, false,
-                out var animationArea, out var thresholdArea, out var speedArea, out var syncArea);
+            SplitListRect(area, false, out var animationArea, out var thresholdArea, out var speedArea, out var syncArea);
 
-            DoAnimationField(animationArea, animation);
+            DoElementGUI(animationArea, speedArea, syncArea, index, clip, speed);
+
             DoThresholdGUI(thresholdArea, index);
-            DoSpeedFieldGUI(speedArea, speed, index);
-            DoSyncToggleGUI(syncArea, index);
         }
 
         /************************************************************************************************************************/
@@ -277,7 +210,7 @@ namespace Animancer
         protected override void OnRemoveElement(ReorderableList list)
         {
             base.OnRemoveElement(list);
-            Serialization.RemoveArrayElement(CurrentThresholds, list.index);
+            Editor.Serialization.RemoveArrayElement(CurrentThresholds, list.index);
         }
 
         /************************************************************************************************************************/

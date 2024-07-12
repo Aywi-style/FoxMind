@@ -9,5 +9,6 @@ namespace FoxMind.Code.Runtime.Core.Moving.Components
     {
         [SerializeReference] public ITransition Move;
         [ReadOnly] public MixerState<Vector2> MoveState;
+        //[ReadOnly] public AnimancerState MoveState;
     }
 }

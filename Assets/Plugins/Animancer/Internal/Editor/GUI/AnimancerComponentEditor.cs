@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
 
 #if UNITY_EDITOR
 
@@ -38,15 +38,15 @@ namespace Animancer.Editor
 
         private void DoAnimatorGUI(SerializedProperty property, GUIContent label)
         {
-            var animator = property.objectReferenceValue as Animator;
+            var hasAnimator = property.objectReferenceValue != null;
 
             var color = GUI.color;
-            if (animator == null)
+            if (!hasAnimator)
                 GUI.color = AnimancerGUI.WarningFieldColor;
 
             EditorGUILayout.PropertyField(property, label);
 
-            if (animator == null)
+            if (!hasAnimator)
             {
                 GUI.color = color;
 
@@ -60,7 +60,7 @@ namespace Animancer.Editor
                     {
                         var target = (IAnimancerComponent)targetProperty.serializedObject.targetObject;
 
-                        animator = target.gameObject.GetComponentInParentOrChildren<Animator>();
+                        var animator = target.gameObject.GetComponentInParentOrChildren<Animator>();
                         if (animator == null)
                         {
                             Debug.Log($"No {nameof(Animator)} found on '{target.gameObject.name}' or any of its parents or children." +
@@ -72,19 +72,8 @@ namespace Animancer.Editor
                     });
                 }
             }
-            else
+            else if (property.objectReferenceValue is Animator animator)
             {
-                if (!animator.enabled)
-                {
-                    EditorGUILayout.HelpBox(Strings.AnimatorDisabledMessage, MessageType.Warning);
-
-                    if (AnimancerGUI.TryUseClickEventInLastRect())
-                    {
-                        Undo.RecordObject(animator, "Inspector");
-                        animator.enabled = true;
-                    }
-                }
-
                 if (animator.gameObject != Targets[0].gameObject)
                 {
                     EditorGUILayout.HelpBox(
@@ -98,15 +87,9 @@ namespace Animancer.Editor
                 if (AnimancerPlayable.HasChangedToOrFromAnimatePhysics(initialUpdateMode, updateMode))
                 {
                     EditorGUILayout.HelpBox(
-                                $"Changing to or from " +
-#if UNITY_2023_1_OR_NEWER
-                        $"{nameof(AnimatorUpdateMode.Fixed)}" +
-#else
-                                $"{nameof(AnimatorUpdateMode.AnimatePhysics)}" +
-#endif
-                                $" mode at runtime has no effect when using the Playables API." +
-                                $" It will continue using the original mode it had on startup.",
-                                MessageType.Warning);
+                        $"Changing to or from {nameof(AnimatorUpdateMode.AnimatePhysics)} mode at runtime has no effect" +
+                        $" when using the Playables API. It will continue using the original mode it had on startup.",
+                        MessageType.Warning);
 
                     if (AnimancerGUI.TryUseClickEventInLastRect())
                         EditorUtility.OpenWithDefaultApp(Strings.DocsURLs.UpdateModes);

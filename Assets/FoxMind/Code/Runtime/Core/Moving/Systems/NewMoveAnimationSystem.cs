@@ -29,6 +29,8 @@ namespace FoxMind.Code.Runtime.Core.Moving.Systems
                 
                 if (motionAnimation.MoveState.IsActive == false)
                 {
+                    continue;
+                    
                     ref var animancer = ref _animancerPool.Value.Get(movableEntity);
                     if (animancer.Value.States.Current.NormalizedTime >= 1)
                     {

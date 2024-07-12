@@ -4,40 +4,30 @@ using FoxMind.Code.Runtime.Core.StandaloneComponents;
 using FoxMind.Code.Runtime.Core.SystemsAssembly.Abstracts;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
 {
     public class PlayerAttackTestSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        readonly EcsFilterInject<Inc<PlayerInputComp>> _inputEntityFilter = default;
-        readonly EcsFilterInject<Inc<PlayerControlledComp, AnimatorComp>> _controlledFilter = default;
+        readonly EcsFilterInject<Inc<InputAttackEvent>> _inputAttackEventFilter = default;
+        readonly EcsFilterInject<Inc<PlayerControlledComp, AnimancerComp>> _controlledFilter = default;
         
-        readonly EcsPoolInject<PlayerInputComp> _playerInputPool = default;
-        readonly EcsPoolInject<AnimatorComp> _animatorPool = default;
+        readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
         
         public void Run(IEcsSystems systems)
         {
-            foreach (var inputEntity in _inputEntityFilter.Value)
+            if (_inputAttackEventFilter.Value.GetEntitiesCount() <= 0)
             {
-                ref var input = ref _playerInputPool.Value.Get(inputEntity);
-                
-                foreach (var controlledEntity in _controlledFilter.Value)
-                {
-                    ref var animator = ref _animatorPool.Value.Get(controlledEntity);
+                return;
+            }
+            
+            foreach (var controlledEntity in _controlledFilter.Value)
+            {
+                ref var animancer = ref _animancerPool.Value.Get(controlledEntity);
 
-                    if (input.Attack == false)
-                    {
-                        /*if (animator.Value.GetCurrentAnimatorStateInfo(0).IsName("Attack") &&
-                            animator.Value.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
-                        {
-                            animator.Value.CrossFade("Idle", 0.2f);
-                        }*/
-                    }
-                    else
-                    {
-                        animator.Value.SetTrigger("Attack");
-                    }
-                }
+                animancer.Value.Play(animancer.Clip);
+                animancer.Value.Animator.applyRootMotion = true;
             }
         }
     }

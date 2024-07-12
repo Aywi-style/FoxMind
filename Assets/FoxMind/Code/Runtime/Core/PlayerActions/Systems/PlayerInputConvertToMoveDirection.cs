@@ -12,10 +12,10 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
 {
     public class PlayerInputConvertToMoveDirection : BaseEcsVisitable, IEcsRunSystem
     {
-        readonly EcsFilterInject<Inc<PlayerInputComp>> _inputEntityFilter = default;
+        readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
         readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp>> _controlledTransformFilter = default;
         
-        readonly EcsPoolInject<PlayerInputComp> _playerInputPool = default;
+        readonly EcsPoolInject<InputDirectionComp> _inputDirectionPool = default;
         readonly EcsPoolInject<MoveableComp> _moveablePool = default;
         
         public void Run(IEcsSystems systems)
@@ -29,9 +29,9 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
                 cameraRight = Camera.main.transform.right;
             }
             
-            foreach (var inputEntity in _inputEntityFilter.Value)
+            foreach (var inputEntity in _inputDirectionFilter.Value)
             {
-                ref var input = ref _playerInputPool.Value.Get(inputEntity);
+                ref var input = ref _inputDirectionPool.Value.Get(inputEntity);
                 
                 foreach (var controlledEntity in _controlledTransformFilter.Value)
                 {

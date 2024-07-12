@@ -14,20 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _TransitionPreviewWindow:
     _AutoClose: 1
-    _SceneLighting: 0
-    _ShowSkybox: 0
-    _SceneEnvironment: {fileID: 0}
-    _Models:
-    - {fileID: 6861447374074954554, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
-    - {fileID: 6861447374074954554, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
-    - {fileID: 6861447374074954554, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
-    - {fileID: 6861447374074954554, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
+    _Models: []
   _AnimationTimeFields:
     showApproximations: 1
     showNormalized: 1
     showSeconds: 1
     showFrames: 1
   _InspectorRepaintInterval: 0.25
-  _FrameStep: 0.02
   _NewAnimationFrameRate: 12
-  _HideEventCallbacks: 0

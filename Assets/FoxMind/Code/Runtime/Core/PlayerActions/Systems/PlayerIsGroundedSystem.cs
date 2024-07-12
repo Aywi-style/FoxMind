@@ -14,7 +14,6 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
         
         readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, PushBoxCapsuleComp>> _controlledFilter = default;
         
-        readonly EcsPoolInject<PlayerInputComp> _playerInputPool = default;
         readonly EcsPoolInject<TransformComp> _transformPool = default;
         readonly EcsPoolInject<PushBoxCapsuleComp> _pushBoxPool = default;
         readonly EcsPoolInject<IsGroundedComp> _isGroundedPool = default;

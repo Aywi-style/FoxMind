@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
 
 using System.Collections.Generic;
 using UnityEngine;
@@ -99,7 +99,6 @@ namespace Animancer
             var animancer = node.Root;
             AnimancerUtilities.Assert(animancer != null, $"{nameof(node)}.{nameof(node.Root)} is null.");
 
-#if UNITY_EDITOR
             if (OptionalWarning.CustomFadeBounds.IsEnabled())
             {
                 if (CalculateWeight(0) != 0)
@@ -107,7 +106,6 @@ namespace Animancer
                 if (CalculateWeight(1) != 1)
                     OptionalWarning.CustomFadeBounds.Log("CalculateWeight(1) != 1.", animancer.Component);
             }
-#endif
 #endif
 
             _Time = 0;
@@ -161,14 +159,12 @@ namespace Animancer
                 var weight = CalculateWeight(_Time);
 
                 _Target.Node.SetWeight(Mathf.LerpUnclamped(_Target.StartingWeight, _Target.Node.TargetWeight, weight));
-                _Target.Node.ApplyWeight();
 
                 weight = 1 - weight;
                 for (int i = FadeOutNodes.Count - 1; i >= 0; i--)
                 {
                     var node = FadeOutNodes[i];
                     node.Node.SetWeight(node.StartingWeight * weight);
-                    node.Node.ApplyWeight();
                 }
             }
             else// End.
@@ -191,7 +187,6 @@ namespace Animancer
         {
             var weight = node.TargetWeight;
             node.SetWeight(weight);
-            node.ApplyWeight();
             if (weight == 0)
                 node.Stop();
         }

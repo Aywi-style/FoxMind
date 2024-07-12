@@ -1,6 +1,7 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -20,7 +21,7 @@ namespace Animancer
     /// Documentation: <see href="https://kybernetik.com.au/animancer/docs/manual/playing/component-types">Component Types</see>
     /// </remarks>
     /// 
-    /// <example><see href="https://kybernetik.com.au/animancer/docs/examples/fine-control/named-animations">Named Animations</see></example>
+    /// <example><see href="https://kybernetik.com.au/animancer/docs/examples/basics/named-animations">Named Animations</see></example>
     /// 
     /// https://kybernetik.com.au/animancer/api/Animancer/NamedAnimancerComponent
     /// 
@@ -32,7 +33,7 @@ namespace Animancer
         #region Fields and Properties
         /************************************************************************************************************************/
 
-        [SerializeField, Tooltip("If true, the 'Default Animation' will be automatically played by " + nameof(OnEnable))]
+        [SerializeField, Tooltip("If true, the 'Default Animation' will be automatically played by OnEnable")]
         private bool _PlayAutomatically = true;
 
         /// <summary>[<see cref="SerializeField"/>]
@@ -43,7 +44,7 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
-        [SerializeField, Tooltip("Animations in this array will be automatically registered by " + nameof(Awake) +
+        [SerializeField, Tooltip("Animations in this array will be automatically registered by Awake" +
             " as states that can be retrieved using their name")]
         private AnimationClip[] _Animations;
 
@@ -123,11 +124,9 @@ namespace Animancer
         /************************************************************************************************************************/
 
         /// <summary>Creates a state for each clip in the <see cref="Animations"/> array.</summary>
+        /// <remarks>Called by Unity when this component is being loaded.</remarks>
         protected virtual void Awake()
         {
-            if (!TryGetAnimator())
-                return;
-
             States.CreateIfNew(_Animations);
         }
 
@@ -135,13 +134,12 @@ namespace Animancer
 
         /// <summary>
         /// Plays the first clip in the <see cref="Animations"/> array if <see cref="PlayAutomatically"/> is true.
+        /// <para></para>
+        /// Ensures that the <see cref="PlayableGraph"/> is playing.
         /// </summary>
-        /// <remarks>This method also ensures that the <see cref="PlayableGraph"/> is playing.</remarks>
+        /// <remarks>Called by Unity when this component becomes enabled and active.</remarks>
         protected override void OnEnable()
         {
-            if (!TryGetAnimator())
-                return;
-
             base.OnEnable();
 
             if (_PlayAutomatically && !_Animations.IsNullOrEmpty())
@@ -154,16 +152,14 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
-        /// <summary>Returns the clip's name.</summary>
-        /// <remarks>
-        /// This method is used to determine the dictionary key to use for an animation when none is specified by the
-        /// caller, such as in <see cref="AnimancerComponent.Play(AnimationClip)"/>.
-        /// </remarks>
+        /// <summary>
+        /// Returns the clip's name. This method is used to determine the dictionary key to use for an animation when
+        /// none is specified by the user, such as in <see cref="AnimancerComponent.Play(AnimationClip)"/>.
+        /// </summary>
         public override object GetKey(AnimationClip clip) => clip.name;
 
         /************************************************************************************************************************/
 
-        /// <inheritdoc/>
         public override void GatherAnimationClips(ICollection<AnimationClip> clips)
         {
             base.GatherAnimationClips(clips);
