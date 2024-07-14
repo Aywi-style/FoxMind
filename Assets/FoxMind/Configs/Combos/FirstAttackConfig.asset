@@ -21,8 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  AttackEffects: []
-  EntityFeature: []
+  OpenerCompsForSource: []
+  EndingCompsForSource: []
+  HitCompsForTarget: []
+  Animation: {fileID: 7400000, guid: 56b0a4fc4686fe1419ee3652593da073, type: 3}
   references:
     version: 2
     RefIds: []

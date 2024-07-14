@@ -1,0 +1,21 @@
+{
+    "name": "FoxMind.Code.Runtime.Core.Animations",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e59bf9fc7d5a44b18a819a92edd46163",
+        "GUID:f5f01a091e0d746659b4380253d52f4e",
+        "GUID:4c25c05f410a3a447a75c3b0909152ef",
+        "GUID:bab34afca1e418344a71a0930ba6bdae",
+        "GUID:a946f2de08f93e34fa5800439d0a3c67",
+        "GUID:f3c20c68e14bda74d8c4ed2aff1eb9c6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

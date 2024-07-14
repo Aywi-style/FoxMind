@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 using UnityEngine;
 
@@ -63,8 +63,8 @@ namespace Animancer.Editor
         /// <para></para>
         /// Otherwise, if the object is part of a prefab then it returns the root of that prefab instance.
         /// <para></para>
-        /// Otherwise, it counts the number of <see cref="Animator"/>s in the children of the `gameObject` then does
-        /// the same for each parent. If it finds a parent with a different number of child <see cref="Animator"/>s, it
+        /// Otherwise, it counts the number of Animators in the children of the `gameObject` then does
+        /// the same for each parent. If it finds a parent with a different number of child Animators, it
         /// assumes that object is the parent of multiple characters and returns the previous parent as the root.
         /// </remarks>
         ///
@@ -76,7 +76,7 @@ namespace Animancer.Editor
         ///     - States - Various components which reference the AnimationClips they will play
         /// </code>
         /// Passing the <c>Model</c> into this method will return the <c>Character</c> because it has the same
-        /// number of <see cref="Animator"/> components in its children.
+        /// number of Animator components in its children.
         ///
         /// <h2>Shared Hierarchy</h2>
         /// <code>
@@ -89,9 +89,9 @@ namespace Animancer.Editor
         ///         - States
         /// </code>
         /// <list type="bullet">
-        /// <item><c>Model</c> has one <see cref="Animator"/> and no more in its children.</item>
-        /// <item>And <c>Character</c> has one <see cref="Animator"/> in its children (the same one).</item>
-        /// <item>But <c>Characters</c> has two <see cref="Animator"/>s in its children (one on each character).</item>
+        /// <item><c>Model</c> has one Animator and no more in its children.</item>
+        /// <item>And <c>Character</c> has one Animator in its children (the same one).</item>
+        /// <item>But <c>Characters</c> has two Animators in its children (one on each character).</item>
         /// </list>
         /// So it picks the <c>Character</c> as the root.
         ///

@@ -1,7 +1,7 @@
+using FoxMind.Code.Runtime.Core.Animations.Components;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
 using FoxMind.Code.Runtime.Core.PlayerActions.Components;
-using FoxMind.Code.Runtime.Core.StandaloneComponents;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Abstracts;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
@@ -28,7 +28,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             {
                 ref var animacer = ref _animancerPool.Value.Get(attackableEntity);
 
-                animacer.Value.Play(animacer.Clip).Time = 0;
+                //animacer.Value.Play(animacer.Clip).Time = 0;
             }
         }
     }

@@ -1,6 +1,6 @@
 using FoxMind.Code.Runtime.Core.Ecs.Aspects;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Abstracts;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Interfaces;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;

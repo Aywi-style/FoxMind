@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 using System;
 using System.Collections;
@@ -19,34 +19,75 @@ namespace Animancer
         /// </remarks>
         /// https://kybernetik.com.au/animancer/api/Animancer/LayerList
         /// 
-        public sealed class LayerList : IEnumerable<AnimancerLayer>, IAnimationClipCollection
+        public class LayerList : IEnumerable<AnimancerLayer>, IAnimationClipCollection
         {
             /************************************************************************************************************************/
             #region Fields
             /************************************************************************************************************************/
 
             /// <summary>The <see cref="AnimancerPlayable"/> at the root of the graph.</summary>
-            private readonly AnimancerPlayable Root;
+            protected readonly AnimancerPlayable Root;
 
             /// <summary>[Internal] The layers which each manage their own set of animations.</summary>
             /// <remarks>This field should never be null so it shouldn't need null-checking.</remarks>
-            internal AnimancerLayer[] _Layers;
+            private AnimancerLayer[] _Layers;
 
             /// <summary>The <see cref="AnimationLayerMixerPlayable"/> which blends the layers.</summary>
-            private readonly AnimationLayerMixerPlayable LayerMixer;
+            protected readonly AnimationLayerMixerPlayable LayerMixer;
 
             /// <summary>The number of layers that have actually been created.</summary>
             private int _Count;
 
             /************************************************************************************************************************/
 
-            /// <summary>[Internal] Creates a new <see cref="LayerList"/>.</summary>
-            internal LayerList(AnimancerPlayable root, out Playable layerMixer)
+            /// <summary>Creates a new <see cref="LayerList"/>.</summary>
+            protected LayerList(AnimancerPlayable root)
             {
                 Root = root;
                 _Layers = new AnimancerLayer[DefaultCapacity];
+            }
+
+            /************************************************************************************************************************/
+
+            /// <summary>[Internal]
+            /// Creates a new <see cref="LayerList"/> with an <see cref="AnimationLayerMixerPlayable"/>.
+            /// </summary>
+            internal LayerList(AnimancerPlayable root, out Playable layerMixer)
+                : this(root)
+            {
                 layerMixer = LayerMixer = AnimationLayerMixerPlayable.Create(root._Graph, 1);
                 Root._Graph.Connect(layerMixer, 0, Root._RootPlayable, 0);
+            }
+
+            /************************************************************************************************************************/
+
+            /// <summary>[Pro-Only]
+            /// Sets the <see cref="Layers"/> and assigns the main <see cref="Playable"/> of this list.
+            /// </summary>
+            public virtual void Activate(AnimancerPlayable root)
+            {
+                Activate(root, LayerMixer);
+            }
+
+            /// <summary>[Pro-Only]
+            /// Sets this list as the <see cref="Layers"/> and the <see cref="Playable"/> used to mix them.
+            /// </summary>
+            protected void Activate(AnimancerPlayable root, Playable mixer)
+            {
+#if UNITY_ASSERTIONS
+                if (Root != root)
+                    throw new ArgumentException(
+                        $"{nameof(AnimancerPlayable)}.{nameof(LayerList)}.{nameof(Root)} mismatch:" +
+                        $" cannot use a list in an {nameof(AnimancerPlayable)} that is not its {nameof(Root)}");
+#endif
+
+                _Layers = root.Layers._Layers;
+                _Count = root.Layers._Count;
+
+                root._RootPlayable.DisconnectInput(0);
+                root.Graph.Connect(mixer, 0, root._RootPlayable, 0);
+                root.Layers = this;
+                root._LayerMixer = mixer;
             }
 
             /************************************************************************************************************************/
@@ -153,7 +194,7 @@ namespace Animancer
             /// Lowering this value will destroy any layers beyond the specified value.
             /// <para></para>
             /// Changing this value will cause the allocation of a new array and garbage collection of the old one, so
-            /// you should generally set the <see cref="DefaultCapacity"/> before initialising this list.
+            /// you should generally set the <see cref="DefaultCapacity"/> before initializing this list.
             /// </remarks>
             /// 
             /// <exception cref="ArgumentOutOfRangeException">The value is not greater than 0.</exception>
@@ -174,23 +215,14 @@ namespace Animancer
 
             /************************************************************************************************************************/
 
-            /// <summary>[Pro-Only]
-            /// Creates and returns a new <see cref="AnimancerLayer"/>. New layers will override earlier layers by default.
-            /// </summary>
-            /// <exception cref="InvalidOperationException">
-            /// The value is set higher than the <see cref="Capacity"/>. This is simply a safety measure,
-            /// so if you do actually need more layers you can just increase the limit.
-            /// </exception>
+            /// <summary>[Pro-Only] Creates and returns a new <see cref="AnimancerLayer"/> at the end of this list.</summary>
+            /// <remarks>If the <see cref="Capacity"/> would be exceeded, it will be doubled.</remarks>
             public AnimancerLayer Add()
             {
                 var index = _Count;
 
                 if (index >= _Layers.Length)
-                    throw new InvalidOperationException(
-                        "Attempted to increase the layer count above the current capacity (" +
-                        (index + 1) + " > " + _Layers.Length + "). This is simply a safety measure," +
-                        " so if you do actually need more layers you can just increase the " +
-                        $"{nameof(Capacity)} or {nameof(DefaultCapacity)}.");
+                    Capacity *= 2;
 
                 _Count = index + 1;
                 Root._LayerMixer.SetInputCount(_Count);
@@ -203,6 +235,7 @@ namespace Animancer
             /************************************************************************************************************************/
 
             /// <summary>Returns the layer at the specified index. If it didn't already exist, this method creates it.</summary>
+            /// <remarks>To only get an existing layer without creating new ones, use <see cref="GetLayer"/> instead.</remarks>
             public AnimancerLayer this[int index]
             {
                 get
@@ -211,6 +244,12 @@ namespace Animancer
                     return _Layers[index];
                 }
             }
+
+            /************************************************************************************************************************/
+
+            /// <summary>Returns the layer at the specified index.</summary>
+            /// <remarks>To create a new layer if the target doesn't exist, use <see cref="this[int]"/> instead.</remarks>
+            public AnimancerLayer GetLayer(int index) => _Layers[index];
 
             /************************************************************************************************************************/
             #endregion
@@ -242,10 +281,10 @@ namespace Animancer
             /************************************************************************************************************************/
 
             /// <summary>[Pro-Only]
-            /// Checks whether the layer at the specified index is set to additive blending. Otherwise it will override any
-            /// earlier layers.
+            /// Is the layer at the specified index is set to additive blending?
+            /// Otherwise it will override lower layers.
             /// </summary>
-            public bool IsAdditive(int index)
+            public virtual bool IsAdditive(int index)
             {
                 return LayerMixer.IsLayerAdditive((uint)index);
             }
@@ -254,7 +293,7 @@ namespace Animancer
             /// Sets the layer at the specified index to blend additively with earlier layers (if true) or to override them
             /// (if false). Newly created layers will override by default.
             /// </summary>
-            public void SetAdditive(int index, bool value)
+            public virtual void SetAdditive(int index, bool value)
             {
                 SetMinCount(index + 1);
                 LayerMixer.SetLayerAdditive((uint)index, value);
@@ -265,7 +304,7 @@ namespace Animancer
             /// <summary>[Pro-Only]
             /// Sets an <see cref="AvatarMask"/> to determine which bones the layer at the specified index will affect.
             /// </summary>
-            public void SetMask(int index, AvatarMask mask)
+            public virtual void SetMask(int index, AvatarMask mask)
             {
                 SetMinCount(index + 1);
 
@@ -281,12 +320,9 @@ namespace Animancer
 
             /************************************************************************************************************************/
 
-            /// <summary>[Editor-Conditional]
-            /// Sets the Inspector display name of the layer at the specified index. Note that layer names are Editor-Only
-            /// so any calls to this method will automatically be compiled out of runtime builds.
-            /// </summary>
+            /// <summary>[Editor-Conditional] Sets the Inspector display name of the layer at the specified index.</summary>
             [System.Diagnostics.Conditional(Strings.UnityEditor)]
-            public void SetName(int index, string name) => this[index].SetDebugName(name);
+            public void SetDebugName(int index, string name) => this[index].SetDebugName(name);
 
             /************************************************************************************************************************/
 
@@ -307,23 +343,6 @@ namespace Animancer
                     }
 
                     return velocity;
-                }
-            }
-
-            /************************************************************************************************************************/
-
-            /// <summary>[Internal] Connects or disconnects all children from their parent <see cref="Playable"/>.</summary>
-            internal void SetWeightlessChildrenConnected(bool connected)
-            {
-                if (connected)
-                {
-                    for (int i = _Count - 1; i >= 0; i--)
-                        _Layers[i].ConnectAllChildrenToGraph();
-                }
-                else
-                {
-                    for (int i = _Count - 1; i >= 0; i--)
-                        _Layers[i].DisconnectWeightlessChildrenFromGraph();
                 }
             }
 

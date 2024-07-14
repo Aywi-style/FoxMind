@@ -12,40 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af39eb9c9d145b9a4aefe7c0888911f, type: 3}
   m_Name: PlayerEntity
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Player
+  <Name>k__BackingField: 
   _features:
-  - rid: 6181360948224458797
-  - rid: 6181360990120312844
-  - rid: 6181360990120312852
-  - rid: 6181360990120312921
-  - rid: 6181361183139299333
+  - rid: 6181361225784623151
+  - rid: 6181361225784623154
+  - rid: 6181361225784623155
   references:
     version: 2
     RefIds:
-    - rid: 6181360948224458797
-      type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data: 
-    - rid: 6181360990120312844
-      type: {class: FractionComp, ns: FoxMind.Code.Runtime.Core.Fractions.Components, asm: FoxMind.Code.Runtime.Core.Fractions}
+    - rid: 6181361225784623151
+      type: {class: JumpableComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
-        Fraction: 0
-    - rid: 6181360990120312852
-      type: {class: MoveableComp, ns: FoxMind.Code.Runtime.Core.Moving.Components, asm: FoxMind.Code.Runtime.Core.Moving}
+        Impulse: 15
+        CooldownMax: 0
+        CooldownCurrent: 0
+    - rid: 6181361225784623154
+      type: {class: MoveableComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         NormalizedMoveDirection: {x: 0, y: 0, z: 0}
         Speed: 10
-    - rid: 6181360990120312921
-      type: {class: JumpableComp, ns: FoxMind.Code.Runtime.Core.Moving.Components, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        IsJumping: 0
-        IsGrounded: 0
-        JumpImpulse: 15
-    - rid: 6181361183139299333
-      type: {class: MotionAnimationComp, ns: FoxMind.Code.Runtime.Core.Moving.Components, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        Move:
-          rid: 6181361183139299334
-    - rid: 6181361183139299334
-      type: {class: MixerTransition2DAsset/UnShared, ns: Animancer, asm: Animancer}
-      data:
-        _Asset: {fileID: 11400000, guid: 105218795f3b76449bafeedec100ac25, type: 2}
+    - rid: 6181361225784623155
+      type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data: 

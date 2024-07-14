@@ -1,6 +1,6 @@
 using System;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Abstracts;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using Leopotam.EcsLite;
 using Object = UnityEngine.Object;
 

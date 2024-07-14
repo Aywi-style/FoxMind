@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 using System;
 using System.Collections;
@@ -26,7 +26,7 @@ namespace Animancer
     /// 
     /// https://kybernetik.com.au/animancer/api/Animancer/AnimancerPlayable
     /// 
-    public sealed partial class AnimancerPlayable : PlayableBehaviour,
+    public partial class AnimancerPlayable : PlayableBehaviour,
         IEnumerator, IPlayableWrapper, IAnimationClipCollection
     {
         /************************************************************************************************************************/
@@ -204,6 +204,8 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
+        private float _Speed = 1;
+
         /// <summary>How fast the <see cref="AnimancerState.Time"/> of all animations is advancing every frame.</summary>
         /// 
         /// <remarks>
@@ -227,15 +229,18 @@ namespace Animancer
         /// </code></example>
         public float Speed
         {
-            get => (float)_LayerMixer.GetSpeed();
-            set => _LayerMixer.SetSpeed(value);
+            get => _Speed;
+            set => _LayerMixer.SetSpeed(_Speed = value);
         }
 
         /************************************************************************************************************************/
 
         private bool _KeepChildrenConnected;
 
-        /// <summary>Should playables stay connected to the graph at all times?</summary>
+        /// <summary>
+        /// Should playables stay connected to the graph at all times?
+        /// Otherwise they will be disconnected when their  <see cref="AnimancerNode.Weight"/> is 0.
+        /// </summary>
         /// 
         /// <remarks>
         /// Humanoid Rigs default this value to <c>false</c> so that playables will be disconnected from the graph
@@ -245,7 +250,7 @@ namespace Animancer
         /// values so every connection change has a higher performance cost than with Humanoid Rigs which is generally
         /// more significant than the gains for having fewer playables connected at a time.
         /// <para></para>
-        /// The default is set by <see cref="SetOutput(Animator, IAnimancerComponent)"/>.
+        /// The default is set by <see cref="CreateOutput(Animator, IAnimancerComponent)"/>.
         /// </remarks>
         /// 
         /// <example><code>
@@ -268,9 +273,17 @@ namespace Animancer
                 _KeepChildrenConnected = value;
 
                 if (value)
+                {
                     _PostUpdate.IsConnected = true;
 
-                Layers.SetWeightlessChildrenConnected(value);
+                    for (int i = Layers.Count - 1; i >= 0; i--)
+                        Layers.GetLayer(i).ConnectAllChildrenToGraph();
+                }
+                else
+                {
+                    for (int i = Layers.Count - 1; i >= 0; i--)
+                        Layers.GetLayer(i).DisconnectWeightlessChildrenFromGraph();
+                }
             }
         }
 
@@ -305,22 +318,13 @@ namespace Animancer
         /************************************************************************************************************************/
         #endregion
         /************************************************************************************************************************/
-        #region Initialisation
-        /************************************************************************************************************************/
-
-        /// <summary>
-        /// Since <see cref="ScriptPlayable{T}.Create(PlayableGraph, int)"/> needs to clone an existing instance, we
-        /// keep a static template to avoid allocating an extra garbage one every time. This is why the fields are
-        /// assigned in <see cref="OnPlayableCreate"/> rather than being readonly with field initializers.
-        /// </summary>
-        private static readonly AnimancerPlayable Template = new AnimancerPlayable();
-
+        #region Initialization
         /************************************************************************************************************************/
 
         /// <summary>
         /// Creates a new <see cref="PlayableGraph"/> containing an <see cref="AnimancerPlayable"/>.
         /// <para></para>
-        /// The caller is responsible for calling <see cref="Destroy()"/> on the returned object, except in Edit Mode
+        /// The caller is responsible for calling <see cref="DestroyGraph()"/> on the returned object, except in Edit Mode
         /// where it will be called automatically.
         /// <para></para>
         /// Consider calling <see cref="SetNextGraphName"/> before this method to give it a name.
@@ -338,13 +342,39 @@ namespace Animancer
             var graph = PlayableGraph.Create();
 #endif
 
-            return ScriptPlayable<AnimancerPlayable>.Create(graph, Template, 2)
-                .GetBehaviour();
+            return Create(graph);
         }
 
         /************************************************************************************************************************/
 
-        /// <summary>[Internal] Called by Unity as it creates this <see cref="AnimancerPlayable"/>.</summary>
+        /// <summary>
+        /// Since <see cref="ScriptPlayable{T}.Create(PlayableGraph, int)"/> needs to clone an existing instance, we
+        /// keep a static template to avoid allocating an extra garbage one every time. This is why the fields are
+        /// assigned in <see cref="OnPlayableCreate"/> rather than being readonly with field initializers.
+        /// </summary>
+        private static readonly AnimancerPlayable Template = new AnimancerPlayable();
+
+        /// <summary>Creates an <see cref="AnimancerPlayable"/> in an existing <see cref="PlayableGraph"/>.</summary>
+        public static AnimancerPlayable Create(PlayableGraph graph)
+            => Create(graph, Template);
+
+        /************************************************************************************************************************/
+
+        /// <summary>Creates an <see cref="AnimancerPlayable"/> in an existing <see cref="PlayableGraph"/>.</summary>
+        /// <example>
+        /// When inheriting from <see cref="AnimancerPlayable"/>, it is recommended to give your class a field like the
+        /// following to use as the `template` for this method:
+        /// <code>
+        /// private static readonly MyAnimancerPlayable Template = new MyAnimancerPlayable();
+        /// </code></example>
+        protected static T Create<T>(PlayableGraph graph, T template)
+            where T : AnimancerPlayable, new()
+            => ScriptPlayable<T>.Create(graph, template, 2)
+                .GetBehaviour();
+
+        /************************************************************************************************************************/
+
+        /// <summary>[Internal] Called by Unity when it creates this <see cref="AnimancerPlayable"/>.</summary>
         public override void OnPlayableCreate(Playable playable)
         {
             _RootPlayable = playable;
@@ -370,10 +400,10 @@ namespace Animancer
 #endif
 
         /// <summary>[Editor-Conditional]
-        /// Sets the display name for the next <see cref="Create"/> call to give its <see cref="PlayableGraph"/>.
+        /// Sets the display name for the next <see cref="Create()"/> call to give its <see cref="PlayableGraph"/>.
         /// </summary>
         /// <remarks>
-        /// Having this method separate from <see cref="Create"/> allows the
+        /// Having this method separate from <see cref="Create()"/> allows the
         /// <see cref="System.Diagnostics.ConditionalAttribute"/> to compile it out of runtime builds which would
         /// otherwise require #ifs on the caller side.
         /// </remarks>
@@ -396,14 +426,34 @@ namespace Animancer
         /************************************************************************************************************************/
 
         /// <summary>
+        /// Outputs the <see cref="PlayableOutput"/> connected to the <see cref="AnimancerPlayable"/> and returns true
+        /// if it was found. Otherwise returns false.
+        /// </summary>
+        public bool TryGetOutput(out PlayableOutput output)
+        {
+            var outputCount = _Graph.GetOutputCount();
+            for (int i = 0; i < outputCount; i++)
+            {
+                output = _Graph.GetOutput(i);
+                if (output.GetSourcePlayable().Equals(_RootPlayable))
+                    return true;
+            }
+
+            output = default;
+            return false;
+        }
+
+        /************************************************************************************************************************/
+
+        /// <summary>
         /// Plays this playable on the <see cref="IAnimancerComponent.Animator"/> and sets the
         /// <see cref="Component"/>.
         /// </summary>
-        public void SetOutput(IAnimancerComponent animancer)
-            => SetOutput(animancer.Animator, animancer);
+        public void CreateOutput(IAnimancerComponent animancer)
+            => CreateOutput(animancer.Animator, animancer);
 
         /// <summary>Plays this playable on the specified `animator` and sets the <see cref="Component"/>.</summary>
-        public void SetOutput(Animator animator, IAnimancerComponent animancer)
+        public void CreateOutput(Animator animator, IAnimancerComponent animancer)
         {
 #if UNITY_ASSERTIONS
             if (animator == null)
@@ -420,19 +470,23 @@ namespace Animancer
             if (animancer != null)
             {
                 Debug.Assert(animancer.IsPlayableInitialized && animancer.Playable == this,
-                    $"{nameof(SetOutput)} was called on an {nameof(AnimancerPlayable)} which does not match the" +
+                    $"{nameof(CreateOutput)} was called on an {nameof(AnimancerPlayable)} which does not match the" +
                     $" {nameof(IAnimancerComponent)}.{nameof(IAnimancerComponent.Playable)}.");
                 Debug.Assert(animator == animancer.Animator,
-                    $"{nameof(SetOutput)} was called with an {nameof(Animator)} which does not match the" +
+                    $"{nameof(CreateOutput)} was called with an {nameof(Animator)} which does not match the" +
                     $" {nameof(IAnimancerComponent)}.{nameof(IAnimancerComponent.Animator)}.");
+            }
+
+            if (TryGetOutput(out var output))
+            {
+                Debug.LogWarning(
+                    $"A {nameof(PlayableGraph)} output is already connected to the {nameof(AnimancerPlayable)}." +
+                    $" The old output should be destroyed using `animancerComponent.Playable.DestroyOutput();`" +
+                    $" before calling {nameof(CreateOutput)}.", animator);
             }
 #endif
 
             Component = animancer;
-
-            var output = _Graph.GetOutput(0);
-            if (output.IsOutputValid())
-                _Graph.DestroyOutput(output);
 
             var isHumanoid = animator.isHuman;
 
@@ -442,7 +496,11 @@ namespace Animancer
             // Generic Rigs can blend with an underlying Animator Controller but Humanoids can't.
             SkipFirstFade = isHumanoid || animator.runtimeAnimatorController == null;
 
+#pragma warning disable CS0618 // Type or member is obsolete.
+            // Unity 2022 marked this method as [Obsolete] even though it's the only way to use Animate Physics mode.
             AnimationPlayableUtilities.Play(animator, _RootPlayable, _Graph);
+#pragma warning restore CS0618 // Type or member is obsolete.
+
             _IsGraphPlaying = true;
         }
 
@@ -450,9 +508,8 @@ namespace Animancer
 
         /// <summary>[Pro-Only]
         /// Inserts a `playable` after the root of the <see cref="Graph"/> so that it can modify the final output.
-        /// <para></para>
-        /// It can be removed using <see cref="AnimancerUtilities.RemovePlayable"/>.
         /// </summary>
+        /// <remarks>It can be removed using <see cref="AnimancerUtilities.RemovePlayable"/>.</remarks>
         public void InsertOutputPlayable(Playable playable)
         {
             var output = _Graph.GetOutput(0);
@@ -463,9 +520,10 @@ namespace Animancer
 
         /// <summary>[Pro-Only]
         /// Inserts an animation job after the root of the <see cref="Graph"/> so that it can modify the final output.
-        /// <para></para>
-        /// It can can be removed by passing the returned value into <see cref="AnimancerUtilities.RemovePlayable"/>.
         /// </summary>
+        /// <remarks>
+        /// It can can be removed by passing the returned value into <see cref="AnimancerUtilities.RemovePlayable"/>.
+        /// </remarks>
         public AnimationScriptPlayable InsertOutputJob<T>(T data) where T : struct, IAnimationJob
         {
             var playable = AnimationScriptPlayable.Create(_Graph, data, 1);
@@ -483,17 +541,35 @@ namespace Animancer
         #region Cleanup
         /************************************************************************************************************************/
 
-        /// <summary>
-        /// Returns true as long as the <see cref="PlayableGraph"/> hasn't been destroyed (such as by <see cref="Destroy()"/>).
-        /// </summary>
+        /// <summary>Is this <see cref="AnimancerPlayable"/> currently usable (not destroyed)?</summary>
         public bool IsValid => _Graph.IsValid();
 
-        /// <summary>Destroys the <see cref="PlayableGraph"/>. This operation cannot be undone.</summary>
-        public void Destroy()
+        /************************************************************************************************************************/
+
+        /// <summary>Destroys the <see cref="Graph"/>. This operation cannot be undone.</summary>
+        public void DestroyGraph()
         {
             if (_Graph.IsValid())
                 _Graph.Destroy();
         }
+
+        /************************************************************************************************************************/
+
+        /// <summary>
+        /// Destroys the <see cref="PlayableOutput"/> connected to this <see cref="AnimancerPlayable"/> and returns
+        /// true if it was found. Otherwise returns false.
+        /// </summary>
+        public bool DestroyOutput()
+        {
+            if (TryGetOutput(out var output))
+            {
+                _Graph.DestroyOutput(output);
+                return true;
+            }
+            else return false;
+        }
+
+        /************************************************************************************************************************/
 
         /// <summary>Cleans up the resources managed by this <see cref="AnimancerPlayable"/>.</summary>
         public override void OnPlayableDestroy(Playable playable)
@@ -552,6 +628,7 @@ namespace Animancer
 
         /************************************************************************************************************************/
         #region Inverse Kinematics
+        // These fields are stored here but accessed via the LayerList.
         /************************************************************************************************************************/
 
         private bool _ApplyAnimatorIK;
@@ -565,7 +642,7 @@ namespace Animancer
                 _ApplyAnimatorIK = value;
 
                 for (int i = Layers.Count - 1; i >= 0; i--)
-                    Layers._Layers[i].ApplyAnimatorIK = value;
+                    Layers.GetLayer(i).ApplyAnimatorIK = value;
             }
         }
 
@@ -582,7 +659,7 @@ namespace Animancer
                 _ApplyFootIK = value;
 
                 for (int i = Layers.Count - 1; i >= 0; i--)
-                    Layers._Layers[i].ApplyFootIK = value;
+                    Layers.GetLayer(i).ApplyFootIK = value;
             }
         }
 
@@ -620,10 +697,7 @@ namespace Animancer
         /// This method is safe to call repeatedly without checking whether the `state` was already playing.
         /// </remarks>
         public AnimancerState Play(AnimancerState state)
-        {
-            var layer = state.Layer ?? Layers[0];
-            return layer.Play(state);
-        }
+            => GetLocalLayer(state).Play(state);
 
         /************************************************************************************************************************/
         // Cross Fade.
@@ -664,8 +738,7 @@ namespace Animancer
         /// </remarks>
         public AnimancerState Play(AnimancerState state, float fadeDuration, FadeMode mode = default)
         {
-            var layer = state.Layer ?? Layers[0];
-            return layer.Play(state, fadeDuration, mode);
+            return GetLocalLayer(state).Play(state, fadeDuration, mode);
         }
 
         /************************************************************************************************************************/
@@ -740,6 +813,24 @@ namespace Animancer
         /************************************************************************************************************************/
 
         /// <summary>
+        /// Returns the <see cref="AnimancerNode.Layer"/> if the <see cref="AnimancerNode.Root"/> is this.
+        /// Otherwise returns the first layer in this graph.
+        /// </summary>
+        private AnimancerLayer GetLocalLayer(AnimancerState state)
+        {
+            if (state.Root == this)
+            {
+                var layer = state.Layer;
+                if (layer != null)
+                    return layer;
+            }
+
+            return Layers[0];
+        }
+
+        /************************************************************************************************************************/
+
+        /// <summary>
         /// Gets the state registered with the <see cref="IHasKey.Key"/>, stops and rewinds it to the start, then
         /// returns it.
         /// </summary>
@@ -764,7 +855,7 @@ namespace Animancer
         public void Stop()
         {
             for (int i = Layers.Count - 1; i >= 0; i--)
-                Layers._Layers[i].Stop();
+                Layers.GetLayer(i).Stop();
         }
 
         /************************************************************************************************************************/
@@ -783,7 +874,7 @@ namespace Animancer
 
             for (int i = Layers.Count - 1; i >= 0; i--)
             {
-                if (Layers._Layers[i].IsAnyStatePlaying())
+                if (Layers.GetLayer(i).IsAnyStatePlaying())
                     return true;
             }
 
@@ -804,7 +895,7 @@ namespace Animancer
                 return false;
 
             for (int i = Layers.Count - 1; i >= 0; i--)
-                if (Layers._Layers[i].IsPlayingClip(clip))
+                if (Layers.GetLayer(i).IsPlayingClip(clip))
                     return true;
 
             return false;
@@ -812,13 +903,13 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
-        /// <summary>Calculates the total <see cref="AnimancerNode.Weight"/> of all states in this playable.</summary>
+        /// <summary>Calculates the total <see cref="AnimancerNode.Weight"/> of all states in all layers.</summary>
         public float GetTotalWeight()
         {
             float weight = 0;
 
             for (int i = Layers.Count - 1; i >= 0; i--)
-                weight += Layers._Layers[i].GetTotalWeight();
+                weight += Layers.GetLayer(i).GetTotalWeight();
 
             return weight;
         }
@@ -837,7 +928,7 @@ namespace Animancer
         bool IEnumerator.MoveNext()
         {
             for (int i = Layers.Count - 1; i >= 0; i--)
-                if (Layers._Layers[i].IsPlayingAndNotEnding())
+                if (Layers.GetLayer(i).IsPlayingAndNotEnding())
                     return true;
 
             return false;
@@ -861,7 +952,7 @@ namespace Animancer
         /// You should not use an <see cref="AnimancerState"/> as a key.
         /// Just call <see cref="AnimancerState.Stop"/>.
         /// </summary>
-        [System.Obsolete("You should not use an AnimancerState as a key. Just call AnimancerState.Stop().", true)]
+        [Obsolete("You should not use an AnimancerState as a key. Just call AnimancerState.Stop().", true)]
         public AnimancerState Stop(AnimancerState key)
         {
             key.Stop();
@@ -872,7 +963,7 @@ namespace Animancer
         /// You should not use an <see cref="AnimancerState"/> as a key.
         /// Just check <see cref="AnimancerState.IsPlaying"/>.
         /// </summary>
-        [System.Obsolete("You should not use an AnimancerState as a key. Just check AnimancerState.IsPlaying.", true)]
+        [Obsolete("You should not use an AnimancerState as a key. Just check AnimancerState.IsPlaying.", true)]
         public bool IsPlaying(AnimancerState key) => key.IsPlaying;
 
         /************************************************************************************************************************/
@@ -1158,7 +1249,7 @@ namespace Animancer
             }
 #endif
 
-            UpdateAll(_PreUpdatables, info.deltaTime);
+            UpdateAll(_PreUpdatables, info.deltaTime * info.effectiveParentSpeed);
 
             if (!_KeepChildrenConnected)
                 _PostUpdate.IsConnected = _PostUpdatables.Count != 0;
@@ -1170,6 +1261,7 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
+        /// <summary>Calls <see cref="IUpdatable.Update"/> on each of the updatables`.</summary>
         private void UpdateAll(Key.KeyedList<IUpdatable> updatables, float deltaTime)
         {
             var previous = Current;
@@ -1179,10 +1271,6 @@ namespace Animancer
             _CurrentUpdatables = updatables;
 
             DeltaTime = deltaTime;
-
-#if UNITY_2021_1_OR_NEWER
-            DeltaTime *= Time.timeScale;
-#endif
 
             var previousUpdatable = _CurrentUpdatable;
             _CurrentUpdatable = updatables.Count;
@@ -1219,7 +1307,7 @@ namespace Animancer
         /// <see cref="PrepareFrame"/> method gets called after all other playables are updated in order to call
         /// <see cref="IUpdatable.Update"/> on the <see cref="_PostUpdatables"/>.
         /// </summary>
-        private sealed class PostUpdate : PlayableBehaviour
+        private class PostUpdate : PlayableBehaviour
         {
             /************************************************************************************************************************/
 
@@ -1245,7 +1333,7 @@ namespace Animancer
 
             /************************************************************************************************************************/
 
-            /// <summary>Called by Unity as it creates this <see cref="AnimancerPlayable"/>.</summary>
+            /// <summary>[Internal] Called by Unity when it creates this <see cref="AnimancerPlayable"/>.</summary>
             public override void OnPlayableCreate(Playable playable) => _Playable = playable;
 
             /************************************************************************************************************************/
@@ -1290,7 +1378,7 @@ namespace Animancer
             /// </remarks>
             public override void PrepareFrame(Playable playable, FrameData info)
             {
-                _Root.UpdateAll(_Root._PostUpdatables, info.deltaTime);
+                _Root.UpdateAll(_Root._PostUpdatables, info.deltaTime * info.effectiveParentSpeed);
 
                 // Ideally we would be able to update the dirty nodes here instead of in the early update so that they
                 // can respond immediately to the effects of the post update.
@@ -1333,7 +1421,7 @@ namespace Animancer
                     {
                         var playable = _AllInstances[i];
                         if (playable.IsValid)
-                            playable.Destroy();
+                            playable.DestroyGraph();
                     }
 
                     _AllInstances.Clear();
@@ -1347,7 +1435,7 @@ namespace Animancer
                     if (!playable.ShouldStayAlive())
                     {
                         if (playable.IsValid)
-                            playable.Destroy();
+                            playable.DestroyGraph();
 
                         _AllInstances.RemoveAt(i);
                     }
@@ -1389,8 +1477,14 @@ namespace Animancer
             if (initial == null)
                 return false;
 
+#if UNITY_2023_1_OR_NEWER
+            var wasAnimatePhysics = initial.Value == AnimatorUpdateMode.Fixed;
+            var isAnimatePhysics = current == AnimatorUpdateMode.Fixed;
+#else
             var wasAnimatePhysics = initial.Value == AnimatorUpdateMode.AnimatePhysics;
             var isAnimatePhysics = current == AnimatorUpdateMode.AnimatePhysics;
+#endif
+
             return wasAnimatePhysics != isAnimatePhysics;
         }
 

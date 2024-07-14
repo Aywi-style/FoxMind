@@ -1,8 +1,7 @@
 using System.Collections.Generic;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
 using FoxMind.Code.Runtime.Core.Input.Systems;
-using FoxMind.Code.Runtime.Core.SystemsAssembly;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Abstracts;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Interfaces;
 
 namespace FoxMind.Code.Runtime.Core.Input.SystemsAssembly
 {

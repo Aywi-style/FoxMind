@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 #if UNITY_EDITOR
 
@@ -9,12 +9,12 @@ using UnityEngine;
 
 namespace Animancer.Editor
 {
-    /// <summary>[Internal]
+    /// <summary>[Editor-Only]
     /// A custom Inspector for an <see cref="AnimancerLayer"/> which sorts and exposes some of its internal values.
     /// </summary>
     /// https://kybernetik.com.au/animancer/api/Animancer.Editor/AnimancerLayerDrawer
     /// 
-    public sealed class AnimancerLayerDrawer : AnimancerNodeDrawer<AnimancerLayer>
+    public class AnimancerLayerDrawer : AnimancerNodeDrawer<AnimancerLayer>
     {
         /************************************************************************************************************************/
 
@@ -55,7 +55,7 @@ namespace Animancer.Editor
                     editor = editors[i];
                 }
 
-                editor.GatherStates(animancer.Layers._Layers[i]);
+                editor.GatherStates(animancer.Layers[i]);
             }
         }
 
@@ -221,7 +221,10 @@ namespace Animancer.Editor
 
             // Additive.
             EditorGUIUtility.labelWidth = AnimancerGUI.CalculateLabelWidth(additiveLabel);
-            Target.IsAdditive = EditorGUI.Toggle(area, additiveLabel, Target.IsAdditive);
+            EditorGUI.BeginChangeCheck();
+            var isAdditive = EditorGUI.Toggle(area, additiveLabel, Target.IsAdditive);
+            if (EditorGUI.EndChangeCheck())
+                Target.IsAdditive = isAdditive;
 
             // Mask.
             using (ObjectPool.Disposable.AcquireContent(out var label, "Mask"))
@@ -326,6 +329,23 @@ namespace Animancer.Editor
             }
 
             EditorGUI.indentLevel--;
+        }
+
+        /************************************************************************************************************************/
+
+        /// <inheritdoc/>
+        protected override void DoHeaderGUI()
+        {
+            if (AnimancerPlayableDrawer.HideSingleLayerHeader &&
+                Target.Root.Layers.Count == 1 &&
+                Target.Weight == 1 &&
+                Target.TargetWeight == 1 &&
+                Target.Speed == 1 &&
+                !Target.IsAdditive &&
+                Target._Mask == null)
+                return;
+
+            base.DoHeaderGUI();
         }
 
         /************************************************************************************************************************/

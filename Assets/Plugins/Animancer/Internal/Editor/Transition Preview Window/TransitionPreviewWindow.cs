@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 #if UNITY_EDITOR
 
@@ -22,7 +22,7 @@ namespace Animancer.Editor
 #if UNITY_2020_1_OR_NEWER
     [EditorWindowTitle]// Prevent the base SceneView from trying to use this type name to find the icon.
 #endif
-    public sealed partial class TransitionPreviewWindow : SceneView
+    public partial class TransitionPreviewWindow : SceneView
     {
         /************************************************************************************************************************/
         #region Public API
@@ -63,8 +63,26 @@ namespace Animancer.Editor
             {
                 if (!IsPreviewing(transitionProperty))
                 {
+                    // To avoid Unity giving a warning about camera rotation in 2D Mode:
+                    // Set all scene views to not 2D mode and store their previous state.
+                    var sceneViews = SceneView.sceneViews.ToArray();
+                    var was2D = new bool[sceneViews.Length];
+                    for (int i = 0; i < sceneViews.Length; i++)
+                    {
+                        var sceneView = (SceneView)sceneViews[i];
+                        was2D[i] = sceneView.in2DMode;
+                        sceneView.in2DMode = false;
+                    }
+
                     GetWindow<TransitionPreviewWindow>(typeof(SceneView))
                         .SetTargetProperty(transitionProperty);
+
+                    // Then after opening the window immediately return each scene view back to its previous state.
+                    for (int i = 0; i < sceneViews.Length; i++)
+                    {
+                        var sceneView = (SceneView)sceneViews[i];
+                        sceneView.in2DMode = was2D[i];
+                    }
                 }
                 else
                 {
@@ -139,6 +157,9 @@ namespace Animancer.Editor
         [SerializeField] private Animations _Animations;
         [SerializeField] private Scene _Scene;
 
+        [SerializeField]
+        private Gizmos _Gzimos;
+
         /************************************************************************************************************************/
 
         /// <inheritdoc/>
@@ -160,13 +181,15 @@ namespace Animancer.Editor
             name = "Transition Preview Window";
             titleContent = new GUIContent("Transition Preview", Icon);
             autoRepaintOnSceneChange = true;
-            sceneViewState.showSkybox = false;
-            sceneLighting = false;
+            sceneViewState.showSkybox = Settings.ShowSkybox;
+            sceneLighting = Settings.SceneLighting;
 
             if (_Scene == null)
                 _Scene = new Scene();
             if (_Animations == null)
                 _Animations = new Animations();
+            if (_Gzimos == null)
+                _Gzimos = new Gizmos();
 
             if (_TransitionProperty.IsValid() &&
                 !CanBePreviewed(_TransitionProperty))
@@ -202,7 +225,8 @@ namespace Animancer.Editor
 
         /************************************************************************************************************************/
 
-        private new void OnDestroy()
+        /// <summary>Cleans up this window.</summary>
+        protected virtual new void OnDestroy()
         {
             base.OnDestroy();
             _Scene.OnDestroy();
@@ -227,20 +251,28 @@ namespace Animancer.Editor
         /************************************************************************************************************************/
 
         /// <inheritdoc/>
+#if UNITY_2021_2_OR_NEWER
+        protected override void OnSceneGUI()
+#else
         protected override void OnGUI()
+#endif
         {
             _Instance = this;
 
-            var activeObject = Selection.activeObject;
-
+#if UNITY_2021_2_OR_NEWER
+            base.OnSceneGUI();
+#else
             base.OnGUI();
-
-            // Don't allow clicks in this window to select objects in the preview scene.
-            if (activeObject != Selection.activeObject)
-                DeselectPreviewSceneObjects();
+#endif
 
             _Scene.OnGUI();
+            // _Gzimos.DrawGizmos();
+            Handles.DrawWireCube(new Vector3(0,0,0),new Vector3(1,1,1));
+            Handles.DrawWireDisc(new Vector3(0, 0, 0), Vector3.up, 100);
+            Settings.ShowSkybox = sceneViewState.showSkybox;
+            Settings.SceneLighting = sceneLighting;
         }
+        
 
         /************************************************************************************************************************/
 
@@ -377,11 +409,11 @@ namespace Animancer.Editor
         #endregion
         /************************************************************************************************************************/
         #region Error Intercepts
-#if ! UNITY_2020_1_OR_NEWER
+#if !UNITY_2020_1_OR_NEWER
         /************************************************************************************************************************/
 
         /// <summary>Prevents log messages between <see cref="Activate"/> and <see cref="IDisposable.Dispose"/>.</summary>
-        private sealed class BlockAllLogs : IDisposable, ILogHandler
+        private class BlockAllLogs : IDisposable, ILogHandler
         {
             private static readonly BlockAllLogs Instance = new BlockAllLogs();
 

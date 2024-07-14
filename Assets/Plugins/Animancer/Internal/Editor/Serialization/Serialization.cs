@@ -1,4 +1,4 @@
-// Serialization // Copyright 2021 Kybernetik //
+// Serialization // Copyright 2018-2023 Kybernetik //
 
 #if UNITY_EDITOR
 
@@ -11,7 +11,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-// Shared File Last Modified: 2021-07-07
+// Shared File Last Modified: 2023-02-24
 namespace Animancer.Editor
 // namespace InspectorGadgets.Editor
 // namespace UltEvents.Editor
@@ -165,12 +165,12 @@ namespace Animancer.Editor
                 case SerializedPropertyType.ArraySize:
                     return property.intValue == default;
 
-                case SerializedPropertyType.Vector2: return property.vector2Value == default;
-                case SerializedPropertyType.Vector3: return property.vector3Value == default;
-                case SerializedPropertyType.Vector4: return property.vector4Value == default;
+                case SerializedPropertyType.Vector2: return property.vector2Value.Equals(default);
+                case SerializedPropertyType.Vector3: return property.vector3Value.Equals(default);
+                case SerializedPropertyType.Vector4: return property.vector4Value.Equals(default);
 
-                case SerializedPropertyType.Quaternion: return property.quaternionValue == default;
-                case SerializedPropertyType.Color: return property.colorValue == default;
+                case SerializedPropertyType.Quaternion: return property.quaternionValue.Equals(default);
+                case SerializedPropertyType.Color: return property.colorValue.Equals(default);
                 case SerializedPropertyType.AnimationCurve: return property.animationCurveValue == default;
 
                 case SerializedPropertyType.Rect: return property.rectValue == default;
@@ -776,6 +776,9 @@ namespace Animancer.Editor
         public static void RemoveArrayElement(SerializedProperty property, int index)
         {
             var count = property.arraySize;
+            if ((uint)index >= count)
+                return;
+
             property.DeleteArrayElementAtIndex(index);
             if (property.arraySize == count)
                 property.DeleteArrayElementAtIndex(index);
@@ -1019,7 +1022,8 @@ namespace Animancer.Editor
             /// <summary>
             /// Returns the <see cref="Field"/> if there is one, otherwise calls <see cref="GetField(ref object)"/>.
             /// </summary>
-            public FieldInfo GetField(object obj) => Field ?? GetField(ref obj);
+            public FieldInfo GetField(object obj)
+                => Field ?? GetField(ref obj);
 
             /// <summary>
             /// Calls <see cref="GetField(object)"/> with the <see cref="SerializedObject.targetObject"/>.
@@ -1040,7 +1044,8 @@ namespace Animancer.Editor
             /// Returns the <see cref="FieldElementType"/> if there is one, otherwise calls <see cref="GetField(ref object)"/>
             /// and returns its <see cref="FieldInfo.FieldType"/>.
             /// </summary>
-            public virtual Type GetFieldElementType(object obj) => FieldElementType ?? GetField(ref obj)?.FieldType;
+            public virtual Type GetFieldElementType(object obj)
+                => FieldElementType ?? GetField(ref obj)?.FieldType;
 
             /// <summary>
             /// Calls <see cref="GetFieldElementType(object)"/> with the
@@ -1063,7 +1068,14 @@ namespace Animancer.Editor
             /// the value of the <see cref="Field"/>.
             /// </summary>
             public virtual object GetValue(object obj)
-                => GetField(ref obj)?.GetValue(obj);
+            {
+                var field = GetField(ref obj);
+                if (field is null ||
+                    (obj is null && !field.IsStatic))
+                    return null;
+
+                return field.GetValue(obj);
+            }
 
             /// <summary>
             /// Gets the value of the from the <see cref="Parent"/> (if there is one), then uses it to get and return
@@ -1077,7 +1089,7 @@ namespace Animancer.Editor
             /// the value of the <see cref="Field"/>.
             /// </summary>
             public object GetValue(SerializedProperty serializedProperty)
-                => serializedProperty != null ? GetValue(serializedProperty.serializedObject) : null;
+                => serializedProperty != null ? GetValue(serializedProperty.serializedObject.targetObject) : null;
 
             /************************************************************************************************************************/
 
@@ -1089,7 +1101,8 @@ namespace Animancer.Editor
             {
                 var field = GetField(ref obj);
 
-                if (obj is null)
+                if (field is null ||
+                    obj is null)
                     return;
 
                 field.SetValue(obj, value);

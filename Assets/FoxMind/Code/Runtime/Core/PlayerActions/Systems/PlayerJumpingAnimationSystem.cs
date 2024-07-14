@@ -1,6 +1,6 @@
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.PlayerActions.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Abstracts;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 

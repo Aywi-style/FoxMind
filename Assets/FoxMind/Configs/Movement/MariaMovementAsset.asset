@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a2d01d4f425b3848938f199392c9afb, type: 3}
+  m_Name: MariaMovementAsset
+  m_EditorClassIdentifier: 
+  _Transition:
+    rid: 6181361159735083047
+  references:
+    version: 2
+    RefIds:
+    - rid: 6181361159735083047
+      type: {class: MixerTransition2D, ns: Animancer, asm: Animancer}
+      data:
+        _FadeDuration: 0.25
+        _Events:
+          _NormalizedTimes: []
+          _Callbacks: []
+          _Names: []
+        _Speed: 1
+        _Animations:
+        - {fileID: -203655887218126122, guid: 4c375b06839fd0f45accd679b20154d9, type: 3}
+        - {fileID: -203655887218126122, guid: 5264c02548d44a44a8fc4cad013ce3e0, type: 3}
+        - {fileID: -203655887218126122, guid: 1957345adb939e64bbb2b87e075631c4, type: 3}
+        - {fileID: -203655887218126122, guid: 3c0ed7065df91e5459a3e9414603d87e, type: 3}
+        - {fileID: -203655887218126122, guid: b6395f768caaec94e8908a25fdd9326f, type: 3}
+        _Speeds: []
+        _SynchronizeChildren: 
+        _Thresholds:
+        - {x: 0, y: 0}
+        - {x: 0, y: 1}
+        - {x: 0, y: -1}
+        - {x: 1, y: 0}
+        - {x: -1, y: 0}
+        _DefaultParameter: {x: 0, y: 0}
+        _Type: 0

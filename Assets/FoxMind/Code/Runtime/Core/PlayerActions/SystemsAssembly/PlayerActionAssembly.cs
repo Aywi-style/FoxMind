@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
 using FoxMind.Code.Runtime.Core.PlayerActions.Systems;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Abstracts;
-using FoxMind.Code.Runtime.Core.SystemsAssembly.Interfaces;
 
 namespace FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly
 {
@@ -11,7 +11,7 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly
         {
             EcsVisitable = new List<IEcsVisitable>()
             {
-                new PlayerAttackTestSystem(),
+                new PlayerAttackSystem(),
                 new PlayerDashSystem(),
                 new PlayerRotateSystem(),
                 new PlayerInputConvertToMoveDirection(),

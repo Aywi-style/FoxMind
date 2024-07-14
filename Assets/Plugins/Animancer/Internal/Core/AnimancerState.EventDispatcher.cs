@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 using System;
 using UnityEngine;
@@ -50,7 +50,6 @@ namespace Animancer
                 {
                     EventDispatcher.Acquire(this);
                     _EventDispatcher.Events = value;
-                    _EventDispatcher.OnTimeChanged();
                 }
                 else if (_EventDispatcher != null)
                 {
@@ -61,11 +60,9 @@ namespace Animancer
 
         /************************************************************************************************************************/
 
-        /// <summary>
-        /// Indicates whether this state currently has an <see cref="AnimancerEvent.Sequence"/> (since accessing the
-        /// <see cref="Events"/> would automatically get one from the <see cref="ObjectPool"/>).
-        /// </summary>
-        public bool HasEvents => _EventDispatcher != null;
+        /// <summary>Does this state have an <see cref="AnimancerEvent.Sequence"/>?</summary>
+        /// <remarks>Accessing <see cref="Events"/> would automatically get one from the <see cref="ObjectPool"/>.</remarks>
+        public bool HasEvents => _EventDispatcher != null && _EventDispatcher.HasEvents;
 
         /************************************************************************************************************************/
 
@@ -97,7 +94,8 @@ namespace Animancer
 
         /// <summary>An <see cref="IUpdatable"/> which triggers events in an <see cref="AnimancerEvent.Sequence"/>.</summary>
         /// https://kybernetik.com.au/animancer/api/Animancer/EventDispatcher
-        public sealed class EventDispatcher : Key, IUpdatable
+        /// 
+        public class EventDispatcher : Key, IUpdatable
         {
             /************************************************************************************************************************/
             #region Pooling
@@ -121,15 +119,15 @@ namespace Animancer
                 OptionalWarning.UnsupportedEvents.Log(state.UnsupportedEventsMessage, state.Root?.Component);
 
                 if (dispatcher._State != null)
-                    Debug.LogError(dispatcher + " already has a state even though it was in the list of spares.",
+                    Debug.LogError($"{dispatcher} already has a state even though it was in the list of spares.",
                         state.Root?.Component as Object);
 
                 if (dispatcher._Events != null)
-                    Debug.LogError(dispatcher + " has event sequence even though it was in the list of spares.",
+                    Debug.LogError($"{dispatcher} has event sequence even though it was in the list of spares.",
                         state.Root?.Component as Object);
 
                 if (dispatcher._GotEventsFromPool)
-                    Debug.LogError(dispatcher + " is marked as having pooled events even though it has no events.",
+                    Debug.LogError($"{dispatcher} is marked as having pooled events even though it has no events.",
                         state.Root?.Component as Object);
 
                 if (dispatcher._NextEventIndex != RecalculateEventIndex)
@@ -137,7 +135,7 @@ namespace Animancer
                         state.Root?.Component as Object);
 
                 if (IsInList(dispatcher))
-                    Debug.LogError(dispatcher + " is currently in a Keyed List even though it was also in the list of spares.",
+                    Debug.LogError($"{dispatcher} is currently in a Keyed List even though it was also in the list of spares.",
                         state.Root?.Component as Object);
 #endif
 
@@ -160,7 +158,6 @@ namespace Animancer
                 _State = null;
 
                 Events = null;
-                _NextEventIndex = RecalculateEventIndex;
 
                 ObjectPool.Release(this);
             }
@@ -206,6 +203,12 @@ namespace Animancer
 
             /************************************************************************************************************************/
 
+            /// <summary>Does this dispatcher have an <see cref="AnimancerEvent.Sequence"/>?</summary>
+            /// <remarks>Accessing <see cref="Events"/> would automatically get one from the <see cref="ObjectPool"/>.</remarks>
+            public bool HasEvents => _Events != null;
+
+            /************************************************************************************************************************/
+
             /// <summary>The events managed by this dispatcher.</summary>
             /// <remarks>If <c>null</c>, a new sequence will be acquired from the <see cref="ObjectPool"/>.</remarks>
             internal AnimancerEvent.Sequence Events
@@ -236,6 +239,7 @@ namespace Animancer
                     }
 
                     _Events = value;
+                    _NextEventIndex = RecalculateEventIndex;
                 }
             }
 
@@ -271,14 +275,15 @@ namespace Animancer
 
                 // End events are triggered every frame after their time passes. This ensures that assigning the event
                 // after the time has passed will still trigger it rather than leaving it playing indefinitely.
-                var endEvent = _Events.endEvent;
+                var endEvent = _Events.EndEvent;
                 if (endEvent.callback != null)
                 {
 
                     if (currentTime > _PreviousTime)// Playing Forwards.
                     {
-                        var eventTime = float.IsNaN(endEvent.normalizedTime) ?
-                            1 : endEvent.normalizedTime;
+                        var eventTime = float.IsNaN(endEvent.normalizedTime)
+                            ? 1
+                            : endEvent.normalizedTime;
 
                         if (currentTime > eventTime)
                         {
@@ -289,8 +294,9 @@ namespace Animancer
                     }
                     else// Playing Backwards.
                     {
-                        var eventTime = float.IsNaN(endEvent.normalizedTime) ?
-                            0 : endEvent.normalizedTime;
+                        var eventTime = float.IsNaN(endEvent.normalizedTime)
+                            ? 0
+                            : endEvent.normalizedTime;
 
                         if (currentTime < eventTime)
                         {
@@ -320,12 +326,12 @@ namespace Animancer
             /************************************************************************************************************************/
 
             /// <summary>[Assert-Conditional]
-            /// Called after the <see cref="AnimancerEvent.Sequence.endEvent"/> is triggered to log a warning if the
+            /// Called after the <see cref="AnimancerEvent.Sequence.EndEvent"/> is triggered to log a warning if the
             /// <see cref="_State"/> was not interrupted or the `callback` contains multiple calls to the same method.
             /// </summary>
             /// <remarks>
             /// It would be better if we could validate the callback when it is assigned to get a useful stack trace,
-            /// but that is unfortunately not possible since <see cref="AnimancerEvent.Sequence.endEvent"/> needs to be
+            /// but that is unfortunately not possible since <see cref="AnimancerEvent.Sequence.EndEvent"/> needs to be
             /// a field for efficiency.
             /// </remarks>
             [System.Diagnostics.Conditional(Strings.Assertions)]
@@ -340,38 +346,31 @@ namespace Animancer
             /************************************************************************************************************************/
 
             /// <summary>[Assert-Conditional]
-            /// Called after the <see cref="AnimancerEvent.Sequence.endEvent"/> is triggered to log a warning if the
+            /// Called after the <see cref="AnimancerEvent.Sequence.EndEvent"/> is triggered to log a warning if the
             /// <see cref="_State"/> was not interrupted or the `callback` contains multiple calls to the same method.
             /// </summary>
             /// <remarks>
             /// It would be better if we could validate the callback when it is assigned to get a useful stack trace,
-            /// but that is unfortunately not possible since <see cref="AnimancerEvent.Sequence.endEvent"/> needs to be
+            /// but that is unfortunately not possible since <see cref="AnimancerEvent.Sequence.EndEvent"/> needs to be
             /// a field for efficiency.
             /// </remarks>
             [System.Diagnostics.Conditional(Strings.Assertions)]
             private void ValidateAfterEndEvent(Action callback)
             {
 #if UNITY_ASSERTIONS
-                if (!_LoggedEndEventInterrupt &&
-                    _Events != null)
+                if (ShouldLogEndEventInterrupt(callback))
                 {
-                    var layer = _State.Layer;
-                    if (_BeforeEndLayer == layer &&
-                        _BeforeEndCommandCount == layer.CommandCount &&
-                       _State.Root.IsGraphPlaying &&
-                       _State.IsPlaying &&
-                       _State.EffectiveSpeed != 0)
-                    {
-                        _LoggedEndEventInterrupt = true;
-                        if (OptionalWarning.EndEventInterrupt.IsEnabled())
-                            OptionalWarning.EndEventInterrupt.Log(
-                                "An End Event did not actually end the animation:" +
-                                $"\n - State: {_State}" +
-                                $"\n - Callback: {callback.Method.DeclaringType.Name}.{callback.Method.Name}" +
-                                "\n\nEnd Events are triggered every frame after their time has passed, so if that is not desired behaviour" +
-                                " then it might be necessary to explicitly clear the event or simply use a regular event instead.",
-                                _State.Root?.Component);
-                    }
+                    _LoggedEndEventInterrupt = true;
+                    if (OptionalWarning.EndEventInterrupt.IsEnabled())
+                        OptionalWarning.EndEventInterrupt.Log(
+                            "An End Event did not actually end the animation:" +
+                            $"\n• State: {_State}" +
+                            $"\n• Callback: {callback.Method.DeclaringType.Name}.{callback.Method.Name}" +
+                            "\n\nEnd Events are triggered every frame after their time has passed," +
+                            " so if that is not desired behaviour then it might be necessary to explicitly set the" +
+                            $" state.{nameof(AnimancerState.Events)}.{nameof(AnimancerEvent.Sequence.OnEnd)} = null" +
+                            " or simply use a regular event instead.",
+                            _State.Root?.Component);
                 }
 
                 if (OptionalWarning.DuplicateEvent.IsDisabled())
@@ -395,8 +394,8 @@ namespace Animancer
                                 $"The {nameof(AnimancerEvent)}.{nameof(AnimancerEvent.Sequence)}.{nameof(AnimancerEvent.Sequence.OnEnd)}" +
                                 " callback being invoked contains multiple identical delegates which may mean" +
                                 " that they are being unintentionally added multiple times." +
-                                $"\n - State: {_State}" +
-                                $"\n - Method: {a.Method.Name}",
+                                $"\n• State: {_State}" +
+                                $"\n• Method: {a.Method.Name}",
                                 _State.Root?.Component);
                         }
                         else if (a?.Method == b?.Method)
@@ -408,14 +407,45 @@ namespace Animancer
                                 " in which case it can be avoided by giving each object its own" +
                                 $" {nameof(AnimancerEvent)}.{nameof(AnimancerEvent.Sequence)} as explained in the documentation:" +
                                 $" {Strings.DocsURLs.SharedEventSequences}" +
-                                $"\n - State: {_State}" +
-                                $"\n - Method: {a.Method.Name}",
+                                $"\n• State: {_State}" +
+                                $"\n• Method: {a.Method.Name}",
                                 _State.Root?.Component);
                         }
                     }
                 }
 #endif
             }
+
+            /************************************************************************************************************************/
+
+#if UNITY_ASSERTIONS
+            /// <summary>Should <see cref="OptionalWarning.EndEventInterrupt"/> be logged?</summary>
+            private bool ShouldLogEndEventInterrupt(Action callback)
+            {
+                if (_LoggedEndEventInterrupt ||
+                    _Events == null ||
+                    _Events.OnEnd != callback)
+                    return false;
+
+                var layer = _State.Layer;
+                if (_BeforeEndLayer != layer ||
+                    _BeforeEndCommandCount != layer.CommandCount ||
+                    !_State.Root.IsGraphPlaying ||
+                    !_State.IsPlaying)
+                    return false;
+
+                var speed = _State.EffectiveSpeed;
+                if (speed > 0)
+                {
+                    return _State.NormalizedTime > _State.NormalizedEndTime;
+                }
+                else if (speed < 0)
+                {
+                    return _State.NormalizedTime < _State.NormalizedEndTime;
+                }
+                else return false;// Speed 0.
+            }
+#endif
 
             /************************************************************************************************************************/
             #endregion
@@ -471,7 +501,7 @@ namespace Animancer
                         return;
                 }
 
-                var endEvent = _Events.endEvent;
+                var endEvent = _Events.EndEvent;
                 if (endEvent.callback != null)
                     endEvent.Invoke(_State);
             }
@@ -482,7 +512,10 @@ namespace Animancer
             {
                 var count = _Events.Count;
                 if (count == 0)
+                {
+                    _NextEventIndex = 0;
                     return;
+                }
 
                 ValidateNextEventIndex(ref currentTime, out var playDirectionFloat, out var playDirectionInt);
 
@@ -521,7 +554,7 @@ namespace Animancer
                         var eventTime = animancerEvent.normalizedTime * playDirectionFloat;
 
                         if (currentTime <= eventTime)
-                            break;
+                            return;
 
                         animancerEvent.Invoke(_State);
 
@@ -557,9 +590,17 @@ namespace Animancer
                         if (_IsLooping)
                             previousTime = AnimancerUtilities.Wrap01(previousTime);
 
-                        while (_NextEventIndex > 0 &&
-                            _Events[_NextEventIndex].normalizedTime > previousTime)
+                        while (_Events[_NextEventIndex].normalizedTime > previousTime)
+                        {
                             _NextEventIndex--;
+
+                            if (_NextEventIndex < 0)
+                            {
+                                if (_IsLooping)
+                                    _NextEventIndex = _Events.Count - 1;
+                                break;
+                            }
+                        }
 
                         _Events.AssertNormalizedTimes(_State, _IsLooping);
                     }
@@ -582,9 +623,17 @@ namespace Animancer
                             previousTime = AnimancerUtilities.Wrap01(previousTime);
 
                         var max = _Events.Count - 1;
-                        while (_NextEventIndex < max &&
-                            _Events[_NextEventIndex].normalizedTime < previousTime)
+                        while (_Events[_NextEventIndex].normalizedTime < previousTime)
+                        {
                             _NextEventIndex++;
+
+                            if (_NextEventIndex > max)
+                            {
+                                if (_IsLooping)
+                                    _NextEventIndex = 0;
+                                break;
+                            }
+                        }
 
                         _Events.AssertNormalizedTimes(_State, _IsLooping);
                     }
@@ -592,23 +641,37 @@ namespace Animancer
 
                 // This method could be slightly optimised for playback direction changes by using the current index
                 // as the starting point instead of iterating from the edge of the sequence, but that would make it
-                // significantly more complex for something that should not happen very often and would only matter if
+                // significantly more complex for something that shouldn't happen very often and would only matter if
                 // there are lots of events (in which case the optimisation would be tiny compared to the cost of
                 // actually invoking all those events and running the rest of the application).
             }
 
             /************************************************************************************************************************/
 
+            /// <summary>
+            /// Calculates the number of times an event at `eventTime` should be invoked when the
+            /// <see cref="NormalizedTime"/> goes from `previousTime` to `nextTime` on a looping animation.
+            /// </summary>
             private static int GetLoopDelta(float previousTime, float nextTime, float eventTime)
             {
                 previousTime -= eventTime;
+                nextTime -= eventTime;
+
                 var previousLoopCount = Mathf.FloorToInt(previousTime);
-                var nextLoopCount = Mathf.FloorToInt(nextTime - eventTime);
+                var nextLoopCount = Mathf.FloorToInt(nextTime);
 
+                var loopCount = nextLoopCount - previousLoopCount;
+
+                // Previous time must be inclusive.
+                // And next time must be exclusive.
+                // So if the previous time is exactly on a looped increment of the event time, count one more.
+                // And if the next time is exactly on a looped increment of the event time, count one less.
                 if (previousTime == previousLoopCount)
-                    nextLoopCount++;
+                    loopCount++;
+                if (nextTime == nextLoopCount)
+                    loopCount--;
 
-                return nextLoopCount - previousLoopCount;
+                return loopCount;
             }
 
             /************************************************************************************************************************/

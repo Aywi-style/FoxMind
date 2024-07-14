@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 #if UNITY_EDITOR
 
@@ -26,7 +26,7 @@ namespace Animancer.Editor
     /// </example>
     /// https://kybernetik.com.au/animancer/api/Animancer.Editor/CompactUnitConversionCache
     /// 
-    public sealed class CompactUnitConversionCache
+    public class CompactUnitConversionCache
     {
         /************************************************************************************************************************/
 
@@ -46,28 +46,26 @@ namespace Animancer.Editor
         public readonly string ConvertedSmallNegative;
 
         /// <summary>The pixel width of the <see cref="Suffix"/> when drawn by <see cref="EditorStyles.numberField"/>.</summary>
-        public readonly float SuffixWidth;
+        public float _SuffixWidth;
 
         /// <summary>The caches for each character count.</summary>
         /// <remarks><c>this[x]</c> is a cache that outputs strings with <c>x</c> characters.</remarks>
         private List<ConversionCache<float, string>>
             Caches = new List<ConversionCache<float, string>>();
 
+        /************************************************************************************************************************/
+
         /// <summary>Strings mapped to the width they would require for a <see cref="EditorStyles.numberField"/>.</summary>
-        private static ConversionCache<string, float>
-            WidthCache = AnimancerGUI.CreateWidthCache(EditorStyles.numberField);
+        private static ConversionCache<string, float> _WidthCache;
 
         /// <summary>Padding around the text in a <see cref="EditorStyles.numberField"/>.</summary>
-        public static readonly float
-            FieldPadding = EditorStyles.numberField.padding.horizontal;
+        public static float _FieldPadding;
 
         /// <summary>The pixel width of the <c>~</c> character when drawn by <see cref="EditorStyles.numberField"/>.</summary>
-        public static readonly float
-            ApproximateSymbolWidth = WidthCache.Convert("~") - FieldPadding;
+        public static float _ApproximateSymbolWidth;
 
         /// <summary>The character(s) used to separate decimal values in the current OS language.</summary>
-        public static readonly string
-            DecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+        public static string _DecimalSeparator;
 
         /// <summary>Values smaller than this become <c>0~</c> or <c>-0~</c>.</summary>
         public const float
@@ -87,7 +85,6 @@ namespace Animancer.Editor
             ConvertedZero = "0" + Suffix;
             ConvertedSmallPositive = "0" + ApproximateSuffix;
             ConvertedSmallNegative = "-0" + ApproximateSuffix;
-            SuffixWidth = WidthCache.Convert(suffix);
         }
 
         /************************************************************************************************************************/
@@ -127,9 +124,21 @@ namespace Animancer.Editor
             if (valueString.Length < 2 + ApproximateSuffix.Length)
                 return 0;
 
+            if (_SuffixWidth == 0)
+            {
+                if (_WidthCache == null)
+                {
+                    _WidthCache = AnimancerGUI.CreateWidthCache(EditorStyles.numberField);
+                    _FieldPadding = EditorStyles.numberField.padding.horizontal;
+                    _ApproximateSymbolWidth = _WidthCache.Convert("~") - _FieldPadding;
+                }
+
+                _SuffixWidth = _WidthCache.Convert(Suffix);
+            }
+
             // If the field is wide enough to fit the full value, don't approximate.
-            width -= FieldPadding + ApproximateSymbolWidth * 0.75f;
-            var valueWidth = WidthCache.Convert(valueString) + SuffixWidth;
+            width -= _FieldPadding + _ApproximateSymbolWidth * 0.75f;
+            var valueWidth = _WidthCache.Convert(valueString) + _SuffixWidth;
             if (valueWidth <= width)
                 return 0;
 
@@ -170,7 +179,10 @@ namespace Animancer.Editor
                             value < -LargeExponentialThreshold)
                             goto IsExponential;
 
-                        var decimalIndex = valueString.IndexOf(DecimalSeparator);
+                        if (_DecimalSeparator == null)
+                            _DecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+
+                        var decimalIndex = valueString.IndexOf(_DecimalSeparator);
                         if (decimalIndex < 0 || decimalIndex > characterCount)
                             goto IsExponential;
 

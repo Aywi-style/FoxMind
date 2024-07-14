@@ -1,4 +1,4 @@
-// Animancer // https://kybernetik.com.au/animancer // Copyright 2021 Kybernetik //
+// Animancer // https://kybernetik.com.au/animancer // Copyright 2018-2023 Kybernetik //
 
 #if UNITY_EDITOR
 using Animancer.Editor;
@@ -145,13 +145,14 @@ namespace Animancer.Units
         /************************************************************************************************************************/
 
         /// <summary>[Editor-Only] Draws this attribute's fields.</summary>
-        protected void DoFieldGUI(Rect area, GUIContent label, ref float value)
+        public void DoFieldGUI(Rect area, GUIContent label, ref float value)
         {
-            var isMultiLine = area.height > LineHeight;
+            var isMultiLine = area.height >= LineHeight * 2;
             area.height = LineHeight;
 
             DoOptionalBeforeGUI(IsOptional, area, out var toggleArea, out var guiWasEnabled, out var previousLabelWidth);
 
+            var hasLabel = label != null && !string.IsNullOrEmpty(label.text);
             Rect allFieldArea;
 
             if (isMultiLine)
@@ -164,10 +165,14 @@ namespace Animancer.Units
                 allFieldArea = EditorGUI.IndentedRect(area);
                 EditorGUI.indentLevel--;
             }
-            else
+            else if (hasLabel)
             {
                 var labelXMax = area.x + EditorGUIUtility.labelWidth;
                 allFieldArea = new Rect(labelXMax, area.y, area.xMax - labelXMax, area.height);
+            }
+            else
+            {
+                allFieldArea = area;
             }
 
             // Count the number of active fields.
@@ -194,7 +199,7 @@ namespace Animancer.Units
                 if (float.IsNaN(multiplier))
                     continue;
 
-                if (label != null)
+                if (hasLabel)
                 {
                     fieldArea.xMin = area.xMin;
                 }
@@ -213,6 +218,7 @@ namespace Animancer.Units
                 var fieldValue = displayValue * multiplier;
                 fieldValue = DoSpecialFloatField(fieldArea, label, fieldValue, DisplayConverters[i]);
                 label = null;
+                hasLabel = false;
 
                 if (EditorGUI.EndChangeCheck())
                     value = fieldValue / multiplier;

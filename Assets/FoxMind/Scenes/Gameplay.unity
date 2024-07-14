@@ -1328,10 +1328,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _systemAssemblies:
+  - rid: 6181361225784623130
   - rid: 6181360954596655150
   - rid: 6181361183139299342
-  - rid: 6181361183139299335
-  - rid: 6181360990120312887
+  - rid: 6181361225784623134
+  - rid: 6181361225784623117
   references:
     version: 2
     RefIds:
@@ -1343,72 +1344,6 @@ MonoBehaviour:
         - rid: 6181360954596655151
     - rid: 6181360954596655151
       type: {class: SceneInitSystem, ns: FoxMind.Code.Runtime.Core.Scenes.Init.Systems, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181360990120312887
-      type: {class: MovementAssembly, ns: FoxMind.Code.Runtime.Core.Moving.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        <IsEnabled>k__BackingField: 1
-        EcsVisitable:
-        - rid: 6181361137347723315
-        - rid: 6181360990120312888
-        - rid: 6181360990120312889
-        - rid: 6181360990120312890
-        - rid: 6181361137347723314
-    - rid: 6181360990120312888
-      type: {class: MoveSystem, ns: FoxMind.Code.Runtime.Core.Moving.Systems, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181360990120312889
-      type: {class: JumpSystem, ns: FoxMind.Code.Runtime.Core.Moving.Systems, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181360990120312890
-      type: {class: MoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Moving.Systems, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181361137347723314
-      type: {class: NewMoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Moving.Systems, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181361137347723315
-      type: {class: RegisterMotionAnimationsSystem, ns: FoxMind.Code.Runtime.Core.Moving.Systems, asm: FoxMind.Code.Runtime.Core.Moving}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181361183139299335
-      type: {class: PlayerActionAssembly, ns: FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        EcsVisitable:
-        - rid: 6181361183139299336
-        - rid: 6181361183139299337
-        - rid: 6181361183139299338
-        - rid: 6181361183139299339
-        - rid: 6181361183139299340
-        - rid: 6181361183139299341
-    - rid: 6181361183139299336
-      type: {class: PlayerAttackTestSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181361183139299337
-      type: {class: PlayerDashSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181361183139299338
-      type: {class: PlayerRotateSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181361183139299339
-      type: {class: PlayerInputConvertToMoveDirection, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-    - rid: 6181361183139299340
-      type: {class: PlayerIsGroundedSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        _groundCheck: 0
-    - rid: 6181361183139299341
-      type: {class: PlayerJumpingAnimationSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data:
         <IsEnabled>k__BackingField: 1
     - rid: 6181361183139299342
@@ -1439,6 +1374,107 @@ MonoBehaviour:
         <IsEnabled>k__BackingField: 1
     - rid: 6181361183139299347
       type: {class: InputDashSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623117
+      type: {class: MovementAssembly, ns: FoxMind.Code.Runtime.Core.Movement.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        EcsVisitable:
+        - rid: 6181361225784623118
+        - rid: 6181361225784623119
+        - rid: 6181361225784623120
+        - rid: 6181361225784623121
+        - rid: 6181361225784623122
+        - rid: 6181361225784623123
+        - rid: 6181361225784623157
+        - rid: 6181361225784623158
+    - rid: 6181361225784623118
+      type: {class: RegisterMotionAnimationsSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623119
+      type: {class: MoveSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623120
+      type: {class: JumpSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623121
+      type: {class: JumpCooldownSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623122
+      type: {class: MoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623123
+      type: {class: NewMoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623130
+      type: {class: AnimationsAssembly, ns: FoxMind.Code.Runtime.Core.Animations.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+        EcsVisitable:
+        - rid: 6181361225784623131
+        - rid: 6181361225784623132
+        - rid: 6181361225784623156
+    - rid: 6181361225784623131
+      type: {class: PlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623132
+      type: {class: SelfPlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623134
+      type: {class: PlayerActionAssembly, ns: FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        EcsVisitable:
+        - rid: 6181361225784623135
+        - rid: 6181361225784623136
+        - rid: 6181361225784623137
+        - rid: 6181361225784623138
+        - rid: 6181361225784623139
+        - rid: 6181361225784623140
+    - rid: 6181361225784623135
+      type: {class: PlayerAttackSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623136
+      type: {class: PlayerDashSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623137
+      type: {class: PlayerRotateSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623138
+      type: {class: PlayerInputConvertToMoveDirection, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623139
+      type: {class: PlayerIsGroundedSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        _groundCheck: 0
+    - rid: 6181361225784623140
+      type: {class: PlayerJumpingAnimationSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623156
+      type: {class: DelSelfPlayRequest, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623157
+      type: {class: DelSelfJumpRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623158
+      type: {class: DelSelfRegisterMotionAnimationRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
 --- !u!1001 &414177823
@@ -2929,6 +2965,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21bd98e95dc922347ae6446c1decac44, type: 3}
+--- !u!1 &607547877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6861447374074954554, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
+  m_PrefabInstance: {fileID: 1725685888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &630138089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5915,20 +5956,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entity: 0
-  FeaturesConfig: {fileID: 11400000, guid: 275bf3f9084dbc54c99d19291715acc1, type: 2}
+  FeaturesConfig: {fileID: 11400000, guid: 9c844d147ad0d2044841cd0be2d03273, type: 2}
   Features:
   - rid: 6181361183139299350
   - rid: 6181361183139299348
-  - rid: 6181361137347723308
   - rid: 6181361183139299349
   references:
     version: 2
     RefIds:
-    - rid: 6181361137347723308
-      type: {class: AnimancerComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1725685889}
-        Clip: {fileID: 7400000, guid: 56b0a4fc4686fe1419ee3652593da073, type: 3}
     - rid: 6181361183139299348
       type: {class: RigidBodyComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
       data:
@@ -10613,14 +10648,17 @@ PrefabInstance:
     - {fileID: 3511149670864074139, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6861447374074954554, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1725685894}
   m_SourcePrefab: {fileID: 100100000, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
 --- !u!114 &1725685889 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2322689178178849265, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
   m_PrefabInstance: {fileID: 1725685888}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 607547877}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
@@ -10631,6 +10669,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 867142686228738169, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
   m_PrefabInstance: {fileID: 1725685888}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1725685893 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1932827063430004657, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
+  m_PrefabInstance: {fileID: 1725685888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1725685894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607547877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb9852087f39824f9647d710481937e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Animator: {fileID: 1725685893}
+  _Target: {fileID: 1079219346}
 --- !u!1001 &1735842800
 PrefabInstance:
   m_ObjectHideFlags: 0
