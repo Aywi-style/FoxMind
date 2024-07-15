@@ -33,12 +33,17 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
             {
                 _inputJumpPool.Value.Del(attackEventEntity);
             }
-
-            if (_needToCreateJumpEvent)
-            {
-                _inputJumpPool.Value.Add(_defaultWorld.Value.NewEntity());
-            }
             
+            if (_needToCreateJumpEvent == false)
+            {
+                return;
+            }
+
+            foreach (var inputControlsEntity in _baseInputControlsFilter.Value)
+            {
+                _inputJumpPool.Value.Add(inputControlsEntity);
+            }
+                
             _needToCreateJumpEvent = false;
         }
 

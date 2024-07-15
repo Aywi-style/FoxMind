@@ -40,12 +40,16 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
                 _inputAttackPool.Value.Del(attackEventEntity);
             }
 
-            if (_needToCreateAttackEvent)
+            if (_needToCreateAttackEvent == false)
             {
-                Debug.Log("Добавлено");
-                _inputAttackPool.Value.Add(_defaultWorld.Value.NewEntity());
+                return;
             }
-            
+
+            foreach (var inputControlsEntity in _baseInputControlsFilter.Value)
+            {
+                _inputAttackPool.Value.Add(inputControlsEntity);
+            }
+                
             _needToCreateAttackEvent = false;
         }
 

@@ -1,4 +1,4 @@
-using FoxMind.Code.Runtime.Core.Animations.Components;
+using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
 using FoxMind.Code.Runtime.Core.PlayerActions.Components;
@@ -10,9 +10,9 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
     public class PlayerAttackSystem : BaseEcsVisitable, IEcsRunSystem
     {
         readonly EcsFilterInject<Inc<InputAttackEvent>> _inputAttackEventFilter = default;
-        readonly EcsFilterInject<Inc<PlayerControlledComp, AnimancerComp>> _controlledFilter = default;
+        readonly EcsFilterInject<Inc<PlayerControlledComp>> _controlledFilter = default;
         
-        readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
+        readonly EcsPoolInject<SelfAttackRequest> _attackRequestPool = default;
         
         public void Run(IEcsSystems systems)
         {
@@ -23,9 +23,13 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
             
             foreach (var controlledEntity in _controlledFilter.Value)
             {
-                ref var animancer = ref _animancerPool.Value.Get(controlledEntity);
+                if (_attackRequestPool.Value.Has(controlledEntity))
+                {
+                    continue;
+                }
 
-                animancer.Value.Animator.applyRootMotion = true;
+                _attackRequestPool.Value.Add(controlledEntity);
+
                 /*var state = animancer.Value.Play(animancer.Clip);
                 state.Time = 0;*/
             }

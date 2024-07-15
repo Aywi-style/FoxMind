@@ -34,11 +34,16 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
                 _inputDashPool.Value.Del(attackEventEntity);
             }
 
-            if (_needToCreateDashEvent)
+            if (_needToCreateDashEvent == false)
             {
-                _inputDashPool.Value.Add(_defaultWorld.Value.NewEntity());
+                return;
             }
-            
+
+            foreach (var inputControlsEntity in _baseInputControlsFilter.Value)
+            {
+                _inputDashPool.Value.Add(inputControlsEntity);
+            }
+                
             _needToCreateDashEvent = false;
         }
 

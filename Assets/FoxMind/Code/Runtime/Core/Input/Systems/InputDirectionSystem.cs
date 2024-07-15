@@ -12,28 +12,26 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
         
         readonly EcsFilterInject<Inc<BaseInputControlsComp>> _baseInputControlsFilter = default;
         readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
+        readonly EcsFilterInject<Inc<BaseInputControlsComp, InputDirectionComp>> _inputDirectionControlsFilter = default;
         
         readonly EcsPoolInject<BaseInputControlsComp> _baseInputControlsPool = default;
         readonly EcsPoolInject<InputDirectionComp> _inputDirectionPool = default;
 
         public void PreInit(IEcsSystems systems)
         {
-            var inputDirectionEntity = _defaultWorld.Value.NewEntity(); 
-            _inputDirectionPool.Value.Add(inputDirectionEntity);
+            foreach (var inputEntity in _baseInputControlsFilter.Value)
+            {
+                _inputDirectionPool.Value.Add(inputEntity);
+            }
         }
         
         public void Run(IEcsSystems systems)
         {
-            foreach (var inputEntity in _baseInputControlsFilter.Value)
+            foreach (var inputEntity in _inputDirectionControlsFilter.Value)
             {
                 ref var inputControlsComp = ref _baseInputControlsPool.Value.Get(inputEntity);
-
-                foreach (var inputDirectionEntity in _inputDirectionFilter.Value)
-                {
-                    ref var inputDirectionComp = ref _inputDirectionPool.Value.Get(inputDirectionEntity);
-
-                    inputDirectionComp.Direction = inputControlsComp.Value.GeneralMap.MoveDirection.ReadValue<Vector2>();
-                }
+                ref var inputDirectionComp = ref _inputDirectionPool.Value.Get(inputEntity);
+                inputDirectionComp.Direction = inputControlsComp.Value.GeneralMap.MoveDirection.ReadValue<Vector2>();
             }
         }
     }

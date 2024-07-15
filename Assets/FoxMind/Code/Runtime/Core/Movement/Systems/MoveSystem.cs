@@ -31,7 +31,6 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 _cachedMoveVelocity.z = moveable.NormalizedMoveDirection.z * moveable.Speed;
                 
                 rigidBody.Value.velocity = _cachedMoveVelocity;
-                Debug.Log(_cachedMoveVelocity);
                 //transform.Value.position += moveable.MoveDirection * moveable.Speed * deltaTime;
             }
         }
