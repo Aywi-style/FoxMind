@@ -28,7 +28,7 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
                     continue;
                 }
 
-                _attackRequestPool.Value.Add(controlledEntity);
+                //_attackRequestPool.Value.Add(controlledEntity);
 
                 /*var state = animancer.Value.Play(animancer.Clip);
                 state.Time = 0;*/

@@ -29,9 +29,9 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
 
         public void Run(IEcsSystems systems)
         {
-            foreach (var attackEventEntity in _inputDashFilter.Value)
+            foreach (var dashEventEntity in _inputDashFilter.Value)
             {
-                _inputDashPool.Value.Del(attackEventEntity);
+                _inputDashPool.Value.Del(dashEventEntity);
             }
 
             if (_needToCreateDashEvent == false)

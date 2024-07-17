@@ -1,6 +1,6 @@
 namespace FoxMind.Code.Runtime.Core.Battle.Combo.Enums
 {
-    public enum ComboCondition
+    public enum ComboState
     {
         Attack,
         Dash,

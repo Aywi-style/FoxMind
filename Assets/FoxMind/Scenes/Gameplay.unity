@@ -1333,12 +1333,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _systemAssemblies:
-  - rid: 6181361225784623168
+  - rid: 6181361225784623172
   - rid: 6181361225784623130
   - rid: 6181360954596655150
-  - rid: 6181361183139299342
   - rid: 6181361225784623134
   - rid: 6181361225784623117
+  - rid: 6181361183139299342
   references:
     version: 2
     RefIds:
@@ -1483,13 +1483,33 @@ MonoBehaviour:
       type: {class: DelSelfRegisterMotionAnimationRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
-    - rid: 6181361225784623168
+    - rid: 6181361225784623172
       type: {class: ComboAssembly, ns: FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         EcsVisitable:
-        - rid: 6181361225784623169
-    - rid: 6181361225784623169
+        - rid: 6181361225784623173
+        - rid: 6181361225784623174
+        - rid: 6181361225784623175
+        - rid: 6181361225784623176
+        - rid: 6181361225784623177
+    - rid: 6181361225784623173
+      type: {class: RegisterTrackInputtedSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623174
+      type: {class: TrackAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623175
+      type: {class: TrackDashSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623176
+      type: {class: TrackMoveSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
+      data:
+        <IsEnabled>k__BackingField: 1
+    - rid: 6181361225784623177
       type: {class: AttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1

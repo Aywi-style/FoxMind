@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3203c2644fb467799eededeb4ce4beb, type: 3}
-  m_Name: SlashAttackConfig
+  m_Name: Attack_SlashConfig
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,10 +21,23 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  OpenerCompsForSource: []
-  EndingCompsForSource: []
+  OpenerCompsForSource:
+  - rid: 6181361225784623182
+  EndingCompsForSource:
+  - rid: 6181361225784623180
+  - rid: 6181361225784623181
   HitCompsForTarget: []
   Animation: {fileID: 7400000, guid: 56b0a4fc4686fe1419ee3652593da073, type: 3}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6181361225784623180
+      type: {class: TestFeature, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Components, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
+      data:
+        Value: 10
+    - rid: 6181361225784623181
+      type: {class: SelfRegisterMotionAnimationRequest, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
+      data: 
+    - rid: 6181361225784623182
+      type: {class: InputDashEvent, ns: FoxMind.Code.Runtime.Core.Input.Components, asm: FoxMind.Code.Runtime.Core.Input}
+      data: 

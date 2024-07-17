@@ -25,7 +25,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 
                 var state = animancer.Value.States.GetOrCreate(motionAnimation.Move);
                 motionAnimation.MoveState = (MixerState<Vector2>)state;
-                animancer.Value.Play(motionAnimation.MoveState);
+                animancer.Value.Play(motionAnimation.MoveState, 0.2f);
             }
         }
     }

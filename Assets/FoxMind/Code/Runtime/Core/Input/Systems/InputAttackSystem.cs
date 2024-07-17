@@ -21,14 +21,10 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
 
         public void Init(IEcsSystems systems)
         {
-            Debug.Log("Начало подписки");
-            
             foreach (var inputControlsEntity in _baseInputControlsFilter.Value)
             {
                 ref var inputControlsComp = ref _baseInputControlsPool.Value.Get(inputControlsEntity);
                 inputControlsComp.Value.GeneralMap.Attack.started += OnInputtedAttack;
-                
-                Debug.Log("Подписано");
             }
         }
 
@@ -36,7 +32,6 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
         {
             foreach (var attackEventEntity in _inputAttackFilter.Value)
             {
-                Debug.Log("Удалено");
                 _inputAttackPool.Value.Del(attackEventEntity);
             }
 
@@ -64,7 +59,6 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
 
         private void OnInputtedAttack(InputAction.CallbackContext callbackContext)
         {
-            Debug.Log("Сработано");
             _needToCreateAttackEvent = true;
         }
     }

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 350e62913ff84f028e3a1bfd36e06bd2, type: 3}
-  m_Name: SlashCombo
+  m_Script: {fileID: 11500000, guid: 8010492aa0ee4d60b09d632226c3dfe3, type: 3}
+  m_Name: _CombosAssembly
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,5 +21,5 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  ComboConditions: 00000000
-  AttackConfig: {fileID: 11400000, guid: a461bd6ef94c8ef40ba33d42192ddb6d, type: 2}
+  ComboConfigs:
+  - {fileID: 11400000, guid: 9e1c3cc1c20d9444b86aa2c74c293269, type: 2}

@@ -11,8 +11,17 @@ namespace FoxMind.Code.Runtime.Core.Ecs.Templates
     {
         void IEntityFeature.Compose(EcsWorld world, int entity)
         {
-            ref var tComponent = ref world.GetPool<T>().Add(entity);
-            SetComposeValues(ref tComponent);
+            var pool = world.GetPool<T>();
+            if (pool.Has(entity))
+            {
+                ref var tComp = ref pool.Get(entity);
+                SetComposeValues(ref tComp);
+            }
+            else
+            {
+                ref var tComp = ref pool.Add(entity);
+                SetComposeValues(ref tComp);
+            }
         }
 
         public void SetComposeValues(ref T component)
