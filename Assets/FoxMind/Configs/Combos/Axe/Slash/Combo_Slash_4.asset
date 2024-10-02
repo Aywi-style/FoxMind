@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 350e62913ff84f028e3a1bfd36e06bd2, type: 3}
+  m_Name: Combo_Slash_4
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  IsOpener: 0
+  AttackConfig: {fileID: 11400000, guid: 2f17bfc345864674a9f516b0d76a9dd4, type: 2}
+  ComboEnd: 1
+  ComboConditions:
+  - Condition: 0
+    PressWindow: 0.1
+  AllowedCombos:
+    LaunchWindow: 0.458
+    Combos: []

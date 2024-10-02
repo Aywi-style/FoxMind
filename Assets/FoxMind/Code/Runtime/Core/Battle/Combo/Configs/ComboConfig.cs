@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Battle.Combo.Enums;
+using FoxMind.Code.Runtime.Core.Battle.Configs;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Combo.Configs
 {
@@ -10,23 +12,24 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Configs
     [InlineEditor]
     public class ComboConfig : SerializedScriptableObject
     {
-        [SerializeField] public bool IsRequiredPreviousAttack;
-        [ShowIf("IsRequiredPreviousAttack")] [SerializeField] public PreviousAttack PreviousAttack;
-        [SerializeField] public List<ComboCondition> ComboConditions;
+        [SerializeField] public bool IsOpener;
         [SerializeField] public AttackConfig AttackConfig;
+        [Range(0, 1)] [SerializeField] public float ComboEnd = 1f;
+        [SerializeField] public List<ComboCondition> ComboConditions;
+        [SerializeField] public AllowedCombos AllowedCombos;
     }
 
     [Serializable]
     public struct ComboCondition
     {
-        public ComboState ComboState;
+        public PlayerAction Condition;
         public float PressWindow;
     }
 
     [Serializable]
-    public struct PreviousAttack
+    public struct AllowedCombos
     {
-        public AttackConfig Attack;
-        public float LaunchedWindow;
+        [Range(0, 1)] [SerializeField] public float LaunchWindow;
+        [SerializeField] public List<ComboConfig> Combos;
     }
 }

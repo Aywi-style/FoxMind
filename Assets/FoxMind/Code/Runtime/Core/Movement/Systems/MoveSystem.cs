@@ -15,6 +15,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
         private readonly EcsPoolInject<RigidBodyComp> _rigidBodyPool = default;
         private readonly EcsPoolInject<AnimatorComp> _animatorPool = default;
         private readonly EcsPoolInject<MoveableComp> _moveablePool = default;
+        private readonly EcsPoolInject<ImmovableComp> _immovablePool = default;
 
         private Vector3 _cachedMoveVelocity;
         
@@ -26,9 +27,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 ref var rigidBody = ref _rigidBodyPool.Value.Get(movableEntity);
                 ref var moveable = ref _moveablePool.Value.Get(movableEntity);
 
+                var immovableMultiply = _immovablePool.Value.Has(movableEntity) ? 0.1f : 1;
+
                 _cachedMoveVelocity = rigidBody.Value.velocity;
-                _cachedMoveVelocity.x = moveable.NormalizedMoveDirection.x * moveable.Speed;
-                _cachedMoveVelocity.z = moveable.NormalizedMoveDirection.z * moveable.Speed;
+                _cachedMoveVelocity.x = moveable.NormalizedMoveDirection.x * moveable.Speed * immovableMultiply;
+                _cachedMoveVelocity.z = moveable.NormalizedMoveDirection.z * moveable.Speed * immovableMultiply;
                 
                 rigidBody.Value.velocity = _cachedMoveVelocity;
                 //transform.Value.position += moveable.MoveDirection * moveable.Speed * deltaTime;

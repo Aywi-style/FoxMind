@@ -497,7 +497,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: Take 001
+    second: Slash_2
   - first:
       95: 9500000
     second: //RootNode
@@ -559,7 +559,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Slash_2
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
@@ -573,7 +573,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1

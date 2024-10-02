@@ -16,6 +16,7 @@ namespace FoxMind.Code.Runtime.Core.Input.SystemsAssembly
                 new InputAttackSystem(),
                 new InputJumpSystem(),
                 new InputDashSystem(),
+                new InputTargetLockSystem(),
             };
         }
     }

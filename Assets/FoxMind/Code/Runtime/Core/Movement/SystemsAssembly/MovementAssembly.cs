@@ -11,6 +11,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
         {
             EcsVisitable = new List<IEcsVisitable>()
             {
+                new DeletingImmovableCompSystem(),
+                new AddingImmovableCompSystem(),
                 new RegisterMotionAnimationsSystem(),
                 new MoveSystem(),
                 new JumpSystem(),
@@ -18,8 +20,10 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
                 new MoveAnimationSystem(),
                 new NewMoveAnimationSystem(),
 
-                new DelSelfJumpRequestSystem(),
-                new DelSelfRegisterMotionAnimationRequestSystem(),
+                new DelJumpRequestSystem(),
+                new DelRegisterMotionAnimationRequestSystem(),
+                new DelSelfImmovableRequestSystem(),
+                new DelSelfUnImmovableRequestSystem(),
             };
         }
     }

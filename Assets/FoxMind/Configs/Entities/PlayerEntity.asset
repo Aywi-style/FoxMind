@@ -15,9 +15,9 @@ MonoBehaviour:
   <Name>k__BackingField: 
   _features:
   - rid: 6181361225784623155
-  - rid: 6181361225784623165
+  - rid: 6181361225784623186
   - rid: 6181361225784623151
-  - rid: 6181361225784623154
+  - rid: 6181361225784623208
   - rid: 6181361225784623164
   - rid: 6181361225784623171
   references:
@@ -29,11 +29,6 @@ MonoBehaviour:
         Impulse: 15
         CooldownMax: 0
         CooldownCurrent: 0
-    - rid: 6181361225784623154
-      type: {class: MoveableComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        NormalizedMoveDirection: {x: 0, y: 0, z: 0}
-        Speed: 10
     - rid: 6181361225784623155
       type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data: 
@@ -41,10 +36,15 @@ MonoBehaviour:
       type: {class: MotionAnimationComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         Move: {fileID: 11400000, guid: 105218795f3b76449bafeedec100ac25, type: 2}
-    - rid: 6181361225784623165
-      type: {class: SelfRegisterMotionAnimationRequest, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
-      data: 
     - rid: 6181361225784623171
       type: {class: CombinableComp, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Components, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
+    - rid: 6181361225784623186
+      type: {class: RegisterMotionAnimationRequest, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
+      data: 
+    - rid: 6181361225784623208
+      type: {class: MoveableComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        NormalizedMoveDirection: {x: 0, y: 0, z: 0}
+        Speed: 10

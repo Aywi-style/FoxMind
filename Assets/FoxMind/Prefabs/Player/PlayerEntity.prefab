@@ -1,5 +1,60 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3679187557186578913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7227299913138958699}
+  - component: {fileID: 7805731729839050860}
+  m_Layer: 7
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7227299913138958699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679187557186578913}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.18045762, y: 0.20381698, z: 0.46353522, w: 0.84322524}
+  m_LocalPosition: {x: 0, y: 0.083, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6971856840141460340}
+  m_LocalEulerAnglesHint: {x: -29.557, y: 11.702, z: 54.5}
+--- !u!136 &7805731729839050860
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3679187557186578913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6343924255526383174
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,6 +109,7 @@ MonoBehaviour:
   - rid: 6181361183139299348
   - rid: 6181361183139299349
   - rid: 6181361225784623167
+  - rid: 6181361635298115589
   references:
     version: 2
     RefIds:
@@ -73,6 +129,10 @@ MonoBehaviour:
       type: {class: AnimancerComp, ns: FoxMind.Code.Runtime.Core.Animations.Components, asm: FoxMind.Code.Runtime.Core.Animations}
       data:
         Value: {fileID: 975416334976097818}
+    - rid: 6181361635298115589
+      type: {class: HitBoxComp, ns: FoxMind.Code.Runtime.Core.Battle.Components, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        Collider: {fileID: 7805731729839050860}
 --- !u!54 &8961378062448705683
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -300,7 +360,10 @@ PrefabInstance:
     - {fileID: 2633867597612507760, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
     - {fileID: 3511149670864074139, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5580950215149601951, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7227299913138958699}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6861447374074954554, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
       insertIndex: -1
@@ -325,6 +388,11 @@ Transform:
 --- !u!95 &3990261305153038426 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1932827063430004657, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
+  m_PrefabInstance: {fileID: 3292842150175414251}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6971856840141460340 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5580950215149601951, guid: 74b1be1b74d1b774e80c902f8bcb3e35, type: 3}
   m_PrefabInstance: {fileID: 3292842150175414251}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8253484539740280017 stripped

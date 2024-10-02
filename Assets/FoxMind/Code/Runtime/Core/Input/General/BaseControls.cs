@@ -62,6 +62,15 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TargetLock"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e5bcfd3-c605-4bac-81ae-722cba199f51"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -121,9 +130,75 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""6a24e419-f921-451e-b320-8dd26e9cbc9d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDirection"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""7600bdca-9931-4898-b8e6-1f2e48d07a0e"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e4fda705-6c66-4aac-b199-b313f264c040"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""2a511843-86b6-4ddd-b153-1ba096bff36d"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""08099999-852e-42ae-a1c0-7f31e0cc081c"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""9ddba43e-7de0-4d9c-9894-61336755c160"",
                     ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9d18de2d-752e-40c2-bde0-1e36bf55d550"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -144,12 +219,56 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""c657b3d2-6fd0-43f8-9b21-45f0d8525468"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e3275a37-e798-4733-b3a4-09e881bf8552"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c5e22ef-89eb-4b51-a713-7095390317fc"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89d382c9-16ca-44e9-a320-323e895c1a90"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TargetLock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54066ad7-4b9b-480a-b077-95636a0d6092"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TargetLock"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -164,6 +283,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         m_GeneralMap_Jump = m_GeneralMap.FindAction("Jump", throwIfNotFound: true);
         m_GeneralMap_Attack = m_GeneralMap.FindAction("Attack", throwIfNotFound: true);
         m_GeneralMap_Dash = m_GeneralMap.FindAction("Dash", throwIfNotFound: true);
+        m_GeneralMap_TargetLock = m_GeneralMap.FindAction("TargetLock", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,6 +349,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GeneralMap_Jump;
     private readonly InputAction m_GeneralMap_Attack;
     private readonly InputAction m_GeneralMap_Dash;
+    private readonly InputAction m_GeneralMap_TargetLock;
     public struct GeneralMapActions
     {
         private @BaseControls m_Wrapper;
@@ -237,6 +358,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GeneralMap_Jump;
         public InputAction @Attack => m_Wrapper.m_GeneralMap_Attack;
         public InputAction @Dash => m_Wrapper.m_GeneralMap_Dash;
+        public InputAction @TargetLock => m_Wrapper.m_GeneralMap_TargetLock;
         public InputActionMap Get() { return m_Wrapper.m_GeneralMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +380,9 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @TargetLock.started += instance.OnTargetLock;
+            @TargetLock.performed += instance.OnTargetLock;
+            @TargetLock.canceled += instance.OnTargetLock;
         }
 
         private void UnregisterCallbacks(IGeneralMapActions instance)
@@ -274,6 +399,9 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @TargetLock.started -= instance.OnTargetLock;
+            @TargetLock.performed -= instance.OnTargetLock;
+            @TargetLock.canceled -= instance.OnTargetLock;
         }
 
         public void RemoveCallbacks(IGeneralMapActions instance)
@@ -297,5 +425,6 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnTargetLock(InputAction.CallbackContext context);
     }
 }

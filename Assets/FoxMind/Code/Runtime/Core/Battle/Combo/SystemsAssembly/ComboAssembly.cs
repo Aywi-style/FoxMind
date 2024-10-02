@@ -11,12 +11,14 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly
         {
             EcsVisitable = new List<IEcsVisitable>()
             {
-                new RegisterTrackInputtedSystem(),
-                new TrackAttackSystem(),
-                new TrackDashSystem(),
-                new TrackMoveSystem(),
-                new TrackJumpSystem(),
-                new AttackSystem()
+                new CatchInputAttackSystem(),
+                new DefineWhatPlayerComboNeedToDoSystem(),
+                new DefineActualComboSystem(),
+                new ProvideComboSystem(),
+                new InComboComponentDeletingSystem(),
+                
+                new DelSelfComboAttackRequestSystem(),
+                new DelTargetProvideComboRequestSystem(),
             };
         }
     }

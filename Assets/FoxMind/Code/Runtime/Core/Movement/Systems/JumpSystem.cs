@@ -10,7 +10,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
 {
     public class JumpSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<SelfJumpRequest, RigidBodyComp, JumpableComp>> _jumpFilter = default;
+        private readonly EcsFilterInject<Inc<JumpRequest, RigidBodyComp, JumpableComp>> _jumpFilter = default;
 
         private readonly EcsPoolInject<RigidBodyComp> _rigidBodyPool = default;
         private readonly EcsPoolInject<JumpableComp> _jumpablePool = default;

@@ -10,7 +10,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
 {
     public class RegisterMotionAnimationsSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<SelfRegisterMotionAnimationRequest, MotionAnimationComp, AnimancerComp>> _requestFilter = default;
+        private readonly EcsFilterInject<Inc<RegisterMotionAnimationRequest, MotionAnimationComp, AnimancerComp>> _requestFilter = default;
 
         private readonly EcsPoolInject<MotionAnimationComp> _motionAnimationPool = default;
         private readonly EcsPoolInject<AnimancerComp> _animancerPool = default;

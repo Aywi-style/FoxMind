@@ -20,25 +20,42 @@ MonoBehaviour:
     - rid: 6181361159735083047
       type: {class: MixerTransition2D, ns: Animancer, asm: Animancer}
       data:
-        _FadeDuration: 0.25
+        _FadeDuration: 1
         _Events:
           _NormalizedTimes: []
           _Callbacks: []
           _Names: []
         _Speed: 1
         _Animations:
-        - {fileID: -203655887218126122, guid: 4c375b06839fd0f45accd679b20154d9, type: 3}
-        - {fileID: -203655887218126122, guid: 5264c02548d44a44a8fc4cad013ce3e0, type: 3}
-        - {fileID: -203655887218126122, guid: 1957345adb939e64bbb2b87e075631c4, type: 3}
-        - {fileID: -203655887218126122, guid: 3c0ed7065df91e5459a3e9414603d87e, type: 3}
-        - {fileID: -203655887218126122, guid: b6395f768caaec94e8908a25fdd9326f, type: 3}
-        _Speeds: []
+        - {fileID: 7400000, guid: af038cc78e35f224c803022e05633cc6, type: 3}
+        - {fileID: 7400000, guid: d5ea706b955be3441bf46f5c0a9eeb5f, type: 3}
+        - {fileID: 7400000, guid: c57e3e9f0e46dfe4da8688fed52fdf39, type: 3}
+        - {fileID: 7400000, guid: 584750bcd8147e042a94549bb8002836, type: 3}
+        - {fileID: 7400000, guid: 6fab3b01c8497a54d95490091ba1b1c1, type: 3}
+        - {fileID: 7400000, guid: 9ca1b2e3efa4e534b8ee02b5d084e419, type: 3}
+        - {fileID: 7400000, guid: 0617a0978c74cf140b6df21dd26312ef, type: 3}
+        - {fileID: 7400000, guid: fba4b96b518d95b4d8d38841072175eb, type: 3}
+        - {fileID: 7400000, guid: 7df21828cba1f8d4b900196c1db5fd36, type: 3}
+        _Speeds:
+        - 2
+        - 2
+        - 2
+        - 2
+        - 2
+        - 2
+        - 2
+        - 2
+        - 2
         _SynchronizeChildren: 
         _Thresholds:
         - {x: 0, y: 0}
+        - {x: -0.7, y: 0.7}
+        - {x: 0.7, y: 0.7}
+        - {x: -0.7, y: -0.7}
+        - {x: 0.7, y: -0.7}
         - {x: 0, y: 1}
         - {x: 0, y: -1}
-        - {x: 1, y: 0}
         - {x: -1, y: 0}
+        - {x: 1, y: 0}
         _DefaultParameter: {x: 0, y: 0}
         _Type: 0

@@ -13,8 +13,10 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
     public class PlayerRotateSystem : BaseEcsVisitable, IEcsRunSystem
     {
         readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
+        readonly EcsFilterInject<Inc<InputTargetLockPerformedComp>> _inputTargetLockPerformedFilter = default;
         readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp>> _controlledTransformFilter = default;
-        
+
+        readonly EcsPoolInject<InputTargetLockPerformedComp> _inputTargetLockPerformedPool = default;
         readonly EcsPoolInject<InputDirectionComp> _inputDirectionPool = default;
         readonly EcsPoolInject<TransformComp> _transformPool = default;
         
@@ -49,7 +51,11 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
                     {
                         var forward = new float3(moveDirection.x, 0f, moveDirection.z);
                         Quaternion lookRotation = quaternion.LookRotation(forward, math.up());
-                        transform.Value.rotation = Quaternion.Slerp(transform.Value.rotation, lookRotation, 0.2f);
+
+
+                        float rotationSpeed = 0.2f;
+                        float targetLockMultiply = _inputTargetLockPerformedFilter.Value.GetEntitiesCount() > 0 ? 0 : 1;
+                        transform.Value.rotation = Quaternion.Slerp(transform.Value.rotation, lookRotation, rotationSpeed * targetLockMultiply);
                     }
                 }
             }
