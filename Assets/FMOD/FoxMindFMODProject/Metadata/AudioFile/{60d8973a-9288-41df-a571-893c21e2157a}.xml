@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{60d8973a-9288-41df-a571-893c21e2157a}">
+		<property name="assetPath">
+			<value>OSTs/AIpollo - Uncertain Algorithms.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>186.40979591836734</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d9ff7940-5d07-4c63-b61e-bf89485532ab}</destination>
+		</relationship>
+	</object>
+</objects>

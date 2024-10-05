@@ -19,10 +19,18 @@ MonoBehaviour:
   - rid: 6181361225784623151
   - rid: 6181361225784623208
   - rid: 6181361225784623164
-  - rid: 6181361225784623171
+  - rid: 2449856009831972864
   references:
     version: 2
     RefIds:
+    - rid: 2449856009831972864
+      type: {class: CombinableComp, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Components, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
+      data:
+        CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
+        AvailableCombos:
+        - {fileID: 11400000, guid: 32778330f409c4245b687107af9cf494, type: 2}
+        - {fileID: 11400000, guid: 79af400b540b69c4b866164db759a5c0, type: 2}
+        - {fileID: 11400000, guid: cdbd5d5fcaecb494c9ba88e82bcc4584, type: 2}
     - rid: 6181361225784623151
       type: {class: JumpableComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
@@ -35,11 +43,7 @@ MonoBehaviour:
     - rid: 6181361225784623164
       type: {class: MotionAnimationComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
-        Move: {fileID: 11400000, guid: 105218795f3b76449bafeedec100ac25, type: 2}
-    - rid: 6181361225784623171
-      type: {class: CombinableComp, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Components, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
+        Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
     - rid: 6181361225784623186
       type: {class: RegisterMotionAnimationRequest, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
       data: 

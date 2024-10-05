@@ -8,7 +8,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
 {
     public struct MotionAnimationComp : IEntityFeature<MotionAnimationComp>
     {
-        public MixerTransition2DAsset Move;
+        public TransitionAsset Move;
         [ReadOnly] public MixerState<Vector2> MoveState;
         //[ReadOnly] public AnimancerState MoveState;
     }

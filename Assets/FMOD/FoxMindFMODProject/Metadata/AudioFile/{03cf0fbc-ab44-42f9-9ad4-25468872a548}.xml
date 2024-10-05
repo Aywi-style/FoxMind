@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{03cf0fbc-ab44-42f9-9ad4-25468872a548}">
+		<property name="assetPath">
+			<value>OSTs/AIpollo - Echoes of Solitude.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>154.77551020408163</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d9ff7940-5d07-4c63-b61e-bf89485532ab}</destination>
+		</relationship>
+	</object>
+</objects>
