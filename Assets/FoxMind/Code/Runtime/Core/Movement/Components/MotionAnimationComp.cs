@@ -1,3 +1,4 @@
+using System;
 using Animancer;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using Leopotam.EcsLite;
@@ -6,6 +7,7 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Components
 {
+    [Serializable]
     public struct MotionAnimationComp : IEntityFeature<MotionAnimationComp>
     {
         public TransitionAsset Move;

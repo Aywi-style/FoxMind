@@ -32,18 +32,25 @@ namespace FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours
 
         public void Init(EcsWorld world)
         {
-            _entityFeatures = FeaturesConfig != null ? FeaturesConfig.Concat(Features) : null;
-
-            if (_entityFeatures != null)
+            try
             {
-                var entity = world.NewEntity();
-                _entity = entity;
-                PackedEntity = world.PackEntityWithWorld(entity);
-                
-                foreach (var feature in _entityFeatures)
+                _entityFeatures = FeaturesConfig != null ? FeaturesConfig.Concat(Features) : null;
+
+                if (_entityFeatures != null)
                 {
-                    feature.Compose(world, entity);
+                    var entity = world.NewEntity();
+                    _entity = entity;
+                    PackedEntity = world.PackEntityWithWorld(entity);
+                
+                    foreach (var feature in _entityFeatures)
+                    {
+                        feature.Compose(world, entity);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"In {name} null comp!");
             }
         }
     }

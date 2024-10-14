@@ -9115,7 +9115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1451284689
 Transform:
   m_ObjectHideFlags: 0
@@ -9505,6 +9505,134 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: Features.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: Features.Array.data[5]
+      value: 2449856258875326552
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326523]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326524]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326525]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326526]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326527]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326528]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326529]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326530]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326531]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326532]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326533]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326534]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326535]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326536]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326537]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326538]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326539]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326540]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326541]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326542]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326543]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326544]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326545]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326546]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326547]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326548]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326549]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326550]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326551]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[2449856258875326552]
+      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.TestMovementRegistration
+      objectReference: {fileID: 0}
     - target: {fileID: 993683633823280744, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

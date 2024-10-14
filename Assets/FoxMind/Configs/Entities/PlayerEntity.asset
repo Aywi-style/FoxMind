@@ -15,11 +15,8 @@ MonoBehaviour:
   <Name>k__BackingField: 
   _features:
   - rid: 6181361225784623155
-  - rid: 6181361225784623186
-  - rid: 6181361225784623151
-  - rid: 6181361225784623208
-  - rid: 6181361225784623164
   - rid: 2449856009831972864
+  - rid: 2449856258875326561
   references:
     version: 2
     RefIds:
@@ -31,24 +28,18 @@ MonoBehaviour:
         - {fileID: 11400000, guid: 32778330f409c4245b687107af9cf494, type: 2}
         - {fileID: 11400000, guid: 79af400b540b69c4b866164db759a5c0, type: 2}
         - {fileID: 11400000, guid: cdbd5d5fcaecb494c9ba88e82bcc4584, type: 2}
-    - rid: 6181361225784623151
-      type: {class: JumpableComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
+    - rid: 2449856258875326561
+      type: {class: MovementFullFeature, ns: FoxMind.Code.Runtime.Core.Movement.Components.FullFeature, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
-        Impulse: 15
-        CooldownMax: 0
-        CooldownCurrent: 0
+        Value2:
+          Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
+        Value3:
+          Impulse: 15
+          CooldownMax: 0
+          CooldownCurrent: 0
+        Value4:
+          NormalizedMoveDirection: {x: 0, y: 0, z: 0}
+          Speed: 10
     - rid: 6181361225784623155
       type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data: 
-    - rid: 6181361225784623164
-      type: {class: MotionAnimationComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
-    - rid: 6181361225784623186
-      type: {class: RegisterMotionAnimationRequest, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
-      data: 
-    - rid: 6181361225784623208
-      type: {class: MoveableComp, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        NormalizedMoveDirection: {x: 0, y: 0, z: 0}
-        Speed: 10
