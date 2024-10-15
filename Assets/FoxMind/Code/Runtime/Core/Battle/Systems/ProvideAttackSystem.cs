@@ -57,7 +57,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
 
                 inAttackComp.AttackConfig = targetProvideAttackRequest.AttackConfig;
                 inAttackComp.Start = _cachedTime;
-                inAttackComp.End = _cachedTime + (targetProvideAttackRequest.AttackConfig.AttackEnd * inAttackComp.AttackConfig.Animation.length);
+                inAttackComp.End = _cachedTime + (targetProvideAttackRequest.AttackConfig.EndOfContinuousPart * inAttackComp.AttackConfig.AttackAnimation.length);
                 
                 if (_animancerPool.Value.Has(targetEntity) == false)
                 {
@@ -65,7 +65,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     continue;
                 }
                 ref var animancerComp = ref _animancerPool.Value.Get(targetEntity);
-                var state = animancerComp.Value.Play(targetProvideAttackRequest.AttackConfig.Animation, 0.2f);
+                var state = animancerComp.Value.Play(targetProvideAttackRequest.AttackConfig.AttackAnimation, 0.2f);
                 state.Time = 0;
                 animancerComp.Value.Animator.applyRootMotion = true;
                 

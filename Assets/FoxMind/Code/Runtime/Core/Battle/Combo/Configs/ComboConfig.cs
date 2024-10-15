@@ -22,8 +22,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Configs
     [Serializable]
     public struct ComboCondition
     {
-        public PlayerAction Condition;
-        public float PressWindow;
+        [HorizontalGroup] public PlayerAction Condition;
+        [HorizontalGroup] public float PressWindow;
     }
 
     [Serializable]

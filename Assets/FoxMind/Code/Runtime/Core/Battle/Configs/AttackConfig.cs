@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Configs
 {
-    [CreateAssetMenu(fileName = "AttackConfig", menuName = "Configs/AttackConfig")]
+    [CreateAssetMenu(fileName = "AttackConfigObsolete", menuName = "Configs/AttackConfigObsolete")]
     [InlineEditor]
     public class AttackConfig : SerializedScriptableObject
     {

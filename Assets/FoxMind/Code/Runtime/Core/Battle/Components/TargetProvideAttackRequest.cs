@@ -1,4 +1,5 @@
-using FoxMind.Code.Runtime.Core.Battle.Configs;
+
+using FoxMind.Code.Runtime.Core.Battle.Attack.Configs;
 using Leopotam.EcsLite;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Components

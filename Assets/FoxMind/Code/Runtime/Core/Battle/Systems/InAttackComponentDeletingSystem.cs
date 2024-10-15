@@ -33,10 +33,10 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
 
                 if (_cachedTime > inAttackComponent.End)
                 {
-                    foreach (var attackComponent in inAttackComponent.AttackConfig.AttackEndComponents)
+                    /*foreach (var attackComponent in inAttackComponent.AttackConfig.AttackEndComponents)
                     {
                         attackComponent.Compose(_world.Value, inAttackEntity);
-                    }
+                    }*/
 
                     _inAttackPool.Value.Del(inAttackEntity);
 

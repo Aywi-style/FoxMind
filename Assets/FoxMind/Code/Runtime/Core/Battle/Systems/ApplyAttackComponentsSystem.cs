@@ -34,10 +34,10 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             {
                 ref var inAttackComponent = ref _inAttackPool.Value.Get(inAttackEntity);
 
-                _currentNormalizedTime = (_cachedTime - inAttackComponent.Start) / inAttackComponent.AttackConfig.Animation.length;
-                _currentNormalizedDeltaTime = _cachedDeltaTime / inAttackComponent.AttackConfig.Animation.length;
+                _currentNormalizedTime = (_cachedTime - inAttackComponent.Start) / inAttackComponent.AttackConfig.AttackAnimation.length;
+                _currentNormalizedDeltaTime = _cachedDeltaTime / inAttackComponent.AttackConfig.AttackAnimation.length;
 
-                foreach (var timingComponent in inAttackComponent.AttackConfig.TimingComponents)
+                /*foreach (var timingComponent in inAttackComponent.AttackConfig.TimingComponents)
                 {
                     bool isWindowForComponent = timingComponent.Time <= _currentNormalizedTime
                                                 && timingComponent.Time >= (_currentNormalizedTime - _currentNormalizedDeltaTime);
@@ -46,7 +46,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     {
                         timingComponent.Component.Compose(_world.Value, inAttackEntity);
                     }
-                }
+                }*/
             }
         }
     }

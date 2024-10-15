@@ -31,7 +31,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         
         private float _cachedTime;
         private int _cachedConditions;
-        private ComboConfig _cachedActualConfig;
+        private ComboConfig_v2 _cachedActualConfig;
         
         public void Run(IEcsSystems systems)
         {
@@ -49,14 +49,31 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 {
                     var maxConditions = 0;
                     bool isPassedAllConditions = true;
-                    
+                    float previousActionLastPress = Single.MinValue;
+                    float currentActionLastPress = Single.MinValue;
+
                     // Проверка всех условий комбо атаки
-                    foreach (var comboCondition in comboConfig.ComboConditions)
+                    foreach (var comboCondition in comboConfig.PlayerActions)
                     {
-                        if (IsPassedCondition(comboCondition.Condition, requestedComboAttackEntity, comboCondition.PressWindow) == false)
+                        if (IsPassedCondition(comboCondition, requestedComboAttackEntity, comboConfig.LeadTime) == false)
                         {
                             isPassedAllConditions = false;
                             break;
+                        }
+
+                        if (comboConfig.OrderIsImportant)
+                        {
+                            currentActionLastPress = GetLastPress(comboCondition, requestedComboAttackEntity);
+
+                            if (previousActionLastPress < currentActionLastPress)
+                            {
+                                previousActionLastPress = currentActionLastPress;
+                            }
+                            else
+                            {
+                                isPassedAllConditions = false;
+                                break;
+                            }
                         }
                         
                         maxConditions++;
@@ -83,64 +100,36 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             }
         }
         
-        private bool IsPassedCondition(PlayerAction playerAction, int entity, float pressWindow)
+        private bool IsPassedCondition(PlayerAction playerAction, int entity, float leadTime)
+        {
+            return _cachedTime - GetLastPress(playerAction, entity) < leadTime;
+        }
+
+        private float GetLastPress(PlayerAction playerAction, int entity)
         {
             switch (playerAction)
             {
                 case PlayerAction.Attack:
-                    return AttackPredicate(entity, pressWindow);
+                    return _inputtedAttackPool.Value.Get(entity).LastPress;
+                /*case PlayerAction.DoubleAttack:
+                    return _inputtedAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.LongAttack:
+                    return _inputtedAttackPool.Value.Get(entity).LastPress;*/
                 case PlayerAction.Dash:
-                    return DashPredicate(entity, pressWindow);
+                    return _inputtedDashPool.Value.Get(entity).LastPress;
                 case PlayerAction.Jump:
-                    return JumpPredicate(entity, pressWindow);
+                    return _inputtedJumpPool.Value.Get(entity).LastPress;
                 case PlayerAction.ForwardMove:
-                    return ForwardMovePredicate(entity, pressWindow);
+                    return _inputtedForwardMovePool.Value.Get(entity).LastPress;
                 case PlayerAction.BackwardMove:
-                    return BackwardMovePredicate(entity, pressWindow);
+                    return _inputtedBackwardMovePool.Value.Get(entity).LastPress;
                 case PlayerAction.LeftMove:
-                    return LeftMovePredicate(entity, pressWindow);
+                    return _inputtedLeftMovePool.Value.Get(entity).LastPress;
                 case PlayerAction.RightMove:
-                    return RightMovePredicate(entity, pressWindow);
+                    return _inputtedRightMovePool.Value.Get(entity).LastPress;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(playerAction), playerAction, null);
+                    return Single.MinValue;
             }
-        }
-
-        private bool AttackPredicate(int entity, float pressWindow)
-        {
-            var lastPress = _inputtedAttackPool.Value.Get(entity).LastPress;
-            
-            return _cachedTime - lastPress < pressWindow;
-        }
-
-        private bool DashPredicate(int entity, float pressWindow)
-        {
-            return _cachedTime - _inputtedDashPool.Value.Get(entity).LastPress < pressWindow;
-        }
-
-        private bool JumpPredicate(int entity, float pressWindow)
-        {
-            return _cachedTime - _inputtedJumpPool.Value.Get(entity).LastPress < pressWindow;
-        }
-
-        private bool ForwardMovePredicate(int entity, float pressWindow)
-        {
-            return _cachedTime - _inputtedForwardMovePool.Value.Get(entity).LastPress < pressWindow;
-        }
-
-        private bool BackwardMovePredicate(int entity, float pressWindow)
-        {
-            return _cachedTime - _inputtedBackwardMovePool.Value.Get(entity).LastPress < pressWindow;
-        }
-
-        private bool LeftMovePredicate(int entity, float pressWindow)
-        {
-            return _cachedTime - _inputtedLeftMovePool.Value.Get(entity).LastPress < pressWindow;
-        }
-
-        private bool RightMovePredicate(int entity, float pressWindow)
-        {
-            return _cachedTime - _inputtedRightMovePool.Value.Get(entity).LastPress < pressWindow;
         }
     }
 }

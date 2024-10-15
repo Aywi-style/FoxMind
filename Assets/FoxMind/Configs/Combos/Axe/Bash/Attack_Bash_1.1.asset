@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36194bc31494c85bb6442b656088bef, type: 3}
+  m_Name: Attack_Bash_1.1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  HitWindow: {x: 0.1, y: 0.8}
+  ComboWindow: {x: 0.7, y: 1}
+  <AttackAnimation>k__BackingField: {fileID: 7400000, guid: 29521942d07d1af42af57fab1290ce0c, type: 3}
+  <ReturnToIdleAnimation>k__BackingField: {fileID: 7400000, guid: 29521942d07d1af42af57fab1290ce0c, type: 3}

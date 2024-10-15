@@ -7,6 +7,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Components
     public struct CombinableComp : IEntityFeature<CombinableComp>
     {
         public CombosAssembly CombosAssembly;
-        public List<ComboConfig> AvailableCombos;
+        public List<ComboConfig_v2> AvailableCombos;
     }
 }

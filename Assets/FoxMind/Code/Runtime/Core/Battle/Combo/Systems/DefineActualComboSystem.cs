@@ -40,7 +40,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 ref var combinableComp = ref _combinablePool.Value.Get(inComboEntity);
                 ref var inComboComp = ref _inComboPool.Value.Get(inComboEntity);
 
-                combinableComp.AvailableCombos ??= new List<ComboConfig>();
+                combinableComp.AvailableCombos ??= new List<ComboConfig_v2>();
                 
                 combinableComp.AvailableCombos.Clear();
 
@@ -51,7 +51,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                     continue;
                 }
 
-                foreach (var comboConfig in inComboComp.ComboConfig.AllowedCombos.Combos)
+                foreach (var comboConfig in inComboComp.ComboConfig.NextCombos)
                 {
                     combinableComp.AvailableCombos.Add(comboConfig);
                 }
@@ -69,11 +69,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             {
                 ref var combinableComp = ref _combinablePool.Value.Get(nonInComboEntity);
 
-                combinableComp.AvailableCombos ??= new List<ComboConfig>();
+                combinableComp.AvailableCombos ??= new List<ComboConfig_v2>();
                 
                 combinableComp.AvailableCombos.Clear();
 
-                foreach (var comboConfig in combinableComp.CombosAssembly.OpenerCombosConfigs)
+                foreach (var comboConfig in combinableComp.CombosAssembly.OpenerCombosConfigs_v2)
                 {
                     combinableComp.AvailableCombos.Add(comboConfig);
                 }

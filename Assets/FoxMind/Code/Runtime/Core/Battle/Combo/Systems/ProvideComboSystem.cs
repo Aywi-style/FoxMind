@@ -46,19 +46,19 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 
                 inComboComp.ComboConfig = targetProvideComboRequest.ComboConfig;
                 
-                if (inComboComp.ComboConfig.AllowedCombos.Combos.Count == 0)
+                if (inComboComp.ComboConfig.NextCombos.Count == 0)
                 {
-                    inComboComp.NextComboWindowStart = _cachedTime + inComboComp.ComboConfig.AttackConfig.Animation.length;
-                    inComboComp.NextComboWindowEnd = _cachedTime + inComboComp.ComboConfig.AttackConfig.Animation.length;
+                    inComboComp.NextComboWindowStart = _cachedTime + inComboComp.ComboConfig.AttackConfig.AttackAnimation.length;
+                    inComboComp.NextComboWindowEnd = _cachedTime + inComboComp.ComboConfig.AttackConfig.AttackAnimation.length;
                 }
                 else
                 {
                     inComboComp.NextComboWindowStart = _cachedTime
-                                                       + inComboComp.ComboConfig.AllowedCombos.LaunchWindow
-                                                       * inComboComp.ComboConfig.AttackConfig.Animation.length;
+                                                       + inComboComp.ComboConfig.AttackConfig.ComboWindow.x
+                                                       * inComboComp.ComboConfig.AttackConfig.AttackAnimation.length;
                     inComboComp.NextComboWindowEnd = _cachedTime
-                                                     + inComboComp.ComboConfig.ComboEnd
-                                                     * inComboComp.ComboConfig.AttackConfig.Animation.length;
+                                                     + inComboComp.ComboConfig.AttackConfig.ComboWindow.y
+                                                     * inComboComp.ComboConfig.AttackConfig.AttackAnimation.length;
                 }
                 
                 ref var targetProvideAttackRequest = ref _targetProvideAttackRequestPool.Value.Add(_world.Value.NewEntity());
