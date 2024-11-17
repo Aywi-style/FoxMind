@@ -1,3 +1,4 @@
+using FoxMind.Code.Runtime.Core.Animations.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Movement.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
@@ -7,27 +8,41 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Systems
 {
+    /// <summary>
+    /// Система сетит параметры из movement для анимации движения
+    /// </summary>
     public class MoveAnimationSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        readonly EcsFilterInject<Inc<RigidBodyComp, MoveableComp, AnimatorComp>> _animableFilter = default;
+        readonly EcsFilterInject<Inc<MotionAnimationComp, MoveableComp, TransformComp, AnimancerComp>> _animableFilter = default;
         
         readonly EcsPoolInject<TransformComp> _transformPool = default;
-        readonly EcsPoolInject<AnimatorComp> _animatorPool = default;
+        readonly EcsPoolInject<MotionAnimationComp> _motionAnimationPool = default;
         readonly EcsPoolInject<MoveableComp> _moveablePool = default;
+        readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
         
         public void Run(IEcsSystems systems)
         {
             foreach (var movableEntity in _animableFilter.Value)
             {
+                ref var motionAnimation = ref _motionAnimationPool.Value.Get(movableEntity);
+
+                if (motionAnimation.MoveState == null)
+                {
+                    continue;
+                }
+                
+                if (motionAnimation.MoveState.IsActive == false)
+                {
+                    continue;
+                }
+                
                 ref var transform = ref _transformPool.Value.Get(movableEntity);
                 ref var moveable = ref _moveablePool.Value.Get(movableEntity);
-                ref var animator = ref _animatorPool.Value.Get(movableEntity);
 
                 float animationX = Vector3.Dot(transform.Value.right, moveable.NormalizedMoveDirection);
                 float animationY = Vector3.Dot(transform.Value.forward, moveable.NormalizedMoveDirection);
 
-                animator.Value.SetFloat("MoveX", animationX);
-                animator.Value.SetFloat("MoveY", animationY);
+                motionAnimation.MoveState.Parameter = new Vector2(animationX, animationY);
             }
         }
     }

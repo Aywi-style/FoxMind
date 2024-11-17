@@ -27,7 +27,7 @@ MonoBehaviour:
           _Callbacks: []
           _Names: []
         _Animations:
-        - {fileID: -203655887218126122, guid: 4c375b06839fd0f45accd679b20154d9, type: 3}
+        - {fileID: 7400000, guid: af038cc78e35f224c803022e05633cc6, type: 3}
         - {fileID: -203655887218126122, guid: 494cb09fbb5bc704fbb8faef314ef641, type: 3}
         - {fileID: -203655887218126122, guid: 5264c02548d44a44a8fc4cad013ce3e0, type: 3}
         _Speeds: []

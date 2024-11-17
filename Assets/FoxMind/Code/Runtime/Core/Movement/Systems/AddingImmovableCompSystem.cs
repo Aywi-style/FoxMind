@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Systems
 {
+    /// <summary>
+    /// Система отработки запроса на добавление Immovable компонента
+    /// </summary>
     public class AddingImmovableCompSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<SelfImmovableRequest>, Exc<ImmovableComp>> _nonImmovableFilter = default;

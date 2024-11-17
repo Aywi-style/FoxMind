@@ -12,18 +12,21 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
             EcsVisitable = new List<IEcsVisitable>()
             {
                 new DeletingImmovableCompSystem(),
+                new DeletingImmovableBecauseInAttackSystem(),
                 new AddingImmovableCompSystem(),
+                new AddingImmovableBecauseInAttackSystem(),
                 new RegisterMotionAnimationsSystem(),
+                new UpdateInputsInSlayerJetControllerSystem(),
                 new MoveSystem(),
                 new JumpSystem(),
-                new JumpCooldownSystem(),
                 new MoveAnimationSystem(),
-                new NewMoveAnimationSystem(),
 
                 new DelJumpRequestSystem(),
                 new DelRegisterMotionAnimationRequestSystem(),
                 new DelSelfImmovableRequestSystem(),
+                new DelSelfImmovableBecauseInAttackRequestSystem(),
                 new DelSelfUnImmovableRequestSystem(),
+                new DelSelfUnImmovableBecauseInAttackRequestSystem(),
             };
         }
     }

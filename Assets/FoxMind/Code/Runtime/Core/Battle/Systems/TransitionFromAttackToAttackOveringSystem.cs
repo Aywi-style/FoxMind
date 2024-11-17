@@ -7,14 +7,13 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Systems
 {
-    public class InAttackComponentDeletingSystem : BaseEcsVisitable, IEcsRunSystem
+    public class TransitionFromAttackToAttackOveringSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;
         
         private readonly EcsFilterInject<Inc<InAttackComp>> _inAttackFilter = default;
 
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
-        private readonly EcsPoolInject<SelfUnImmovableRequest> _selfUnImmovableRequestPool = default;
 
         private float _cachedTime;
         
@@ -31,20 +30,16 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             {
                 ref var inAttackComponent = ref _inAttackPool.Value.Get(inAttackEntity);
 
-                if (_cachedTime > inAttackComponent.End)
+                if (_cachedTime < inAttackComponent.End)
                 {
-                    /*foreach (var attackComponent in inAttackComponent.AttackConfig.AttackEndComponents)
+                    continue;
+                }
+                /*foreach (var attackComponent in inAttackComponent.AttackConfig.AttackEndComponents)
                     {
                         attackComponent.Compose(_world.Value, inAttackEntity);
                     }*/
 
-                    _inAttackPool.Value.Del(inAttackEntity);
-
-                    if (_selfUnImmovableRequestPool.Value.Has(inAttackEntity) == false)
-                    {
-                        _selfUnImmovableRequestPool.Value.Add(inAttackEntity);
-                    }
-                }
+                _inAttackPool.Value.Del(inAttackEntity);
             }
         }
     }

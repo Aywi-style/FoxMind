@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af39eb9c9d145b9a4aefe7c0888911f, type: 3}
-  m_Name: PlayerEntity
+  m_Name: SlayerJetEntity
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
   _features:
@@ -25,21 +25,17 @@ MonoBehaviour:
       data:
         CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
         AvailableCombos:
-        - {fileID: 11400000, guid: 32778330f409c4245b687107af9cf494, type: 2}
-        - {fileID: 11400000, guid: 79af400b540b69c4b866164db759a5c0, type: 2}
-        - {fileID: 11400000, guid: cdbd5d5fcaecb494c9ba88e82bcc4584, type: 2}
+        - {fileID: 11400000, guid: 2d411778283a58e4aae2b512e277776e, type: 2}
     - rid: 2449856258875326561
       type: {class: MovementFullFeature, ns: FoxMind.Code.Runtime.Core.Movement.Components.FullFeature, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         Value2:
           Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
         Value3:
-          Impulse: 15
-          CooldownMax: 0
-          CooldownCurrent: 0
+          Value: {fileID: 0}
         Value4:
           NormalizedMoveDirection: {x: 0, y: 0, z: 0}
-          Speed: 10
+          Speed: 0
     - rid: 6181361225784623155
       type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data: 

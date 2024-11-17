@@ -32,38 +32,38 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
             // input attack
             foreach (var nonInputtedAttackEntity in _nonInputtedAttackFilter.Value)
             {
-                _inputtedAttackPool.Value.Add(nonInputtedAttackEntity).LastPress = -10;
+                _inputtedAttackPool.Value.Add(nonInputtedAttackEntity).LastPress = int.MinValue;
             }
             // input dash
             foreach (var nonInputtedDashEntity in _nonInputtedDashFilter.Value)
             {
-                _inputtedDashPool.Value.Add(nonInputtedDashEntity).LastPress = -10;
+                _inputtedDashPool.Value.Add(nonInputtedDashEntity).LastPress = int.MinValue;
             }
             // input jump
             foreach (var nonInputtedJumpEntity in _nonInputtedJumpFilter.Value)
             {
-                _inputtedJumpPool.Value.Add(nonInputtedJumpEntity).LastPress = -10;
+                _inputtedJumpPool.Value.Add(nonInputtedJumpEntity).LastPress = int.MinValue;
             }
             
             // input movement
             foreach (var nonInputtedForwardMoveEntity in _nonInputtedForwardMoveFilter.Value)
             {
-                _inputtedForwardMovePool.Value.Add(nonInputtedForwardMoveEntity).LastPress = -10;
+                _inputtedForwardMovePool.Value.Add(nonInputtedForwardMoveEntity).LastPress = int.MinValue;
             }
             
             foreach (var nonInputtedBackwardMoveEntity in _nonInputtedBackwardMoveFilter.Value)
             {
-                _inputtedBackwardMovePool.Value.Add(nonInputtedBackwardMoveEntity).LastPress = -10;
+                _inputtedBackwardMovePool.Value.Add(nonInputtedBackwardMoveEntity).LastPress = int.MinValue;
             }
             
             foreach (var nonInputtedLeftMoveEntity in _nonInputtedLeftMoveFilter.Value)
             {
-                _inputtedLeftMovePool.Value.Add(nonInputtedLeftMoveEntity).LastPress = -10;
+                _inputtedLeftMovePool.Value.Add(nonInputtedLeftMoveEntity).LastPress = int.MinValue;
             }
             
             foreach (var nonInputtedRightMoveEntity in _nonInputtedRightMoveFilter.Value)
             {
-                _inputtedRightMovePool.Value.Add(nonInputtedRightMoveEntity).LastPress = -10;
+                _inputtedRightMovePool.Value.Add(nonInputtedRightMoveEntity).LastPress = int.MinValue;
             }
         }
     }

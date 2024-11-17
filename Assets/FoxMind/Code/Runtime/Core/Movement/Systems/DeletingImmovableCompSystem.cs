@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Systems
 {
+    /// <summary>
+    /// Система отработки запроса на удаление Immovable компонента
+    /// </summary>
     public class DeletingImmovableCompSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<SelfUnImmovableRequest, ImmovableComp>> _immovableFilter = default;

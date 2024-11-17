@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Systems
 {
+    /// <summary>
+    /// Система устанавливающая локомотив анимации для сущности
+    /// </summary>
     public class RegisterMotionAnimationsSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<RegisterMotionAnimationRequest, MotionAnimationComp, AnimancerComp>> _requestFilter = default;

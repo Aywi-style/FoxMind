@@ -29,11 +29,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
 
                 var immovableMultiply = _immovablePool.Value.Has(movableEntity) ? 0.1f : 1;
 
-                _cachedMoveVelocity = rigidBody.Value.velocity;
+                _cachedMoveVelocity = rigidBody.Value.linearVelocity;
                 _cachedMoveVelocity.x = moveable.NormalizedMoveDirection.x * moveable.Speed * immovableMultiply;
                 _cachedMoveVelocity.z = moveable.NormalizedMoveDirection.z * moveable.Speed * immovableMultiply;
                 
-                rigidBody.Value.velocity = _cachedMoveVelocity;
+                rigidBody.Value.linearVelocity = _cachedMoveVelocity;
                 //transform.Value.position += moveable.MoveDirection * moveable.Speed * deltaTime;
             }
         }

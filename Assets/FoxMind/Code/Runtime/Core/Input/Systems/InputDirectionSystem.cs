@@ -11,7 +11,6 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
         readonly EcsWorldInject _defaultWorld = default;
         
         readonly EcsFilterInject<Inc<BaseInputControlsComp>> _baseInputControlsFilter = default;
-        readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
         readonly EcsFilterInject<Inc<BaseInputControlsComp, InputDirectionComp>> _inputDirectionControlsFilter = default;
         
         readonly EcsPoolInject<BaseInputControlsComp> _baseInputControlsPool = default;

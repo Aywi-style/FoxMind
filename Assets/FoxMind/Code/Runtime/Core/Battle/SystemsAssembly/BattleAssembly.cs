@@ -14,7 +14,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.SystemsAssembly
                 new ProvideAttackSystem(),
                 new ApplyAttackComponentsSystem(),
                 
-                new InAttackComponentDeletingSystem(),
+                new TransitionFromAttackToAttackOveringSystem(),
+                new ExitFromAttackOveringSystem(),
                 
                 new DelTargetProvideAttackRequestSystem(),
             };
