@@ -1324,10 +1324,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _systemAssemblies:
+  - rid: 6181360954596655150
+  - rid: 4826573899333894239
   - rid: 2449856352081412096
   - rid: 6181361541463670822
   - rid: 6181361225784623130
-  - rid: 6181360954596655150
   - rid: 6181361541463670794
   - rid: 4826573763868098663
   - rid: 6181361183139299342
@@ -1339,6 +1340,7 @@ MonoBehaviour:
       type: {class: BattleAssembly, ns: FoxMind.Code.Runtime.Core.Battle.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 2449856352081412097
         - rid: 2449856352081412098
@@ -1349,26 +1351,32 @@ MonoBehaviour:
       type: {class: ProvideAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 2449856352081412098
       type: {class: ApplyAttackComponentsSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 2449856352081412099
       type: {class: TransitionFromAttackToAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 2449856352081412100
       type: {class: ExitFromAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 2449856352081412101
       type: {class: DelTargetProvideAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098663
       type: {class: MovementAssembly, ns: FoxMind.Code.Runtime.Core.Movement.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 4826573763868098664
         - rid: 4826573763868098665
@@ -1389,76 +1397,106 @@ MonoBehaviour:
       type: {class: DeletingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098665
       type: {class: DeletingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098666
       type: {class: AddingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098667
       type: {class: AddingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098668
       type: {class: RegisterMotionAnimationsSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098669
       type: {class: UpdateInputsInSlayerJetControllerSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098670
       type: {class: MoveSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098671
       type: {class: JumpSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098672
       type: {class: MoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098673
       type: {class: DelJumpRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098674
       type: {class: DelRegisterMotionAnimationRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098675
       type: {class: DelSelfImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098676
       type: {class: DelSelfImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098677
       type: {class: DelSelfUnImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 4826573763868098678
       type: {class: DelSelfUnImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 4826573899333894239
+      type: {class: CameraAssembly, ns: FoxMind.Code.Runtime.Core.Camera.SystemsAssembly, asm: Core}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+        EcsVisitable:
+        - rid: 4826573899333894240
+    - rid: 4826573899333894240
+      type: {class: CameraTargetMoveSystem, ns: FoxMind.Code.Runtime.Core.Camera.Systems, asm: Core}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 1
     - rid: 6181360954596655150
       type: {class: ScenesInitAssembly, ns: FoxMind.Code.Runtime.Core.Scenes.Init.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 6181360954596655151
     - rid: 6181360954596655151
       type: {class: SceneInitSystem, ns: FoxMind.Code.Runtime.Core.Scenes.Init.Systems, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361183139299342
       type: {class: InputAssembly, ns: FoxMind.Code.Runtime.Core.Input.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Input}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 6181361183139299343
         - rid: 6181361183139299344
@@ -1470,26 +1508,32 @@ MonoBehaviour:
       type: {class: InitBaseInputControlsSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361183139299344
       type: {class: InputDirectionSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361183139299345
       type: {class: InputAttackSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361183139299346
       type: {class: InputJumpSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361183139299347
       type: {class: InputDashSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361225784623130
       type: {class: AnimationsAssembly, ns: FoxMind.Code.Runtime.Core.Animations.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Animations}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 6181361225784623131
         - rid: 6181361225784623132
@@ -1498,18 +1542,22 @@ MonoBehaviour:
       type: {class: PlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361225784623132
       type: {class: SelfPlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361225784623156
       type: {class: DelSelfPlayRequest, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670794
       type: {class: PlayerActionAssembly, ns: FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 6181361541463670795
         - rid: 6181361541463670796
@@ -1520,27 +1568,33 @@ MonoBehaviour:
       type: {class: PlayerDashSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670796
       type: {class: PlayerRotateSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670797
       type: {class: PlayerInputConvertToMoveDirection, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670798
       type: {class: PlayerIsGroundedSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         _groundCheck: 0
     - rid: 6181361541463670799
       type: {class: PlayerJumpingAnimationSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670809
       type: {class: InputTrackingAssembly, ns: FoxMind.Code.Runtime.Core.InputTracking.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.InputTracking}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 6181361541463670810
         - rid: 6181361541463670811
@@ -1551,26 +1605,32 @@ MonoBehaviour:
       type: {class: RegisterTrackingForComboSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670811
       type: {class: TrackInputtedAttackSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670812
       type: {class: TrackInputtedDashSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670813
       type: {class: TrackInputtedMoveSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670814
       type: {class: TrackInputtedJumpSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670822
       type: {class: ComboAssembly, ns: FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
         EcsVisitable:
         - rid: 6181361541463670823
         - rid: 6181361541463670824
@@ -1583,34 +1643,47 @@ MonoBehaviour:
       type: {class: CatchInputAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670824
       type: {class: DefineWhatPlayerComboNeedToDoSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670825
       type: {class: DefineActualComboSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670826
       type: {class: ProvideComboSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670827
       type: {class: InComboComponentDeletingSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670828
       type: {class: DelSelfComboAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361541463670829
       type: {class: DelTargetProvideComboRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
     - rid: 6181361614113210369
       type: {class: InputTargetLockSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
       data:
         <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+--- !u!4 &397302345 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6037921481527125760, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+  m_PrefabInstance: {fileID: 1497409524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &414177823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5088,7 +5161,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 1565881006}
   m_Lens:
     FieldOfView: 60.000004
     OrthographicSize: 7
@@ -5662,6 +5735,7 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5827,6 +5901,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entity: 0
+  FeaturesConfig: {fileID: 0}
+  Features:
+  - rid: 4826573876739965021
+  - rid: 4826573876739965023
+  references:
+    version: 2
+    RefIds:
+    - rid: 4826573876739965021
+      type: {class: CameraComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
+      data:
+        Camera: {fileID: 963194227}
+        VirtualCamera: {fileID: 0}
+    - rid: 4826573876739965023
+      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
+      data:
+        Value: {fileID: 963194228}
 --- !u!1001 &1003700455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9450,6 +9553,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: Features.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'Features.Array.data[5]'
+      value: 4826573899333894285
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4826573899333894276]'
+      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4826573899333894277]'
+      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4826573899333894284]'
+      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4826573899333894285]'
+      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4826573899333894277].Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4826573899333894284].Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4826573899333894285].Priority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4826573899333894276].Transform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4826573899333894277].Transform
+      value: 
+      objectReference: {fileID: 397302345}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4826573899333894284].Transform
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4826573899333894285].Transform
+      value: 
+      objectReference: {fileID: 397302345}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9719,10 +9874,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entity: 0
   FeaturesConfig: {fileID: 0}
-  Features: []
+  Features:
+  - rid: 4826573899333894281
+  - rid: 4826573899333894234
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4826573899333894234
+      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
+      data:
+        Value: {fileID: 1565881006}
+    - rid: 4826573899333894281
+      type: {class: CameraTargetComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
+      data: 
 --- !u!1001 &1572412541
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12709,6 +12873,63 @@ Transform:
   - {fileID: 9019953153767517481}
   m_Father: {fileID: 7528480103954979145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &269090002395884166
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689923340223144060, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: m_Name
+      value: PlayerEntity
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
 --- !u!4 &290405219114879073
 Transform:
   m_ObjectHideFlags: 0
@@ -14366,9 +14587,15 @@ MonoBehaviour:
   - rid: 6181361183139299348
   - rid: 6181361183139299349
   - rid: 6181361225784623167
+  - rid: 4826573899333894288
   references:
     version: 2
     RefIds:
+    - rid: 4826573899333894288
+      type: {class: CameraFollowMeTransformComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
+      data:
+        Priority: -1
+        Transform: {fileID: 5792117722816103480}
     - rid: 6181361183139299348
       type: {class: RigidBodyComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
       data:
@@ -15248,6 +15475,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 484157460}
   - {fileID: 1451284689}
+  - {fileID: 269090002395884166}
   - {fileID: 393784902}
   - {fileID: 963194228}
   - {fileID: 860468110}

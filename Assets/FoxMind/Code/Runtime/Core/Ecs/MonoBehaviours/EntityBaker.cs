@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using Leopotam.EcsLite;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours
 {
     public class EntityBaker : MonoBehaviour
     {
-        [SerializeField] private int _entity;
+        [ReadOnly, SerializeField] private int _entity;
         [field: SerializeField] public EcsPackedEntityWithWorld PackedEntity { get; private set; }
 
         [field: SerializeField] public EntityTemplateConfig FeaturesConfig;
@@ -34,7 +35,18 @@ namespace FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours
         {
             try
             {
-                _entityFeatures = FeaturesConfig != null ? FeaturesConfig.Concat(Features) : null;
+                if (FeaturesConfig != null && Features != null)
+                {
+                    _entityFeatures = FeaturesConfig.Concat(Features);
+                }
+                else if (FeaturesConfig != null)
+                {
+                    _entityFeatures = FeaturesConfig;
+                }
+                else if (Features != null && Features.Count > 0)
+                {
+                    _entityFeatures = Features;
+                }
 
                 if (_entityFeatures != null)
                 {

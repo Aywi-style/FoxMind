@@ -1,3 +1,4 @@
+using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
 using FoxMind.Code.Runtime.Core.Movement.Components;
@@ -14,6 +15,7 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
     {
         readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
         readonly EcsFilterInject<Inc<InputTargetLockPerformedComp>> _inputTargetLockPerformedFilter = default;
+        readonly EcsFilterInject<Inc<CameraComp, TransformComp>> _cameraFilter = default;
         readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp>> _controlledTransformFilter = default;
 
         readonly EcsPoolInject<InputTargetLockPerformedComp> _inputTargetLockPerformedPool = default;
@@ -24,11 +26,17 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
         {
             Vector3 cameraForward = new Vector3();
             Vector3 cameraRight = new Vector3();
-
-            if (Camera.main != null)
+            
+            if (_cameraFilter.Value.GetEntitiesCount() > 0)
             {
-                cameraForward = Camera.main.transform.forward;
-                cameraRight = Camera.main.transform.right;
+                foreach (var cameraEntity in _cameraFilter.Value)
+                {
+                    ref var cameraTransform = ref _transformPool.Value.Get(cameraEntity);
+                    cameraForward = cameraTransform.Value.forward;
+                    cameraRight = cameraTransform.Value.right;
+                    
+                    break;
+                }
             }
             
             foreach (var inputEntity in _inputDirectionFilter.Value)

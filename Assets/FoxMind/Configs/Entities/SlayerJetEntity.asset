@@ -31,8 +31,6 @@ MonoBehaviour:
       data:
         Value2:
           Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
-        Value3:
-          Value: {fileID: 0}
         Value4:
           NormalizedMoveDirection: {x: 0, y: 0, z: 0}
           Speed: 0

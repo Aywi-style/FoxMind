@@ -1,3 +1,4 @@
+using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
 using FoxMind.Code.Runtime.Core.Movement.Components;
@@ -13,20 +14,28 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
     public class PlayerInputConvertToMoveDirection : BaseEcsVisitable, IEcsRunSystem
     {
         readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
+        readonly EcsFilterInject<Inc<CameraComp, TransformComp>> _cameraFilter = default;
         readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp>> _controlledTransformFilter = default;
         
         readonly EcsPoolInject<InputDirectionComp> _inputDirectionPool = default;
         readonly EcsPoolInject<MoveableComp> _moveablePool = default;
+        readonly EcsPoolInject<TransformComp> _transformPool = default;
         
         public void Run(IEcsSystems systems)
         {
             Vector3 cameraForward = new Vector3();
             Vector3 cameraRight = new Vector3();
 
-            if (Camera.main != null)
+            if (_cameraFilter.Value.GetEntitiesCount() > 0)
             {
-                cameraForward = Camera.main.transform.forward;
-                cameraRight = Camera.main.transform.right;
+                foreach (var cameraEntity in _cameraFilter.Value)
+                {
+                    ref var cameraTransform = ref _transformPool.Value.Get(cameraEntity);
+                    cameraForward = cameraTransform.Value.forward;
+                    cameraRight = cameraTransform.Value.right;
+                    
+                    break;
+                }
             }
             
             foreach (var inputEntity in _inputDirectionFilter.Value)
@@ -40,8 +49,8 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
                     cameraForward.y = 0;
                     cameraRight.y = 0;
                     
-                    cameraForward = math.normalize(cameraForward);
-                    cameraRight = math.normalize(cameraRight);
+                    cameraForward = Vector3.Normalize(cameraForward);
+                    cameraRight = Vector3.Normalize(cameraRight);
                     
                     moveable.NormalizedMoveDirection = (cameraForward * input.Direction.y) + (cameraRight * input.Direction.x);
                 }

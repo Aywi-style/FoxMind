@@ -1,3 +1,4 @@
+using System;
 using FoxMind.Code.Runtime.Core.Ecs.Aspects;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
@@ -10,13 +11,28 @@ namespace FoxMind.Code.Runtime.Core.Ecs
     public class EcsStartup : MonoBehaviour, IEcsVisitor
     {
         EcsWorld _world;
-        IEcsSystems _systems;
+#if UNITY_EDITOR
+        IEcsSystems _editorSystems;
+#endif
+        IEcsSystems _updateSystems;
+        IEcsSystems _lateUpdateSystems;
+        IEcsSystems _fixedUpdateSystems;
         [SerializeReference] private BaseSystemAssembly[] _systemAssemblies;
         
         private void Start()
         {
             _world = new EcsWorld();
-            _systems = new EcsSystems(_world);
+            _updateSystems = new EcsSystems(_world);
+            _lateUpdateSystems = new EcsSystems(_world);
+            _fixedUpdateSystems = new EcsSystems(_world);
+            
+#if UNITY_EDITOR
+            // Создаем отдельную группу для отладочных систем.
+            _editorSystems = new EcsSystems (_world);
+            _editorSystems
+                .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
+                .Init ();
+#endif
 
             for (int i = 0; i < _systemAssemblies.Length; i++)
             {
@@ -29,28 +45,68 @@ namespace FoxMind.Code.Runtime.Core.Ecs
 
                 _systemAssemblies[i].Accept(this);
             }
-            
-            _systems
+
+            InitSystem(_updateSystems, "Update");
+            InitSystem(_lateUpdateSystems, "Late Update");
+            InitSystem(_fixedUpdateSystems, "Fixed Update");
+        }
+
+        private void InitSystem(IEcsSystems system, string systemName)
+        {
+            system
 #if UNITY_EDITOR
-            .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
-            .Add (new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem ())
+                .Add (new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem(systemName))
 #endif
-            .Inject()    
-            //.InjectAspect(new AspectTest())
-            .Init();
+                .Inject()    
+                //.InjectAspect(new AspectTest())
+                .Init();
         }
         
         private void Update()
         {
-            _systems?.Run();
+            _updateSystems?.Run();
+#if UNITY_EDITOR
+            // Выполняем обновление состояния отладочных систем. 
+            _editorSystems?.Run ();
+#endif
+        }
+
+        private void LateUpdate()
+        {
+            _lateUpdateSystems?.Run();
+        }
+
+        private void FixedUpdate()
+        {
+            _fixedUpdateSystems?.Run();
         }
 
         private void OnDestroy()
         {
-            if (_systems != null)
+#if UNITY_EDITOR
+            // Выполняем очистку отладочных систем.
+            if (_editorSystems != null) {
+                _editorSystems.Destroy ();
+                _editorSystems = null;
+            }
+#endif
+            
+            if (_updateSystems != null)
             {
-                _systems.Destroy();
-                _systems = null;
+                _updateSystems.Destroy();
+                _updateSystems = null;
+            }
+            
+            if (_lateUpdateSystems != null)
+            {
+                _lateUpdateSystems.Destroy();
+                _lateUpdateSystems = null;
+            }
+            
+            if (_fixedUpdateSystems != null)
+            {
+                _fixedUpdateSystems.Destroy();
+                _fixedUpdateSystems = null;
             }
             
             if (_world != null)
@@ -60,9 +116,19 @@ namespace FoxMind.Code.Runtime.Core.Ecs
             }
         }
 
-        public void Visit(IEcsSystem item)
+        public void UpdateVisit(IEcsSystem item)
         {
-            _systems.Add(item);
+            _updateSystems.Add(item);
+        }
+
+        public void LateUpdateVisit(IEcsSystem item)
+        {
+            _lateUpdateSystems.Add(item);
+        }
+
+        public void FixedUpdateVisit(IEcsSystem item)
+        {
+            _fixedUpdateSystems.Add(item);
         }
     }
 }
