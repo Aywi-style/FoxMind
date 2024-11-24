@@ -104,6 +104,10 @@ PrefabInstance:
       propertyPath: AllowDoubleJump
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2086551546690536920, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: <Motor>k__BackingField
+      value: 
+      objectReference: {fileID: 9019267054329287531}
     - target: {fileID: 6343924255526383174, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: m_Name
       value: PlayerEntity Variant
@@ -157,3 +161,14 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3990261305153038426, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
   m_PrefabInstance: {fileID: 6773774036682410344}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9019267054329287531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2534286347109554691, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1bc5515e3ab954e80599c538834774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

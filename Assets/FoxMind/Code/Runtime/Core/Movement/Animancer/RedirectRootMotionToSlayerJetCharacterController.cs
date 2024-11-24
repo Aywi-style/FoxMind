@@ -1,21 +1,48 @@
 using Animancer;
+using FoxMind.Code.Runtime.Core.Movement.Interfaces;
 using FoxMind.Code.Runtime.Core.Movement.MonoBehaviours;
 using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Animancer
 {
-    public class RedirectRootMotionToSlayerJetCharacterController : RedirectRootMotion<SlayerJetCharacterController>
+    public class RedirectRootMotionToSlayerJetCharacterController : RedirectRootMotion<CustomCharacterController>
     {
         public override Vector3 Position
         {
-            get => Target.MoveRootMotionVector;
-            set => Target.MoveRootMotionVector += value;
+            get
+            {
+                if (Target.CurrentMovementBehaviour is IRootMotion rootMotion)
+                {
+                    return rootMotion.MoveRootMotionVector;
+                }
+                return default;
+            }
+            set
+            {
+                if (Target.CurrentMovementBehaviour is IRootMotion rootMotion)
+                {
+                    rootMotion.MoveRootMotionVector += value;
+                }
+            }
         }
 
         public override Quaternion Rotation
         {
-            get => Target.LookRootMotionQuaternion;
-            set => Target.LookRootMotionQuaternion *= value;
+            get
+            {
+                if (Target.CurrentMovementBehaviour is IRootMotion rootMotion)
+                {
+                    return rootMotion.LookRootMotionQuaternion;
+                }
+                return default;
+            }
+            set
+            {
+                if (Target.CurrentMovementBehaviour is IRootMotion rootMotion)
+                {
+                    rootMotion.LookRootMotionQuaternion *= value;
+                }
+            }
         }
     }
 }

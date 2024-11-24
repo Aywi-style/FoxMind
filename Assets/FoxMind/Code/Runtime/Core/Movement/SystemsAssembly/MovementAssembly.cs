@@ -15,6 +15,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
                 new DeletingImmovableBecauseInAttackSystem(),
                 new AddingImmovableCompSystem(),
                 new AddingImmovableBecauseInAttackSystem(),
+                new RegisterMoveableRequestSystem(),
                 new RegisterMotionAnimationsSystem(),
                 new UpdateInputsInSlayerJetControllerSystem(),
                 new MoveSystem(),
@@ -23,6 +24,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
 
                 new DelJumpRequestSystem(),
                 new DelRegisterMotionAnimationRequestSystem(),
+                new DelRegisterMoveableRequestSystem(),
                 new DelSelfImmovableRequestSystem(),
                 new DelSelfImmovableBecauseInAttackRequestSystem(),
                 new DelSelfUnImmovableRequestSystem(),

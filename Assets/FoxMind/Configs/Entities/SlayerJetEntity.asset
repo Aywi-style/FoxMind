@@ -30,10 +30,57 @@ MonoBehaviour:
       type: {class: MovementFullFeature, ns: FoxMind.Code.Runtime.Core.Movement.Components.FullFeature, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         Value2:
-          Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
+          _movementBehavioursOnlyInspector:
+          - rid: 4826574013864607930
+          - rid: 4826574013864607931
+          - rid: 4826574013864607932
+          - rid: 4826574013864607933
+          JumpBehaviour:
+            rid: 4826574013864607929
         Value4:
-          NormalizedMoveDirection: {x: 0, y: 0, z: 0}
-          Speed: 0
+          Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
+    - rid: 4826574013864607929
+      type: {class: JumpBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        motor: {fileID: 0}
+        AllowJumpingWhenSliding: 0
+        AllowDoubleJump: 0
+        AllowWallJump: 0
+        JumpSpeed: 10
+        JumpPreGroundingGraceTime: 0
+        JumpPostGroundingGraceTime: 0
+    - rid: 4826574013864607930
+      type: {class: AirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        motor: {fileID: 0}
+        _moveInputVector: {x: 0, y: 0, z: 0}
+        MaxAirMoveSpeed: 10
+        AirAccelerationSpeed: 5
+        Drag: 0.1
+    - rid: 4826574013864607931
+      type: {class: RootMotionAirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        motor: {fileID: 0}
+        MaxAirMoveSpeed: 10
+        AirAccelerationSpeed: 5
+        Drag: 0.1
+        ForwardAxisSharpness: 10
+        TurnAxisSharpness: 5
+    - rid: 4826574013864607932
+      type: {class: RootMotionStableMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        motor: {fileID: 0}
+        <MoveRootMotionVector>k__BackingField: {x: 0, y: 0, z: 0}
+        <LookRootMotionQuaternion>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+    - rid: 4826574013864607933
+      type: {class: StableMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        motor: {fileID: 0}
+        MaxStableMoveSpeed: 10
+        StableMovementSharpness: 15
+        OrientationSharpness: 10
+        _moveInputVector: {x: 0, y: 0, z: 0}
+        _lookInputVector: {x: 0, y: 0, z: 0}
     - rid: 6181361225784623155
       type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
       data: 

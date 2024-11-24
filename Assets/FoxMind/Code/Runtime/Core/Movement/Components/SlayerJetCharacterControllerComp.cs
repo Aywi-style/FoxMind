@@ -10,6 +10,6 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
     [Serializable]
     public struct SlayerJetCharacterControllerComp : IEntityFeature<SlayerJetCharacterControllerComp>
     {
-        public SlayerJetCharacterController Value;
+        public CustomCharacterController Value;
     }
 }

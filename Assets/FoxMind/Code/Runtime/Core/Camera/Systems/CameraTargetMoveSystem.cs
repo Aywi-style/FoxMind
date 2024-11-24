@@ -1,7 +1,6 @@
 using System;
 using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
-using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Enums;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -9,6 +8,9 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Camera.Systems
 {
+    /// <summary>
+    /// Система, которая двигает таргет камеры к трансформу, который отслеживается и имеет наивысший приоритет
+    /// </summary>
     [Serializable]
     public class CameraTargetMoveSystem : BaseEcsVisitable, IEcsRunSystem
     {
