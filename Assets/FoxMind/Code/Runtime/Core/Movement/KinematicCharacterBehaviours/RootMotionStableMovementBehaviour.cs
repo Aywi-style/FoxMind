@@ -30,7 +30,12 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         {
             
         }
-        
+
+        public float GetMaxSpeed()
+        {
+            return float.MaxValue;
+        }
+
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
             currentRotation = LookRootMotionQuaternion * currentRotation;

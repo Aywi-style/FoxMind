@@ -33,7 +33,12 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
             _moveInputVector = normalizedMoveDirection;
             _lookInputVector = normalizedMoveDirection;
         }
-        
+
+        public float GetMaxSpeed()
+        {
+            return MaxStableMoveSpeed;
+        }
+
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
             if (_lookInputVector != Vector3.zero && OrientationSharpness > 0f)

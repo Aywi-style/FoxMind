@@ -44,6 +44,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
         private void Update()
         {
             CurrentMovementBehaviour?.Update();
+
+            Debug.Log(Motor.Velocity);
         }
 
         public void SetMoveDirection(Vector3 normalizedMoveDirection)

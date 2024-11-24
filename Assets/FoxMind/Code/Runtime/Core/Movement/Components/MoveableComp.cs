@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using KinematicCharacterController;
 using Leopotam.EcsLite;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Components
 {
@@ -21,6 +22,6 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
         public CustomCharacterController CustomCharacterController;
         public KinematicCharacterMotor Motor;
         [Sirenix.OdinInspector.ReadOnly] public Vector3 NormalizedMoveDirection;
-        public float Speed;
+        public float CurrentMaxSpeedFromMovementBehaviour;
     }
 }

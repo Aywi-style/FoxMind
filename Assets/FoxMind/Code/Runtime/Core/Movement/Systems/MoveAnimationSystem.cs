@@ -39,10 +39,22 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 ref var transform = ref _transformPool.Value.Get(movableEntity);
                 ref var moveable = ref _moveablePool.Value.Get(movableEntity);
 
-                float animationX = Vector3.Dot(transform.Value.right, moveable.NormalizedMoveDirection);
-                float animationY = Vector3.Dot(transform.Value.forward, moveable.NormalizedMoveDirection);
+                /*float animationX = Vector3.Dot(transform.Value.right, moveable.NormalizedMoveDirection);
+                float animationY = Vector3.Dot(transform.Value.forward, moveable.NormalizedMoveDirection);*/
+                
+                float currentSpeed = moveable.Motor.Velocity.magnitude; // Получаем величину текущей скорости
+                float normalizedSpeed;
+                float maxSpeed = moveable.CustomCharacterController.CurrentMovementBehaviour.GetMaxSpeed();
+                if (maxSpeed <= 0) { // Обработка деления на ноль
+                    normalizedSpeed = 0;
+                } else {
+                    normalizedSpeed = Mathf.Clamp01(currentSpeed / maxSpeed); // Нормализуем и ограничиваем в диапазоне [0, 1]
+                }
+                
+                float animationX = Vector3.Dot(transform.Value.right, moveable.Motor.Velocity);
+                float animationY = Vector3.Dot(transform.Value.forward, moveable.Motor.Velocity);
 
-                motionAnimation.MoveState.Parameter = new Vector2(animationX, animationY);
+                motionAnimation.MoveState.Parameter = new Vector2(animationX, animationY) * normalizedSpeed;
             }
         }
     }

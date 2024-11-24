@@ -44,7 +44,7 @@ MonoBehaviour:
       data:
         motor: {fileID: 0}
         AllowJumpingWhenSliding: 0
-        AllowDoubleJump: 0
+        AllowDoubleJump: 1
         AllowWallJump: 0
         JumpSpeed: 10
         JumpPreGroundingGraceTime: 0
@@ -53,10 +53,12 @@ MonoBehaviour:
       type: {class: AirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         motor: {fileID: 0}
-        _moveInputVector: {x: 0, y: 0, z: 0}
         MaxAirMoveSpeed: 10
         AirAccelerationSpeed: 5
         Drag: 0.1
+        OrientationSharpness: 10
+        _moveInputVector: {x: 0, y: 0, z: 0}
+        _lookInputVector: {x: 0, y: 0, z: 0}
     - rid: 4826574013864607931
       type: {class: RootMotionAirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
@@ -71,7 +73,7 @@ MonoBehaviour:
       data:
         motor: {fileID: 0}
         <MoveRootMotionVector>k__BackingField: {x: 0, y: 0, z: 0}
-        <LookRootMotionQuaternion>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+        <LookRootMotionQuaternion>k__BackingField: {x: 0, y: 0, z: 0, w: 1}
     - rid: 4826574013864607933
       type: {class: StableMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
