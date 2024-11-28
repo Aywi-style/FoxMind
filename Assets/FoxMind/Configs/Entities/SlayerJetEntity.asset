@@ -53,12 +53,12 @@ MonoBehaviour:
       type: {class: AirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         motor: {fileID: 0}
-        MaxAirMoveSpeed: 10
-        AirAccelerationSpeed: 5
+        MaxAirMoveSpeed: 6
+        AirAccelerationSpeed: 10
         Drag: 0.1
         OrientationSharpness: 10
-        _moveInputVector: {x: 0, y: 0, z: 0}
-        _lookInputVector: {x: 0, y: 0, z: 0}
+        _moveInputVector: {x: -0.17364839, y: 0, z: 0.9848081}
+        _lookInputVector: {x: -0.17364839, y: 0, z: 0.9848081}
     - rid: 4826574013864607931
       type: {class: RootMotionAirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
@@ -78,9 +78,9 @@ MonoBehaviour:
       type: {class: StableMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime.Core.Movement}
       data:
         motor: {fileID: 0}
-        MaxStableMoveSpeed: 10
-        StableMovementSharpness: 15
-        OrientationSharpness: 10
+        MaxStableMoveSpeed: 7
+        StableMovementSharpness: 10
+        OrientationSharpness: 15
         _moveInputVector: {x: 0, y: 0, z: 0}
         _lookInputVector: {x: 0, y: 0, z: 0}
     - rid: 6181361225784623155

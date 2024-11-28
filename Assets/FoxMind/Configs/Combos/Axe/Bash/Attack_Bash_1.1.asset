@@ -20,7 +20,10 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: DamageValue
+      Entry: 3
+      Data: 20
   <EndOfContinuousPart>k__BackingField: 0.67
   HitWindow: {x: 0.1, y: 0.8}
   ComboWindow: {x: 0.6, y: 1}

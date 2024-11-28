@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: 'Features.Array.data[3]'
-      value: 6181361635298115589
-      objectReference: {fileID: 0}
-    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
-      propertyPath: 'Features.Array.data[4]'
       value: 4826573718737649771
       objectReference: {fileID: 0}
     - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: 'Features.Array.data[4]'
+      value: 4826574127590801509
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: 'Features.Array.data[5]'
-      value: 2449856258875326552
+      value: 4826574028237701213
       objectReference: {fileID: 0}
     - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: 'managedReferences[4826573718737649770]'
@@ -39,6 +39,22 @@ PrefabInstance:
     - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: 'managedReferences[4826573718737649771]'
       value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.SlayerJetCharacterControllerComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: 'managedReferences[4826574028237701210]'
+      value: FoxMind.Code.Runtime.Core.Battle FoxMind.Code.Runtime.Core.Battle.Components.WeaponComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: 'managedReferences[4826574028237701211]'
+      value: FoxMind.Code.Runtime.Core.Battle FoxMind.Code.Runtime.Core.Battle.Components.WeaponComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: 'managedReferences[4826574028237701213]'
+      value: FoxMind.Code.Runtime.Core.Battle FoxMind.Code.Runtime.Core.Battle.Components.WeaponComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: 'managedReferences[4826574127590801509]'
+      value: FoxMind.Code.Runtime.Core.Battle FoxMind.Code.Runtime.Core.Battle.Components.WeaponComp
       objectReference: {fileID: 0}
     - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: managedReferences[4826573718737649770].Value
@@ -52,6 +68,26 @@ PrefabInstance:
       propertyPath: managedReferences[6181361183139299348].Value
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[4826574028237701213].HitBox
+      value: 
+      objectReference: {fileID: 3626172023383087364}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[4826574028237701210].HurtBox
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[4826574028237701211].HurtBox
+      value: 
+      objectReference: {fileID: 3626172023383087364}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[4826574028237701213].HitBoxMb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: managedReferences[4826574127590801509].HitBoxMb
+      value: 
+      objectReference: {fileID: 4653386055560987681}
     - target: {fileID: 993683633823280744, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -112,6 +148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerEntity Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7805731729839050860, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1360593517687462536, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
     m_RemovedGameObjects: []
@@ -120,6 +160,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8253484539740280017, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7352976852724780329}
+    - targetCorrespondingSourceObject: {fileID: 3679187557186578913, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4653386055560987681}
   m_SourcePrefab: {fileID: 100100000, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
 --- !u!54 &2475979542855141883 stripped
 Rigidbody:
@@ -145,6 +188,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Animator: {fileID: 7593357168004964658}
   _Target: {fileID: 4824951740370521264}
+--- !u!136 &3626172023383087364 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 7805731729839050860, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &4824951740370521264 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2086551546690536920, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
@@ -156,11 +204,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d442079cd603463cb10adcb087bcd5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6525246329113838735 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7593357168004964658 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3990261305153038426, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
   m_PrefabInstance: {fileID: 6773774036682410344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7858321822572126345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3679187557186578913, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4653386055560987681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858321822572126345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a74a693bbc44e06998184b47c4fb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityBaker: {fileID: 6525246329113838735}
+  _hitColliders:
+  - {fileID: 3626172023383087364}
 --- !u!114 &9019267054329287531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2534286347109554691, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}

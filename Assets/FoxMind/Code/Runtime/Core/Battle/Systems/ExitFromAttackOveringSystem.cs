@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Systems
 {
+    /// <summary>
+    /// Система, которая сбрасывает анимацию атаки, если игрок нажимает клавиши передвижения в окно, позволяющее прервать атаку
+    /// </summary>
     public class ExitFromAttackOveringSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;

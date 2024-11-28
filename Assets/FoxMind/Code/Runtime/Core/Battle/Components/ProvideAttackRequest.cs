@@ -4,7 +4,7 @@ using Leopotam.EcsLite;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Components
 {
-    public struct TargetProvideAttackRequest
+    public struct ProvideAttackRequest
     {
         public EcsPackedEntity PackedEntity;
         public AttackConfig AttackConfig;

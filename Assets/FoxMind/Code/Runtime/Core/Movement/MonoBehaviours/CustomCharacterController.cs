@@ -9,16 +9,14 @@ using UnityEngine.Serialization;
 namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
 {
     /// <summary>
-    /// Отвечает за мувмент главного героя
+    /// Отвечает за мувмент персонажа
     /// </summary>
     public class CustomCharacterController : MonoBehaviour, ICharacterController
     {
         [field: SerializeField] public KinematicCharacterMotor Motor { private set; get; }
 
-        [ShowInInspector] public IMovementBehaviour CurrentMovementBehaviour { private set; get; }
-        [ShowInInspector] public IJumpBehaviour CurrentJumpBehaviour { private set; get; }
-        
-        [field: SerializeField] public bool RootMotion { set; get; } = false;
+        [field: Sirenix.OdinInspector.ReadOnly, ShowInInspector] public IMovementBehaviour CurrentMovementBehaviour { private set; get; }
+        [field: Sirenix.OdinInspector.ReadOnly, ShowInInspector] public IJumpBehaviour CurrentJumpBehaviour { private set; get; }
 
         private void Start()
         {
@@ -44,8 +42,6 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
         private void Update()
         {
             CurrentMovementBehaviour?.Update();
-
-            Debug.Log(Motor.Velocity);
         }
 
         public void SetMoveDirection(Vector3 normalizedMoveDirection)

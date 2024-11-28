@@ -11,15 +11,19 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Systems
 {
+    /// <summary>
+    /// Система, которая 
+    /// </summary>
     public class ProvideAttackSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;
         
-        private readonly EcsFilterInject<Inc<TargetProvideAttackRequest>> _targetProvideAttackRequestFilter = default;
+        private readonly EcsFilterInject<Inc<ProvideAttackRequest>> _provideAttackRequestFilter = default;
 
-        private readonly EcsPoolInject<TargetProvideAttackRequest> _targetProvideAttackRequestPool = default;
+        private readonly EcsPoolInject<ProvideAttackRequest> _provideAttackRequestPool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
         private readonly EcsPoolInject<InAttackOveringComp> _inAttackOveringPool = default;
+        private readonly EcsPoolInject<WeaponComp> _weaponPool = default;
         private readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
         
         private readonly EcsPoolInject<SelfImmovableBecauseInAttackRequest> _selfImmovableBecauseInAttackRequestPool = default;
@@ -30,14 +34,14 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         {
             _cachedTime = Time.time;
             
-            if (_targetProvideAttackRequestFilter.Value.GetEntitiesCount() <= 0)
+            if (_provideAttackRequestFilter.Value.GetEntitiesCount() <= 0)
             {
                 return;
             }
 
-            foreach (var targetProvideAttackRequestEntity in _targetProvideAttackRequestFilter.Value)
+            foreach (var targetProvideAttackRequestEntity in _provideAttackRequestFilter.Value)
             {
-                ref var targetProvideAttackRequest = ref _targetProvideAttackRequestPool.Value.Get(targetProvideAttackRequestEntity);
+                ref var targetProvideAttackRequest = ref _provideAttackRequestPool.Value.Get(targetProvideAttackRequestEntity);
                 
                 if (targetProvideAttackRequest.PackedEntity.Unpack(_world.Value, out int targetEntity) == false)
                 {
@@ -69,45 +73,14 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 inAttackOveringComp.Start = _cachedTime;
                 inAttackOveringComp.End = _cachedTime + inAttackComp.AttackConfig.AttackAnimation.length;
                 
-                if (_animancerPool.Value.Has(targetEntity) == false)
+                if (_animancerPool.Value.Has(targetEntity))
                 {
-                    Debug.LogError($"Сущность {targetEntity} не имеет компонента анимации!");
-                    continue;
+                    ref var animancerComp = ref _animancerPool.Value.Get(targetEntity);
+                    var state = animancerComp.Value.Play(targetProvideAttackRequest.AttackConfig.AttackAnimation, 0.2f);
+                    state.Time = 0;
+                    animancerComp.Value.Animator.applyRootMotion = true;
                 }
-                ref var animancerComp = ref _animancerPool.Value.Get(targetEntity);
-                var state = animancerComp.Value.Play(targetProvideAttackRequest.AttackConfig.AttackAnimation, 0.2f);
-                state.Time = 0;
-                animancerComp.Value.Animator.applyRootMotion = true;
-                
-                /*var attackConfig = targetProvideAttackRequest.AttackConfig;
-                SetComponentsOnEntity(attackConfig.OpenerCompsForSource, targetEntity);
-                if (state.EffectiveWeight == 0)
-                {
-                    ExitEvent.Register(state, () => Debug.Log("State Exited"));
-                }
-
-                foreach (var timeComponent in attackConfig.TimingComponents)
-                {
-                    state.Events.Add(new AnimancerEvent(timeComponent.Time,
-                        () => { SetComponentsOnEntity(timeComponent.Component, targetEntity); }));
-                }*/
-                
-                // Ваще не трогать
-                //state.Events.EndEvent = new AnimancerEvent(1, () => { SetComponentsOnEntity(attackConfig.EndingCompsForSource, unpackedEntity); });
             }
         }
-
-        /*private void SetComponentsOnEntity(IEntityFeature attackComponent, int entity)
-        {
-            attackComponent.Compose(_world.Value, entity);
-        }
-
-        private void SetComponentsOnEntity( List<IEntityFeature> attackComponents, int entity)
-        {
-            foreach (var IentityFeature in attackComponents)
-            {
-                IentityFeature.Compose(_world.Value, entity);
-            }
-        }*/
     }
 }

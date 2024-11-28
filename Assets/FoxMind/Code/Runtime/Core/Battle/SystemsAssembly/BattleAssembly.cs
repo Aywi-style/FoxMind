@@ -12,12 +12,18 @@ namespace FoxMind.Code.Runtime.Core.Battle.SystemsAssembly
             EcsVisitable = new List<IEcsVisitable>()
             {
                 new ProvideAttackSystem(),
+                new HitBoxEnablingSystem(),
                 new ApplyAttackComponentsSystem(),
                 
+                new CauseDamageSystem(),
                 new TransitionFromAttackToAttackOveringSystem(),
                 new ExitFromAttackOveringSystem(),
                 
+                new DeathSystem(),
+                
                 new DelTargetProvideAttackRequestSystem(),
+                new DelCauseDamageRequestSystem(),
+                new DelDeathRequestSystem()
             };
         }
     }

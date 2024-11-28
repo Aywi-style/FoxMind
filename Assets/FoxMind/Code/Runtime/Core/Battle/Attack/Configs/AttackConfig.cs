@@ -6,6 +6,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
     [CreateAssetMenu(fileName = "AttackConfig", menuName = "Configs/AttackConfig")]
     public class AttackConfig : SerializedScriptableObject
     {
+        [SerializeField] public int DamageValue { private set; get; }
+        
         [field: Title("End Of Continuous Part", bold: false), HideLabel, PropertyRange(0, 1), SerializeField, PropertyOrder(0)]
         public float EndOfContinuousPart { get; private set; }
         

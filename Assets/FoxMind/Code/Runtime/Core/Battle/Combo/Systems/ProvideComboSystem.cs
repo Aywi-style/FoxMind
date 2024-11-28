@@ -15,7 +15,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 
         private readonly EcsPoolInject<TargetProvideComboRequest> _targetProvideComboRequestPool = default;
         private readonly EcsPoolInject<InComboComp> _inComboPool = default;
-        private readonly EcsPoolInject<TargetProvideAttackRequest> _targetProvideAttackRequestPool = default;
+        private readonly EcsPoolInject<ProvideAttackRequest> _targetProvideAttackRequestPool = default;
 
         private float _cachedTime;
         

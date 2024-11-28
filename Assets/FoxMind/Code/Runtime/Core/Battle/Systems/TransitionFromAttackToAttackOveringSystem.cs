@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Systems
 {
+    /// <summary>
+    /// Система, которая удаляет компонент InAttackComp в момент конца окна для нанесения урона
+    /// </summary>
     public class TransitionFromAttackToAttackOveringSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;

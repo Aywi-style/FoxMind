@@ -10,7 +10,5 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
         [SerializeField] private EntityBaker _entityBaker;
 
         public EcsPackedEntityWithWorld PackedEntity => _entityBaker.PackedEntity;
-
-        
     }
 }
