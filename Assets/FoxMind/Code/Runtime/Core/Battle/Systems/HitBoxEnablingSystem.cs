@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
@@ -5,6 +6,7 @@ using FoxMind.Code.Runtime.Core.Movement.Components;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Systems
 {
