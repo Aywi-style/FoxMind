@@ -2411,404 +2411,410 @@ MonoBehaviour:
   m_GameObject: {fileID: 393784900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52e7b3bbaeb7491fac20c1839975ee0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c1c512dd60443fa8eb9e45cdaadd1eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _systemAssemblies:
-  - rid: 6181360954596655150
-  - rid: 4826573899333894239
-  - rid: 4826574127590801497
-  - rid: 6181361541463670822
-  - rid: 6181361225784623130
-  - rid: 6181361541463670794
-  - rid: 4826574013864607874
-  - rid: 6181361183139299342
-  - rid: 6181361541463670809
+  - rid: 2271746077034283104
+  - rid: 2271746077034283105
+  - rid: 2271746077034283106
+  - rid: 2271746077034283107
+  - rid: 2271746077034283108
+  - rid: 2271746077034283109
+  - rid: 2271746077034283110
+  - rid: 2271746077034283111
+  - rid: 2271746077034283112
   references:
     version: 2
     RefIds:
-    - rid: 4826573899333894239
-      type: {class: CameraAssembly, ns: FoxMind.Code.Runtime.Core.Camera.SystemsAssembly, asm: Core}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 4826573899333894240
-    - rid: 4826573899333894240
-      type: {class: CameraTargetMoveSystem, ns: FoxMind.Code.Runtime.Core.Camera.Systems, asm: Core}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 1
-    - rid: 4826574013864607874
-      type: {class: MovementAssembly, ns: FoxMind.Code.Runtime.Core.Movement.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 4826574013864607875
-        - rid: 4826574013864607876
-        - rid: 4826574013864607877
-        - rid: 4826574013864607878
-        - rid: 4826574013864607879
-        - rid: 4826574013864607880
-        - rid: 4826574013864607881
-        - rid: 4826574013864607882
-        - rid: 4826574013864607883
-        - rid: 4826574013864607884
-        - rid: 4826574013864607885
-        - rid: 4826574013864607886
-        - rid: 4826574013864607887
-        - rid: 4826574013864607888
-        - rid: 4826574013864607889
-        - rid: 4826574013864607890
-        - rid: 4826574013864607891
-    - rid: 4826574013864607875
-      type: {class: DeletingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607876
-      type: {class: DeletingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607877
-      type: {class: AddingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607878
-      type: {class: AddingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607879
-      type: {class: RegisterMoveableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607880
-      type: {class: RegisterMotionAnimationsSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607881
-      type: {class: UpdateInputsInSlayerJetControllerSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607882
-      type: {class: MoveSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607883
-      type: {class: JumpSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607884
-      type: {class: MoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607885
-      type: {class: DelJumpRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607886
-      type: {class: DelRegisterMotionAnimationRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607887
-      type: {class: DelRegisterMoveableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607888
-      type: {class: DelSelfImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607889
-      type: {class: DelSelfImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607890
-      type: {class: DelSelfUnImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574013864607891
-      type: {class: DelSelfUnImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801497
-      type: {class: BattleAssembly, ns: FoxMind.Code.Runtime.Core.Battle.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 4826574127590801498
-        - rid: 4826574127590801499
-        - rid: 4826574127590801500
-        - rid: 4826574127590801501
-        - rid: 4826574127590801502
-        - rid: 4826574127590801503
-        - rid: 4826574127590801504
-        - rid: 4826574127590801505
-        - rid: 4826574127590801506
-        - rid: 4826574127590801507
-    - rid: 4826574127590801498
-      type: {class: ProvideAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801499
-      type: {class: HitBoxEnablingSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801500
-      type: {class: ApplyAttackComponentsSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801501
-      type: {class: CauseDamageSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801502
-      type: {class: TransitionFromAttackToAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801503
-      type: {class: ExitFromAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801504
-      type: {class: DeathSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801505
-      type: {class: DelTargetProvideAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801506
-      type: {class: DelCauseDamageRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 4826574127590801507
-      type: {class: DelDeathRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181360954596655150
+    - rid: 2271746077034283104
       type: {class: ScenesInitAssembly, ns: FoxMind.Code.Runtime.Core.Scenes.Init.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
         EcsVisitable:
-        - rid: 6181360954596655151
-    - rid: 6181360954596655151
-      type: {class: SceneInitSystem, ns: FoxMind.Code.Runtime.Core.Scenes.Init.Systems, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361183139299342
-      type: {class: InputAssembly, ns: FoxMind.Code.Runtime.Core.Input.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Input}
+        - rid: 2271746077034283113
+        - rid: 2271746077034283168
+    - rid: 2271746077034283105
+      type: {class: CameraAssembly, ns: FoxMind.Code.Runtime.Core.Camera.SystemsAssembly, asm: Core}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
         EcsVisitable:
-        - rid: 6181361183139299343
-        - rid: 6181361183139299344
-        - rid: 6181361183139299345
-        - rid: 6181361183139299346
-        - rid: 6181361183139299347
-        - rid: 6181361614113210369
-    - rid: 6181361183139299343
-      type: {class: InitBaseInputControlsSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361183139299344
-      type: {class: InputDirectionSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361183139299345
-      type: {class: InputAttackSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361183139299346
-      type: {class: InputJumpSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361183139299347
-      type: {class: InputDashSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361225784623130
-      type: {class: AnimationsAssembly, ns: FoxMind.Code.Runtime.Core.Animations.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Animations}
+        - rid: 2271746077034283114
+    - rid: 2271746077034283106
+      type: {class: BattleAssembly, ns: FoxMind.Code.Runtime.Core.Battle.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
         EcsVisitable:
-        - rid: 6181361225784623131
-        - rid: 6181361225784623132
-        - rid: 6181361225784623156
-    - rid: 6181361225784623131
-      type: {class: PlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361225784623132
-      type: {class: SelfPlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361225784623156
-      type: {class: DelSelfPlayRequest, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670794
-      type: {class: PlayerActionAssembly, ns: FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 6181361541463670795
-        - rid: 6181361541463670796
-        - rid: 6181361541463670797
-        - rid: 6181361541463670798
-        - rid: 6181361541463670799
-    - rid: 6181361541463670795
-      type: {class: PlayerDashSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670796
-      type: {class: PlayerRotateSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670797
-      type: {class: PlayerInputConvertToMoveDirection, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670798
-      type: {class: PlayerIsGroundedSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        _groundCheck: 0
-    - rid: 6181361541463670799
-      type: {class: PlayerJumpingAnimationSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670809
-      type: {class: InputTrackingAssembly, ns: FoxMind.Code.Runtime.Core.InputTracking.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 6181361541463670810
-        - rid: 6181361541463670811
-        - rid: 6181361541463670812
-        - rid: 6181361541463670813
-        - rid: 6181361541463670814
-    - rid: 6181361541463670810
-      type: {class: RegisterTrackingForComboSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670811
-      type: {class: TrackInputtedAttackSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670812
-      type: {class: TrackInputtedDashSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670813
-      type: {class: TrackInputtedMoveSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670814
-      type: {class: TrackInputtedJumpSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670822
+        - rid: 2271746077034283115
+        - rid: 2271746077034283116
+        - rid: 2271746077034283117
+        - rid: 2271746077034283118
+        - rid: 2271746077034283119
+        - rid: 2271746077034283120
+        - rid: 2271746077034283121
+        - rid: 2271746077034283122
+        - rid: 2271746077034283123
+        - rid: 2271746077034283124
+    - rid: 2271746077034283107
       type: {class: ComboAssembly, ns: FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
         EcsVisitable:
-        - rid: 6181361541463670823
-        - rid: 6181361541463670824
-        - rid: 6181361541463670825
-        - rid: 6181361541463670826
-        - rid: 6181361541463670827
-        - rid: 6181361541463670828
-        - rid: 6181361541463670829
-    - rid: 6181361541463670823
+        - rid: 2271746077034283125
+        - rid: 2271746077034283126
+        - rid: 2271746077034283127
+        - rid: 2271746077034283128
+        - rid: 2271746077034283129
+        - rid: 2271746077034283130
+        - rid: 2271746077034283131
+    - rid: 2271746077034283108
+      type: {class: AnimationsAssembly, ns: FoxMind.Code.Runtime.Core.Animations.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+        EcsVisitable:
+        - rid: 2271746077034283132
+        - rid: 2271746077034283133
+        - rid: 2271746077034283134
+    - rid: 2271746077034283109
+      type: {class: PlayerActionAssembly, ns: FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+        EcsVisitable:
+        - rid: 2271746077034283135
+        - rid: 2271746077034283136
+        - rid: 2271746077034283137
+        - rid: 2271746077034283138
+        - rid: 2271746077034283139
+    - rid: 2271746077034283110
+      type: {class: MovementAssembly, ns: FoxMind.Code.Runtime.Core.Movement.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+        EcsVisitable:
+        - rid: 2271746077034283140
+        - rid: 2271746077034283141
+        - rid: 2271746077034283142
+        - rid: 2271746077034283143
+        - rid: 2271746077034283144
+        - rid: 2271746077034283145
+        - rid: 2271746077034283146
+        - rid: 2271746077034283147
+        - rid: 2271746077034283148
+        - rid: 2271746077034283149
+        - rid: 2271746077034283150
+        - rid: 2271746077034283151
+        - rid: 2271746077034283152
+        - rid: 2271746077034283153
+        - rid: 2271746077034283154
+        - rid: 2271746077034283155
+        - rid: 2271746077034283156
+    - rid: 2271746077034283111
+      type: {class: InputAssembly, ns: FoxMind.Code.Runtime.Core.Input.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+        EcsVisitable:
+        - rid: 2271746077034283157
+        - rid: 2271746077034283158
+        - rid: 2271746077034283159
+        - rid: 2271746077034283160
+        - rid: 2271746077034283161
+        - rid: 2271746077034283162
+    - rid: 2271746077034283112
+      type: {class: InputTrackingAssembly, ns: FoxMind.Code.Runtime.Core.InputTracking.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.InputTracking}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+        EcsVisitable:
+        - rid: 2271746077034283163
+        - rid: 2271746077034283164
+        - rid: 2271746077034283165
+        - rid: 2271746077034283166
+        - rid: 2271746077034283167
+    - rid: 2271746077034283113
+      type: {class: SceneInitSystem, ns: FoxMind.Code.Runtime.Core.Scenes.Init.Systems, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283114
+      type: {class: CameraTargetMoveSystem, ns: FoxMind.Code.Runtime.Core.Camera.Systems, asm: Core}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283115
+      type: {class: ProvideAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283116
+      type: {class: HitBoxEnablingSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283117
+      type: {class: ApplyAttackComponentsSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283118
+      type: {class: CauseDamageSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283119
+      type: {class: TransitionFromAttackToAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283120
+      type: {class: ExitFromAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283121
+      type: {class: DeathSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283122
+      type: {class: DelTargetProvideAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283123
+      type: {class: DelCauseDamageRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283124
+      type: {class: DelDeathRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283125
       type: {class: CatchInputAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670824
+    - rid: 2271746077034283126
       type: {class: DefineWhatPlayerComboNeedToDoSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670825
+    - rid: 2271746077034283127
       type: {class: DefineActualComboSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670826
+    - rid: 2271746077034283128
       type: {class: ProvideComboSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670827
+    - rid: 2271746077034283129
       type: {class: InComboComponentDeletingSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670828
+    - rid: 2271746077034283130
       type: {class: DelSelfComboAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
-    - rid: 6181361541463670829
+    - rid: 2271746077034283131
       type: {class: DelTargetProvideComboRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0
-    - rid: 6181361614113210369
+    - rid: 2271746077034283132
+      type: {class: PlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283133
+      type: {class: SelfPlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283134
+      type: {class: DelSelfPlayRequest, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283135
+      type: {class: PlayerDashSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283136
+      type: {class: PlayerRotateSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283137
+      type: {class: PlayerInputConvertToMoveDirection, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283138
+      type: {class: PlayerIsGroundedSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+        _groundCheck: 0
+    - rid: 2271746077034283139
+      type: {class: PlayerJumpingAnimationSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283140
+      type: {class: DeletingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283141
+      type: {class: DeletingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283142
+      type: {class: AddingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283143
+      type: {class: AddingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283144
+      type: {class: RegisterMoveableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283145
+      type: {class: RegisterMotionAnimationsSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283146
+      type: {class: UpdateInputsInSlayerJetControllerSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283147
+      type: {class: MoveSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283148
+      type: {class: JumpSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283149
+      type: {class: MoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283150
+      type: {class: DelJumpRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283151
+      type: {class: DelRegisterMotionAnimationRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283152
+      type: {class: DelRegisterMoveableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283153
+      type: {class: DelSelfImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283154
+      type: {class: DelSelfImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283155
+      type: {class: DelSelfUnImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283156
+      type: {class: DelSelfUnImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283157
+      type: {class: InitBaseInputControlsSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283158
+      type: {class: InputDirectionSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283159
+      type: {class: InputAttackSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283160
+      type: {class: InputJumpSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283161
+      type: {class: InputDashSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283162
       type: {class: InputTargetLockSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283163
+      type: {class: RegisterTrackingForComboSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283164
+      type: {class: TrackInputtedAttackSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283165
+      type: {class: TrackInputtedDashSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283166
+      type: {class: TrackInputtedMoveSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283167
+      type: {class: TrackInputtedJumpSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
+      data:
+        <IsEnabled>k__BackingField: 1
+        <UpdateType>k__BackingField: 0
+    - rid: 2271746077034283168
+      type: {class: AspectTestSystem, ns: FoxMind.Code.Runtime.Core.AspectTest.Systems, asm: FoxMind.Code.Runtime.Core.AcpectTest}
       data:
         <IsEnabled>k__BackingField: 1
         <UpdateType>k__BackingField: 0

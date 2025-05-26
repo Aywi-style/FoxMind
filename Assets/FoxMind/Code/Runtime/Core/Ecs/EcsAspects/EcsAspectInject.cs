@@ -2,7 +2,7 @@ using System.Reflection;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 
-namespace FoxMind.Code.Runtime.Core.Ecs.Aspects
+namespace FoxMind.Code.Runtime.Core.Ecs.EcsAspects
 {
     public static class EcsAspectInject
     {

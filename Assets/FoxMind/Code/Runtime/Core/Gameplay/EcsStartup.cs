@@ -1,12 +1,21 @@
 using System;
-using FoxMind.Code.Runtime.Core.Ecs.Aspects;
+using FoxMind.Code.Runtime.Core.Animations.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Battle.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Camera.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Ecs.EcsAspects;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
+using FoxMind.Code.Runtime.Core.Input.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.InputTracking.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Movement.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Scenes.Init.SystemsAssembly;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
 
-namespace FoxMind.Code.Runtime.Core.Ecs
+namespace FoxMind.Code.Runtime.Core.Gameplay
 {
     public class EcsStartup : MonoBehaviour, IEcsVisitor
     {
@@ -17,7 +26,18 @@ namespace FoxMind.Code.Runtime.Core.Ecs
         IEcsSystems _updateSystems;
         IEcsSystems _lateUpdateSystems;
         IEcsSystems _fixedUpdateSystems;
-        [SerializeReference] private BaseSystemAssembly[] _systemAssemblies;
+        [SerializeReference] private BaseSystemAssembly[] _systemAssemblies = new BaseSystemAssembly[]
+        {
+            new ScenesInitAssembly(),
+            new CameraAssembly(),
+            new BattleAssembly(),
+            new ComboAssembly(),
+            new AnimationsAssembly(),
+            new PlayerActionAssembly(),
+            new MovementAssembly(),
+            new InputAssembly(),
+            new InputTrackingAssembly()
+        };
         
         private void Start()
         {
@@ -58,7 +78,7 @@ namespace FoxMind.Code.Runtime.Core.Ecs
                 .Add (new Leopotam.EcsLite.UnityEditor.EcsSystemsDebugSystem(systemName))
 #endif
                 .Inject()    
-                //.InjectAspect(new AspectTest())
+                .InjectAspect(new AspectTest.Aspects.AspectTest())
                 .Init();
         }
         
