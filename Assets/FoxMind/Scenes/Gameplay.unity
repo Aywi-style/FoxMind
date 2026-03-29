@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13c75e0ed3a4a0cb75cd0358e529db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityBaker: {fileID: 1034343286}
+  baseEntityBaker: {fileID: 0}
 --- !u!136 &132780709
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2328,6 +2328,17 @@ Transform:
   - {fileID: 1754202796}
   m_Father: {fileID: 1260082196}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &378978033 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4653386055560987681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+  m_PrefabInstance: {fileID: 1497409524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a74a693bbc44e06998184b47c4fb33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &383980245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4705275285025232, guid: 9b286c7bdc0f30645811cc2abb2c3b19, type: 3}
@@ -2413,411 +2424,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c1c512dd60443fa8eb9e45cdaadd1eb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _systemAssemblies:
-  - rid: 2271746077034283104
-  - rid: 2271746077034283105
-  - rid: 2271746077034283106
-  - rid: 2271746077034283107
-  - rid: 2271746077034283108
-  - rid: 2271746077034283109
-  - rid: 2271746077034283110
-  - rid: 2271746077034283111
-  - rid: 2271746077034283112
-  references:
-    version: 2
-    RefIds:
-    - rid: 2271746077034283104
-      type: {class: ScenesInitAssembly, ns: FoxMind.Code.Runtime.Core.Scenes.Init.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283113
-        - rid: 2271746077034283168
-    - rid: 2271746077034283105
-      type: {class: CameraAssembly, ns: FoxMind.Code.Runtime.Core.Camera.SystemsAssembly, asm: Core}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283114
-    - rid: 2271746077034283106
-      type: {class: BattleAssembly, ns: FoxMind.Code.Runtime.Core.Battle.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283115
-        - rid: 2271746077034283116
-        - rid: 2271746077034283117
-        - rid: 2271746077034283118
-        - rid: 2271746077034283119
-        - rid: 2271746077034283120
-        - rid: 2271746077034283121
-        - rid: 2271746077034283122
-        - rid: 2271746077034283123
-        - rid: 2271746077034283124
-    - rid: 2271746077034283107
-      type: {class: ComboAssembly, ns: FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283125
-        - rid: 2271746077034283126
-        - rid: 2271746077034283127
-        - rid: 2271746077034283128
-        - rid: 2271746077034283129
-        - rid: 2271746077034283130
-        - rid: 2271746077034283131
-    - rid: 2271746077034283108
-      type: {class: AnimationsAssembly, ns: FoxMind.Code.Runtime.Core.Animations.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283132
-        - rid: 2271746077034283133
-        - rid: 2271746077034283134
-    - rid: 2271746077034283109
-      type: {class: PlayerActionAssembly, ns: FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283135
-        - rid: 2271746077034283136
-        - rid: 2271746077034283137
-        - rid: 2271746077034283138
-        - rid: 2271746077034283139
-    - rid: 2271746077034283110
-      type: {class: MovementAssembly, ns: FoxMind.Code.Runtime.Core.Movement.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283140
-        - rid: 2271746077034283141
-        - rid: 2271746077034283142
-        - rid: 2271746077034283143
-        - rid: 2271746077034283144
-        - rid: 2271746077034283145
-        - rid: 2271746077034283146
-        - rid: 2271746077034283147
-        - rid: 2271746077034283148
-        - rid: 2271746077034283149
-        - rid: 2271746077034283150
-        - rid: 2271746077034283151
-        - rid: 2271746077034283152
-        - rid: 2271746077034283153
-        - rid: 2271746077034283154
-        - rid: 2271746077034283155
-        - rid: 2271746077034283156
-    - rid: 2271746077034283111
-      type: {class: InputAssembly, ns: FoxMind.Code.Runtime.Core.Input.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283157
-        - rid: 2271746077034283158
-        - rid: 2271746077034283159
-        - rid: 2271746077034283160
-        - rid: 2271746077034283161
-        - rid: 2271746077034283162
-    - rid: 2271746077034283112
-      type: {class: InputTrackingAssembly, ns: FoxMind.Code.Runtime.Core.InputTracking.SystemsAssembly, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        EcsVisitable:
-        - rid: 2271746077034283163
-        - rid: 2271746077034283164
-        - rid: 2271746077034283165
-        - rid: 2271746077034283166
-        - rid: 2271746077034283167
-    - rid: 2271746077034283113
-      type: {class: SceneInitSystem, ns: FoxMind.Code.Runtime.Core.Scenes.Init.Systems, asm: FoxMind.Code.Runtime.Core.Scenes.Init}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283114
-      type: {class: CameraTargetMoveSystem, ns: FoxMind.Code.Runtime.Core.Camera.Systems, asm: Core}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283115
-      type: {class: ProvideAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283116
-      type: {class: HitBoxEnablingSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283117
-      type: {class: ApplyAttackComponentsSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283118
-      type: {class: CauseDamageSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283119
-      type: {class: TransitionFromAttackToAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283120
-      type: {class: ExitFromAttackOveringSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283121
-      type: {class: DeathSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283122
-      type: {class: DelTargetProvideAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283123
-      type: {class: DelCauseDamageRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283124
-      type: {class: DelDeathRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Systems, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283125
-      type: {class: CatchInputAttackSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283126
-      type: {class: DefineWhatPlayerComboNeedToDoSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283127
-      type: {class: DefineActualComboSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283128
-      type: {class: ProvideComboSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283129
-      type: {class: InComboComponentDeletingSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283130
-      type: {class: DelSelfComboAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283131
-      type: {class: DelTargetProvideComboRequestSystem, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Systems, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283132
-      type: {class: PlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283133
-      type: {class: SelfPlayAnimationSystem, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283134
-      type: {class: DelSelfPlayRequest, ns: FoxMind.Code.Runtime.Core.Animations.Systems, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283135
-      type: {class: PlayerDashSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283136
-      type: {class: PlayerRotateSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283137
-      type: {class: PlayerInputConvertToMoveDirection, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283138
-      type: {class: PlayerIsGroundedSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-        _groundCheck: 0
-    - rid: 2271746077034283139
-      type: {class: PlayerJumpingAnimationSystem, ns: FoxMind.Code.Runtime.Core.PlayerActions.Systems, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283140
-      type: {class: DeletingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283141
-      type: {class: DeletingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283142
-      type: {class: AddingImmovableCompSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283143
-      type: {class: AddingImmovableBecauseInAttackSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283144
-      type: {class: RegisterMoveableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283145
-      type: {class: RegisterMotionAnimationsSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283146
-      type: {class: UpdateInputsInSlayerJetControllerSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283147
-      type: {class: MoveSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283148
-      type: {class: JumpSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283149
-      type: {class: MoveAnimationSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283150
-      type: {class: DelJumpRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283151
-      type: {class: DelRegisterMotionAnimationRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283152
-      type: {class: DelRegisterMoveableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283153
-      type: {class: DelSelfImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283154
-      type: {class: DelSelfImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283155
-      type: {class: DelSelfUnImmovableRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283156
-      type: {class: DelSelfUnImmovableBecauseInAttackRequestSystem, ns: FoxMind.Code.Runtime.Core.Movement.Systems, asm: FoxMind.Code.Runtime.Core.Movement}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283157
-      type: {class: InitBaseInputControlsSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283158
-      type: {class: InputDirectionSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283159
-      type: {class: InputAttackSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283160
-      type: {class: InputJumpSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283161
-      type: {class: InputDashSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283162
-      type: {class: InputTargetLockSystem, ns: FoxMind.Code.Runtime.Core.Input.Systems, asm: FoxMind.Code.Runtime.Core.Input}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283163
-      type: {class: RegisterTrackingForComboSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283164
-      type: {class: TrackInputtedAttackSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283165
-      type: {class: TrackInputtedDashSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283166
-      type: {class: TrackInputtedMoveSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283167
-      type: {class: TrackInputtedJumpSystem, ns: FoxMind.Code.Runtime.Core.InputTracking.Systems, asm: FoxMind.Code.Runtime.Core.InputTracking}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
-    - rid: 2271746077034283168
-      type: {class: AspectTestSystem, ns: FoxMind.Code.Runtime.Core.AspectTest.Systems, asm: FoxMind.Code.Runtime.Core.AcpectTest}
-      data:
-        <IsEnabled>k__BackingField: 1
-        <UpdateType>k__BackingField: 0
+  m_EditorClassIdentifier: FoxMind.Code.Runtime::FoxMind.Code.Runtime.Core.Gameplay.EcsStartup
 --- !u!1 &393949672
 GameObject:
   m_ObjectHideFlags: 0
@@ -4926,7 +4533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13c75e0ed3a4a0cb75cd0358e529db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityBaker: {fileID: 1260082195}
+  baseEntityBaker: {fileID: 0}
 --- !u!136 &578568300
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5617,6 +5224,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5638,9 +5247,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -6103,14 +5714,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 1
     m_Resolution: -1
@@ -6187,17 +5798,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Version: 3
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &705546546
 GameObject:
   m_ObjectHideFlags: 0
@@ -6239,7 +5856,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 707243863}
-  - component: {fileID: 707243862}
   - component: {fileID: 707243861}
   - component: {fileID: 707243860}
   m_Layer: 6
@@ -6279,10 +5895,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 707243859}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 80
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -6299,61 +5915,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &707243862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707243859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entity: 0
-  FeaturesConfig: {fileID: 0}
-  Features:
-  - rid: 6181361183139299350
-  - rid: 6181361183139299348
-  - rid: 6181361183139299349
-  - rid: 6181361225784623167
-  - rid: 4826573899333894288
-  - rid: 4826574059743477857
-  - rid: 4826574059743477859
-  references:
-    version: 2
-    RefIds:
-    - rid: 4826573899333894288
-      type: {class: CameraFollowMeTransformComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
-      data:
-        Priority: -1
-        Transform: {fileID: 707243863}
-    - rid: 4826574059743477857
-      type: {class: EnergyComp, ns: FoxMind.Code.Runtime.Core.Battle.Components, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        MaxValue: 100
-        CurrentValue: 50
-    - rid: 4826574059743477859
-      type: {class: VisualHolderComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 707243859}
-    - rid: 6181361183139299348
-      type: {class: RigidBodyComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 707243861}
-    - rid: 6181361183139299349
-      type: {class: PushBoxCapsuleComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 707243860}
-    - rid: 6181361183139299350
-      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 707243863}
-    - rid: 6181361225784623167
-      type: {class: AnimancerComp, ns: FoxMind.Code.Runtime.Core.Animations.Components, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        Value: {fileID: 732887756}
 --- !u!4 &707243863
 Transform:
   m_ObjectHideFlags: 0
@@ -6725,6 +6286,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6746,9 +6309,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -8611,7 +8176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13c75e0ed3a4a0cb75cd0358e529db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityBaker: {fileID: 707243862}
+  baseEntityBaker: {fileID: 0}
 --- !u!136 &853945808
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9881,7 +9446,6 @@ MonoBehaviour:
   m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
-  m_Version: 2
   m_TaaSettings:
     m_Quality: 3
     m_FrameInfluence: 0.1
@@ -9889,6 +9453,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9946,24 +9511,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
+  m_Script: {fileID: 11500000, guid: d9c1d054d9b84ff3866eebdcefc24d86, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: FoxMind.Code.Runtime::FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours.EntityBaker
   _entity: 0
   FeaturesConfig: {fileID: 0}
   Features:
-  - rid: 4826573876739965021
-  - rid: 4826573876739965023
+  - rid: 4832570863762538599
+  - rid: 4832570872806768732
   references:
     version: 2
     RefIds:
-    - rid: 4826573876739965021
-      type: {class: CameraComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
+    - rid: 4832570863762538599
+      type: {class: CameraComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: FoxMind.Code.Runtime}
       data:
         Camera: {fileID: 963194227}
-        VirtualCamera: {fileID: 0}
-    - rid: 4826573876739965023
-      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
+        VirtualCamera: {fileID: 860468109}
+    - rid: 4832570872806768732
+      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime}
       data:
         Value: {fileID: 963194228}
 --- !u!4 &967759813 stripped
@@ -10296,6 +9861,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10317,9 +9884,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -10406,7 +9975,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1034343287}
-  - component: {fileID: 1034343286}
   - component: {fileID: 1034343285}
   - component: {fileID: 1034343284}
   m_Layer: 6
@@ -10446,10 +10014,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034343283}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 80
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -10466,61 +10034,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1034343286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1034343283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entity: 0
-  FeaturesConfig: {fileID: 0}
-  Features:
-  - rid: 6181361183139299350
-  - rid: 6181361183139299348
-  - rid: 6181361183139299349
-  - rid: 6181361225784623167
-  - rid: 4826573899333894288
-  - rid: 4826574059743477857
-  - rid: 4826574059743477859
-  references:
-    version: 2
-    RefIds:
-    - rid: 4826573899333894288
-      type: {class: CameraFollowMeTransformComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
-      data:
-        Priority: -1
-        Transform: {fileID: 1034343287}
-    - rid: 4826574059743477857
-      type: {class: EnergyComp, ns: FoxMind.Code.Runtime.Core.Battle.Components, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        MaxValue: 100
-        CurrentValue: 50
-    - rid: 4826574059743477859
-      type: {class: VisualHolderComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1034343283}
-    - rid: 6181361183139299348
-      type: {class: RigidBodyComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1034343285}
-    - rid: 6181361183139299349
-      type: {class: PushBoxCapsuleComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1034343284}
-    - rid: 6181361183139299350
-      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1034343287}
-    - rid: 6181361225784623167
-      type: {class: AnimancerComp, ns: FoxMind.Code.Runtime.Core.Animations.Components, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        Value: {fileID: 668433827}
 --- !u!4 &1034343287
 Transform:
   m_ObjectHideFlags: 0
@@ -12295,7 +11808,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1260082196}
-  - component: {fileID: 1260082195}
   - component: {fileID: 1260082194}
   - component: {fileID: 1260082193}
   m_Layer: 6
@@ -12335,10 +11847,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1260082192}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 80
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -12355,61 +11867,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &1260082195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260082192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entity: 0
-  FeaturesConfig: {fileID: 0}
-  Features:
-  - rid: 6181361183139299350
-  - rid: 6181361183139299348
-  - rid: 6181361183139299349
-  - rid: 6181361225784623167
-  - rid: 4826573899333894288
-  - rid: 4826574059743477857
-  - rid: 4826574059743477859
-  references:
-    version: 2
-    RefIds:
-    - rid: 4826573899333894288
-      type: {class: CameraFollowMeTransformComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
-      data:
-        Priority: -1
-        Transform: {fileID: 1260082196}
-    - rid: 4826574059743477857
-      type: {class: EnergyComp, ns: FoxMind.Code.Runtime.Core.Battle.Components, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        MaxValue: 100
-        CurrentValue: 50
-    - rid: 4826574059743477859
-      type: {class: VisualHolderComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1260082192}
-    - rid: 6181361183139299348
-      type: {class: RigidBodyComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1260082194}
-    - rid: 6181361183139299349
-      type: {class: PushBoxCapsuleComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1260082193}
-    - rid: 6181361183139299350
-      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1260082196}
-    - rid: 6181361225784623167
-      type: {class: AnimancerComp, ns: FoxMind.Code.Runtime.Core.Animations.Components, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        Value: {fileID: 374590029}
 --- !u!4 &1260082196
 Transform:
   m_ObjectHideFlags: 0
@@ -15424,6 +14881,202 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _features.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: '_features.Array.data[1]'
+      value: 4832570863762538593
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: '_features.Array.data[2]'
+      value: 4832570863762538601
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: '_features.Array.data[3]'
+      value: 4832570872806768726
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: '_features.Array.data[4]'
+      value: 4832570872806768728
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: '_features.Array.data[5]'
+      value: 4832570872806768730
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570863762538593]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.PlayerActions.Components.PlayerControlledComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570863762538600]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.SlayerJetCharacterControllerComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570863762538601]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.SlayerJetCharacterControllerComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768724]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768725]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768726]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768727]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.TransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768728]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.TransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768729]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.RigidBodyComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768730]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.RigidBodyComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: 'managedReferences[4832570872806768734]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours.JumpBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570863762538600].Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570863762538601].Value
+      value: 
+      objectReference: {fileID: 1293581179}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768724].Motor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768725].Motor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768726].Motor
+      value: 
+      objectReference: {fileID: 1293581180}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768727].Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768728].Value
+      value: 
+      objectReference: {fileID: 397302345}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768729].Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768730].Value
+      value: 
+      objectReference: {fileID: 2126832256}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768734].motor
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768734].JumpSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570863762538580].Value4.Move
+      value: 
+      objectReference: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768734].AllowWallJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768734].AllowDoubleJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768734].AllowJumpingWhenSliding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768724].CustomCharacterController
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768724].NormalizedMoveDirection.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768724].NormalizedMoveDirection.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768724].NormalizedMoveDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768725].CustomCharacterController
+      value: 
+      objectReference: {fileID: 1293581179}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768725].NormalizedMoveDirection.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768725].NormalizedMoveDirection.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768725].NormalizedMoveDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768726].CustomCharacterController
+      value: 
+      objectReference: {fileID: 1293581179}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768726].NormalizedMoveDirection.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768726].NormalizedMoveDirection.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768726].NormalizedMoveDirection.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768734].JumpPreGroundingGraceTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768734].JumpPostGroundingGraceTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768724].CurrentMaxSpeedFromMovementBehaviour
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768725].CurrentMaxSpeedFromMovementBehaviour
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768726].CurrentMaxSpeedFromMovementBehaviour
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 435550534751643438, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: m_Name
       value: PlayerCharacterEntity
@@ -15468,149 +15121,413 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
-      propertyPath: Features.Array.size
-      value: 7
+    - target: {fileID: 0}
+      propertyPath: FeaturesConfig
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
-      propertyPath: 'Features.Array.data[5]'
+    - target: {fileID: 0}
+      propertyPath: Features.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[0]'
       value: 4826573899333894285
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
-      propertyPath: 'Features.Array.data[6]'
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[1]'
       value: 4826574013864607939
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[2]'
+      value: 4832570861208731988
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[3]'
+      value: 4832570861208731990
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[4]'
+      value: 4832570861208731992
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[5]'
+      value: 4832570861208731994
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[6]'
+      value: 4832570861208731995
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[7]'
+      value: 4832570861208731997
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'Features.Array.data[8]'
+      value: 4832570861208731998
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: 'managedReferences[4826573899333894276]'
-      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: 'managedReferences[4826573899333894277]'
-      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: 'managedReferences[4826573899333894284]'
-      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: 'managedReferences[4826573899333894285]'
-      value: Core FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Camera.Components.CameraFollowMeTransformComp
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: 'managedReferences[4826574013864607937]'
-      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: 'managedReferences[4826574013864607938]'
-      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: 'managedReferences[4826574013864607939]'
-      value: FoxMind.Code.Runtime.Core.Movement FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.MoveableComp
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731988]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.PlayerActions.Components.PlayerControlledComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731989]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.TransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731990]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.TransformComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731991]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.RigidBodyComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731992]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.RigidBodyComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731993]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.PushBoxCapsuleComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731994]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.StandaloneComponents.PushBoxCapsuleComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731995]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Battle.Components.EnergyComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731996]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Battle.Components.WeaponComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731997]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Battle.Components.WeaponComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731998]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.Components.FullFeature.MovementFullFeature
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731999]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours.JumpBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208732000]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours.AirMovementBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208732001]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours.StableMovementBehaviour
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000].Drag
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607937].Motor
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607937].Speed
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607938].Motor
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607938].Speed
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607939].Motor
       value: 
       objectReference: {fileID: 1293581180}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607939].Speed
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731989].Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731990].Value
+      value: 
+      objectReference: {fileID: 397302345}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731991].Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731992].Value
+      value: 
+      objectReference: {fileID: 2126832256}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731993].Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731994].Value
+      value: 
+      objectReference: {fileID: 2126832255}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731999].motor
+      value: 
+      objectReference: {fileID: 1293581180}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000].motor
+      value: 
+      objectReference: {fileID: 1293581180}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001].motor
+      value: 
+      objectReference: {fileID: 1293581180}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826573899333894277].Priority
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826573899333894284].Priority
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826573899333894285].Priority
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731995].MaxValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731996].HitBoxMb
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731997].HitBoxMb
+      value: 
+      objectReference: {fileID: 378978033}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826573899333894276].Transform
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826573899333894277].Transform
       value: 
       objectReference: {fileID: 397302345}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826573899333894284].Transform
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826573899333894285].Transform
       value: 
       objectReference: {fileID: 397302345}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731999].JumpSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731998].Value4.Move
+      value: 
+      objectReference: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731995].CurrentValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731999].AllowWallJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731999].AllowDoubleJump
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000].MaxAirMoveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000]._lookInputVector.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000]._lookInputVector.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000]._lookInputVector.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000]._moveInputVector.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000]._moveInputVector.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000]._moveInputVector.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001].MaxStableMoveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001]._lookInputVector.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001]._lookInputVector.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001]._lookInputVector.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001]._moveInputVector.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001]._moveInputVector.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001]._moveInputVector.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731998].Value2.JumpBehaviour
+      value: 4832570861208731999
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000].AirAccelerationSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732000].OrientationSharpness
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001].OrientationSharpness
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731999].AllowJumpingWhenSliding
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208732001].StableMovementSharpness
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607937].CustomCharacterController
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607937].NormalizedMoveDirection.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607937].NormalizedMoveDirection.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607937].NormalizedMoveDirection.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607938].CustomCharacterController
       value: 
       objectReference: {fileID: 1293581179}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607938].NormalizedMoveDirection.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607938].NormalizedMoveDirection.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607938].NormalizedMoveDirection.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607939].CustomCharacterController
       value: 
       objectReference: {fileID: 1293581179}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607939].NormalizedMoveDirection.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607939].NormalizedMoveDirection.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607939].NormalizedMoveDirection.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6525246329113838735, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731999].JumpPreGroundingGraceTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731999].JumpPostGroundingGraceTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: managedReferences[4826574013864607939].CurrentMaxSpeedFromMovementBehaviour
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: managedReferences[4832570861208731998].Value2._movementBehavioursOnlyInspector.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731998].Value2._movementBehavioursOnlyInspector.Array.data[0]'
+      value: 4832570861208732000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: 'managedReferences[4832570861208731998].Value2._movementBehavioursOnlyInspector.Array.data[1]'
+      value: 4832570861208732001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16165,7 +16082,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565881006}
-  - component: {fileID: 1565881008}
+  - component: {fileID: 1565881007}
   m_Layer: 0
   m_Name: CameraTarget
   m_TagString: Untagged
@@ -16188,7 +16105,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1565881008
+--- !u!114 &1565881007
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16197,23 +16114,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1565881005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
+  m_Script: {fileID: 11500000, guid: d9c1d054d9b84ff3866eebdcefc24d86, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: FoxMind.Code.Runtime::FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours.EntityBaker
   _entity: 0
   FeaturesConfig: {fileID: 0}
   Features:
-  - rid: 4826573899333894281
-  - rid: 4826573899333894234
+  - rid: 4832570863762538596
   references:
     version: 2
     RefIds:
-    - rid: 4826573899333894234
-      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 1565881006}
-    - rid: 4826573899333894281
-      type: {class: CameraTargetComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
+    - rid: 4832570863762538596
+      type: {class: CameraTargetComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: FoxMind.Code.Runtime}
       data: 
 --- !u!1 &1569024468
 GameObject:
@@ -17472,6 +17384,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17493,9 +17407,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1695172371
 MeshFilter:
@@ -17662,6 +17578,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17683,9 +17601,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -18448,7 +18368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13c75e0ed3a4a0cb75cd0358e529db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityBaker: {fileID: 6423515222047041463}
+  baseEntityBaker: {fileID: 0}
 --- !u!1 &1777210660
 GameObject:
   m_ObjectHideFlags: 0
@@ -18983,6 +18903,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19004,9 +18926,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -20514,6 +20438,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20535,9 +20461,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -20647,6 +20575,16 @@ Transform:
   - {fileID: 1860475776}
   m_Father: {fileID: 88090563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2126832255 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 7841604511626658617, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+  m_PrefabInstance: {fileID: 1497409524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &2126832256 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2475979542855141883, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+  m_PrefabInstance: {fileID: 1497409524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2133254762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21460,6 +21398,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1658589580158865308, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: Features.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658589580158865308, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: 'Features.Array.data[0]'
+      value: 4832570863762538594
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658589580158865308, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: 'managedReferences[4832570863762538594]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Player.Components.PlayerComp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570132265707608612, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: Features.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570132265707608612, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570132265707608612, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: 'Features.Array.data[0]'
+      value: 4832570861208731987
+      objectReference: {fileID: 0}
+    - target: {fileID: 2570132265707608612, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
+      propertyPath: 'managedReferences[4832570861208731987]'
+      value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.Player.Components.PlayerComp
+      objectReference: {fileID: 0}
     - target: {fileID: 3451082649299108930, guid: 88c2856ff25e82b4c80884515ce8479f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21566,7 +21532,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5792117722816103480}
-  - component: {fileID: 6423515222047041463}
   - component: {fileID: 2447371870101498563}
   - component: {fileID: 8032244946435481601}
   m_Layer: 6
@@ -22125,10 +22090,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405850762392323094}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 80
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -22308,6 +22273,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22329,9 +22296,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -23147,61 +23116,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &6423515222047041463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405850762392323094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entity: 0
-  FeaturesConfig: {fileID: 0}
-  Features:
-  - rid: 6181361183139299350
-  - rid: 6181361183139299348
-  - rid: 6181361183139299349
-  - rid: 6181361225784623167
-  - rid: 4826573899333894288
-  - rid: 4826574059743477857
-  - rid: 4826574059743477859
-  references:
-    version: 2
-    RefIds:
-    - rid: 4826573899333894288
-      type: {class: CameraFollowMeTransformComp, ns: FoxMind.Code.Runtime.Core.Camera.Components, asm: Core}
-      data:
-        Priority: -1
-        Transform: {fileID: 5792117722816103480}
-    - rid: 4826574059743477857
-      type: {class: EnergyComp, ns: FoxMind.Code.Runtime.Core.Battle.Components, asm: FoxMind.Code.Runtime.Core.Battle}
-      data:
-        MaxValue: 100
-        CurrentValue: 50
-    - rid: 4826574059743477859
-      type: {class: VisualHolderComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 405850762392323094}
-    - rid: 6181361183139299348
-      type: {class: RigidBodyComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 2447371870101498563}
-    - rid: 6181361183139299349
-      type: {class: PushBoxCapsuleComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 8032244946435481601}
-    - rid: 6181361183139299350
-      type: {class: TransformComp, ns: FoxMind.Code.Runtime.Core.StandaloneComponents, asm: FoxMind.Code.Runtime.Core.StandaloneComponents}
-      data:
-        Value: {fileID: 5792117722816103480}
-    - rid: 6181361225784623167
-      type: {class: AnimancerComp, ns: FoxMind.Code.Runtime.Core.Animations.Components, asm: FoxMind.Code.Runtime.Core.Animations}
-      data:
-        Value: {fileID: 5774359764138472522}
 --- !u!4 &6429794888932709047
 Transform:
   m_ObjectHideFlags: 0
@@ -23382,6 +23296,8 @@ SkinnedMeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23403,9 +23319,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0

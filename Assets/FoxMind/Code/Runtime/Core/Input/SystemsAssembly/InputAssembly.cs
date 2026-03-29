@@ -13,7 +13,8 @@ namespace FoxMind.Code.Runtime.Core.Input.SystemsAssembly
             {
                 new InitBaseInputControlsSystem(),
                 new InputDirectionSystem(),
-                new InputAttackSystem(),
+                new InputMeleeAttackSystem(),
+                new InputRangeAttackSystem(),
                 new InputJumpSystem(),
                 new InputDashSystem(),
                 new InputTargetLockSystem(),

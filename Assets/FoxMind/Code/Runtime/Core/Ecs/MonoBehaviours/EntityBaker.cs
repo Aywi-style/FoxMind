@@ -1,69 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
-using Leopotam.EcsLite;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours
 {
-    public class EntityBaker : MonoBehaviour
+    public class EntityBaker : BaseEntityBaker
     {
-        [ReadOnly, SerializeField] private int _entity;
-        [field: SerializeField] public EcsPackedEntityWithWorld PackedEntity { get; private set; }
-
         [field: SerializeField] public EntityTemplateConfig FeaturesConfig;
         [field: SerializeReference] public List<IEntityFeature> Features = new List<IEntityFeature>();
-
-        private IEnumerable<IEntityFeature> _entityFeatures;
-
-#if UNITY_EDITOR
-        private void OnValidate()
+        
+        protected override EntityTemplateConfig GetConfig()
         {
-            for (int i = Features.Count - 1; i >= 0; i--)
-            {
-                if (Features[i] == null)
-                {
-                    Features.Remove(Features[i]);
-                }
-            }
+            return FeaturesConfig;
         }
-#endif
 
-        public void Init(EcsWorld world)
+        protected override List<IEntityFeature> GetFeatures()
         {
-            try
-            {
-                if (FeaturesConfig != null && Features != null)
-                {
-                    _entityFeatures = FeaturesConfig.Concat(Features);
-                }
-                else if (FeaturesConfig != null)
-                {
-                    _entityFeatures = FeaturesConfig;
-                }
-                else if (Features != null && Features.Count > 0)
-                {
-                    _entityFeatures = Features;
-                }
+            return Features;
+        }
 
-                if (_entityFeatures != null)
-                {
-                    var entity = world.NewEntity();
-                    _entity = entity;
-                    PackedEntity = world.PackEntityWithWorld(entity);
-                
-                    foreach (var feature in _entityFeatures)
-                    {
-                        feature.Compose(world, entity);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"In {name} null comp!");
-            }
+        protected override void OnPreInit()
+        {
+            
         }
     }
 }

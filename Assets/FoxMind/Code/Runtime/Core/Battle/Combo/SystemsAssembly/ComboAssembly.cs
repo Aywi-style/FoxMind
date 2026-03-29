@@ -11,9 +11,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly
         {
             EcsVisitable = new List<IEcsVisitable>()
             {
+                new DefineActualComboSystem(),
                 new CatchInputAttackSystem(),
                 new DefineWhatPlayerComboNeedToDoSystem(),
-                new DefineActualComboSystem(),
                 new ProvideComboSystem(),
                 new InComboComponentDeletingSystem(),
                 

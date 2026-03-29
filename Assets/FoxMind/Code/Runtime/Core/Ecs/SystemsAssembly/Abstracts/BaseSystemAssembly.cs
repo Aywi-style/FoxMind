@@ -17,6 +17,9 @@ namespace FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts
             CreateSystems();
         }
 
+        /// <summary>
+        /// Use EcsVisitable = new... for creating systems assembly
+        /// </summary>
         protected abstract void CreateSystems();
 
         public override void Accept(IEcsVisitor visitor)

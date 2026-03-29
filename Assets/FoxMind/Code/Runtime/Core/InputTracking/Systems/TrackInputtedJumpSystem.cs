@@ -11,7 +11,7 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
     public class TrackInputtedJumpSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;
-        private readonly EcsFilterInject<Inc<BaseInputControlsComp, InputDashEvent>> _inputDashFilter = default;
+        private readonly EcsFilterInject<Inc<BaseInputControlsComp, InputJumpEvent>> _inputDashFilter = default;
         private readonly EcsFilterInject<Inc<PlayerControlledComp, InputtedJumpComp>> _comboFilter = default;
 
         private readonly EcsPoolInject<InputtedJumpComp> _inputtedJumpPool = default;

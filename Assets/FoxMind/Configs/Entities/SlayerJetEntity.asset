@@ -20,6 +20,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 2449856009831972864
       type: {class: CombinableComp, ns: FoxMind.Code.Runtime.Core.Battle.Combo.Components, asm: FoxMind.Code.Runtime.Core.Battle.Combo}
       data:
@@ -85,4 +87,3 @@ MonoBehaviour:
         _lookInputVector: {x: 0, y: 0, z: 0}
     - rid: 6181361225784623155
       type: {class: PlayerControlledComp, ns: FoxMind.Code.Runtime.Core.PlayerActions.Components, asm: FoxMind.Code.Runtime.Core.PlayerActions}
-      data: 

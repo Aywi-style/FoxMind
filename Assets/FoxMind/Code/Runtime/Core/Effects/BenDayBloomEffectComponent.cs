@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 namespace FoxMind.Code.Runtime.Core.Effects
 {
     [Serializable, VolumeComponentMenuForRenderPipeline("Custom/Ben Day Bloom", typeof(UniversalRenderPipeline))]
+    [Obsolete("Obsolete")]
     public class BenDayBloomEffectComponent : VolumeComponent, IPostProcessComponent
     {
         [Header("Bloom Settings")]

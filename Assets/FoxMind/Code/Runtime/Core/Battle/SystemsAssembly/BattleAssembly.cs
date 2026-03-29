@@ -16,8 +16,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.SystemsAssembly
                 new ApplyAttackComponentsSystem(),
                 
                 new CauseDamageSystem(),
-                new TransitionFromAttackToAttackOveringSystem(),
-                new ExitFromAttackOveringSystem(),
+                new TransitionFromAttackToAttackRecoverySystem(),
+                new ExitFromAttackRecoverySystem(),
                 
                 new DeathSystem(),
                 

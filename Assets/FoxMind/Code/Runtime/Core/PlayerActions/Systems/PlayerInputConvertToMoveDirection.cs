@@ -23,19 +23,22 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
         
         public void Run(IEcsSystems systems)
         {
+            if (_cameraFilter.Value.GetEntitiesCount() <= 0)
+            {
+                Debug.LogError("We dont have any cameras");
+                return;
+            }
+            
             Vector3 cameraForward = new Vector3();
             Vector3 cameraRight = new Vector3();
-
-            if (_cameraFilter.Value.GetEntitiesCount() > 0)
+            
+            foreach (var cameraEntity in _cameraFilter.Value)
             {
-                foreach (var cameraEntity in _cameraFilter.Value)
-                {
-                    ref var cameraTransform = ref _transformPool.Value.Get(cameraEntity);
-                    cameraForward = cameraTransform.Value.forward;
-                    cameraRight = cameraTransform.Value.right;
+                ref var cameraTransform = ref _transformPool.Value.Get(cameraEntity);
+                cameraForward = cameraTransform.Value.forward;
+                cameraRight = cameraTransform.Value.right;
                     
-                    break;
-                }
+                break;
             }
             
             foreach (var inputEntity in _inputDirectionFilter.Value)

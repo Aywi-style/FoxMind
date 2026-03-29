@@ -11,7 +11,7 @@ namespace FoxMind.Code.Runtime.Core.Scenes.Init.Systems
     {
         public void PreInit(IEcsSystems systems)
         {
-            var sceneObjects = Object.FindObjectsOfType<EntityBaker>();
+            var sceneObjects = Object.FindObjectsOfType<BaseEntityBaker>();
             
             foreach (var sceneObject in sceneObjects)
             {

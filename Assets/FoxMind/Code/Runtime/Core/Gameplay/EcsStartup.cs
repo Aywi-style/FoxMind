@@ -26,17 +26,17 @@ namespace FoxMind.Code.Runtime.Core.Gameplay
         IEcsSystems _updateSystems;
         IEcsSystems _lateUpdateSystems;
         IEcsSystems _fixedUpdateSystems;
-        [SerializeReference] private BaseSystemAssembly[] _systemAssemblies = new BaseSystemAssembly[]
+        private readonly BaseSystemAssembly[] _systemAssemblies = new BaseSystemAssembly[]
         {
             new ScenesInitAssembly(),
             new CameraAssembly(),
-            new BattleAssembly(),
+            new InputAssembly(),
+            new InputTrackingAssembly(),
             new ComboAssembly(),
+            new BattleAssembly(),
             new AnimationsAssembly(),
             new PlayerActionAssembly(),
-            new MovementAssembly(),
-            new InputAssembly(),
-            new InputTrackingAssembly()
+            new MovementAssembly()
         };
         
         private void Start()

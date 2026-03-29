@@ -154,9 +154,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1360593517687462536, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+    - {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6343924255526383174, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 28404776626677681}
     - targetCorrespondingSourceObject: {fileID: 8253484539740280017, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7352976852724780329}
@@ -164,6 +168,101 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4653386055560987681}
   m_SourcePrefab: {fileID: 100100000, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+--- !u!1 &435550534751643438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6343924255526383174, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &28404776626677681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435550534751643438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1ab542e3baf4b5fabcaf511b636724d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FoxMind.Code.Runtime::FoxMind.Code.Runtime.Core.Entities.PlayerBaseEntityBaker
+  _entity: 0
+  _combinableComp:
+    CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
+    AvailableCombos: []
+  _animancerComp:
+    Value: {fileID: 6019087728202028914}
+  _animatorComp:
+    Value: {fileID: 7593357168004964658}
+  _pushBoxCapsuleComp:
+    Value: {fileID: 7841604511626658617}
+  _moveableBehavioursComp:
+    _movementBehavioursOnlyInspector:
+    - rid: 4832570872806768735
+    - rid: 4832570872806768736
+    - rid: 4832570872806768737
+    - rid: 4832570872806768738
+    JumpBehaviour:
+      rid: 4832570872806768739
+  _motionAnimationComp:
+    Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
+  _slayerJetCharacterControllerComp:
+    Value: {fileID: 4824951740370521264}
+  _moveableComp:
+    CustomCharacterController: {fileID: 4824951740370521264}
+    Motor: {fileID: 9019267054329287531}
+    NormalizedMoveDirection: {x: 0, y: 0, z: 0}
+    CurrentMaxSpeedFromMovementBehaviour: 10
+  _transformComp:
+    Value: {fileID: 6037921481527125760}
+  _rigidBodyComp:
+    Value: {fileID: 2475979542855141883}
+  references:
+    version: 2
+    RefIds:
+    - rid: 4832570872806768735
+      type: {class: AirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+      data:
+        motor: {fileID: 9019267054329287531}
+        MaxAirMoveSpeed: 10
+        AirAccelerationSpeed: 5
+        Drag: 0.1
+        OrientationSharpness: 10
+        _moveInputVector: {x: 0, y: 0, z: 0}
+        _lookInputVector: {x: 0, y: 0, z: 0}
+    - rid: 4832570872806768736
+      type: {class: RootMotionAirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+      data:
+        motor: {fileID: 9019267054329287531}
+        MaxAirMoveSpeed: 10
+        AirAccelerationSpeed: 5
+        Drag: 0.1
+        ForwardAxisSharpness: 10
+        TurnAxisSharpness: 5
+    - rid: 4832570872806768737
+      type: {class: RootMotionStableMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+      data:
+        motor: {fileID: 9019267054329287531}
+        <MoveRootMotionVector>k__BackingField: {x: 0, y: 0, z: 0}
+        <LookRootMotionQuaternion>k__BackingField: {x: 0, y: 0, z: 0, w: 0}
+    - rid: 4832570872806768738
+      type: {class: StableMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+      data:
+        motor: {fileID: 0}
+        MaxStableMoveSpeed: 10
+        StableMovementSharpness: 15
+        OrientationSharpness: 10
+        _moveInputVector: {x: 0, y: 0, z: 0}
+        _lookInputVector: {x: 0, y: 0, z: 0}
+    - rid: 4832570872806768739
+      type: {class: JumpBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+      data:
+        motor: {fileID: 9019267054329287531}
+        AllowJumpingWhenSliding: 0
+        AllowDoubleJump: 1
+        AllowWallJump: 0
+        JumpSpeed: 10
+        JumpPreGroundingGraceTime: 0
+        JumpPostGroundingGraceTime: 0
 --- !u!54 &2475979542855141883 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 8961378062448705683, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
@@ -198,26 +297,36 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2086551546690536920, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
   m_PrefabInstance: {fileID: 6773774036682410344}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 435550534751643438}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d442079cd603463cb10adcb087bcd5d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6525246329113838735 stripped
+--- !u!114 &6019087728202028914 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 328502661592157671, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 975416334976097818, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
   m_PrefabInstance: {fileID: 6773774036682410344}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3209663476601314745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6037921481527125760 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 993683633823280744, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &7593357168004964658 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3990261305153038426, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &7841604511626658617 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 3662480212880493137, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
   m_PrefabInstance: {fileID: 6773774036682410344}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7858321822572126345 stripped
@@ -237,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a74a693bbc44e06998184b47c4fb33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityBaker: {fileID: 6525246329113838735}
+  baseEntityBaker: {fileID: 0}
   _hitColliders:
   - {fileID: 3626172023383087364}
 --- !u!114 &9019267054329287531 stripped
@@ -245,7 +354,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2534286347109554691, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
   m_PrefabInstance: {fileID: 6773774036682410344}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 435550534751643438}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d1bc5515e3ab954e80599c538834774, type: 3}

@@ -14,6 +14,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         private readonly EcsFilterInject<Inc<InComboComp>> _inComboFilter = default;
 
         private readonly EcsPoolInject<InComboComp> _inComboPool = default;
+        private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
+        private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
 
         private float _cachedTime;
         
@@ -30,7 +32,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             {
                 ref var inComboComponent = ref _inComboPool.Value.Get(inAttackEntity);
 
-                if (_cachedTime > inComboComponent.NextComboWindowEnd)
+                bool isWindowExpired = _cachedTime > inComboComponent.NextComboWindowEnd;
+                bool hasNextCombos = inComboComponent.ComboConfig != null && inComboComponent.ComboConfig.NextCombos.Count > 0;
+                bool isInAttackPhase = _inAttackPool.Value.Has(inAttackEntity) || _inAttackRecoveryPool.Value.Has(inAttackEntity);
+
+                if (isWindowExpired || (hasNextCombos == false && isInAttackPhase == false))
                 {
                     _inComboPool.Value.Del(inAttackEntity);
                 }

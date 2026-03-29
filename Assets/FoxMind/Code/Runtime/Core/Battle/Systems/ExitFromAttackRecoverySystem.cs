@@ -1,0 +1,116 @@
+using FoxMind.Code.Runtime.Core.Battle.Attack.Configs;
+using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
+using FoxMind.Code.Runtime.Core.Input.Components;
+using FoxMind.Code.Runtime.Core.Movement.Components;
+using Leopotam.EcsLite;
+using Leopotam.EcsLite.Di;
+using UnityEngine;
+
+namespace FoxMind.Code.Runtime.Core.Battle.Systems
+{
+    /// <summary>
+    /// Система, которая сбрасывает анимацию атаки, если игрок нажимает клавиши передвижения в окно, позволяющее прервать атаку
+    /// </summary>
+    public class ExitFromAttackRecoverySystem : BaseEcsVisitable, IEcsRunSystem
+    {
+        private const float c_defaultLateCancelStart = 0.55f;
+        private const float c_defaultLateCancelEnd = 0.90f;
+        
+        private readonly EcsWorldInject _world = default;
+        
+        private readonly EcsFilterInject<Inc<InAttackRecoveryComp>, Exc<InAttackComp>> _inAttackFilter = default;
+        private readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
+        private readonly EcsFilterInject<Inc<InputDashEvent>> _inputDashFilter = default;
+        private readonly EcsFilterInject<Inc<InputJumpEvent>> _inputJumpFilter = default;
+
+        private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
+        private readonly EcsPoolInject<SelfUnImmovableBecauseInAttackRequest> _selfUnImmovableBecauseInAttackRequestPool = default;
+        private readonly EcsPoolInject<RegisterMotionAnimationRequest> _registerMotionAnimationRequestPool = default;
+        private readonly EcsPoolInject<InputDirectionComp> _inputDirectionPool = default;
+
+        private float _cachedTime;
+        
+        public void Run(IEcsSystems systems)
+        {
+            _cachedTime = Time.time;
+            
+            if (_inAttackFilter.Value.GetEntitiesCount() <= 0)
+            {
+                return;
+            }
+            
+            foreach (var inAttackEntity in _inAttackFilter.Value)
+            {
+                ref var inAttackRecoveryComp = ref _inAttackRecoveryPool.Value.Get(inAttackEntity);
+
+                bool playerIsFreeze = true;
+                foreach (var inputDirectionEntity in _inputDirectionFilter.Value)
+                {
+                    ref var inputDirectionComp = ref _inputDirectionPool.Value.Get(inputDirectionEntity);
+                    
+                    if (inputDirectionComp.Direction.x != 0 || inputDirectionComp.Direction.y != 0)
+                    {
+                        playerIsFreeze = false;
+                        break;
+                    }
+                }
+
+                bool hasModifierInput = playerIsFreeze == false
+                                        || _inputDashFilter.Value.GetEntitiesCount() > 0
+                                        || _inputJumpFilter.Value.GetEntitiesCount() > 0;
+                
+                bool isInLateCancelWindow = IsInLateCancelWindow(inAttackRecoveryComp);
+                
+                if (_cachedTime < inAttackRecoveryComp.End && (hasModifierInput == false || isInLateCancelWindow == false))
+                {
+                    continue;
+                }
+                /*foreach (var attackComponent in inAttackComponent.AttackConfig.AttackEndComponents)
+                    {
+                        attackComponent.Compose(_world.Value, inAttackEntity);
+                    }*/
+
+                _inAttackRecoveryPool.Value.Del(inAttackEntity);
+
+                
+                if (_selfUnImmovableBecauseInAttackRequestPool.Value.Has(inAttackEntity) == false)
+                {
+                    _selfUnImmovableBecauseInAttackRequestPool.Value.Add(inAttackEntity);
+                }
+
+                _registerMotionAnimationRequestPool.Value.Add(inAttackEntity);
+            }
+        }
+
+        private bool IsInLateCancelWindow(InAttackRecoveryComp inAttackRecoveryComp)
+        {
+            var animLength = inAttackRecoveryComp.End - inAttackRecoveryComp.Start;
+            if (animLength <= 0)
+            {
+                return false;
+            }
+            
+            var normalizedTime = (_cachedTime - inAttackRecoveryComp.Start) / animLength;
+            
+            Vector2 window = GetWindowOrDefault(inAttackRecoveryComp.AttackConfig);
+            return normalizedTime >= window.x && normalizedTime <= window.y;
+        }
+
+        private Vector2 GetWindowOrDefault(AttackConfig attackConfig)
+        {
+            if (attackConfig == null)
+            {
+                return new Vector2(c_defaultLateCancelStart, c_defaultLateCancelEnd);
+            }
+            
+            var window = attackConfig.LateCancelWindow;
+            if (Mathf.Approximately(window.x, 0f) && Mathf.Approximately(window.y, 0f))
+            {
+                return new Vector2(c_defaultLateCancelStart, c_defaultLateCancelEnd);
+            }
+            
+            return new Vector2(Mathf.Min(window.x, window.y), Mathf.Max(window.x, window.y));
+        }
+    }
+}

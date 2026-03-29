@@ -7,8 +7,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
 {
     public class HurtBoxMb : MonoBehaviour
     {
-        [SerializeField] private EntityBaker _entityBaker;
+        [SerializeField] private BaseEntityBaker baseEntityBaker;
 
-        public EcsPackedEntityWithWorld PackedEntity => _entityBaker.PackedEntity;
+        public EcsPackedEntityWithWorld PackedEntity => baseEntityBaker.PackedEntity;
     }
 }

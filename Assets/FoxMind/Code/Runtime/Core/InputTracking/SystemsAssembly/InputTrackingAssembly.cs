@@ -12,7 +12,8 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.SystemsAssembly
             EcsVisitable = new List<IEcsVisitable>()
             {
                 new RegisterTrackingForComboSystem(),
-                new TrackInputtedAttackSystem(),
+                new TrackMeleeInputSystem(),
+                new TrackRangeInputSystem(),
                 new TrackInputtedDashSystem(),
                 new TrackInputtedMoveSystem(),
                 new TrackInputtedJumpSystem(),

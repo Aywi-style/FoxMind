@@ -22,7 +22,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
 
         private readonly EcsPoolInject<ProvideAttackRequest> _provideAttackRequestPool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
-        private readonly EcsPoolInject<InAttackOveringComp> _inAttackOveringPool = default;
+        private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
         private readonly EcsPoolInject<WeaponComp> _weaponPool = default;
         private readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
         
@@ -53,9 +53,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     _inAttackPool.Value.Add(targetEntity);
                 }
                 
-                if (_inAttackOveringPool.Value.Has(targetEntity) == false)
+                if (_inAttackRecoveryPool.Value.Has(targetEntity) == false)
                 {
-                    _inAttackOveringPool.Value.Add(targetEntity);
+                    _inAttackRecoveryPool.Value.Add(targetEntity);
                 }
 
                 if (_selfImmovableBecauseInAttackRequestPool.Value.Has(targetEntity) == false)
@@ -69,9 +69,10 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 inAttackComp.Start = _cachedTime;
                 inAttackComp.End = _cachedTime + (targetProvideAttackRequest.AttackConfig.EndOfContinuousPart * inAttackComp.AttackConfig.AttackAnimation.length);
                 
-                ref var inAttackOveringComp = ref _inAttackOveringPool.Value.Get(targetEntity);
-                inAttackOveringComp.Start = _cachedTime;
-                inAttackOveringComp.End = _cachedTime + inAttackComp.AttackConfig.AttackAnimation.length;
+                ref var inAttackRecoveryComp = ref _inAttackRecoveryPool.Value.Get(targetEntity);
+                inAttackRecoveryComp.AttackConfig = inAttackComp.AttackConfig;
+                inAttackRecoveryComp.Start = _cachedTime;
+                inAttackRecoveryComp.End = _cachedTime + inAttackComp.AttackConfig.AttackAnimation.length;
                 
                 if (_animancerPool.Value.Has(targetEntity))
                 {

@@ -13,7 +13,6 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
 
         private readonly EcsPoolInject<TransformComp> _transformPool = default;
         private readonly EcsPoolInject<RigidBodyComp> _rigidBodyPool = default;
-        private readonly EcsPoolInject<AnimatorComp> _animatorPool = default;
         private readonly EcsPoolInject<MoveableComp> _moveablePool = default;
         private readonly EcsPoolInject<ImmovableComp> _immovablePool = default;
 

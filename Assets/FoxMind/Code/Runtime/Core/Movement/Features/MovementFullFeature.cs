@@ -1,0 +1,11 @@
+﻿using FoxMind.Code.Runtime.Core.Ecs.Templates;
+using Sirenix.OdinInspector;
+
+namespace FoxMind.Code.Runtime.Core.Movement.Components.FullFeature
+{
+    public class MovementFullFeature : FullFeatureComps<RegisterMotionAnimationRequest, MoveableBehavioursComp,
+        RegisterMoveableRequest, MotionAnimationComp, JumpableComp>
+    {
+        
+    }
+}

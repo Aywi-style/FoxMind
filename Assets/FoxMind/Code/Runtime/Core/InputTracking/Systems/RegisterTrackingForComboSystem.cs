@@ -5,12 +5,18 @@ using FoxMind.Code.Runtime.Core.PlayerActions.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
 {
     public class RegisterTrackingForComboSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedAttackComp>> _nonInputtedAttackFilter = default;
+        private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedMeleeAttackComp>> _nonInputtedMeleeAttackFilter = default;
+        private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedRangeAttackComp>> _nonInputtedRangeAttackFilter = default;
+        private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedDoubleMeleeAttackComp>> _nonInputtedDoubleMeleeAttackFilter = default;
+        private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedLongMeleeAttackComp>> _nonInputtedLongMeleeAttackFilter = default;
+        private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedDoubleRangeAttackComp>> _nonInputtedDoubleRangeAttackFilter = default;
+        private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedLongRangeAttackComp>> _nonInputtedLongRangeAttackFilter = default;
         private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedDashComp>> _nonInputtedDashFilter = default;
         private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<InputtedJumpComp>> _nonInputtedJumpFilter = default;
         private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp>, Exc<InputtedForwardMoveComp>> _nonInputtedForwardMoveFilter = default;
@@ -18,7 +24,12 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
         private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp>, Exc<InputtedLeftMoveComp>> _nonInputtedLeftMoveFilter = default;
         private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp>, Exc<InputtedRightMoveComp>> _nonInputtedRightMoveFilter = default;
 
-        private readonly EcsPoolInject<InputtedAttackComp> _inputtedAttackPool = default;
+        private readonly EcsPoolInject<InputtedMeleeAttackComp> _inputtedMeleeAttackPool = default;
+        private readonly EcsPoolInject<InputtedRangeAttackComp> _inputtedRangeAttackPool = default;
+        private readonly EcsPoolInject<InputtedDoubleMeleeAttackComp> _inputtedDoubleMeleeAttackPool = default;
+        private readonly EcsPoolInject<InputtedLongMeleeAttackComp> _inputtedLongMeleeAttackPool = default;
+        private readonly EcsPoolInject<InputtedDoubleRangeAttackComp> _inputtedDoubleRangeAttackPool = default;
+        private readonly EcsPoolInject<InputtedLongRangeAttackComp> _inputtedLongRangeAttackPool = default;
         private readonly EcsPoolInject<InputtedDashComp> _inputtedDashPool = default;
         private readonly EcsPoolInject<InputtedJumpComp> _inputtedJumpPool = default;
 
@@ -29,10 +40,35 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
 
         public void Run(IEcsSystems systems)
         {
-            // input attack
-            foreach (var nonInputtedAttackEntity in _nonInputtedAttackFilter.Value)
+            // input melee attack
+            foreach (var nonInputtedMeleeAttackEntity in _nonInputtedMeleeAttackFilter.Value)
             {
-                _inputtedAttackPool.Value.Add(nonInputtedAttackEntity).LastPress = int.MinValue;
+                _inputtedMeleeAttackPool.Value.Add(nonInputtedMeleeAttackEntity).LastPress = int.MinValue;
+            }
+            // input range attack
+            foreach (var nonInputtedRangeAttackEntity in _nonInputtedRangeAttackFilter.Value)
+            {
+                _inputtedRangeAttackPool.Value.Add(nonInputtedRangeAttackEntity).LastPress = int.MinValue;
+            }
+            // input double melee attack
+            foreach (var nonInputtedDoubleMeleeAttackEntity in _nonInputtedDoubleMeleeAttackFilter.Value)
+            {
+                _inputtedDoubleMeleeAttackPool.Value.Add(nonInputtedDoubleMeleeAttackEntity).LastPress = int.MinValue;
+            }
+            // input long melee attack
+            foreach (var nonInputtedLongMeleeAttackEntity in _nonInputtedLongMeleeAttackFilter.Value)
+            {
+                _inputtedLongMeleeAttackPool.Value.Add(nonInputtedLongMeleeAttackEntity).LastPress = int.MinValue;
+            }
+            // input double range attack
+            foreach (var nonInputtedDoubleRangeAttackEntity in _nonInputtedDoubleRangeAttackFilter.Value)
+            {
+                _inputtedDoubleRangeAttackPool.Value.Add(nonInputtedDoubleRangeAttackEntity).LastPress = int.MinValue;
+            }
+            // input long range attack
+            foreach (var nonInputtedLongRangeAttackEntity in _nonInputtedLongRangeAttackFilter.Value)
+            {
+                _inputtedLongRangeAttackPool.Value.Add(nonInputtedLongRangeAttackEntity).LastPress = int.MinValue;
             }
             // input dash
             foreach (var nonInputtedDashEntity in _nonInputtedDashFilter.Value)

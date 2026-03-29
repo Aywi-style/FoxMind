@@ -1,6 +1,7 @@
 using FoxMind.Code.Runtime.Core.Animations.Components;
 using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
+using FoxMind.Code.Runtime.Core.Fractions.Components;
 using FoxMind.Code.Runtime.Core.Movement.Components;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -20,6 +21,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         private readonly EcsPoolInject<EnergyComp> _energyPool = default;
         private readonly EcsPoolInject<DeathRequest> _deathRequestPool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
+        private readonly EcsPoolInject<FractionComp> _fractionPool = default;
         
         public void Run(IEcsSystems systems)
         {
@@ -37,6 +39,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     continue;
                 }
 
+                if (attackerEntity == targetEntity)
+                {
+                    continue;
+                }
+
                 if (_energyPool.Value.Has(targetEntity) == false)
                 {
                     continue;
@@ -45,6 +52,17 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 if (_inAttackPool.Value.Has(attackerEntity) == false)
                 {
                     continue;
+                }
+                
+                if (_fractionPool.Value.Has(targetEntity) && _fractionPool.Value.Has(attackerEntity))
+                {
+                    ref var targetFraction = ref _fractionPool.Value.Get(targetEntity);
+                    ref var attackerFraction = ref _fractionPool.Value.Get(attackerEntity);
+                    
+                    if (targetFraction.Fraction == attackerFraction.Fraction)
+                    {
+                        continue;
+                    }
                 }
 
                 ref var targetEnergyComp = ref _energyPool.Value.Get(targetEntity);

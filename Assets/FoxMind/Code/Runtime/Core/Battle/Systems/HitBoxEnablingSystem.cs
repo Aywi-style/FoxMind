@@ -20,9 +20,13 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
 
         private readonly EcsPoolInject<WeaponComp> _weaponPool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
+
+        private float _cachedTime;
         
         public void Run(IEcsSystems systems)
         {
+            _cachedTime = Time.time;
+            
             EnableHitBoxes();
             DisableHitBoxes();
         }
@@ -32,10 +36,39 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             foreach (var inAttackWeaponEntity in _inAttackWeaponFilter.Value)
             {
                 ref var weaponEntity = ref _weaponPool.Value.Get(inAttackWeaponEntity);
+                ref var inAttackComp = ref _inAttackPool.Value.Get(inAttackWeaponEntity);
 
-                if (weaponEntity.HitBoxMb.IsEnabled() == false)
+                if (weaponEntity.HitBoxMb == null || inAttackComp.AttackConfig == null || inAttackComp.AttackConfig.AttackAnimation == null)
                 {
-                    weaponEntity.HitBoxMb.Enable();
+                    continue;
+                }
+                
+                var animLength = inAttackComp.AttackConfig.AttackAnimation.length;
+                if (animLength <= 0)
+                {
+                    continue;
+                }
+                
+                var normalizedTime = (_cachedTime - inAttackComp.Start) / animLength;
+                
+                var hitWindow = inAttackComp.AttackConfig.HitWindow;
+                var hitWindowStart = Mathf.Min(hitWindow.x, hitWindow.y);
+                var hitWindowEnd = Mathf.Max(hitWindow.x, hitWindow.y);
+                var isHitWindow = normalizedTime >= hitWindowStart && normalizedTime <= hitWindowEnd;
+                
+                if (isHitWindow)
+                {
+                    if (weaponEntity.HitBoxMb.IsEnabled() == false)
+                    {
+                        weaponEntity.HitBoxMb.Enable();
+                    }
+                }
+                else
+                {
+                    if (weaponEntity.HitBoxMb.IsEnabled())
+                    {
+                        weaponEntity.HitBoxMb.Disable();
+                    }
                 }
             }
         }

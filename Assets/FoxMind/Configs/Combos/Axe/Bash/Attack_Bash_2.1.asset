@@ -20,12 +20,11 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: DamageValue
-      Entry: 3
-      Data: 70
+    SerializationNodes: []
+  <DamageValue>k__BackingField: 0
   <EndOfContinuousPart>k__BackingField: 0.46
   HitWindow: {x: 0.1, y: 0.8}
   ComboWindow: {x: 0.7, y: 1}
+  EarlyCancelWindow: {x: 0, y: 0.959276}
+  LateCancelWindow: {x: 0.6556017, y: 1}
   <AttackAnimation>k__BackingField: {fileID: 7400000, guid: 7ab91d5c43897f0468e920b148d5b957, type: 3}
-  <ReturnToIdleAnimation>k__BackingField: {fileID: 7400000, guid: 29521942d07d1af42af57fab1290ce0c, type: 3}

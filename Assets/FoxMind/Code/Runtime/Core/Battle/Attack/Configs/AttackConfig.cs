@@ -6,7 +6,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
     [CreateAssetMenu(fileName = "AttackConfig", menuName = "Configs/AttackConfig")]
     public class AttackConfig : SerializedScriptableObject
     {
-        [SerializeField] public int DamageValue { private set; get; }
+        [field: SerializeField] public int DamageValue { private set; get; }
         
         [field: Title("End Of Continuous Part", bold: false), HideLabel, PropertyRange(0, 1), SerializeField, PropertyOrder(0)]
         public float EndOfContinuousPart { get; private set; }
@@ -19,6 +19,12 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
         
         [Title("Combo Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(3)]
         public Vector2 ComboWindow;
+
+        [Title("Early Cancel Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(3)]
+        public Vector2 EarlyCancelWindow = new Vector2(0.15f, 0.45f);
+        
+        [Title("Late Cancel Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(3)]
+        public Vector2 LateCancelWindow = new Vector2(0.55f, 0.90f);
         
         [field: FoldoutGroup("Attack Animation"), LabelText("Preview"), InlineEditor(InlineEditorModes.LargePreview), SerializeField, PropertyOrder(4)]
         public AnimationClip AttackAnimation { get; private set; }
@@ -27,17 +33,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
         {
             set => AttackAnimation = value;
             get => AttackAnimation;
-        }
-
-        
-        
-        [field: FoldoutGroup("Return to Idle Animation"), LabelText("Preview"), InlineEditor(InlineEditorModes.LargePreview), SerializeField, PropertyOrder(4)]
-        public AnimationClip ReturnToIdleAnimation { get; private set; }
-        [FoldoutGroup("Return to Idle Animation"), LabelText("Settings"), ShowInInspector, InlineEditor(InlineEditorModes.GUIAndHeader), PropertyOrder(5)]
-        private AnimationClip ReturnToIdleAnimationPreview
-        {
-            set => ReturnToIdleAnimation = value;
-            get => ReturnToIdleAnimation;
         }
     }
 }

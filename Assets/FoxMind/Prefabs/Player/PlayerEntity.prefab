@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3451082649299108930}
-  - component: {fileID: 2570132265707608612}
+  - component: {fileID: 1658589580158865308}
   m_Layer: 0
   m_Name: PlayerEntity
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2570132265707608612
+--- !u!114 &1658589580158865308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,16 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7689923340223144060}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea6ed422a444fbd821fade91a675c27, type: 3}
+  m_Script: {fileID: 11500000, guid: d9c1d054d9b84ff3866eebdcefc24d86, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: FoxMind.Code.Runtime::FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours.EntityBaker
   _entity: 0
   FeaturesConfig: {fileID: 0}
-  Features:
-  - rid: 4826573876739965025
+  Features: []
+  FeaturesConfig: {fileID: 0}
+  Features: []
   references:
     version: 2
-    RefIds:
-    - rid: 4826573876739965025
-      type: {class: PlayerComp, ns: FoxMind.Code.Runtime.Core.Player.Components, asm: Core}
-      data: 
+    RefIds: []

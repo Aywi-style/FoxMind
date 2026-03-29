@@ -13,13 +13,20 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 {
     public class DefineWhatPlayerComboNeedToDoSystem : BaseEcsVisitable, IEcsRunSystem
     {
+        private const float c_bufferTtl = 0.35f;
+        
         private readonly EcsWorldInject _world = default;
         
         private readonly EcsFilterInject<Inc<PlayerControlledComp, SelfDefineWhatComboNeedToDoRequest, CombinableComp>> _requestedComboAttackFilter = default;
 
         private readonly EcsPoolInject<CombinableComp> _combosPool = default;
         
-        private readonly EcsPoolInject<InputtedAttackComp> _inputtedAttackPool = default;
+        private readonly EcsPoolInject<InputtedMeleeAttackComp> _inputtedMeleeAttackPool = default;
+        private readonly EcsPoolInject<InputtedRangeAttackComp> _inputtedRangeAttackPool = default;
+        private readonly EcsPoolInject<InputtedDoubleMeleeAttackComp> _inputtedDoubleMeleeAttackPool = default;
+        private readonly EcsPoolInject<InputtedLongMeleeAttackComp> _inputtedLongMeleeAttackPool = default;
+        private readonly EcsPoolInject<InputtedDoubleRangeAttackComp> _inputtedDoubleRangeAttackPool = default;
+        private readonly EcsPoolInject<InputtedLongRangeAttackComp> _inputtedLongRangeAttackPool = default;
         private readonly EcsPoolInject<InputtedDashComp> _inputtedDashPool = default;
         private readonly EcsPoolInject<InputtedJumpComp> _inputtedJumpPool = default;
         private readonly EcsPoolInject<InputtedForwardMoveComp> _inputtedForwardMovePool = default;
@@ -32,6 +39,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         private float _cachedTime;
         private int _cachedConditions;
         private ComboConfig_v2 _cachedActualConfig;
+        private int _cachedPriority;
+        private float _cachedLastPress;
         
         public void Run(IEcsSystems systems)
         {
@@ -40,9 +49,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             foreach (var requestedComboAttackEntity in _requestedComboAttackFilter.Value)
             {
                 ref var combinableComp = ref _combosPool.Value.Get(requestedComboAttackEntity);
-                
+
                 _cachedConditions = 0;
                 _cachedActualConfig = null;
+                _cachedPriority = int.MinValue;
+                _cachedLastPress = Single.MinValue;
                 
                 // Проходимся по всем доступным комбо
                 foreach (var comboConfig in combinableComp.AvailableCombos)
@@ -88,6 +99,30 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                     {
                         _cachedConditions = maxConditions;
                         _cachedActualConfig = comboConfig;
+                        _cachedPriority = GetComboPriority(comboConfig, requestedComboAttackEntity);
+                        _cachedLastPress = GetComboLastPress(comboConfig, requestedComboAttackEntity);
+                    }
+                    else if (maxConditions == _cachedConditions)
+                    {
+                        var currentPriority = GetComboPriority(comboConfig, requestedComboAttackEntity);
+                        if (currentPriority > _cachedPriority)
+                        {
+                            _cachedConditions = maxConditions;
+                            _cachedActualConfig = comboConfig;
+                            _cachedPriority = currentPriority;
+                            _cachedLastPress = GetComboLastPress(comboConfig, requestedComboAttackEntity);
+                        }
+                        else if (currentPriority == _cachedPriority)
+                        {
+                            var currentLastPress = GetComboLastPress(comboConfig, requestedComboAttackEntity);
+                            if (currentLastPress > _cachedLastPress)
+                            {
+                                _cachedConditions = maxConditions;
+                                _cachedActualConfig = comboConfig;
+                                _cachedPriority = currentPriority;
+                                _cachedLastPress = currentLastPress;
+                            }
+                        }
                     }
                 }
 
@@ -102,19 +137,27 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         
         private bool IsPassedCondition(PlayerAction playerAction, int entity, float leadTime)
         {
-            return _cachedTime - GetLastPress(playerAction, entity) < leadTime;
+            var lastPress = GetLastPress(playerAction, entity);
+            var effectiveLeadTime = Mathf.Min(leadTime, c_bufferTtl);
+            return _cachedTime - lastPress <= effectiveLeadTime;
         }
 
         private float GetLastPress(PlayerAction playerAction, int entity)
         {
             switch (playerAction)
             {
-                case PlayerAction.Attack:
-                    return _inputtedAttackPool.Value.Get(entity).LastPress;
-                /*case PlayerAction.DoubleAttack:
-                    return _inputtedAttackPool.Value.Get(entity).LastPress;
-                case PlayerAction.LongAttack:
-                    return _inputtedAttackPool.Value.Get(entity).LastPress;*/
+                case PlayerAction.MeleeAttack:
+                    return _inputtedMeleeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.RangeAttack:
+                    return _inputtedRangeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.DoubleMeleeAttack:
+                    return _inputtedDoubleMeleeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.LongMeleeAttack:
+                    return _inputtedLongMeleeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.DoubleRangeAttack:
+                    return _inputtedDoubleRangeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.LongRangeAttack:
+                    return _inputtedLongRangeAttackPool.Value.Get(entity).LastPress;
                 case PlayerAction.Dash:
                     return _inputtedDashPool.Value.Get(entity).LastPress;
                 case PlayerAction.Jump:
@@ -129,6 +172,59 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                     return _inputtedRightMovePool.Value.Get(entity).LastPress;
                 default:
                     return Single.MinValue;
+            }
+        }
+
+        private int GetComboPriority(ComboConfig_v2 comboConfig, int entity)
+        {
+            var priority = int.MinValue;
+            
+            for (int i = 0; i < comboConfig.PlayerActions.Count; i++)
+            {
+                var actionPriority = GetActionPriority(comboConfig.PlayerActions[i]);
+                if (actionPriority > priority)
+                {
+                    priority = actionPriority;
+                }
+            }
+
+            return priority;
+        }
+
+        private float GetComboLastPress(ComboConfig_v2 comboConfig, int entity)
+        {
+            var lastPress = Single.MinValue;
+            
+            for (int i = 0; i < comboConfig.PlayerActions.Count; i++)
+            {
+                var actionLastPress = GetLastPress(comboConfig.PlayerActions[i], entity);
+                if (actionLastPress > lastPress)
+                {
+                    lastPress = actionLastPress;
+                }
+            }
+
+            return lastPress;
+        }
+
+        private int GetActionPriority(PlayerAction playerAction)
+        {
+            switch (playerAction)
+            {
+                case PlayerAction.DoubleMeleeAttack:
+                    return 4;
+                case PlayerAction.MeleeAttack:
+                    return 3;
+                case PlayerAction.RangeAttack:
+                    return 2;
+                case PlayerAction.LongMeleeAttack:
+                    return 1;
+                case PlayerAction.DoubleRangeAttack:
+                    return 2;
+                case PlayerAction.LongRangeAttack:
+                    return 1;
+                default:
+                    return 0;
             }
         }
     }

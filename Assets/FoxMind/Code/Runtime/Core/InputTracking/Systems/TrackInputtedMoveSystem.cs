@@ -15,7 +15,7 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
         private const float c_deadZone = 0.1f;
         
         private readonly EcsWorldInject _world = default;
-        private readonly EcsFilterInject<Inc<BaseInputControlsComp, InputDirectionComp>> _inputDashFilter = default;
+        private readonly EcsFilterInject<Inc<BaseInputControlsComp, InputDirectionComp>> _inputDirectionFilter = default;
         private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp, InputtedForwardMoveComp, InputtedBackwardMoveComp, InputtedLeftMoveComp, InputtedRightMoveComp>> _comboFilter = default;
 
         private readonly EcsPoolInject<InputtedForwardMoveComp> _inputtedForwardMovePool = default;
@@ -28,7 +28,7 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
 
         public void Run(IEcsSystems systems)
         {
-            if (_inputDashFilter.Value.GetEntitiesCount() <= 0)
+            if (_inputDirectionFilter.Value.GetEntitiesCount() <= 0)
             {
                 return;
             }

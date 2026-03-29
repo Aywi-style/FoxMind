@@ -44,17 +44,23 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 
                 combinableComp.AvailableCombos.Clear();
 
-                bool isWindowForCombo = inComboComp.NextComboWindowStart < _cachedTime && inComboComp.NextComboWindowEnd > _cachedTime;
+                var isWindowForCombo = _cachedTime >= inComboComp.NextComboWindowStart && _cachedTime <= inComboComp.NextComboWindowEnd;
+                var timeToWindow = inComboComp.NextComboWindowStart - _cachedTime;
                 
-                if (isWindowForCombo == false)
-                {
-                    continue;
-                }
-
                 foreach (var comboConfig in inComboComp.ComboConfig.NextCombos)
                 {
-                    combinableComp.AvailableCombos.Add(comboConfig);
+                    if (isWindowForCombo)
+                    {
+                        combinableComp.AvailableCombos.Add(comboConfig);
+                        continue;
+                    }
+                    
+                    if (timeToWindow >= 0 && timeToWindow <= comboConfig.LeadTime)
+                    {
+                        combinableComp.AvailableCombos.Add(comboConfig);
+                    }
                 }
+
             }
         }
 
@@ -77,6 +83,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 {
                     combinableComp.AvailableCombos.Add(comboConfig);
                 }
+
             }
         }
     }

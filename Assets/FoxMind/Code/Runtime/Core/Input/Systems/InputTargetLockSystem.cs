@@ -120,8 +120,8 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
             foreach (var inputControlsEntity in _baseInputControlsFilter.Value)
             {
                 ref var inputControlsComp = ref _baseInputControlsPool.Value.Get(inputControlsEntity);
-                inputControlsComp.Value.GeneralMap.Jump.started -= OnInputtedTargetLockDownPressed;
-                inputControlsComp.Value.GeneralMap.Jump.canceled -= OnInputtedTargetLockUpPressed;
+                inputControlsComp.Value.GeneralMap.TargetLock.started -= OnInputtedTargetLockDownPressed;
+                inputControlsComp.Value.GeneralMap.TargetLock.canceled -= OnInputtedTargetLockUpPressed;
             }
         }
 

@@ -23,8 +23,6 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
         {
             foreach (var movableEntity in _requestFilter.Value)
             {
-                Debug.Log("Отработало");
-                
                 ref var moveableComp = ref _moveablePool.Value.Get(movableEntity);
                 ref var moveableBehaviours = ref _moveableBehavioursPool.Value.Get(movableEntity);
 
@@ -34,7 +32,6 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 foreach (var movementBehaviour in moveableBehaviours.MovementBehaviours.Values)
                 {
                     movementBehaviour.Initialize(moveableComp.Motor);
-                    Debug.Log("Отработало инит");
                 }
                 
                 moveableBehaviours.JumpBehaviour.Initialize(moveableComp.Motor);
