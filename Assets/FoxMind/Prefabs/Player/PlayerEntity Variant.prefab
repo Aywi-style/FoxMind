@@ -189,6 +189,9 @@ MonoBehaviour:
   _combinableComp:
     CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
     AvailableCombos: []
+  _cameraFollowMeTransformComp:
+    Priority: 10
+    Transform: {fileID: 6037921481527125760}
   _animancerComp:
     Value: {fileID: 6019087728202028914}
   _animatorComp:

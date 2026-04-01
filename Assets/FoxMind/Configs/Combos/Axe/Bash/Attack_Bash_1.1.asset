@@ -21,10 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  <DamageValue>k__BackingField: 0
+  <DamageValue>k__BackingField: 100
   <EndOfContinuousPart>k__BackingField: 0.67
   HitWindow: {x: 0.1, y: 0.8}
-  ComboWindow: {x: 0.58921164, y: 0.62240666}
+  ComboWindow: {x: 0.48441926, y: 0.7365439}
   EarlyCancelWindow: {x: 0.15, y: 0.8642534}
   LateCancelWindow: {x: 0.8642534, y: 1}
   <AttackAnimation>k__BackingField: {fileID: 7400000, guid: 29521942d07d1af42af57fab1290ce0c, type: 3}

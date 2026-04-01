@@ -22,13 +22,9 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   AttackEnd: 0.592
-  AttackEndComponents:
-  - rid: 8398516251434680323
+  AttackEndComponents: []
   TimingComponents: []
   Animation: {fileID: 7400000, guid: 89d35761eaaf9d849a6fec057e537f45, type: 3}
   references:
     version: 2
-    RefIds:
-    - rid: 8398516251434680323
-      type: {class: RegisterMotionAnimationRequest, ns: FoxMind.Code.Runtime.Core.Movement.Components, asm: FoxMind.Code.Runtime.Core.Movement}
-      data: 
+    RefIds: []

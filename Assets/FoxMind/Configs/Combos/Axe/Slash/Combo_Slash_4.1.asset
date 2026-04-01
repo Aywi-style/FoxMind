@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3203c2644fb467799eededeb4ce4beb, type: 3}
-  m_Name: Attack_Slash_1
+  m_Script: {fileID: 11500000, guid: deb85c8622eb400f87a0cc19156f765b, type: 3}
+  m_Name: Combo_Slash_4.1
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,10 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  AttackEnd: 0.6
-  AttackEndComponents: []
-  TimingComponents: []
-  Animation: {fileID: 7400000, guid: e79bd062a0e4cad43be16b7cf32da2c8, type: 3}
-  references:
-    version: 2
-    RefIds: []
+  IsOpener: 0
+  AttackConfig: {fileID: 11400000, guid: 066341e2e94556947a01ff8e98504e32, type: 2}
+  OrderIsImportant: 0
+  LeadTime: 0.35
+  PlayerActions: 00000000
+  NextCombos:
+  - {fileID: 11400000, guid: a27328b8e2ba7ca439d636ce6ebb3b60, type: 2}

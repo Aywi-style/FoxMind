@@ -44,6 +44,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e5b86dc0038446a4f9cf888871fa9d34, type: 2}
   OpenerCombosConfigs_v2:
   - {fileID: 11400000, guid: 2d411778283a58e4aae2b512e277776e, type: 2}
+  - {fileID: 11400000, guid: 0a658c4481c253c4d9d8c41b3d172ac1, type: 2}
   NonOpenerCombosConfigs_v2: []
   ComboConfigs_v2:
   - {fileID: 11400000, guid: 2d411778283a58e4aae2b512e277776e, type: 2}
+  - {fileID: 11400000, guid: 0a658c4481c253c4d9d8c41b3d172ac1, type: 2}

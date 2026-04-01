@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  <DamageValue>k__BackingField: 0
+  <DamageValue>k__BackingField: 200
   <EndOfContinuousPart>k__BackingField: 0.46
   HitWindow: {x: 0.1, y: 0.8}
   ComboWindow: {x: 0.7, y: 1}

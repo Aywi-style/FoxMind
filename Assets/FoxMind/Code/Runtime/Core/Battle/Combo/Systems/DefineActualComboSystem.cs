@@ -45,17 +45,14 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 combinableComp.AvailableCombos.Clear();
 
                 var isWindowForCombo = _cachedTime >= inComboComp.NextComboWindowStart && _cachedTime <= inComboComp.NextComboWindowEnd;
-                var timeToWindow = inComboComp.NextComboWindowStart - _cachedTime;
+                var timeToComboWindow = inComboComp.NextComboWindowStart - _cachedTime;
                 
                 foreach (var comboConfig in inComboComp.ComboConfig.NextCombos)
                 {
-                    if (isWindowForCombo)
-                    {
-                        combinableComp.AvailableCombos.Add(comboConfig);
-                        continue;
-                    }
+                    var isBufferBeforeComboWindow = timeToComboWindow >= 0 && timeToComboWindow <= comboConfig.LeadTime;
                     
-                    if (timeToWindow >= 0 && timeToWindow <= comboConfig.LeadTime)
+                    // We allow combos either during the active window or slightly before it (LeadTime buffer).
+                    if (isWindowForCombo || isBufferBeforeComboWindow)
                     {
                         combinableComp.AvailableCombos.Add(comboConfig);
                     }
