@@ -22,9 +22,9 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   <AttackAnimation>k__BackingField: {fileID: 7400000, guid: 89d35761eaaf9d849a6fec057e537f45, type: 3}
-  <DamageValue>k__BackingField: 100
-  <EndOfContinuousPart>k__BackingField: 1
-  HitWindow: {x: 0.1, y: 0.8}
-  ComboWindow: {x: 0.48441926, y: 0.7365439}
-  EarlyCancelWindow: {x: 0.15, y: 0.8642534}
-  LateCancelWindow: {x: 0.8642534, y: 1}
+  <BaseDamage>k__BackingField: 125
+  <BaseCritChance>k__BackingField: 1.5
+  <BaseCritMultiplier>k__BackingField: 4
+  <EndOfContinuousPart>k__BackingField: 0.5
+  HitWindow: {x: 0.283, y: 0.35}
+  ComboWindow: {x: 0.4, y: 0.5}

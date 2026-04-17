@@ -60,7 +60,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 {
                     if (weaponEntity.HitBoxMb.IsEnabled() == false)
                     {
-                        weaponEntity.HitBoxMb.Enable();
+                        weaponEntity.HitBoxMb.Enable(
+                            inAttackComp.AttackConfig.BaseDamage,
+                            inAttackComp.AttackConfig.BaseCritChance,
+                            inAttackComp.AttackConfig.BaseCritMultiplier
+                            );
                     }
                 }
                 else

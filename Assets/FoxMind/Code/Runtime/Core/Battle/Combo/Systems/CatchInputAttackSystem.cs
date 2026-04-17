@@ -12,8 +12,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 {
     public class CatchInputAttackSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private const float c_defaultEarlyCancelStart = 0.15f;
-        private const float c_defaultEarlyCancelEnd = 0.45f;
         private const float c_bufferTtl = 0.35f;
         
         private readonly EcsWorldInject _world = default;
@@ -100,9 +98,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         {
             if (_inAttackPool.Value.Has(entity))
             {
-                ref var inAttack = ref _inAttackPool.Value.Get(entity);
-
-                if (IsInEarlyCancelWindow(inAttack) == false && IsInComboWindow(entity) == false)
+                if (IsInComboWindow(entity) == false)
                 {
                     return false;
                 }
@@ -131,33 +127,5 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             return time >= inCombo.NextComboWindowStart && time <= inCombo.NextComboWindowEnd;
         }
 
-        private bool IsInEarlyCancelWindow(InAttackComp inAttack)
-        {
-            if (inAttack.AttackConfig == null || inAttack.AttackConfig.AttackAnimation == null)
-            {
-                return false;
-            }
-
-            var animLength = inAttack.AttackConfig.AttackAnimation.length;
-            if (animLength <= 0)
-            {
-                return false;
-            }
-            
-            var normalizedTime = (Time.time - inAttack.Start) / animLength;
-            var window = GetWindowOrDefault(inAttack.AttackConfig.EarlyCancelWindow, c_defaultEarlyCancelStart, c_defaultEarlyCancelEnd);
-            
-            return normalizedTime >= window.x && normalizedTime <= window.y;
-        }
-
-        private Vector2 GetWindowOrDefault(Vector2 window, float defaultStart, float defaultEnd)
-        {
-            if (Mathf.Approximately(window.x, 0f) && Mathf.Approximately(window.y, 0f))
-            {
-                return new Vector2(defaultStart, defaultEnd);
-            }
-
-            return new Vector2(Mathf.Min(window.x, window.y), Mathf.Max(window.x, window.y));
-        }
     }
 }

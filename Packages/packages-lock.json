@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "com.handzlikchris.fastscriptreload": {
-      "version": "https://github.com/handzlikchris/FastScriptReload.git?path=Assets",
+    "com.github-glitchenzo.nugetforunity": {
+      "version": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "5fe8f53af23d2400ca2b57875d4e57669c33dc23"
+      "hash": "9b5989b98f668c7ef409b3c5a1d5192612703eb5"
     },
     "com.kyrylokuzyk.primetween": {
       "version": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
@@ -401,6 +401,62 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "jp.hadashikick.vcontainer": {
+      "version": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.17.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "177dbda557fd652ce7f5d1647a3621653e094373"
+    },
+    "ru.leopotam.ecsproto": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f4ce0e9300446547ce8e213318909fcecddc867b"
+    },
+    "ru.leopotam.ecsproto-qol": {
+      "version": "https://gitverse.ru/leopotam/ecsproto-qol.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "8bc08acba192dd1bd2e45fee6df85704466f439e"
+    },
+    "ru.leopotam.ecsproto.conditionalsystems": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.conditionalsystems.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "83bf66a469a154410aa2b791a63ab2e354c7c6c3"
+    },
+    "ru.leopotam.ecsproto.unity": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.unity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "25706dfcd3017cfd43d2ae7cfb8b2da1465d50e0"
+    },
+    "ru.leopotam.ecsproto.unity.physics2d": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.unity.physics2d.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "794f628208983b89784cc23ab2b0bfa5a756bdf0"
+    },
+    "ru.leopotam.ecsproto.unity.physics3d": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.unity.physics3d.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "44b7a2955467c0301a9695a09d9a9a0877c7303c"
+    },
+    "ru.leopotam.ecsproto.unity.ugui": {
+      "version": "https://gitverse.ru/leopotam/ecsproto.unity.ugui.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "28f9aa9e0e01cc0eece8f7b0f8a9b40e98c20357"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

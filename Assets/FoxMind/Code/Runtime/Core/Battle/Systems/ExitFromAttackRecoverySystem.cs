@@ -14,9 +14,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
     /// </summary>
     public class ExitFromAttackRecoverySystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private const float c_defaultLateCancelStart = 0.55f;
-        private const float c_defaultLateCancelEnd = 0.90f;
-        
         private readonly EcsWorldInject _world = default;
         
         private readonly EcsFilterInject<Inc<InAttackRecoveryComp>, Exc<InAttackComp>> _inAttackFilter = default;
@@ -59,10 +56,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 bool hasModifierInput = playerIsFreeze == false
                                         || _inputDashFilter.Value.GetEntitiesCount() > 0
                                         || _inputJumpFilter.Value.GetEntitiesCount() > 0;
+
+                var animLength = inAttackRecoveryComp.End - inAttackRecoveryComp.Start;
+                var continuousEnd = inAttackRecoveryComp.Start + (inAttackRecoveryComp.AttackConfig.EndOfContinuousPart * animLength);
                 
-                bool isInLateCancelWindow = IsInLateCancelWindow(inAttackRecoveryComp);
-                
-                if (_cachedTime < inAttackRecoveryComp.End && (hasModifierInput == false || isInLateCancelWindow == false))
+                if (_cachedTime < inAttackRecoveryComp.End && (hasModifierInput == false || _cachedTime < continuousEnd))
                 {
                     continue;
                 }
@@ -83,34 +81,5 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             }
         }
 
-        private bool IsInLateCancelWindow(InAttackRecoveryComp inAttackRecoveryComp)
-        {
-            var animLength = inAttackRecoveryComp.End - inAttackRecoveryComp.Start;
-            if (animLength <= 0)
-            {
-                return false;
-            }
-            
-            var normalizedTime = (_cachedTime - inAttackRecoveryComp.Start) / animLength;
-            
-            Vector2 window = GetWindowOrDefault(inAttackRecoveryComp.AttackConfig);
-            return normalizedTime >= window.x && normalizedTime <= window.y;
-        }
-
-        private Vector2 GetWindowOrDefault(AttackConfig attackConfig)
-        {
-            if (attackConfig == null)
-            {
-                return new Vector2(c_defaultLateCancelStart, c_defaultLateCancelEnd);
-            }
-            
-            var window = attackConfig.LateCancelWindow;
-            if (Mathf.Approximately(window.x, 0f) && Mathf.Approximately(window.y, 0f))
-            {
-                return new Vector2(c_defaultLateCancelStart, c_defaultLateCancelEnd);
-            }
-            
-            return new Vector2(Mathf.Min(window.x, window.y), Mathf.Max(window.x, window.y));
-        }
     }
 }

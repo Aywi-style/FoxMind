@@ -7,9 +7,9 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Combo.Components
 {
-    [Serializable]
+    [Serializable]/*
     [Title("Feature: CombinableComp")]
-    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]
+    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]*/
     public struct CombinableComp : IEntityFeature<CombinableComp>
     {
         public CombosAssembly CombosAssembly;

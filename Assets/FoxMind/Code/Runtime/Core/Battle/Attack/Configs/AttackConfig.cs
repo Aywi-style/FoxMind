@@ -15,7 +15,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
             get => AttackAnimation;
         }
         
-        [field: SerializeField] public int DamageValue { private set; get; }
+        [field: SerializeField] public int BaseDamage { private set; get; }
+        [field: SerializeField] public float BaseCritChance { private set; get; }
+        [field: SerializeField] public float BaseCritMultiplier { private set; get; }
         
         [field: Title("End Of Continuous Part", bold: false), HideLabel, PropertyRange(0, 1), SerializeField, PropertyOrder(0)]
         public float EndOfContinuousPart { get; private set; }
@@ -29,10 +31,5 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
         [Title("Combo Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(3)]
         public Vector2 ComboWindow;
 
-        [Title("Early Cancel Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(3)]
-        public Vector2 EarlyCancelWindow = new Vector2(0.15f, 0.45f);
-        
-        [Title("Late Cancel Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(3)]
-        public Vector2 LateCancelWindow = new Vector2(0.55f, 0.90f);
     }
 }

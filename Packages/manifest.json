@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.handzlikchris.fastscriptreload": "https://github.com/handzlikchris/FastScriptReload.git?path=Assets",
+    "com.github-glitchenzo.nugetforunity": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
     "com.kyrylokuzyk.primetween": "file:../Assets/Plugins/PrimeTween/internal/com.kyrylokuzyk.primetween.tgz",
     "com.leopotam.ecslite": "https://github.com/Leopotam/ecslite.git",
     "com.leopotam.ecslite.di": "https://github.com/Leopotam/ecslite-di.git",
@@ -27,6 +27,7 @@
     "com.unity.test-framework": "1.6.0",
     "com.unity.timeline": "1.8.10",
     "com.unity.ugui": "2.0.0",
+    "jp.hadashikick.vcontainer": "https://github.com/hadashiA/VContainer.git?path=VContainer/Assets/VContainer#1.17.0",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.adaptiveperformance": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
@@ -60,6 +61,13 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "ru.leopotam.ecsproto": "https://gitverse.ru/leopotam/ecsproto.git",
+    "ru.leopotam.ecsproto-qol": "https://gitverse.ru/leopotam/ecsproto-qol.git",
+    "ru.leopotam.ecsproto.unity": "https://gitverse.ru/leopotam/ecsproto.unity.git",
+    "ru.leopotam.ecsproto.unity.physics2d": "https://gitverse.ru/leopotam/ecsproto.unity.physics2d.git",
+    "ru.leopotam.ecsproto.unity.physics3d": "https://gitverse.ru/leopotam/ecsproto.unity.physics3d.git",
+    "ru.leopotam.ecsproto.unity.ugui": "https://gitverse.ru/leopotam/ecsproto.unity.ugui.git",
+    "ru.leopotam.ecsproto.conditionalsystems": "https://gitverse.ru/leopotam/ecsproto.conditionalsystems.git"
   }
 }

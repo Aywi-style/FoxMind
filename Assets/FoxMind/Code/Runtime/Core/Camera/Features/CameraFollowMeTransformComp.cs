@@ -9,8 +9,8 @@ namespace FoxMind.Code.Runtime.Core.Camera.Components
     /// Компонент вешается на отслеживаемую сущность
     /// </summary>
     [Serializable]
-    [Title("Feature: CameraFollowMeTransformComp")]
-    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]
+    /*[Title("Feature: CameraFollowMeTransformComp")]
+    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]*/
     public struct CameraFollowMeTransformComp : IEntityFeature<CameraFollowMeTransformComp>
     {
         public int Priority;

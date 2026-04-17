@@ -138,6 +138,15 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""1030f5cb-4050-4289-9c19-e4e35dceb64a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""TargetLock"",
                     ""type"": ""Button"",
                     ""id"": ""9e5bcfd3-c605-4bac-81ae-722cba199f51"",
@@ -348,6 +357,28 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2b053c26-c065-4288-b482-74e3a5dbdfea"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb276f63-3833-4264-95d8-32f39460bf12"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""89d382c9-16ca-44e9-a320-323e895c1a90"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
@@ -380,6 +411,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         m_GeneralMap_MeleeAttack = m_GeneralMap.FindAction("MeleeAttack", throwIfNotFound: true);
         m_GeneralMap_RangeAttack = m_GeneralMap.FindAction("RangeAttack", throwIfNotFound: true);
         m_GeneralMap_Dash = m_GeneralMap.FindAction("Dash", throwIfNotFound: true);
+        m_GeneralMap_Block = m_GeneralMap.FindAction("Block", throwIfNotFound: true);
         m_GeneralMap_TargetLock = m_GeneralMap.FindAction("TargetLock", throwIfNotFound: true);
     }
 
@@ -466,6 +498,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_GeneralMap_MeleeAttack;
     private readonly InputAction m_GeneralMap_RangeAttack;
     private readonly InputAction m_GeneralMap_Dash;
+    private readonly InputAction m_GeneralMap_Block;
     private readonly InputAction m_GeneralMap_TargetLock;
     /// <summary>
     /// Provides access to input actions defined in input action map "GeneralMap".
@@ -498,6 +531,10 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GeneralMap/Dash".
         /// </summary>
         public InputAction @Dash => m_Wrapper.m_GeneralMap_Dash;
+        /// <summary>
+        /// Provides access to the underlying input action "GeneralMap/Block".
+        /// </summary>
+        public InputAction @Block => m_Wrapper.m_GeneralMap_Block;
         /// <summary>
         /// Provides access to the underlying input action "GeneralMap/TargetLock".
         /// </summary>
@@ -543,6 +580,9 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @Block.started += instance.OnBlock;
+            @Block.performed += instance.OnBlock;
+            @Block.canceled += instance.OnBlock;
             @TargetLock.started += instance.OnTargetLock;
             @TargetLock.performed += instance.OnTargetLock;
             @TargetLock.canceled += instance.OnTargetLock;
@@ -572,6 +612,9 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @Block.started -= instance.OnBlock;
+            @Block.performed -= instance.OnBlock;
+            @Block.canceled -= instance.OnBlock;
             @TargetLock.started -= instance.OnTargetLock;
             @TargetLock.performed -= instance.OnTargetLock;
             @TargetLock.canceled -= instance.OnTargetLock;
@@ -650,6 +693,13 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnDash(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Block" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBlock(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "TargetLock" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -4,6 +4,7 @@ using FoxMind.Code.Runtime.Core.Battle.Components;
 using UnityEngine;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
 using Leopotam.EcsLite;
+using Sirenix.OdinInspector;
 using UnityEngine.Serialization;
 
 namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
@@ -13,20 +14,36 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
         [SerializeField] private BaseEntityBaker baseEntityBaker;
 
         [SerializeField] private Collider[] _hitColliders;
+        [SerializeField] private bool _useEcsOverlap = true;
+        [SerializeField] private LayerMask _hurtBoxLayerMask = ~0;
+        [ReadOnly, ShowInInspector] private int _currentBaseDamage = 0;
+        [ReadOnly, ShowInInspector] private float _currentBaseCritChance = 0;
+        [ReadOnly, ShowInInspector] private float _currentBaseCritMultiplier = 0;
+        
+        public int CurrentBaseDamage => _currentBaseDamage;
+        public float CurrentBaseCritChance => _currentBaseCritChance;
+        public float CurrentBaseCritMultiplier => _currentBaseCritMultiplier;
 
         private bool _isEnabled;
         private readonly HashSet<EcsPackedEntityWithWorld> _hitThisEnable = new HashSet<EcsPackedEntityWithWorld>();
 
         public EcsPackedEntityWithWorld PackedEntity => baseEntityBaker.PackedEntity;
+        public IReadOnlyList<Collider> HitColliders => _hitColliders;
+        public bool UseEcsOverlap => _useEcsOverlap;
+        public LayerMask HurtBoxLayerMask => _hurtBoxLayerMask;
 
         private void Start()
         {
             Disable();
         }
 
-        public void Enable()
+        public void Enable(int baseDamageValue, float baseCritChance, float baseCritMultiplier)
         {
             _hitThisEnable.Clear();
+            
+            _currentBaseDamage = baseDamageValue;
+            _currentBaseCritChance = baseCritChance;
+            _currentBaseCritMultiplier = baseCritMultiplier;
             
             foreach (var hitCollider in _hitColliders)
             {
@@ -53,8 +70,29 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
             return _isEnabled;
         }
         
-        private void OnTriggerEnter(Collider other)
+        public bool TryRegisterHit(EcsPackedEntityWithWorld target)
         {
+            if (_hitThisEnable.Contains(target))
+            {
+                return false;
+            }
+            
+            _hitThisEnable.Add(target);
+            return true;
+        }
+        
+        /*private void OnTriggerEnter(Collider other)
+        {
+            if (_useEcsOverlap)
+            {
+                return;
+            }
+            
+            if (((1 << other.gameObject.layer) & _hurtBoxLayerMask.value) == 0)
+            {
+                return;
+            }
+            
             if (other.TryGetComponent<HurtBoxMb>(out var component) == false)
             {
                 return;
@@ -70,18 +108,19 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
                 return;
             }
             
-            if (_hitThisEnable.Contains(component.PackedEntity))
+            if (TryRegisterHit(component.PackedEntity) == false)
             {
                 return;
             }
-            
-            _hitThisEnable.Add(component.PackedEntity);
 
             Debug.Log($"Collided with: {other}, world: {world}, entity: {entity}");
-
-            ref var causeDamageRequest = ref world.GetPool<CauseDamageRequest>().Add(world.NewEntity());
+            var damageRequestEntity = world.NewEntity();
+            ref var causeDamageRequest = ref world.GetPool<CauseDamageRequest>().Add(damageRequestEntity);
             causeDamageRequest.From = PackedEntity;
             causeDamageRequest.To = component.PackedEntity;
-        }
+            causeDamageRequest.BaseDamage = _currentBaseDamage;
+            causeDamageRequest.BaseCritChance = _currentBaseCritChance;
+            causeDamageRequest.BaseCritMultiplier = _currentBaseCritMultiplier;
+        }*/
     }
 }

@@ -44,6 +44,7 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
 
                     if (state.PendingSingle && time - state.LastTapTime <= CombatInputTuning.RangeDoubleTapWindow)
                     {
+                        var singleTime = state.PendingSingleTime;
                         state.PendingSingle = false;
                         state.LastTapTime = float.MinValue;
 
@@ -55,6 +56,17 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
                         foreach (var playerControlledDoubleRangeAttackEntity in _playerControlledDoubleRangeAttackFilter.Value)  
                         {
                             _inputtedDoubleRangePool.Value.Get(playerControlledDoubleRangeAttackEntity).LastPress = time;
+                        }
+
+                        // Also count the single tap when a double-tap happens (use the first tap time).
+                        if (_rangeEventPool.Value.Has(inputEntity) == false)
+                        {
+                            _rangeEventPool.Value.Add(inputEntity);
+                        }
+                        
+                        foreach (var playerControlledRangeAttackEntity in _playerControlledRangeAttackFilter.Value)  
+                        {
+                            _inputtedRangePool.Value.Get(playerControlledRangeAttackEntity).LastPress = singleTime;
                         }
                     }
                     else

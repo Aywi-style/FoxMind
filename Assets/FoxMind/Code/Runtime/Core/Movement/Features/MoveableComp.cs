@@ -18,8 +18,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
     /// Самостоятельно реализует метод Compose внутри себя
     /// </summary>
     [Serializable]
-    [Title("Feature: MoveableComp")]
-    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]
+    /*[Title("Feature: MoveableComp")]
+    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]*/
     public struct MoveableComp : IEntityFeature<MoveableComp>
     {
         public CustomCharacterController CustomCharacterController;

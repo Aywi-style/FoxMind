@@ -11,7 +11,7 @@ namespace FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours
     public abstract class BaseEntityBaker : MonoBehaviour
     {
         [ReadOnly, SerializeField] private int _entity;
-        [field: SerializeField] public EcsPackedEntityWithWorld PackedEntity { get; private set; }
+        [field: SerializeField] public EcsPackedEntityWithWorld PackedEntity { get; protected set; }
 
         private IEnumerable<IEntityFeature> _entityFeatures;
 

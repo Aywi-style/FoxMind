@@ -2,15 +2,18 @@
 using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
+using FoxMind.Code.Runtime.Core.Fractions.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
+using FoxMind.Code.Runtime.Core.Stats.Features;
 using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Entities
 {
     public class DummyEntityBaker : BaseEntityBaker
     {
-        [SerializeField] private CameraComp _cameraComp;
-        [SerializeField] private TransformComp _transformComp;
+        [SerializeField] private FractionComp _fractionComp;
+        [SerializeField] private VisualHolderComp _visualHolderComp;
+        [SerializeField] private UnitStatsComp _unitStatsComp;
         
         private List<IEntityFeature> _features;
 
@@ -33,8 +36,9 @@ namespace FoxMind.Code.Runtime.Core.Entities
         {
             _features = new List<IEntityFeature>
             {
-                _cameraComp,
-                _transformComp
+                _fractionComp,
+                _visualHolderComp,
+                _unitStatsComp
             };
         }
     }

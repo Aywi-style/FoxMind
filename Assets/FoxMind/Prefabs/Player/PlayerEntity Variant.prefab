@@ -149,6 +149,14 @@ PrefabInstance:
       value: PlayerEntity Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7805731729839050860, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: m_Height
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805731729839050860, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: m_Center.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7805731729839050860, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -164,6 +172,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8253484539740280017, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7352976852724780329}
+    - targetCorrespondingSourceObject: {fileID: 7470473555072419377, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4534547268937273122}
     - targetCorrespondingSourceObject: {fileID: 3679187557186578913, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4653386055560987681}
@@ -192,6 +203,22 @@ MonoBehaviour:
   _cameraFollowMeTransformComp:
     Priority: 10
     Transform: {fileID: 6037921481527125760}
+  _weaponComp:
+    HitBoxMb: {fileID: 4653386055560987681}
+  unitStatsComp:
+    EnergyMax: 0
+    EnergyCurrent: 0
+    EnergyReserved: 0
+    Armor: 0
+    ShieldMax: 0
+    ShieldCurrent: 0
+    BarrierMax: 0
+    BarrierCurrent: 0
+    EnergyEfficiency: 0
+    ClockSpeed: 0
+    Cooling: 0
+    Capacity: 0
+    Stabilization: 0
   _animancerComp:
     Value: {fileID: 6019087728202028914}
   _animatorComp:
@@ -226,7 +253,7 @@ MonoBehaviour:
       type: {class: AirMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
       data:
         motor: {fileID: 9019267054329287531}
-        MaxAirMoveSpeed: 10
+        MaxAirMoveSpeed: 6
         AirAccelerationSpeed: 5
         Drag: 0.1
         OrientationSharpness: 10
@@ -250,8 +277,8 @@ MonoBehaviour:
     - rid: 4832570872806768738
       type: {class: StableMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
       data:
-        motor: {fileID: 0}
-        MaxStableMoveSpeed: 10
+        motor: {fileID: 9019267054329287531}
+        MaxStableMoveSpeed: 6
         StableMovementSharpness: 15
         OrientationSharpness: 10
         _moveInputVector: {x: 0, y: 0, z: 0}
@@ -295,6 +322,32 @@ CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 7805731729839050860, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
   m_PrefabInstance: {fileID: 6773774036682410344}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4156034685361885017 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7470473555072419377, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+  m_PrefabInstance: {fileID: 6773774036682410344}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &4534547268937273122
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4156034685361885017}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.4
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4824951740370521264 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2086551546690536920, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
@@ -349,9 +402,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a74a693bbc44e06998184b47c4fb33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseEntityBaker: {fileID: 0}
+  baseEntityBaker: {fileID: 28404776626677681}
   _hitColliders:
   - {fileID: 3626172023383087364}
+  - {fileID: 4534547268937273122}
+  _useEcsOverlap: 1
+  _hurtBoxLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &9019267054329287531 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2534286347109554691, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}

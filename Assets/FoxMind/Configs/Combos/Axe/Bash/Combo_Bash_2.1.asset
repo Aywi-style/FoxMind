@@ -21,9 +21,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  IsOpener: 0
-  AttackConfig: {fileID: 11400000, guid: 821ac333d059df04f843545288d14bf5, type: 2}
+  IsOpener: 1
+  AttackConfig: {fileID: 11400000, guid: 4edc7abd5fa4a1d40a7e0ca25b13a514, type: 2}
   OrderIsImportant: 0
-  LeadTime: 0.35
+  LeadTime: 0.1
   PlayerActions: 0000000006000000
-  NextCombos: []
+  NextCombos:
+  - {fileID: 11400000, guid: a27328b8e2ba7ca439d636ce6ebb3b60, type: 2}

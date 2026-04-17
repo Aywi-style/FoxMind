@@ -27,4 +27,4 @@ MonoBehaviour:
   LeadTime: 0.35
   PlayerActions: 00000000
   NextCombos:
-  - {fileID: 11400000, guid: a27328b8e2ba7ca439d636ce6ebb3b60, type: 2}
+  - {fileID: 11400000, guid: 5900794fde4fa8d48a1db041646195a4, type: 2}

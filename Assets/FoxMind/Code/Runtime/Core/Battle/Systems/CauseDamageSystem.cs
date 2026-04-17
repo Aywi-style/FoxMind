@@ -3,8 +3,10 @@ using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Fractions.Components;
 using FoxMind.Code.Runtime.Core.Movement.Components;
+using FoxMind.Code.Runtime.Core.Stats.Features;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
+using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Systems
 {
@@ -18,9 +20,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         private readonly EcsFilterInject<Inc<CauseDamageRequest>> _causeDamageRequestFilter = default;
 
         private readonly EcsPoolInject<CauseDamageRequest> _causeDamageRequestPool = default;
-        private readonly EcsPoolInject<EnergyComp> _energyPool = default;
         private readonly EcsPoolInject<DeathRequest> _deathRequestPool = default;
-        private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
+        private readonly EcsPoolInject<UnitStatsComp> _unitStatsPool = default;
         private readonly EcsPoolInject<FractionComp> _fractionPool = default;
         
         public void Run(IEcsSystems systems)
@@ -44,12 +45,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     continue;
                 }
 
-                if (_energyPool.Value.Has(targetEntity) == false)
-                {
-                    continue;
-                }
-
-                if (_inAttackPool.Value.Has(attackerEntity) == false)
+                if (_unitStatsPool.Value.Has(targetEntity) == false)
                 {
                     continue;
                 }
@@ -65,20 +61,41 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     }
                 }
 
-                ref var targetEnergyComp = ref _energyPool.Value.Get(targetEntity);
-                ref var attackerInAttackComp = ref _inAttackPool.Value.Get(attackerEntity);
+                ref var targetStatsComp = ref _unitStatsPool.Value.Get(targetEntity);
 
-                if (targetEnergyComp.CurrentValue <= 0)
+                // Barriers
+                if (targetStatsComp.BarrierCurrent > 0)
                 {
-                    continue;
+                    targetStatsComp.BarrierCurrent -= 1;
+                    causeDamageRequest.FinalDamage = 0;
+
+                    return;
+                }
+
+                // Shields
+                if (targetStatsComp.ShieldCurrent > 0)
+                {
+                    var shieldDamage = Mathf.Min(causeDamageRequest.FinalDamage, targetStatsComp.ShieldCurrent);
+                    targetStatsComp.ShieldCurrent -= shieldDamage;
+                    causeDamageRequest.FinalDamage -= shieldDamage;
+
+                    if (causeDamageRequest.FinalDamage <= 0)
+                    {
+                        return;
+                    }
                 }
                 
-                targetEnergyComp.CurrentValue -= attackerInAttackComp.AttackConfig.DamageValue;
+                // Armor
+                causeDamageRequest.FinalDamage = Mathf.Max(0, causeDamageRequest.FinalDamage - targetStatsComp.Armor);
+                
+                // Energy
+                var energyDamage = Mathf.Min(causeDamageRequest.FinalDamage, targetStatsComp.EnergyCurrent);
+                targetStatsComp.EnergyCurrent -= energyDamage;
+                causeDamageRequest.FinalDamage -= energyDamage;
 
-                if (targetEnergyComp.CurrentValue <= 0)
+                // Death
+                if (targetStatsComp.EnergyCurrent <= 0)
                 {
-                    targetEnergyComp.CurrentValue = 0;
-
                     _deathRequestPool.Value.Add(_world.Value.NewEntity()).For = _world.Value.PackEntity(targetEntity);
                 }
             }

@@ -9,5 +9,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Components
     {
         public EcsPackedEntityWithWorld From;
         public EcsPackedEntityWithWorld To;
+        public int BaseDamage;
+        public float BaseCritChance;
+        public float BaseCritMultiplier;
+        public int FinalDamage;
     }
 }

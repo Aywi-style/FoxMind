@@ -10,8 +10,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
     /// Компонент отвечает за возможность сущности прыгать
     /// </summary>
     [Serializable]
-    [Title("Feature: JumpableComp")]
-    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]
+    /*[Title("Feature: JumpableComp")]
+    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]*/
     public struct JumpableComp : IEntityFeature<JumpableComp>
     {
         

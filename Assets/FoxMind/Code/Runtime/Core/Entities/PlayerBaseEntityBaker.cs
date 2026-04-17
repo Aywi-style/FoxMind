@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Animations.Components;
 using FoxMind.Code.Runtime.Core.Battle.Combo.Components;
+using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
@@ -8,6 +9,7 @@ using FoxMind.Code.Runtime.Core.Movement.Components;
 using FoxMind.Code.Runtime.Core.Movement.Components.FullFeature;
 using FoxMind.Code.Runtime.Core.PlayerActions.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
+using FoxMind.Code.Runtime.Core.Stats.Features;
 using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Entities
@@ -16,6 +18,8 @@ namespace FoxMind.Code.Runtime.Core.Entities
     {
         [SerializeField] private CombinableComp _combinableComp;
         [SerializeField] private CameraFollowMeTransformComp _cameraFollowMeTransformComp;
+        [SerializeField] private WeaponComp _weaponComp;
+        [SerializeField] private UnitStatsComp unitStatsComp;
         
         [SerializeField] private AnimancerComp _animancerComp;
         [SerializeField] private AnimatorComp _animatorComp;
@@ -54,6 +58,8 @@ namespace FoxMind.Code.Runtime.Core.Entities
             {
                 _combinableComp,
                 _cameraFollowMeTransformComp,
+                _weaponComp,
+                unitStatsComp,
                 _animancerComp,
                 _animatorComp,
                 _pushBoxCapsuleComp,

@@ -9,8 +9,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
     /// Отвечает за связь систем с Kinematic ассетом. Внутри линк на CharacterController
     /// </summary>
     [Serializable]
-    [Title("Feature: SlayerJetCharacterControllerComp")]
-    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]
+    /*[Title("Feature: SlayerJetCharacterControllerComp")]
+    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]*/
     public struct SlayerJetCharacterControllerComp : IEntityFeature<SlayerJetCharacterControllerComp>
     {
         public CustomCharacterController Value;

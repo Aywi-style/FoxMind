@@ -7,6 +7,6 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Components
     [Serializable]
     public struct PlayerControlledComp : IEntityFeature<PlayerControlledComp>
     {
-                 /*public void SetComposeValues(ref PlayerControlledComp component)         {                      }*/
+        
     }
 }
