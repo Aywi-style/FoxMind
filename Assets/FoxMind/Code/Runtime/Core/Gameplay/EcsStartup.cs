@@ -1,7 +1,8 @@
 using System;
 using FoxMind.Code.Runtime.Core.Animations.SystemsAssembly;
 using FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly;
-using FoxMind.Code.Runtime.Core.Battle.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Battle.Core.SystemsAssembly;
+using FoxMind.Code.Runtime.Core.Battle.Targeting.SystemsAssembly;
 using FoxMind.Code.Runtime.Core.Camera.SystemsAssembly;
 using FoxMind.Code.Runtime.Core.Ecs.EcsAspects;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
@@ -32,6 +33,7 @@ namespace FoxMind.Code.Runtime.Core.Gameplay
             new CameraAssembly(),
             new InputAssembly(),
             new InputTrackingAssembly(),
+            new TargetingAssembly(),
             new ComboAssembly(),
             new BattleAssembly(),
             new AnimationsAssembly(),

@@ -31,7 +31,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         public void SetMoveDirection(Vector3 normalizedMoveDirection)
         {
             _moveInputVector = normalizedMoveDirection;
-            _lookInputVector = normalizedMoveDirection;
+        }
+
+        public void SetLookDirection(Vector3 normalizedLookDirection)
+        {
+            _lookInputVector = normalizedLookDirection;
         }
 
         public float GetMaxSpeed()

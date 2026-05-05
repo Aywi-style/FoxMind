@@ -70,6 +70,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 }
                 
                 moveable.CustomCharacterController.SetMoveDirection(moveable.NormalizedMoveDirection * immovableMultiply * immovableBecauseInAttackMultiply);
+                moveable.CustomCharacterController.SetLookDirection(moveable.NormalizedLookDirection);
             }
         }
     }

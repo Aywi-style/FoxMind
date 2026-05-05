@@ -2,6 +2,7 @@
 using FoxMind.Code.Runtime.Core.Animations.Components;
 using FoxMind.Code.Runtime.Core.Battle.Combo.Components;
 using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Battle.Targeting.Components;
 using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
@@ -17,6 +18,7 @@ namespace FoxMind.Code.Runtime.Core.Entities
     public class PlayerBaseEntityBaker : BaseEntityBaker
     {
         [SerializeField] private CombinableComp _combinableComp;
+        [SerializeField] private TargetingComp _targetingComp;
         [SerializeField] private CameraFollowMeTransformComp _cameraFollowMeTransformComp;
         [SerializeField] private WeaponComp _weaponComp;
         [SerializeField] private UnitStatsComp unitStatsComp;
@@ -57,6 +59,7 @@ namespace FoxMind.Code.Runtime.Core.Entities
             _features = new List<IEntityFeature>
             {
                 _combinableComp,
+                _targetingComp,
                 _cameraFollowMeTransformComp,
                 _weaponComp,
                 unitStatsComp,

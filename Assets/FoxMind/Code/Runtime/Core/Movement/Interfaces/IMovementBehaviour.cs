@@ -8,6 +8,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Interfaces
         void Update();
         void Initialize(KinematicCharacterMotor motor);
         void SetMoveDirection(Vector3 normalizedMoveDirection);
+        void SetLookDirection(Vector3 normalizedLookDirection);
         float GetMaxSpeed();
     }
 }

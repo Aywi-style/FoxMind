@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
-using Leopotam.EcsLite;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Components
 {
@@ -10,6 +10,10 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Components
     [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]
     public struct TargetFindableComp : IEntityFeature<TargetFindableComp>
     {
-        public EcsPackedEntity Target;
+        [Tooltip("Optional point used for lock-on direction and score. Entity TransformComp is used when empty.")]
+        public Transform TargetPoint;
+        
+        [Tooltip("Additional designer priority for target selection.")]
+        public float Priority;
     }
 }

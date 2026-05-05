@@ -49,6 +49,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
             CurrentMovementBehaviour?.SetMoveDirection(normalizedMoveDirection);
         }
 
+        public void SetLookDirection(Vector3 normalizedLookDirection)
+        {
+            CurrentMovementBehaviour?.SetLookDirection(normalizedLookDirection);
+        }
+
         public void SetJumpRequest()
         {
             CurrentJumpBehaviour?.SetJumpRequest();

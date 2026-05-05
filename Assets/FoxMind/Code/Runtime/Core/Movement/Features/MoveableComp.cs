@@ -25,6 +25,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
         public CustomCharacterController CustomCharacterController;
         public KinematicCharacterMotor Motor;
         [Sirenix.OdinInspector.ReadOnly] public Vector3 NormalizedMoveDirection;
+        [Sirenix.OdinInspector.ReadOnly] public Vector3 NormalizedLookDirection;
         public float CurrentMaxSpeedFromMovementBehaviour;
     }
 }

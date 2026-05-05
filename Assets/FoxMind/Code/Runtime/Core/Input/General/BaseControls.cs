@@ -314,7 +314,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""22e70a44-1b29-4cf1-914a-bd40035755fa"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -325,7 +325,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1ed50f37-d39c-4c5b-b155-404f779c2915"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -380,7 +380,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""89d382c9-16ca-44e9-a320-323e895c1a90"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -391,7 +391,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""54066ad7-4b9b-480a-b077-95636a0d6092"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

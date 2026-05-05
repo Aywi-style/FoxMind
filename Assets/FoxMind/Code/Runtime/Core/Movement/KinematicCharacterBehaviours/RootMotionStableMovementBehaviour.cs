@@ -15,6 +15,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         
         [field: SerializeField] public Vector3 MoveRootMotionVector { get; set; }
         [field: SerializeField] public Quaternion LookRootMotionQuaternion { get; set; }
+        [SerializeField] private float OrientationSharpness = 10f;
+        [SerializeField] private Vector3 _lookInputVector;
 
         public void Initialize(KinematicCharacterMotor motor)
         {
@@ -31,6 +33,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
             
         }
 
+        public void SetLookDirection(Vector3 normalizedLookDirection)
+        {
+            _lookInputVector = normalizedLookDirection;
+        }
+
         public float GetMaxSpeed()
         {
             return float.MaxValue;
@@ -38,7 +45,19 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
-            currentRotation = LookRootMotionQuaternion * currentRotation;
+            if (_lookInputVector.sqrMagnitude > float.Epsilon && OrientationSharpness > 0f)
+            {
+                var smoothedLookDirection = Vector3.Slerp(
+                    motor.CharacterForward,
+                    _lookInputVector,
+                    1 - Mathf.Exp(-OrientationSharpness * deltaTime)).normalized;
+                
+                currentRotation = Quaternion.LookRotation(smoothedLookDirection, motor.CharacterUp);
+            }
+            else
+            {
+                currentRotation = LookRootMotionQuaternion * currentRotation;
+            }
         }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
@@ -74,6 +93,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         {
             MoveRootMotionVector = Vector3.zero;
             LookRootMotionQuaternion = Quaternion.identity;
+            _lookInputVector = Vector3.zero;
         }
 
         public bool IsColliderValidForCollisions(Collider coll)

@@ -9756,6 +9756,38 @@ PrefabInstance:
       value: 4832570872806768730
       objectReference: {fileID: 0}
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.AngleWeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.SearchRadius
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.HoldThreshold
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.DistanceWeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.MaxSearchAngle
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.PriorityWeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.DoubleTapWindow
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _targetingComp.RightStickDeadZone
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: 'managedReferences[4832570863762538593]'
       value: FoxMind.Code.Runtime FoxMind.Code.Runtime.Core.PlayerActions.Components.PlayerControlledComp
       objectReference: {fileID: 0}

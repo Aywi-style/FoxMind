@@ -13,6 +13,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public Vector3 MoveRootMotionVector { get; set; }
         public Quaternion LookRootMotionQuaternion { get; set; }
+        [SerializeField] private float OrientationSharpness = 10f;
+        [SerializeField] private Vector3 _lookInputVector;
         
         [Header("Animation Parameters / Air Movement")]
         [SerializeField] private float MaxAirMoveSpeed = 10f;
@@ -43,6 +45,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
             
         }
 
+        public void SetLookDirection(Vector3 normalizedLookDirection)
+        {
+            _lookInputVector = normalizedLookDirection;
+        }
+
         public float GetMaxSpeed()
         {
             return float.MaxValue;
@@ -50,7 +57,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
+            if (_lookInputVector.sqrMagnitude <= float.Epsilon || OrientationSharpness <= 0f)
+            {
+                return;
+            }
             
+            var smoothedLookDirection = Vector3.Slerp(
+                motor.CharacterForward,
+                _lookInputVector,
+                1 - Mathf.Exp(-OrientationSharpness * deltaTime)).normalized;
+                
+            currentRotation = Quaternion.LookRotation(smoothedLookDirection, motor.CharacterUp);
         }
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
@@ -87,7 +104,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void AfterCharacterUpdate(float deltaTime)
         {
-            
+            _lookInputVector = Vector3.zero;
         }
 
         public bool IsColliderValidForCollisions(Collider coll)

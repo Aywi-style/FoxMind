@@ -1,0 +1,22 @@
+using System.Collections.Generic;
+using FoxMind.Code.Runtime.Core.Battle.Targeting.Systems;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
+using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
+
+namespace FoxMind.Code.Runtime.Core.Battle.Targeting.SystemsAssembly
+{
+    public class TargetingAssembly : BaseSystemAssembly
+    {
+        protected override void CreateSystems()
+        {
+            EcsVisitable = new List<IEcsVisitable>
+            {
+                new RegisterTargetingSystem(),
+                new ValidateCurrentTargetSystem(),
+                new SoftTargetingSystem(),
+                new HardTargetingSelectionSystem(),
+                new TargetingManualAimSystem(),
+            };
+        }
+    }
+}
