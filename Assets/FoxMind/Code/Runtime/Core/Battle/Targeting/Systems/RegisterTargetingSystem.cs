@@ -6,6 +6,10 @@ using Leopotam.EcsLite.Di;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
 {
+    /// <summary>
+    /// Регистрирует runtime-состояние таргетинга на управляемых игроком сущностях с TargetingComp.
+    /// Система не выбирает цель, а только гарантирует наличие TargetingStateComp.
+    /// </summary>
     public class RegisterTargetingSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<PlayerControlledComp, TargetingComp>, Exc<TargetingStateComp>> _targetingFilter = default;

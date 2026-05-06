@@ -12,6 +12,7 @@ namespace FoxMind.Code.Runtime.Core.Input.SystemsAssembly
             EcsVisitable = new List<IEcsVisitable>()
             {
                 new InitBaseInputControlsSystem(),
+                new UpdateInputControlTypeSystem(),
                 new InputDirectionSystem(),
                 new InputMeleeAttackSystem(),
                 new InputRangeAttackSystem(),

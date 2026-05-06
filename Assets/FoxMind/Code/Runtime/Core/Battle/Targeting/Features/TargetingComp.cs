@@ -6,9 +6,13 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Components
 {
+    /// <summary>
+    /// Дизайнерский feature-компонент с настройками и runtime-состоянием таргетинга сущности.
+    /// Хранит отдельные параметры для soft targeting, hard targeting и manual aim.
+    /// </summary>
     [Serializable]
     [Title("Feature: TargetingComp")]
-    [InfoBox("Designer-facing targeting settings. Add to entities that can select targets.")]
+    [InfoBox("Дизайнерские настройки таргетинга. Добавляется на сущности, которые могут выбирать цели.")]
     public struct TargetingComp : IEntityFeature<TargetingComp>
     {
         [Header("Soft Targeting")]

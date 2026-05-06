@@ -22,7 +22,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         private readonly EcsFilterInject<Inc<InputJumpEvent>> _inputJumpFilter = default;
 
         private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
-        private readonly EcsPoolInject<SelfUnImmovableBecauseInAttackRequest> _selfUnImmovableBecauseInAttackRequestPool = default;
+        private readonly EcsPoolInject<AttackMovementUnlockRequest> _attackMovementUnlockRequestPool = default;
         private readonly EcsPoolInject<RegisterMotionAnimationRequest> _registerMotionAnimationRequestPool = default;
         private readonly EcsPoolInject<InputDirectionComp> _inputDirectionPool = default;
 
@@ -72,9 +72,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 _inAttackRecoveryPool.Value.Del(inAttackEntity);
 
                 
-                if (_selfUnImmovableBecauseInAttackRequestPool.Value.Has(inAttackEntity) == false)
+                if (_attackMovementUnlockRequestPool.Value.Has(inAttackEntity) == false)
                 {
-                    _selfUnImmovableBecauseInAttackRequestPool.Value.Add(inAttackEntity);
+                    _attackMovementUnlockRequestPool.Value.Add(inAttackEntity);
                 }
 
                 _registerMotionAnimationRequestPool.Value.Add(inAttackEntity);

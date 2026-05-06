@@ -9,6 +9,10 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
 {
+    /// <summary>
+    /// Постоянно ищет лучшую soft target цель перед игроком.
+    /// Soft target используется как скрытый боевой ассист для доворачивания атак и не является явным lock-on.
+    /// </summary>
     public class SoftTargetingSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;

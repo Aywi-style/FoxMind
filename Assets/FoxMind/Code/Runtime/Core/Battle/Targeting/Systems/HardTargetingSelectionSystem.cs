@@ -11,6 +11,10 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
 {
+    /// <summary>
+    /// Обрабатывает явный lock-on таргетинг игрока: первое нажатие выбирает hard target,
+    /// повторные нажатия циклят цели по score, двойное нажатие сбрасывает hard target.
+    /// </summary>
     public class HardTargetingSelectionSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;

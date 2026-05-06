@@ -26,7 +26,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         private readonly EcsPoolInject<WeaponComp> _weaponPool = default;
         private readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
         
-        private readonly EcsPoolInject<SelfImmovableBecauseInAttackRequest> _selfImmovableBecauseInAttackRequestPool = default;
+        private readonly EcsPoolInject<AttackMovementLockRequest> _attackMovementLockRequestPool = default;
 
         private float _cachedTime;
         
@@ -58,9 +58,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     _inAttackRecoveryPool.Value.Add(targetEntity);
                 }
 
-                if (_selfImmovableBecauseInAttackRequestPool.Value.Has(targetEntity) == false)
+                if (_attackMovementLockRequestPool.Value.Has(targetEntity) == false)
                 {
-                    _selfImmovableBecauseInAttackRequestPool.Value.Add(targetEntity);
+                    _attackMovementLockRequestPool.Value.Add(targetEntity);
                 }
                 
                 ref var inAttackComp = ref _inAttackPool.Value.Get(targetEntity);

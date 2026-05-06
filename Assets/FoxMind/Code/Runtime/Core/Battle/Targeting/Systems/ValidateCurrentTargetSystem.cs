@@ -9,6 +9,10 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
 {
+    /// <summary>
+    /// Проверяет текущий hard target игрока и сохраняет состояние lock-on при смерти или удалении цели.
+    /// Если текущая цель стала невалидной, система выбирает ближайшую валидную цель в HardSearchRadius.
+    /// </summary>
     public class ValidateCurrentTargetSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsWorldInject _world = default;

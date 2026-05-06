@@ -19,7 +19,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
         private readonly EcsPoolInject<SlayerJetCharacterControllerComp> _slayerJetCharacterControllerPool = default;
         private readonly EcsPoolInject<MoveableComp> _moveablePool = default;
         private readonly EcsPoolInject<ImmovableComp> _immovablePool = default;
-        private readonly EcsPoolInject<ImmovableBecauseInAttackComp> _immovableBecauseInAttackPool = default;
+        private readonly EcsPoolInject<AttackMovementLockComp> _attackMovementLockPool = default;
         private readonly EcsPoolInject<MoveableBehavioursComp> _moveableBehavioursPool = default;
 
         private Vector3 _cachedMoveVelocity;
@@ -36,26 +36,27 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 
                 var immovableMultiply = _immovablePool.Value.Has(movableEntity) ? 0 : 1;
 
-                float immovableBecauseInAttackMultiply = 1;
+                var hasAttackMovementLock = _attackMovementLockPool.Value.Has(movableEntity);
+                float attackMovementLockMultiply = 1;
                 switch (moveable.CustomCharacterController.Motor.GroundingStatus.IsStableOnGround)
                 {
-                    case true when _immovableBecauseInAttackPool.Value.Has(movableEntity):
-                        immovableBecauseInAttackMultiply = 0;
+                    case true when hasAttackMovementLock:
+                        attackMovementLockMultiply = 0;
                         moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionStable, out _cachedNewController);
                         
                         break;
-                    case true when _immovableBecauseInAttackPool.Value.Has(movableEntity) == false:
-                        immovableBecauseInAttackMultiply = 1;
+                    case true when hasAttackMovementLock == false:
+                        attackMovementLockMultiply = 1;
                         moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Stable, out _cachedNewController);
                         
                         break;
-                    case false when _immovableBecauseInAttackPool.Value.Has(movableEntity):
-                        immovableBecauseInAttackMultiply = 0;
+                    case false when hasAttackMovementLock:
+                        attackMovementLockMultiply = 0;
                         moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionAir, out _cachedNewController);
                         
                         break;
-                    case false when _immovableBecauseInAttackPool.Value.Has(movableEntity) == false:
-                        immovableBecauseInAttackMultiply = 1;
+                    case false when hasAttackMovementLock == false:
+                        attackMovementLockMultiply = 1;
                         moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Air, out _cachedNewController);
                         
                         break;
@@ -69,7 +70,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                     moveable.CustomCharacterController.SetCurrentMovementBehaviour(_cachedNewController);
                 }
                 
-                moveable.CustomCharacterController.SetMoveDirection(moveable.NormalizedMoveDirection * immovableMultiply * immovableBecauseInAttackMultiply);
+                moveable.CustomCharacterController.SetMoveDirection(moveable.NormalizedMoveDirection * immovableMultiply * attackMovementLockMultiply);
                 moveable.CustomCharacterController.SetLookDirection(moveable.NormalizedLookDirection);
             }
         }

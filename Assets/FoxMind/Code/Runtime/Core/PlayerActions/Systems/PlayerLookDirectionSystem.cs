@@ -132,6 +132,12 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
                 return false;
             }
 
+            if (targeting.IsManualAiming && targeting.ManualAimDirection.sqrMagnitude > float.Epsilon)
+            {
+                direction = targeting.ManualAimDirection;
+                return true;
+            }
+
             return TryGetTargetDirection(ref transform, targeting.HasHardTarget, targeting.HardTarget, out direction)
                    || TryGetTargetDirection(ref transform, targeting.HasSoftTarget, targeting.SoftTarget, out direction);
         }
