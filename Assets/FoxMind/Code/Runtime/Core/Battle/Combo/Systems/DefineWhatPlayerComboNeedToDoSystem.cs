@@ -13,8 +13,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 {
     public class DefineWhatPlayerComboNeedToDoSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private const float c_bufferTtl = 0.35f;
-        
         private readonly EcsWorldInject _world = default;
         
         private readonly EcsFilterInject<Inc<PlayerControlledComp, SelfDefineWhatComboNeedToDoRequest, CombinableComp>> _requestedComboAttackFilter = default;
@@ -138,8 +136,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         private bool IsPassedCondition(PlayerAction playerAction, int entity, float leadTime)
         {
             var lastPress = GetLastPress(playerAction, entity);
-            var effectiveLeadTime = Mathf.Min(leadTime, c_bufferTtl);
-            return _cachedTime - lastPress <= effectiveLeadTime;
+            return _cachedTime - lastPress <= Mathf.Max(0f, leadTime);
         }
 
         private float GetLastPress(PlayerAction playerAction, int entity)

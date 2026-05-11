@@ -1,4 +1,6 @@
 using FoxMind.Code.Runtime.Core.Battle.Combo.Components;
+using FoxMind.Code.Runtime.Core.Battle.Combo.Configs;
+using FoxMind.Code.Runtime.Core.Battle.Combo.Enums;
 using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
@@ -12,8 +14,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 {
     public class CatchInputAttackSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private const float c_bufferTtl = 0.35f;
-        
         private readonly EcsWorldInject _world = default;
         
         private readonly EcsFilterInject<Inc<InputMeleeAttackEvent>> _inputMeleeAttackEventFilter = default;
@@ -25,6 +25,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         private readonly EcsFilterInject<Inc<PlayerControlledComp>, Exc<SelfDefineWhatComboNeedToDoRequest>> _playerControlledFilter = default;
 
         private readonly EcsPoolInject<SelfDefineWhatComboNeedToDoRequest> _comboAttackRequestPool = default;
+        private readonly EcsPoolInject<CombinableComp> _combinablePool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
         private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
         private readonly EcsPoolInject<InComboComp> _inComboPool = default;
@@ -64,31 +65,26 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             {
                 return true;
             }
-            
+
+            if (_combinablePool.Value.Has(entity) == false)
+            {
+                return false;
+            }
+
+            ref var combinable = ref _combinablePool.Value.Get(entity);
+            if (combinable.AvailableCombos == null)
+            {
+                return false;
+            }
+
             var time = Time.time;
-            if (_inputtedMeleeAttackPool.Value.Has(entity) && time - _inputtedMeleeAttackPool.Value.Get(entity).LastPress <= c_bufferTtl)
+
+            foreach (var comboConfig in combinable.AvailableCombos)
             {
-                return true;
-            }
-            if (_inputtedRangeAttackPool.Value.Has(entity) && time - _inputtedRangeAttackPool.Value.Get(entity).LastPress <= c_bufferTtl)
-            {
-                return true;
-            }
-            if (_inputtedDoubleMeleeAttackPool.Value.Has(entity) && time - _inputtedDoubleMeleeAttackPool.Value.Get(entity).LastPress <= c_bufferTtl)
-            {
-                return true;
-            }
-            if (_inputtedLongMeleeAttackPool.Value.Has(entity) && time - _inputtedLongMeleeAttackPool.Value.Get(entity).LastPress <= c_bufferTtl)
-            {
-                return true;
-            }
-            if (_inputtedDoubleRangeAttackPool.Value.Has(entity) && time - _inputtedDoubleRangeAttackPool.Value.Get(entity).LastPress <= c_bufferTtl)
-            {
-                return true;
-            }
-            if (_inputtedLongRangeAttackPool.Value.Has(entity) && time - _inputtedLongRangeAttackPool.Value.Get(entity).LastPress <= c_bufferTtl)
-            {
-                return true;
+                if (HasFreshAttackAction(entity, comboConfig, time))
+                {
+                    return true;
+                }
             }
 
             return false;
@@ -124,8 +120,88 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 
             ref var inCombo = ref _inComboPool.Value.Get(entity);
             var time = Time.time;
-            return time >= inCombo.NextComboWindowStart && time <= inCombo.NextComboWindowEnd;
+            return time >= inCombo.NextComboWindowStart - GetMaxNextComboLeadTime(ref inCombo)
+                   && time <= inCombo.NextComboWindowEnd;
         }
 
+        private float GetMaxNextComboLeadTime(ref InComboComp inCombo)
+        {
+            if (inCombo.ComboConfig == null || inCombo.ComboConfig.NextCombos == null)
+            {
+                return 0f;
+            }
+
+            var maxLeadTime = 0f;
+            foreach (var comboConfig in inCombo.ComboConfig.NextCombos)
+            {
+                if (comboConfig != null && comboConfig.LeadTime > maxLeadTime)
+                {
+                    maxLeadTime = comboConfig.LeadTime;
+                }
+            }
+
+            return maxLeadTime;
+        }
+
+        private bool HasFreshAttackAction(int entity, ComboConfig_v2 comboConfig, float time)
+        {
+            if (comboConfig == null || comboConfig.PlayerActions == null)
+            {
+                return false;
+            }
+
+            var leadTime = Mathf.Max(0f, comboConfig.LeadTime);
+            foreach (var playerAction in comboConfig.PlayerActions)
+            {
+                if (IsAttackAction(playerAction) == false)
+                {
+                    continue;
+                }
+
+                if (time - GetLastPress(playerAction, entity) <= leadTime)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private float GetLastPress(PlayerAction playerAction, int entity)
+        {
+            switch (playerAction)
+            {
+                case PlayerAction.MeleeAttack:
+                    return _inputtedMeleeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.RangeAttack:
+                    return _inputtedRangeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.DoubleMeleeAttack:
+                    return _inputtedDoubleMeleeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.LongMeleeAttack:
+                    return _inputtedLongMeleeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.DoubleRangeAttack:
+                    return _inputtedDoubleRangeAttackPool.Value.Get(entity).LastPress;
+                case PlayerAction.LongRangeAttack:
+                    return _inputtedLongRangeAttackPool.Value.Get(entity).LastPress;
+                default:
+                    return float.MinValue;
+            }
+        }
+
+        private bool IsAttackAction(PlayerAction playerAction)
+        {
+            switch (playerAction)
+            {
+                case PlayerAction.MeleeAttack:
+                case PlayerAction.RangeAttack:
+                case PlayerAction.DoubleMeleeAttack:
+                case PlayerAction.LongMeleeAttack:
+                case PlayerAction.DoubleRangeAttack:
+                case PlayerAction.LongRangeAttack:
+                    return true;
+                default:
+                    return false;
+            }
+        }
     }
 }

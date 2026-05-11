@@ -19,13 +19,19 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
         [ReadOnly, ShowInInspector] private int _currentBaseDamage = 0;
         [ReadOnly, ShowInInspector] private float _currentBaseCritChance = 0;
         [ReadOnly, ShowInInspector] private float _currentBaseCritMultiplier = 0;
+        [ReadOnly, ShowInInspector] private HitReactionType _currentHitReactionType = HitReactionType.None;
+        [ReadOnly, ShowInInspector] private Vector2 _currentReactionVelocity = Vector2.zero;
+        [ReadOnly, ShowInInspector] private float _currentHitReactionDuration = 0;
         
         public int CurrentBaseDamage => _currentBaseDamage;
         public float CurrentBaseCritChance => _currentBaseCritChance;
         public float CurrentBaseCritMultiplier => _currentBaseCritMultiplier;
+        public HitReactionType CurrentHitReactionType => _currentHitReactionType;
+        public Vector2 CurrentReactionVelocity => _currentReactionVelocity;
+        public float CurrentHitReactionDuration => _currentHitReactionDuration;
 
         private bool _isEnabled;
-        private readonly HashSet<EcsPackedEntityWithWorld> _hitThisEnable = new HashSet<EcsPackedEntityWithWorld>();
+        [ReadOnly, ShowInInspector]private readonly HashSet<EcsPackedEntityWithWorld> _hitThisEnable = new HashSet<EcsPackedEntityWithWorld>();
 
         public EcsPackedEntityWithWorld PackedEntity => baseEntityBaker.PackedEntity;
         public IReadOnlyList<Collider> HitColliders => _hitColliders;
@@ -37,13 +43,22 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
             Disable();
         }
 
-        public void Enable(int baseDamageValue, float baseCritChance, float baseCritMultiplier)
+        public void Enable(
+            int baseDamageValue,
+            float baseCritChance,
+            float baseCritMultiplier,
+            HitReactionType hitReactionType,
+            Vector2 reactionVelocity,
+            float hitReactionDuration)
         {
             _hitThisEnable.Clear();
             
             _currentBaseDamage = baseDamageValue;
             _currentBaseCritChance = baseCritChance;
             _currentBaseCritMultiplier = baseCritMultiplier;
+            _currentHitReactionType = hitReactionType;
+            _currentReactionVelocity = reactionVelocity;
+            _currentHitReactionDuration = hitReactionDuration > 0f ? hitReactionDuration : 0.35f;
             
             foreach (var hitCollider in _hitColliders)
             {
@@ -62,6 +77,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
                 hitCollider.enabled = false;
             }
 
+            _currentHitReactionType = HitReactionType.None;
+            _currentReactionVelocity = Vector2.zero;
+            _currentHitReactionDuration = 0;
             _isEnabled = false;
         }
 

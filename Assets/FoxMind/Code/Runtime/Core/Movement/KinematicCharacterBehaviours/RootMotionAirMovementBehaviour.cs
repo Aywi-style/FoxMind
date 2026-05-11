@@ -77,6 +77,13 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
                 return;
             }
 
+            if (deltaTime > 0f && MoveRootMotionVector.sqrMagnitude > float.Epsilon)
+            {
+                currentVelocity = MoveRootMotionVector / deltaTime;
+                MoveRootMotionVector = Vector3.zero;
+                return;
+            }
+
             if (_forwardAxis > 0f)
             {
                 // If we want to move, add an acceleration to the velocity
@@ -104,6 +111,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void AfterCharacterUpdate(float deltaTime)
         {
+            MoveRootMotionVector = Vector3.zero;
+            LookRootMotionQuaternion = Quaternion.identity;
             _lookInputVector = Vector3.zero;
         }
 

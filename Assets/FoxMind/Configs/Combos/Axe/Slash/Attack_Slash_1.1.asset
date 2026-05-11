@@ -25,6 +25,10 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 50
   <BaseCritChance>k__BackingField: 1.5
   <BaseCritMultiplier>k__BackingField: 2
+  <AnimationDurationSeconds>k__BackingField: 1
+  <HitReactionType>k__BackingField: 1
+  <ReactionVelocity>k__BackingField: {x: 0, y: 0}
+  <HitReactionDuration>k__BackingField: 0.35
   <EndOfContinuousPart>k__BackingField: 0.696
-  HitWindow: {x: 0.358, y: 0.43}
+  HitWindow: {x: 0.21, y: 0.4}
   ComboWindow: {x: 0.5116279, y: 0.78488374}

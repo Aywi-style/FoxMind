@@ -13,5 +13,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Components
         public AttackConfig AttackConfig;
         public float Start;
         public float End;
+        public float AnimationDuration;
+        public float AnimationSpeed;
     }
 }

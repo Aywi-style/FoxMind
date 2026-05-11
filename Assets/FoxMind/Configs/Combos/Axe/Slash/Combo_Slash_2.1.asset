@@ -24,7 +24,7 @@ MonoBehaviour:
   IsOpener: 0
   AttackConfig: {fileID: 11400000, guid: 4110c79344272a34892ba3c80a06284d, type: 2}
   OrderIsImportant: 0
-  LeadTime: 0.35
+  LeadTime: 0.05
   PlayerActions: 00000000
   NextCombos:
   - {fileID: 11400000, guid: e726f167ffedf0f488367c85b727affe, type: 2}

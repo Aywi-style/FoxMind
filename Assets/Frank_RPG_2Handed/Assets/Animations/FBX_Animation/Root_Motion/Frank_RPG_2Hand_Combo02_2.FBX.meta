@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 7ab91d5c43897f0468e920b148d5b957
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -497,7 +497,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: Bash_2
+    second: Bash_2.1
   - first:
       95: 9500000
     second: //RootNode
@@ -514,15 +514,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 4.182852 mm\n\t'calf_l' : position error = 1.746104 mm\n\t'thigh_r'
-      : position error = 3.221616 mm\n\t'calf_r' : position error = 2.150747 mm\n\t'upperarm_l'
-      : position error = 1.369139 mm\n\t'hand_l' : position error = 9.298649 mm\n\t'middle_03_l'
-      : position error = 1.026914 mm\n\t'upperarm_r' : position error = 1.766024
-      mm\n\t'lowerarm_r' : position error = 1.091075 mm\n\t'hand_r' : position error
-      = 3.562275 mm\n\t'middle_03_r' : position error = 1.024642 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -564,11 +555,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Bash_2
+      name: Bash_2.1
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
-      lastFrame: 162
+      lastFrame: 43
       wrapMode: 0
       orientationOffsetY: -115
       level: 0
@@ -578,7 +569,36 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
-      loopBlendPositionY: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Bash_2.2
+      takeName: Take 001
+      internalID: -998496362607748373
+      firstFrame: 44
+      lastFrame: 162
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 1.45
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -618,6 +638,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8

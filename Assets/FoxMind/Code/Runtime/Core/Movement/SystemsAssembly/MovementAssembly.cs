@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
 using FoxMind.Code.Runtime.Core.Movement.Systems;
@@ -15,7 +15,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
                 new ApplyAttackMovementLockSystem(),
                 new RegisterMoveableRequestSystem(),
                 new RegisterMotionAnimationsSystem(),
-                new UpdateInputsInSlayerJetControllerSystem(),
+                new UpdateCharacterControllerSystem(),
                 new JumpSystem(),
                 new MoveAnimationSystem(),
 

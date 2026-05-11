@@ -12,6 +12,7 @@ using FoxMind.Code.Runtime.Core.PlayerActions.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
 using FoxMind.Code.Runtime.Core.Stats.Features;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FoxMind.Code.Runtime.Core.Entities
 {
@@ -32,7 +33,8 @@ namespace FoxMind.Code.Runtime.Core.Entities
         [SerializeField] private MoveableBehavioursComp _moveableBehavioursComp;
         [SerializeField] private MotionAnimationComp _motionAnimationComp;
         [SerializeField] private JumpableComp _jumpableComp;
-        [SerializeField] private SlayerJetCharacterControllerComp _slayerJetCharacterControllerComp;
+        [FormerlySerializedAs("_slayerJetCharacterControllerComp")]
+        [SerializeField] private CharacterControllerComp _characterControllerComp;
         [SerializeField] private MoveableComp _moveableComp;
         [SerializeField] private TransformComp _transformComp;
         [SerializeField] private RigidBodyComp _rigidBodyComp;
@@ -72,7 +74,7 @@ namespace FoxMind.Code.Runtime.Core.Entities
                 _moveableBehavioursComp,
                 _motionAnimationComp,
                 _jumpableComp,
-                _slayerJetCharacterControllerComp,
+                _characterControllerComp,
                 _moveableComp,
                 _transformComp,
                 _rigidBodyComp

@@ -30,12 +30,23 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     continue;
                 }
 
+                if (causeDamageRequest.To.Unpack(out var toWorld, out var targetEntity) == false)
+                {
+                    continue;
+                }
+
                 if (_unitStatsPool.Value.Has(attackerEntity) == false)
+                {
+                    continue;
+                }
+
+                if (_unitStatsPool.Value.Has(targetEntity) == false)
                 {
                     continue;
                 }
                 
                 ref var attackerStatsComp = ref _unitStatsPool.Value.Get(attackerEntity);
+                ref var targetStatsComp = ref _unitStatsPool.Value.Get(targetEntity);
 
                 var critChance = causeDamageRequest.BaseCritChance + (attackerStatsComp.Stabilization * 0.1f);
                 var critMultiplier = causeDamageRequest.BaseCritMultiplier * (1 + 0.1f * attackerStatsComp.ClockSpeed);
@@ -51,6 +62,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 var finalCritMultiplier = 1 + critTier * (critMultiplier - 1);
 
                 causeDamageRequest.FinalDamage = Mathf.RoundToInt(finalCritMultiplier * causeDamageRequest.BaseDamage);
+                causeDamageRequest.StabilizationDamage = Mathf.Max(0, causeDamageRequest.FinalDamage - targetStatsComp.Armor);
                 Debug.Log($"FinalDamage: {causeDamageRequest.FinalDamage}");
             }
         }

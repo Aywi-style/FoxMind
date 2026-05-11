@@ -4,6 +4,7 @@ using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using FoxMind.Code.Runtime.Core.Fractions.Components;
+using FoxMind.Code.Runtime.Core.Movement.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
 using FoxMind.Code.Runtime.Core.Stats.Features;
 using UnityEngine;
@@ -17,6 +18,10 @@ namespace FoxMind.Code.Runtime.Core.Entities
         [SerializeField] private UnitStatsComp _unitStatsComp;
         [SerializeField] private TargetFindableComp _targetFindableComp;
         [SerializeField] private TransformComp _transformComp;
+        [SerializeField] private CharacterControllerComp _characterControllerComp;
+        [SerializeField] private MoveableComp _moveableComp;
+        [SerializeField] private MoveableBehavioursComp _moveableBehavioursComp;
+        [SerializeField] private RegisterMoveableRequest _registerMoveableRequest;
         
         private List<IEntityFeature> _features;
 
@@ -39,6 +44,11 @@ namespace FoxMind.Code.Runtime.Core.Entities
         {
             _features = new List<IEntityFeature>
             {
+                _characterControllerComp,
+                _moveableComp,
+                _moveableBehavioursComp,
+                _registerMoveableRequest,
+                
                 _targetFindableComp,
                 _transformComp,
                 _fractionComp,

@@ -11,6 +11,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
     [Serializable]
     public class RootMotionStableMovementBehaviour : IMovementBehaviour, IRootMotion
     {
+        private const float c_verticalRootMotionThreshold = 0.001f;
+        
         [SerializeField] private KinematicCharacterMotor motor;
         
         [field: SerializeField] public Vector3 MoveRootMotionVector { get; set; }
@@ -62,17 +64,26 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            if (deltaTime > 0)
-            {
-                // The final velocity is the velocity from root motion reoriented on the ground plane
-                currentVelocity = MoveRootMotionVector / deltaTime;
-                currentVelocity = motor.GetDirectionTangentToSurface(currentVelocity, motor.GroundingStatus.GroundNormal) *
-                                  currentVelocity.magnitude;
-            }
-            else
+            if (deltaTime <= 0)
             {
                 // Prevent division by zero
                 currentVelocity = Vector3.zero;
+            }
+            else
+            {
+                var rootMotionVelocity = MoveRootMotionVector / deltaTime;
+                if (MoveRootMotionVector.y > c_verticalRootMotionThreshold)
+                {
+                    // Launcher attacks can lift the attacker through animation root motion.
+                    motor.ForceUnground(0.1f);
+                    currentVelocity = rootMotionVelocity;
+                }
+                else
+                {
+                    // Grounded root motion should follow the ground surface unless it intentionally moves upward.
+                    currentVelocity = motor.GetDirectionTangentToSurface(rootMotionVelocity, motor.GroundingStatus.GroundNormal) *
+                                      rootMotionVelocity.magnitude;
+                }
             }
             
             MoveRootMotionVector = Vector3.zero;

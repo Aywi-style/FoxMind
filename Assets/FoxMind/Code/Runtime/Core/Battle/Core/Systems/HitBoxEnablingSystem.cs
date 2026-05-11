@@ -38,12 +38,12 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 ref var weaponEntity = ref _weaponPool.Value.Get(inAttackWeaponEntity);
                 ref var inAttackComp = ref _inAttackPool.Value.Get(inAttackWeaponEntity);
 
-                if (weaponEntity.HitBoxMb == null || inAttackComp.AttackConfig == null || inAttackComp.AttackConfig.AttackAnimation == null)
+                if (weaponEntity.HitBoxMb == null || inAttackComp.AttackConfig == null)
                 {
                     continue;
                 }
                 
-                var animLength = inAttackComp.AttackConfig.AttackAnimation.length;
+                var animLength = inAttackComp.AnimationDuration;
                 if (animLength <= 0)
                 {
                     continue;
@@ -63,7 +63,10 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                         weaponEntity.HitBoxMb.Enable(
                             inAttackComp.AttackConfig.BaseDamage,
                             inAttackComp.AttackConfig.BaseCritChance,
-                            inAttackComp.AttackConfig.BaseCritMultiplier
+                            inAttackComp.AttackConfig.BaseCritMultiplier,
+                            inAttackComp.AttackConfig.HitReactionType,
+                            inAttackComp.AttackConfig.ReactionVelocity,
+                            inAttackComp.AttackConfig.HitReactionDuration
                             );
                     }
                 }

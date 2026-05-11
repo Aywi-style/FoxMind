@@ -26,6 +26,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 ref var moveableComp = ref _moveablePool.Value.Get(movableEntity);
                 ref var moveableBehaviours = ref _moveableBehavioursPool.Value.Get(movableEntity);
 
+                if (moveableBehaviours.MovementBehaviours.ContainsKey(BehavioursConstants.HitReaction) == false)
+                {
+                    moveableBehaviours.MovementBehaviours.Add(BehavioursConstants.HitReaction, new HitReactionMovementBehaviour());
+                }
+
                 moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Stable, out var stableBehaviour);
                 moveableComp.CustomCharacterController.Initialize(stableBehaviour, moveableBehaviours.JumpBehaviour);
 

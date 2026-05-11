@@ -5,6 +5,7 @@ using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using FoxMind.Code.Runtime.Core.Movement.Components;
+using FoxMind.Code.Runtime.Core.Stats.Features;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine;
@@ -25,6 +26,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
         private readonly EcsPoolInject<WeaponComp> _weaponPool = default;
         private readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
+        private readonly EcsPoolInject<UnitStatsComp> _unitStatsPool = default;
         
         private readonly EcsPoolInject<AttackMovementLockRequest> _attackMovementLockRequestPool = default;
 
@@ -42,6 +44,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             foreach (var targetProvideAttackRequestEntity in _provideAttackRequestFilter.Value)
             {
                 ref var targetProvideAttackRequest = ref _provideAttackRequestPool.Value.Get(targetProvideAttackRequestEntity);
+
+                if (targetProvideAttackRequest.AttackConfig == null)
+                {
+                    continue;
+                }
                 
                 if (targetProvideAttackRequest.PackedEntity.Unpack(_world.Value, out int targetEntity) == false)
                 {
@@ -64,24 +71,48 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 }
                 
                 ref var inAttackComp = ref _inAttackPool.Value.Get(targetEntity);
+                var attackSpeed = GetAttackSpeed(targetEntity);
+                var animationDuration = targetProvideAttackRequest.AttackConfig.GetEffectiveAnimationDuration(attackSpeed);
+                var animationSpeed = targetProvideAttackRequest.AttackConfig.GetEffectiveAnimationSpeed(attackSpeed);
 
                 inAttackComp.AttackConfig = targetProvideAttackRequest.AttackConfig;
                 inAttackComp.Start = _cachedTime;
-                inAttackComp.End = _cachedTime + (targetProvideAttackRequest.AttackConfig.EndOfContinuousPart * inAttackComp.AttackConfig.AttackAnimation.length);
+                inAttackComp.AnimationDuration = animationDuration;
+                inAttackComp.AnimationSpeed = animationSpeed;
+                inAttackComp.End = _cachedTime + (targetProvideAttackRequest.AttackConfig.EndOfContinuousPart * animationDuration);
                 
                 ref var inAttackRecoveryComp = ref _inAttackRecoveryPool.Value.Get(targetEntity);
                 inAttackRecoveryComp.AttackConfig = inAttackComp.AttackConfig;
                 inAttackRecoveryComp.Start = _cachedTime;
-                inAttackRecoveryComp.End = _cachedTime + inAttackComp.AttackConfig.AttackAnimation.length;
+                inAttackRecoveryComp.AnimationDuration = animationDuration;
+                inAttackRecoveryComp.AnimationSpeed = animationSpeed;
+                inAttackRecoveryComp.End = _cachedTime + animationDuration;
                 
                 if (_animancerPool.Value.Has(targetEntity))
                 {
                     ref var animancerComp = ref _animancerPool.Value.Get(targetEntity);
+                    if (targetProvideAttackRequest.AttackConfig.AttackAnimation == null)
+                    {
+                        continue;
+                    }
+
                     var state = animancerComp.Value.Play(targetProvideAttackRequest.AttackConfig.AttackAnimation, 0.2f);
                     state.Time = 0;
+                    state.Speed = animationSpeed;
                     animancerComp.Value.Animator.applyRootMotion = true;
                 }
             }
+        }
+
+        private float GetAttackSpeed(int entity)
+        {
+            if (_unitStatsPool.Value.Has(entity) == false)
+            {
+                return 1f;
+            }
+
+            ref var unitStats = ref _unitStatsPool.Value.Get(entity);
+            return unitStats.AttackSpeed > 0f ? unitStats.AttackSpeed : 1f;
         }
     }
 }

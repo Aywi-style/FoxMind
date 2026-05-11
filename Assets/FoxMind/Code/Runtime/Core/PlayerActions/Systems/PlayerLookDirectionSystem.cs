@@ -114,12 +114,12 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.Systems
             }
 
             ref var inAttack = ref _inAttackPool.Value.Get(controlledEntity);
-            if (inAttack.AttackConfig == null || inAttack.AttackConfig.AttackAnimation == null)
+            if (inAttack.AttackConfig == null)
             {
                 return false;
             }
 
-            var animationLength = inAttack.AttackConfig.AttackAnimation.length;
+            var animationLength = inAttack.AnimationDuration;
             if (animationLength <= 0f)
             {
                 return false;

@@ -14,6 +14,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
     public class CustomCharacterController : MonoBehaviour, ICharacterController
     {
         [field: SerializeField] public KinematicCharacterMotor Motor { private set; get; }
+        
+        [SerializeField] private LayerMask _ignoredMotorCollisionLayers;
 
         [field: Sirenix.OdinInspector.ReadOnly, ShowInInspector] public IMovementBehaviour CurrentMovementBehaviour { private set; get; }
         [field: Sirenix.OdinInspector.ReadOnly, ShowInInspector] public IJumpBehaviour CurrentJumpBehaviour { private set; get; }
@@ -88,7 +90,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
 
         public bool IsColliderValidForCollisions(Collider coll)
         {
-            return true;
+            return (_ignoredMotorCollisionLayers.value & (1 << coll.gameObject.layer)) == 0;
         }
 
         public void OnGroundHit(Collider hitCollider, Vector3 hitNormal, Vector3 hitPoint, ref HitStabilityReport hitStabilityReport)

@@ -144,6 +144,26 @@ PrefabInstance:
       propertyPath: <Motor>k__BackingField
       value: 
       objectReference: {fileID: 9019267054329287531}
+    - target: {fileID: 2534286347109554691, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: CapsuleRadius
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534286347109554691, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: CapsulePhysicsMaterial
+      value: 
+      objectReference: {fileID: 13400000, guid: b72bffe0b8289904581424382b50b426, type: 2}
+    - target: {fileID: 2534286347109554691, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: StableGroundLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662480212880493137, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: m_Radius
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3662480212880493137, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b72bffe0b8289904581424382b50b426, type: 2}
     - target: {fileID: 6343924255526383174, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}
       propertyPath: m_Name
       value: PlayerEntity Variant
@@ -205,19 +225,19 @@ MonoBehaviour:
     CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
     AvailableCombos: []
   _targetingComp:
-    SoftSearchRadius: 0
-    SoftSearchAngle: 0
-    SoftDistanceWeight: 0
-    SoftAngleWeight: 0
-    SoftPriorityWeight: 0
-    HardSearchRadius: 0
+    SoftSearchRadius: 6
+    SoftSearchAngle: 70
+    SoftDistanceWeight: 1
+    SoftAngleWeight: 3
+    SoftPriorityWeight: 5
+    HardSearchRadius: 12
     UseAngleForInitialHardTarget: 0
     HardInitialSearchAngle: 0
-    HardDistanceWeight: 0
-    HardPriorityWeight: 0
-    DoubleTapWindow: 0
-    HoldThreshold: 0
-    RightStickDeadZone: 0
+    HardDistanceWeight: 1
+    HardPriorityWeight: 5
+    DoubleTapWindow: 0.25
+    HoldThreshold: 0.25
+    RightStickDeadZone: 0.2
     HasHardTarget: 0
     HardTargetScore: 0
     HasSoftTarget: 0
@@ -230,7 +250,7 @@ MonoBehaviour:
   _weaponComp:
     HitBoxMb: {fileID: 4653386055560987681}
   unitStatsComp:
-    EnergyMax: 0
+    EnergyMax: 1000
     EnergyCurrent: 0
     EnergyReserved: 0
     Armor: 0
@@ -240,9 +260,17 @@ MonoBehaviour:
     BarrierCurrent: 0
     EnergyEfficiency: 0
     ClockSpeed: 0
+    AttackSpeed: 0
     Cooling: 0
     Capacity: 0
     Stabilization: 0
+    StabilizationMax: 0
+    StabilizationCurrent: 0
+    LastStabilizationDamageTime: 0
+    StabilizationRecoveryDelay: 0
+    StabilizationRecoveryTime: 0
+    AllowedHitReactions: 0
+    ReactionCenter: {fileID: 0}
   _animancerComp:
     Value: {fileID: 6019087728202028914}
   _animatorComp:
@@ -259,7 +287,7 @@ MonoBehaviour:
       rid: 4832570872806768739
   _motionAnimationComp:
     Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
-  _slayerJetCharacterControllerComp:
+  _characterControllerComp:
     Value: {fileID: 4824951740370521264}
   _moveableComp:
     CustomCharacterController: {fileID: 4824951740370521264}

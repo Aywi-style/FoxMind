@@ -68,8 +68,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 {
                     targetStatsComp.BarrierCurrent -= 1;
                     causeDamageRequest.FinalDamage = 0;
+                    causeDamageRequest.StabilizationDamage = 0;
 
-                    return;
+                    continue;
                 }
 
                 // Shields
@@ -81,7 +82,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
 
                     if (causeDamageRequest.FinalDamage <= 0)
                     {
-                        return;
+                        continue;
                     }
                 }
                 

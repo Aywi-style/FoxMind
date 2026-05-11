@@ -21,10 +21,14 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  <AttackAnimation>k__BackingField: {fileID: 7400000, guid: 7ab91d5c43897f0468e920b148d5b957, type: 3}
+  <AttackAnimation>k__BackingField: {fileID: -998496362607748373, guid: 7ab91d5c43897f0468e920b148d5b957, type: 3}
   <BaseDamage>k__BackingField: 200
   <BaseCritChance>k__BackingField: 0.5
   <BaseCritMultiplier>k__BackingField: 2
-  <EndOfContinuousPart>k__BackingField: 0.46
-  HitWindow: {x: 0.12, y: 0.45}
+  <AnimationDurationSeconds>k__BackingField: 1.967
+  <HitReactionType>k__BackingField: 4
+  <ReactionVelocity>k__BackingField: {x: 0, y: 0}
+  <HitReactionDuration>k__BackingField: 0.35
+  <EndOfContinuousPart>k__BackingField: 0.2
+  HitWindow: {x: 0.12, y: 0.2}
   ComboWindow: {x: 0.7, y: 1}

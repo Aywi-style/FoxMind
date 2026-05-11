@@ -12,6 +12,10 @@ namespace FoxMind.Code.Runtime.Core.Battle.Components
         public int BaseDamage;
         public float BaseCritChance;
         public float BaseCritMultiplier;
+        public HitReactionType HitReactionType;
+        public UnityEngine.Vector2 ReactionVelocity;
+        public float HitReactionDuration;
         public int FinalDamage;
+        public int StabilizationDamage;
     }
 }

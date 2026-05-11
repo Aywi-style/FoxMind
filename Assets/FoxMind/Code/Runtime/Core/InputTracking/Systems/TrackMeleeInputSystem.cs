@@ -43,7 +43,6 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
 
                     if (state.PendingSingle && time - state.LastTapTime <= CombatInputTuning.MeleeDoubleTapWindow)
                     {
-                        var singleTime = state.PendingSingleTime;
                         state.PendingSingle = false;
                         state.LastTapTime = float.MinValue;
 
@@ -56,14 +55,14 @@ namespace FoxMind.Code.Runtime.Core.InputTracking.Systems
                             _inputtedDoubleMeleePool.Value.Get(playerControlledDoubleMeleeAttackEntity).LastPress = time;
                         }
 
-                        // Also count the single tap when a double-tap happens (use the first tap time).
+                        // Double tap also counts as a fresh single attack for regular combo chains.
                         if (_meleeEventPool.Value.Has(inputEntity) == false)
                         {
                             _meleeEventPool.Value.Add(inputEntity);
                         }
                         foreach (var playerControlledMeleeAttackEntity in _playerControlledMeleeAttackFilter.Value)  
                         {
-                            _inputtedMeleePool.Value.Get(playerControlledMeleeAttackEntity).LastPress = singleTime;
+                            _inputtedMeleePool.Value.Get(playerControlledMeleeAttackEntity).LastPress = time;
                         }
                     }
                     else

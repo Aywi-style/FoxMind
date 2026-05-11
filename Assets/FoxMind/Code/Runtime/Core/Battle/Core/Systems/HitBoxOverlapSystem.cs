@@ -124,6 +124,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 causeDamageRequest.BaseDamage = hitBox.CurrentBaseDamage;
                 causeDamageRequest.BaseCritChance = hitBox.CurrentBaseCritChance;
                 causeDamageRequest.BaseCritMultiplier = hitBox.CurrentBaseCritMultiplier;
+                causeDamageRequest.HitReactionType = hitBox.CurrentHitReactionType;
+                causeDamageRequest.ReactionVelocity = hitBox.CurrentReactionVelocity;
+                causeDamageRequest.HitReactionDuration = hitBox.CurrentHitReactionDuration;
             }
         }
 
