@@ -14,6 +14,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Configs
         
         [SerializeField] public bool IsOpener;
         [SerializeField] public AttackConfig AttackConfig;
+        [SerializeField] public ComboStanceCondition StanceCondition = ComboStanceCondition.Any;
         [FoldoutGroup(c_conditions), HorizontalGroup(c_conditions + "/Horizontal"), SerializeField] public bool OrderIsImportant = true;
         [FoldoutGroup(c_conditions), HorizontalGroup(c_conditions + "/Horizontal"), SerializeField] public float LeadTime;
         [FoldoutGroup(c_conditions), SerializeField] public List<PlayerAction> PlayerActions;

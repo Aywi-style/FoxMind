@@ -4,6 +4,7 @@ using FoxMind.Code.Runtime.Core.Battle.Combo.Configs;
 using FoxMind.Code.Runtime.Core.Battle.Combo.Enums;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.InputTracking.Components;
+using FoxMind.Code.Runtime.Core.Movement.Components;
 using FoxMind.Code.Runtime.Core.PlayerActions.Components;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
@@ -33,6 +34,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         private readonly EcsPoolInject<InputtedRightMoveComp> _inputtedRightMovePool = default;
         
         private readonly EcsPoolInject<TargetProvideComboRequest> _targetProvideComboRequestPool = default;
+        private readonly EcsPoolInject<CharacterControllerComp> _characterControllerPool = default;
         
         private float _cachedTime;
         private int _cachedConditions;
@@ -56,6 +58,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 // Проходимся по всем доступным комбо
                 foreach (var comboConfig in combinableComp.AvailableCombos)
                 {
+                    if (IsComboAllowedForStance(comboConfig, requestedComboAttackEntity) == false)
+                    {
+                        continue;
+                    }
+
                     var maxConditions = 0;
                     bool isPassedAllConditions = true;
                     float previousActionLastPress = Single.MinValue;
@@ -131,6 +138,45 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                     targetProvideAttackRequest.PackedEntity = _world.Value.PackEntity(requestedComboAttackEntity);
                 }
             }
+        }
+
+        private bool IsComboAllowedForStance(ComboConfig_v2 comboConfig, int entity)
+        {
+            if (comboConfig == null)
+            {
+                return false;
+            }
+
+            switch (comboConfig.StanceCondition)
+            {
+                case ComboStanceCondition.Any:
+                    return true;
+                case ComboStanceCondition.GroundedOnly:
+                    return TryGetIsGrounded(entity, out var isGrounded) && isGrounded;
+                case ComboStanceCondition.AirborneOnly:
+                    return TryGetIsGrounded(entity, out isGrounded) && isGrounded == false;
+                default:
+                    return true;
+            }
+        }
+
+        private bool TryGetIsGrounded(int entity, out bool isGrounded)
+        {
+            isGrounded = false;
+
+            if (_characterControllerPool.Value.Has(entity) == false)
+            {
+                return false;
+            }
+
+            ref var characterController = ref _characterControllerPool.Value.Get(entity);
+            if (characterController.Value == null || characterController.Value.Motor == null)
+            {
+                return false;
+            }
+
+            isGrounded = characterController.Value.Motor.GroundingStatus.IsStableOnGround;
+            return true;
         }
         
         private bool IsPassedCondition(PlayerAction playerAction, int entity, float leadTime)

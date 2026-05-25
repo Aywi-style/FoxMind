@@ -106,6 +106,14 @@ AnimancerSpeed = AttackAnimation.length / BaseAttackDuration * UnitStatsComp.Att
 
 Для launcher-атак вроде `Attack_Bash_1.2` используется `LauncherRootMotion`: vertical root motion применяется отдельным `AttackLauncherRootMotionBehaviour`, а после `EndNormalizedTime` персонаж возвращается в обычный `AirMovementBehaviour` или `StableMovementBehaviour`.
 
+## ComboConfig_v2
+
+Каждый узел комбо (`ComboConfig_v2`) настраивает, какой `AttackConfig` будет запущен и при каких условиях ввода он доступен.
+
+- `StanceCondition`: ограничение по текущему состоянию атакующего. `Any` разрешает удар всегда, `GroundedOnly` только когда `CustomCharacterController.Motor.GroundingStatus.IsStableOnGround == true`, `AirborneOnly` только когда это значение `false`.
+- Если stance не подходит, узел комбо не попадает в `AvailableCombos` и не может быть выбран даже из устаревшего буфера. Другой подходящий узел с тем же input может быть выбран как fallback.
+- Старые ассеты без ручной настройки используют дефолт `Any`.
+
 ## UnitStatsComp
 
 Ключевые боевые поля:

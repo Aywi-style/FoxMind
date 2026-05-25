@@ -23,6 +23,7 @@ MonoBehaviour:
     SerializationNodes: []
   IsOpener: 0
   AttackConfig: {fileID: 11400000, guid: 926dc63f0e2d4ec4db04874418e8dfa2, type: 2}
+  StanceCondition: 1
   OrderIsImportant: 0
   LeadTime: 0.05
   PlayerActions: 00000000
