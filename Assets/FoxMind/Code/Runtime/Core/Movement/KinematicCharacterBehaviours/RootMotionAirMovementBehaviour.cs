@@ -11,6 +11,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
     {
         [SerializeField] private KinematicCharacterMotor motor;
 
+        [field: Header("Root Motion Air Movement")]
         public Vector3 MoveRootMotionVector { get; set; }
         public Quaternion LookRootMotionQuaternion { get; set; }
         [SerializeField] private float OrientationSharpness = 10f;
@@ -38,6 +39,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         public void Initialize(KinematicCharacterMotor motor)
         {
             this.motor = motor;
+        }
+
+        public void Enter()
+        {
+            ClearRootMotion();
+        }
+
+        public void Exit()
+        {
+            ClearRootMotion();
+            _lookInputVector = Vector3.zero;
         }
 
         public void SetMoveDirection(Vector3 normalizedMoveDirection)
@@ -72,15 +84,15 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            if (motor.GroundingStatus.IsStableOnGround)
-            {
-                return;
-            }
-
             if (deltaTime > 0f && MoveRootMotionVector.sqrMagnitude > float.Epsilon)
             {
                 currentVelocity = MoveRootMotionVector / deltaTime;
-                MoveRootMotionVector = Vector3.zero;
+                ClearRootMotion();
+                return;
+            }
+            
+            if (motor.GroundingStatus.IsStableOnGround)
+            {
                 return;
             }
 
@@ -111,8 +123,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void AfterCharacterUpdate(float deltaTime)
         {
-            MoveRootMotionVector = Vector3.zero;
-            LookRootMotionQuaternion = Quaternion.identity;
+            ClearRootMotion();
             _lookInputVector = Vector3.zero;
         }
 
@@ -141,6 +152,12 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         public void OnDiscreteCollisionDetected(Collider hitCollider)
         {
             
+        }
+
+        private void ClearRootMotion()
+        {
+            MoveRootMotionVector = Vector3.zero;
+            LookRootMotionQuaternion = Quaternion.identity;
         }
     }
 }

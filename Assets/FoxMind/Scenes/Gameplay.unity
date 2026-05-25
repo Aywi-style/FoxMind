@@ -15505,6 +15505,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[4832570872806768737].UseVerticalRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570872806768734].AllowJumpingWhenSliding
       value: 0
       objectReference: {fileID: 0}
@@ -15563,6 +15567,10 @@ PrefabInstance:
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570872806768734].JumpPostGroundingGraceTime
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: _moveableBehavioursComp._movementBehavioursOnlyInspector.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570872806768724].CurrentMaxSpeedFromMovementBehaviour
@@ -19428,6 +19436,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4035129776740040, guid: 98da264114ee57a48babc92b34ad66cf, type: 3}
   m_PrefabInstance: {fileID: 835296063}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2090413349
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.831
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.000000059604645
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.674
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.57360864
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8191295
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 109.996
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 5ca3e1476a54ee4429de95ca2f6a8ec3, type: 2}
+    - target: {fileID: 919132149155446097, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
+      propertyPath: m_Name
+      value: Slayer Jet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 339a84a662c75bc438d583fc687f2715, type: 3}
 --- !u!54 &2126832256 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 2475979542855141883, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
@@ -20747,7 +20816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1840217423771802457, guid: bafa457b891c3aa4e88d3f214e1483ff, type: 3}
       propertyPath: m_Radius
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1840217423771802457, guid: bafa457b891c3aa4e88d3f214e1483ff, type: 3}
       propertyPath: m_Center.y
@@ -20781,3 +20850,4 @@ SceneRoots:
   - {fileID: 689440466}
   - {fileID: 447888314}
   - {fileID: 1920968012}
+  - {fileID: 2090413349}

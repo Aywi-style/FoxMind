@@ -25,6 +25,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Core.SystemsAssembly
                 new InHitReactionComponentDeletingSystem(),
                 new RecoverStabilizationSystem(),
                 new TransitionFromAttackToAttackRecoverySystem(),
+                new InAttackMovementComponentDeletingSystem(),
                 new ExitFromAttackRecoverySystem(),
                 
                 new DeathSystem(),

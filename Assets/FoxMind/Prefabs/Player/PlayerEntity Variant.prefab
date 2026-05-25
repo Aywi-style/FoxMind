@@ -283,6 +283,7 @@ MonoBehaviour:
     - rid: 4832570872806768736
     - rid: 4832570872806768737
     - rid: 4832570872806768738
+    - rid: 4865544819028000861
     JumpBehaviour:
       rid: 4832570872806768739
   _motionAnimationComp:
@@ -350,6 +351,13 @@ MonoBehaviour:
         JumpSpeed: 10
         JumpPreGroundingGraceTime: 0
         JumpPostGroundingGraceTime: 0
+    - rid: 4865544819028000861
+      type: {class: AttackLauncherRootMotionBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+      data:
+        motor: {fileID: 9019267054329287531}
+        OrientationSharpness: 10
+        MaxAirControlSpeed: 6
+        AirControlAcceleration: 12
 --- !u!54 &2475979542855141883 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 8961378062448705683, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}

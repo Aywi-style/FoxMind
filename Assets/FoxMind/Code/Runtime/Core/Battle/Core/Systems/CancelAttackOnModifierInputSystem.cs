@@ -22,6 +22,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
 
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
         private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
+        private readonly EcsPoolInject<InAttackMovementComp> _inAttackMovementPool = default;
         private readonly EcsPoolInject<InComboComp> _inComboPool = default;
         private readonly EcsPoolInject<AttackMovementUnlockRequest> _attackMovementUnlockRequestPool = default;
         private readonly EcsPoolInject<RegisterMotionAnimationRequest> _registerMotionAnimationRequestPool = default;
@@ -67,6 +68,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             if (_inComboPool.Value.Has(entity))
             {
                 _inComboPool.Value.Del(entity);
+            }
+            
+            if (_inAttackMovementPool.Value.Has(entity))
+            {
+                _inAttackMovementPool.Value.Del(entity);
             }
             
             ClearBufferedAttacks(entity);

@@ -25,6 +25,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 ref var motionAnimation = ref _motionAnimationPool.Value.Get(movableEntity);
 
                 ref var animancer = ref _animancerPool.Value.Get(movableEntity);
+                animancer.Value.Animator.applyRootMotion = false;
                 
                 var state = animancer.Value.States.GetOrCreate(motionAnimation.Move);
                 motionAnimation.MoveState = (MixerState<Vector2>)state;

@@ -10,7 +10,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
     {
         [SerializeField] private KinematicCharacterMotor motor;
         
-        [Header("Jumping")]
+        [Header("Jump")]
         public bool AllowJumpingWhenSliding = false;
         public bool AllowDoubleJump = false;
         public bool AllowWallJump = false;

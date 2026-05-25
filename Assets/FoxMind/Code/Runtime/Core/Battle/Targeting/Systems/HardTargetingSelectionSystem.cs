@@ -102,6 +102,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
 
             for (int i = 0; i < _candidates.Count; i++)
             {
+                if (_candidates[i].Entity == currentTargetEntity)
+                {
+                    continue;
+                }
+
                 if (IsLowerThanCurrentTarget(_candidates[i], currentTargetEntity, targeting.HardTargetScore))
                 {
                     SetHardTarget(ref targeting, _candidates[i]);
@@ -109,7 +114,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
                 }
             }
 
-            SetHardTarget(ref targeting, _candidates[0]);
+            SetHardTarget(ref targeting, GetBestCandidateExcept(currentTargetEntity));
         }
 
         private void BuildCandidates(int ownerEntity, ref TargetingComp targeting, bool isInitialSelection)
@@ -211,6 +216,19 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
             targeting.HasHardTarget = true;
             targeting.HardTarget = _world.Value.PackEntity(candidate.Entity);
             targeting.HardTargetScore = candidate.Score;
+        }
+
+        private Candidate GetBestCandidateExcept(int excludedEntity)
+        {
+            foreach (var candidate in _candidates)
+            {
+                if (candidate.Entity != excludedEntity)
+                {
+                    return candidate;
+                }
+            }
+
+            return _candidates[0];
         }
 
         private void ClearHardTarget(ref TargetingComp targeting)

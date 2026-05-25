@@ -23,6 +23,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
         [field: Title("Animation Timing", bold: false), MinValue(0), SerializeField]
         public float AnimationDurationSeconds { private set; get; }
 
+        [field: FoldoutGroup("Attacker Movement"), HideLabel, SerializeField]
+        public AttackMovementSettings AttackerMovement { private set; get; }
+
         [field: Title("Hit Reaction", bold: false), SerializeField]
         public HitReactionType HitReactionType { private set; get; }
         
@@ -68,6 +71,13 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
             }
 
             return AttackAnimation.length / baseDuration * Mathf.Max(0.01f, attackSpeed);
+        }
+
+        public float GetAttackMovementEndNormalizedTime()
+        {
+            return AttackerMovement.EndNormalizedTime > 0f
+                ? AttackerMovement.EndNormalizedTime
+                : EndOfContinuousPart;
         }
     }
 }

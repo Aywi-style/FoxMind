@@ -11,10 +11,9 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
     [Serializable]
     public class RootMotionStableMovementBehaviour : IMovementBehaviour, IRootMotion
     {
-        private const float c_verticalRootMotionThreshold = 0.001f;
-        
         [SerializeField] private KinematicCharacterMotor motor;
         
+        [field: Header("Root Motion Stable Movement")]
         [field: SerializeField] public Vector3 MoveRootMotionVector { get; set; }
         [field: SerializeField] public Quaternion LookRootMotionQuaternion { get; set; }
         [SerializeField] private float OrientationSharpness = 10f;
@@ -23,6 +22,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         public void Initialize(KinematicCharacterMotor motor)
         {
             this.motor = motor;
+        }
+
+        public void Enter()
+        {
+            ClearRootMotion();
+        }
+
+        public void Exit()
+        {
+            ClearRootMotion();
+            _lookInputVector = Vector3.zero;
         }
 
         public void Update()
@@ -64,35 +74,27 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            if (deltaTime <= 0)
+            if (deltaTime > 0)
+            {
+                currentVelocity = GetRootMotionVelocity(deltaTime);
+            }
+            else
             {
                 // Prevent division by zero
                 currentVelocity = Vector3.zero;
             }
-            else
-            {
-                var rootMotionVelocity = MoveRootMotionVector / deltaTime;
-                if (MoveRootMotionVector.y > c_verticalRootMotionThreshold)
-                {
-                    // Launcher attacks can lift the attacker through animation root motion.
-                    motor.ForceUnground(0.1f);
-                    currentVelocity = rootMotionVelocity;
-                }
-                else
-                {
-                    // Grounded root motion should follow the ground surface unless it intentionally moves upward.
-                    currentVelocity = motor.GetDirectionTangentToSurface(rootMotionVelocity, motor.GroundingStatus.GroundNormal) *
-                                      rootMotionVelocity.magnitude;
-                }
-            }
             
-            MoveRootMotionVector = Vector3.zero;
-            LookRootMotionQuaternion = Quaternion.identity;
+            ClearRootMotion();
         }
 
         public void BeforeCharacterUpdate(float deltaTime)
         {
-            
+            if (MoveRootMotionVector.y <= float.Epsilon)
+            {
+                return;
+            }
+
+            motor.ForceUnground(0.16f);
         }
 
         public void PostGroundingUpdate(float deltaTime)
@@ -102,8 +104,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void AfterCharacterUpdate(float deltaTime)
         {
-            MoveRootMotionVector = Vector3.zero;
-            LookRootMotionQuaternion = Quaternion.identity;
+            ClearRootMotion();
             _lookInputVector = Vector3.zero;
         }
 
@@ -132,6 +133,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         public void OnDiscreteCollisionDetected(Collider hitCollider)
         {
             
+        }
+
+        private void ClearRootMotion()
+        {
+            MoveRootMotionVector = Vector3.zero;
+            LookRootMotionQuaternion = Quaternion.identity;
+        }
+
+        private Vector3 GetRootMotionVelocity(float deltaTime)
+        {
+            return MoveRootMotionVector / deltaTime;
         }
     }
 }

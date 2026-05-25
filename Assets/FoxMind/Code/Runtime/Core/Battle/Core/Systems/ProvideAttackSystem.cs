@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Animancer;
+using FoxMind.Code.Runtime.Core.Battle.Attack.Configs;
 using FoxMind.Code.Runtime.Core.Animations.Components;
 using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
@@ -24,6 +25,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         private readonly EcsPoolInject<ProvideAttackRequest> _provideAttackRequestPool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
         private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
+        private readonly EcsPoolInject<InAttackMovementComp> _inAttackMovementPool = default;
         private readonly EcsPoolInject<WeaponComp> _weaponPool = default;
         private readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
         private readonly EcsPoolInject<UnitStatsComp> _unitStatsPool = default;
@@ -87,6 +89,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 inAttackRecoveryComp.AnimationDuration = animationDuration;
                 inAttackRecoveryComp.AnimationSpeed = animationSpeed;
                 inAttackRecoveryComp.End = _cachedTime + animationDuration;
+
+                SetupAttackMovement(targetEntity, targetProvideAttackRequest.AttackConfig, animationDuration);
                 
                 if (_animancerPool.Value.Has(targetEntity))
                 {
@@ -113,6 +117,29 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
 
             ref var unitStats = ref _unitStatsPool.Value.Get(entity);
             return unitStats.AttackSpeed > 0f ? unitStats.AttackSpeed : 1f;
+        }
+
+        private void SetupAttackMovement(int targetEntity, AttackConfig attackConfig, float animationDuration)
+        {
+            if (attackConfig.AttackerMovement.Mode == AttackMovementMode.None)
+            {
+                if (_inAttackMovementPool.Value.Has(targetEntity))
+                {
+                    _inAttackMovementPool.Value.Del(targetEntity);
+                }
+
+                return;
+            }
+
+            if (_inAttackMovementPool.Value.Has(targetEntity) == false)
+            {
+                _inAttackMovementPool.Value.Add(targetEntity);
+            }
+
+            ref var inAttackMovement = ref _inAttackMovementPool.Value.Get(targetEntity);
+            inAttackMovement.Mode = attackConfig.AttackerMovement.Mode;
+            inAttackMovement.StartTime = _cachedTime;
+            inAttackMovement.EndTime = _cachedTime + attackConfig.GetAttackMovementEndNormalizedTime() * animationDuration;
         }
     }
 }

@@ -26,6 +26,9 @@ MonoBehaviour:
   <BaseCritChance>k__BackingField: 1.5
   <BaseCritMultiplier>k__BackingField: 4
   <AnimationDurationSeconds>k__BackingField: 2.14
+  <AttackerMovement>k__BackingField:
+    Mode: 1
+    EndNormalizedTime: 0
   <HitReactionType>k__BackingField: 1
   <ReactionVelocity>k__BackingField: {x: 0, y: 0}
   <HitReactionDuration>k__BackingField: 0.35

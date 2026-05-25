@@ -72,6 +72,7 @@ AI-компоненты врага пока не финализированы. �
 - `BaseCritChance`: базовый шанс крита.
 - `BaseCritMultiplier`: базовый множитель крита.
 - `AnimationDurationSeconds`: желаемая длительность анимации атаки в секундах при `AttackSpeed = 1`. Если значение `0`, система использует реальную длину `AttackAnimation`.
+- `AttackerMovement`: отдельный блок движения атакующего во время атаки. Не путать с `ReactionVelocity`, который описывает движение цели.
 - `EndOfContinuousPart`: момент, после которого recovery можно прервать движением.
 - `HitWindow`: окно активного hitbox'а.
 - `ComboWindow`: окно перехода в следующую атаку комбо.
@@ -94,6 +95,16 @@ AnimancerSpeed = AttackAnimation.length / BaseAttackDuration * UnitStatsComp.Att
 ```
 
 Окна `HitWindow`, `ComboWindow` и `EndOfContinuousPart` остаются нормализованными значениями `0..1`, но теперь считаются от `EffectiveAttackDuration`, а не напрямую от длины клипа.
+
+`AttackerMovement` используется так:
+
+- `Mode`: какой movement behaviour использовать во время movement window атаки.
+- `EndNormalizedTime`: когда атака перестаёт управлять movement. Если `0`, используется `EndOfContinuousPart`.
+- `UseVerticalRootMotion`: разрешает вертикальную составляющую root motion.
+- `ForceUngroundOnStart`: насильно отрывает атакующего от земли в начале movement window.
+- `AirControl`: слабый контроль движения во время launcher/root-motion атаки.
+
+Для launcher-атак вроде `Attack_Bash_1.2` используется `LauncherRootMotion`: vertical root motion применяется отдельным `AttackLauncherRootMotionBehaviour`, а после `EndNormalizedTime` персонаж возвращается в обычный `AirMovementBehaviour` или `StableMovementBehaviour`.
 
 ## UnitStatsComp
 

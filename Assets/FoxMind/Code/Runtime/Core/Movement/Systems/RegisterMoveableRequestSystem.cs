@@ -30,7 +30,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 {
                     moveableBehaviours.MovementBehaviours.Add(BehavioursConstants.HitReaction, new HitReactionMovementBehaviour());
                 }
-
+                
                 moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Stable, out var stableBehaviour);
                 moveableComp.CustomCharacterController.Initialize(stableBehaviour, moveableBehaviours.JumpBehaviour);
 

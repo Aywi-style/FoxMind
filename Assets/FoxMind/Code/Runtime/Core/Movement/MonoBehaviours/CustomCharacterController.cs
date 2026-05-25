@@ -33,7 +33,14 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
         
         public void SetCurrentMovementBehaviour(IMovementBehaviour newMovementBehaviour)
         {
+            if (CurrentMovementBehaviour == newMovementBehaviour)
+            {
+                return;
+            }
+
+            CurrentMovementBehaviour?.Exit();
             CurrentMovementBehaviour = newMovementBehaviour;
+            CurrentMovementBehaviour?.Enter();
         }
 
         public void SetJumpBehaviour(IJumpBehaviour jumpBehaviour)
@@ -75,16 +82,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
 
         public void BeforeCharacterUpdate(float deltaTime)
         {
-            
+            CurrentMovementBehaviour?.BeforeCharacterUpdate(deltaTime);
         }
 
         public void PostGroundingUpdate(float deltaTime)
         {
-            
+            CurrentMovementBehaviour?.PostGroundingUpdate(deltaTime);
         }
 
         public void AfterCharacterUpdate(float deltaTime)
         {
+            CurrentMovementBehaviour?.AfterCharacterUpdate(deltaTime);
             CurrentJumpBehaviour?.AfterCharacterUpdate(deltaTime);
         }
 

@@ -1,4 +1,5 @@
-﻿using FoxMind.Code.Runtime.Core.Battle.Components;
+﻿using FoxMind.Code.Runtime.Core.Battle.Attack.Configs;
+using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Movement.Components;
 using FoxMind.Code.Runtime.Core.Movement.Interfaces;
@@ -19,6 +20,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
         private readonly EcsPoolInject<MoveableComp> _moveablePool = default;
         private readonly EcsPoolInject<ImmovableComp> _immovablePool = default;
         private readonly EcsPoolInject<InHitReactionComp> _inHitReactionPool = default;
+        private readonly EcsPoolInject<InAttackMovementComp> _inAttackMovementPool = default;
         private readonly EcsPoolInject<AttackMovementLockComp> _attackMovementLockPool = default;
         private readonly EcsPoolInject<MoveableBehavioursComp> _moveableBehavioursPool = default;
 
@@ -38,14 +40,14 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 }
 
                 var immovableMultiply = _immovablePool.Value.Has(movableEntity) ? 0 : 1;
-                var movementLockMultiply = SelectMovementBehaviour(movableEntity, ref moveable, ref moveableBehaviours);
+                var movementInputMultiply = SelectMovementBehaviour(movableEntity, ref moveable, ref moveableBehaviours);
 
                 if (_cachedNewController != null && _cachedNewController != moveable.CustomCharacterController.CurrentMovementBehaviour)
                 {
                     moveable.CustomCharacterController.SetCurrentMovementBehaviour(_cachedNewController);
                 }
 
-                moveable.CustomCharacterController.SetMoveDirection(moveable.NormalizedMoveDirection * immovableMultiply * movementLockMultiply);
+                moveable.CustomCharacterController.SetMoveDirection(moveable.NormalizedMoveDirection * immovableMultiply * movementInputMultiply);
                 moveable.CustomCharacterController.SetLookDirection(moveable.NormalizedLookDirection);
             }
         }
@@ -58,22 +60,43 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 return 0f;
             }
 
+            if (_inAttackMovementPool.Value.Has(movableEntity))
+            {
+                ref var attackMovement = ref _inAttackMovementPool.Value.Get(movableEntity);
+                return SelectAttackMovementBehaviour(ref attackMovement, ref moveableBehaviours);
+            }
+
             var isGrounded = moveable.CustomCharacterController.Motor.GroundingStatus.IsStableOnGround;
             var hasAttackMovementLock = _attackMovementLockPool.Value.Has(movableEntity);
 
             switch (isGrounded)
             {
                 case true when hasAttackMovementLock:
-                    moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionStable, out _cachedNewController);
+                    moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Stable, out _cachedNewController);
                     return 0f;
                 case true:
                     moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Stable, out _cachedNewController);
                     return 1f;
                 case false when hasAttackMovementLock:
-                    moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionAir, out _cachedNewController);
+                    moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Air, out _cachedNewController);
                     return 0f;
                 default:
                     moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Air, out _cachedNewController);
+                    return 1f;
+            }
+        }
+
+        private float SelectAttackMovementBehaviour(ref InAttackMovementComp attackMovement, ref MoveableBehavioursComp moveableBehaviours)
+        {
+            switch (attackMovement.Mode)
+            {
+                case AttackMovementMode.GroundRootMotion:
+                    moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionStable, out _cachedNewController);
+                    return 0f;
+                case AttackMovementMode.AirRootMotion:
+                    moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionAir, out _cachedNewController);
+                    return 0f;
+                default:
                     return 1f;
             }
         }

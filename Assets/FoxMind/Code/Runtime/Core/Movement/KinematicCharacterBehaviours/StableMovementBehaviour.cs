@@ -23,6 +23,16 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
             this.motor = motor;
         }
 
+        public void Enter()
+        {
+        }
+
+        public void Exit()
+        {
+            _moveInputVector = Vector3.zero;
+            _lookInputVector = Vector3.zero;
+        }
+
         public void Update()
         {
             

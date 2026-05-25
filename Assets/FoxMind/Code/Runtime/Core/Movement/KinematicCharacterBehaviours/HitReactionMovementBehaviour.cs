@@ -13,6 +13,8 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
     public class HitReactionMovementBehaviour : IMovementBehaviour
     {
         [SerializeField] private KinematicCharacterMotor motor;
+        
+        [Header("Hit Reaction Movement")]
         [SerializeField] private float defaultAirKnockdownSpeed = 20f;
         [SerializeField] private float orientationSharpness = 20f;
 
@@ -25,6 +27,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         public void Initialize(KinematicCharacterMotor motor)
         {
             this.motor = motor;
+        }
+
+        public void Enter()
+        {
+        }
+
+        public void Exit()
+        {
+            _worldReactionVelocity = Vector3.zero;
+            _lookInputVector = Vector3.zero;
+            _forceUngroundRequested = false;
         }
 
         public void Configure(HitReactionType reactionType, Vector3 worldReactionVelocity, bool waitForGroundBeforeTimer)
