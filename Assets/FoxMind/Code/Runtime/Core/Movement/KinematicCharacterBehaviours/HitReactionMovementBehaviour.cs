@@ -1,5 +1,6 @@
 ﻿using System;
 using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using FoxMind.Code.Runtime.Core.Movement.Interfaces;
 using KinematicCharacterController;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
         [SerializeField] private float defaultAirKnockdownSpeed = 20f;
         [SerializeField] private float orientationSharpness = 20f;
 
-        private HitReactionType _reactionType;
+        private HitReactionFlags _reactionFlags;
         private Vector3 _worldReactionVelocity;
         private bool _waitForGroundBeforeTimer;
         private bool _forceUngroundRequested;
@@ -40,17 +41,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
             _forceUngroundRequested = false;
         }
 
-        public void Configure(HitReactionType reactionType, Vector3 worldReactionVelocity, bool waitForGroundBeforeTimer)
+        public void Configure(HitReactionFlags reactionType, Vector3 worldReactionVelocity, bool waitForGroundBeforeTimer)
         {
-            var isNewReaction = _reactionType != reactionType ||
+            var isNewReaction = _reactionFlags != reactionType ||
                                 _worldReactionVelocity != worldReactionVelocity ||
                                 _waitForGroundBeforeTimer != waitForGroundBeforeTimer;
 
-            _reactionType = reactionType;
+            _reactionFlags = reactionType;
             _worldReactionVelocity = worldReactionVelocity;
             _waitForGroundBeforeTimer = waitForGroundBeforeTimer;
 
-            if (isNewReaction && reactionType == HitReactionType.Launch)
+            if (isNewReaction && reactionType == HitReactionFlags.Launch)
             {
                 _forceUngroundRequested = true;
             }
@@ -91,17 +92,17 @@ namespace FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours
 
         public void UpdateVelocity(ref Vector3 currentVelocity, float deltaTime)
         {
-            switch (_reactionType)
+            switch (_reactionFlags)
             {
-                case HitReactionType.Knockdown when _waitForGroundBeforeTimer:
+                case HitReactionFlags.Knockdown when _waitForGroundBeforeTimer:
                     currentVelocity = Vector3.down * GetAirKnockdownSpeed();
                     break;
-                case HitReactionType.Knockdown:
+                case HitReactionFlags.Knockdown:
                     currentVelocity = Vector3.zero;
                     break;
-                case HitReactionType.StaggerAndAirJuggle:
-                case HitReactionType.Knockback:
-                case HitReactionType.Launch:
+                case HitReactionFlags.AttackBase:
+                case HitReactionFlags.Knockback:
+                case HitReactionFlags.Launch:
                     if (_forceUngroundRequested)
                     {
                         motor.ForceUnground(0.1f);

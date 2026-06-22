@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 350e62913ff84f028e3a1bfd36e06bd2, type: 3}
+  m_Script: {fileID: 11500000, guid: deb85c8622eb400f87a0cc19156f765b, type: 3}
   m_Name: Combo_Bash_1
   m_EditorClassIdentifier: 
   serializationData:
@@ -20,16 +20,59 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: MovementSetup
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[FoxMind.Code.Runtime.Core.Input.Structs.ComboInput,
+        FoxMind.Code.Runtime]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: FoxMind.Code.Runtime.Core.Input.Structs.ComboInput, FoxMind.Code.Runtime
+    - Name: Type
+      Entry: 3
+      Data: 3
+    - Name: PressType
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ComboActivators
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[FoxMind.Code.Runtime.Core.Input.Structs.ComboInput,
+        FoxMind.Code.Runtime]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: FoxMind.Code.Runtime.Core.Input.Structs.ComboInput, FoxMind.Code.Runtime
+    - Name: Type
+      Entry: 3
+      Data: 5
+    - Name: PressType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   IsOpener: 1
-  AttackConfig: {fileID: 11400000, guid: c14c11a28a9249c43807e2131a4da18e, type: 2}
-  ComboEnd: 1
-  ComboConditions:
-  - Condition: 0
-    PressWindow: 0.1
-  - Condition: 4
-    PressWindow: 0.1
-  AllowedCombos:
-    LaunchWindow: 0.456
-    Combos:
-    - {fileID: 11400000, guid: dc7ec7389ec5cad48904ad25b931a2be, type: 2}
+  AttackConfig: {fileID: 11400000, guid: 4edc7abd5fa4a1d40a7e0ca25b13a514, type: 2}
+  StanceCondition: 1
+  NextCombos:
+  - {fileID: 11400000, guid: 237831006a48e884b91e3c7d66283401, type: 2}

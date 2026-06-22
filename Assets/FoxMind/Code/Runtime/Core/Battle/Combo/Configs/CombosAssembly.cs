@@ -8,31 +8,12 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Configs
     [InlineEditor]
     public class CombosAssembly : SerializedScriptableObject
     {
-        [SerializeField, ReadOnly] public List<ComboConfig> OpenerCombosConfigs;
-        [SerializeField, ReadOnly] public List<ComboConfig> NonOpenerCombosConfigs;
-        [SerializeField] private List<ComboConfig> ComboConfigs;
-        
-        [SerializeField, ReadOnly] public List<ComboConfig_v2> OpenerCombosConfigs_v2;
-        [SerializeField, ReadOnly] public List<ComboConfig_v2> NonOpenerCombosConfigs_v2;
-        [SerializeField] private List<ComboConfig_v2> ComboConfigs_v2;
+        [SerializeField, ReadOnly] public List<ComboConfig> OpenerCombosConfigs_v2;
+        [SerializeField, ReadOnly] public List<ComboConfig> NonOpenerCombosConfigs_v2;
+        [SerializeField] private List<ComboConfig> ComboConfigs_v2;
 
         private void OnValidate()
         {
-            OpenerCombosConfigs.Clear();
-            NonOpenerCombosConfigs.Clear();
-            
-            foreach (var comboConfig in ComboConfigs)
-            {
-                if (comboConfig.IsOpener)
-                {
-                    OpenerCombosConfigs.Add(comboConfig);
-                }
-                else
-                {
-                    NonOpenerCombosConfigs.Add(comboConfig);
-                }
-            }
-            
             OpenerCombosConfigs_v2.Clear();
             NonOpenerCombosConfigs_v2.Clear();
             

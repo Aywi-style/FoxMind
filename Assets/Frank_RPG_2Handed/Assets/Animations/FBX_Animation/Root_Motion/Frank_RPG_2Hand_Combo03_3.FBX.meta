@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 600ec1ffa01ff4f4fa5421d6a805c634
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -497,7 +497,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: Take 001
+    second: Vortex 3
   - first:
       95: 9500000
     second: //RootNode
@@ -514,16 +514,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
-      copied configuration does not match position in animation file:\n\t'thigh_l'
-      : position error = 1.826084 mm\n\t'calf_l' : position error = 2.632236 mm\n\t'thigh_r'
-      : position error = 5.877537 mm\n\t'calf_r' : position error = 2.126215 mm\n\t'spine_01'
-      : position error = 7.100418 mm\n\t'upperarm_l' : position error = 1.303288
-      mm\n\t'lowerarm_l' : position error = 1.821138 mm\n\t'hand_l' : position error
-      = 8.964634 mm\n\t'middle_03_l' : position error = 1.026862 mm\n\t'upperarm_r'
-      : position error = 1.545711 mm\n\t'hand_r' : position error = 10.989805 mm\n\t'middle_03_r'
-      : position error = 1.024610 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
@@ -562,7 +552,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Vortex 3
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0
@@ -616,6 +606,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8

@@ -1,4 +1,5 @@
 ﻿using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Fractions.Components;
 using FoxMind.Code.Runtime.Core.Stats.Features;
@@ -60,9 +61,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 targetStats.StabilizationCurrent = Mathf.Max(0f, targetStats.StabilizationCurrent - damageRequest.StabilizationDamage);
                 targetStats.LastStabilizationDamageTime = Time.time;
 
-                if (damageRequest.HitReactionType == HitReactionType.None ||
+                if (damageRequest.HitReactionFlags == HitReactionFlags.None ||
                     targetStats.StabilizationCurrent > 0f ||
-                    IsReactionAllowed(targetStats.AllowedHitReactions, damageRequest.HitReactionType) == false)
+                    IsReactionAllowed(targetStats.AllowedHitReactions, damageRequest.HitReactionFlags) == false)
                 {
                     continue;
                 }
@@ -70,7 +71,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 ref var hitReactionRequest = ref _hitReactionRequestPool.Value.Add(_world.Value.NewEntity());
                 hitReactionRequest.From = damageRequest.From;
                 hitReactionRequest.To = damageRequest.To;
-                hitReactionRequest.Type = damageRequest.HitReactionType;
+                hitReactionRequest.Type = damageRequest.HitReactionFlags;
                 hitReactionRequest.ReactionVelocity = damageRequest.ReactionVelocity;
                 hitReactionRequest.Duration = damageRequest.HitReactionDuration > 0f ? damageRequest.HitReactionDuration : 0.35f;
             }
@@ -88,14 +89,14 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             return targetFraction.Fraction == attackerFraction.Fraction;
         }
 
-        private static bool IsReactionAllowed(HitReactionFlags allowedFlags, HitReactionType reactionType)
+        private static bool IsReactionAllowed(HitReactionFlags allowedFlags, HitReactionFlags reactionType)
         {
             return reactionType switch
             {
-                HitReactionType.StaggerAndAirJuggle => (allowedFlags & (HitReactionFlags.Stagger | HitReactionFlags.Juggle)) != 0,
-                HitReactionType.Knockback => (allowedFlags & HitReactionFlags.Knockback) != 0,
-                HitReactionType.Launch => (allowedFlags & HitReactionFlags.Launch) != 0,
-                HitReactionType.Knockdown => (allowedFlags & HitReactionFlags.Knockdown) != 0,
+                HitReactionFlags.AttackBase => (allowedFlags & (HitReactionFlags.Stagger | HitReactionFlags.Juggle)) != 0,
+                HitReactionFlags.Knockback => (allowedFlags & HitReactionFlags.Knockback) != 0,
+                HitReactionFlags.Launch => (allowedFlags & HitReactionFlags.Launch) != 0,
+                HitReactionFlags.Knockdown => (allowedFlags & HitReactionFlags.Knockdown) != 0,
                 _ => false,
             };
         }

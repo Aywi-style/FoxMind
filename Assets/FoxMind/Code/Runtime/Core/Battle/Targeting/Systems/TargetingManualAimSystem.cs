@@ -2,6 +2,7 @@ using FoxMind.Code.Runtime.Core.Battle.Targeting.Components;
 using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
+using FoxMind.Code.Runtime.Core.Input.Enums;
 using FoxMind.Code.Runtime.Core.PlayerActions.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
 using Leopotam.EcsLite;

@@ -1,5 +1,6 @@
 using Animancer;
 using FoxMind.Code.Runtime.Core.Animations.Components;
+using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Movement.Components;
 using Leopotam.EcsLite;
@@ -13,7 +14,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
     /// </summary>
     public class RegisterMotionAnimationsSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<RegisterMotionAnimationRequest, MotionAnimationComp, AnimancerComp>> _requestFilter = default;
+        private readonly EcsFilterInject<Inc<MotionAnimationComp, AnimancerComp>, Exc<InAttackComp, InDefenceComp, InHitReactionComp>> _requestFilter = default;
 
         private readonly EcsPoolInject<MotionAnimationComp> _motionAnimationPool = default;
         private readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
@@ -24,6 +25,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
             {
                 ref var motionAnimation = ref _motionAnimationPool.Value.Get(movableEntity);
 
+                if (motionAnimation.MoveState != null && motionAnimation.MoveState.IsActive)
+                {
+                    continue;
+                }
+                
                 ref var animancer = ref _animancerPool.Value.Get(movableEntity);
                 animancer.Value.Animator.applyRootMotion = false;
                 

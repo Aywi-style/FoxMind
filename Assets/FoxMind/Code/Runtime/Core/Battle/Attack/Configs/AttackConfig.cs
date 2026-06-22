@@ -1,10 +1,11 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
 {
-    [CreateAssetMenu(fileName = "AttackConfig", menuName = "Configs/AttackConfig")]
+    [CreateAssetMenu(fileName = "Attack_Name_№", menuName = "Configs/AttackConfig")]
     public class AttackConfig : SerializedScriptableObject
     {
         [field: FoldoutGroup("Attack Animation"), LabelText("Preview"), InlineEditor(InlineEditorModes.LargePreview), SerializeField, PropertyOrder(0)]
@@ -27,19 +28,13 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
         public AttackMovementSettings AttackerMovement { private set; get; }
 
         [field: Title("Hit Reaction", bold: false), SerializeField]
-        public HitReactionType HitReactionType { private set; get; }
+        public HitReactionFlags HitReactionFlags { private set; get; }
         
-        [field: SerializeField]
-        public Vector2 ReactionVelocity { private set; get; }
-
-        [field: MinValue(0), SerializeField]
-        public float HitReactionDuration { private set; get; } = 0.35f;
+        [field: SerializeField] public Vector2 ReactionVelocity { private set; get; }
+        [field: MinValue(0), SerializeField] public float HitReactionDuration { private set; get; } = 0.35f;
         
         [field: Title("End Of Continuous Part", bold: false), HideLabel, PropertyRange(0, 1), SerializeField, PropertyOrder(0)]
         public float EndOfContinuousPart { get; private set; }
-        
-        [HideLabel, ShowInInspector, ProgressBar(0, 1), PropertyOrder(1)]
-        private float StackedHealthProgressBar => EndOfContinuousPart;
 
         [Title("Hit Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(2)]
         public Vector2 HitWindow;

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb85c8622eb400f87a0cc19156f765b, type: 3}
+  m_Name: Combo_Bash_3
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: MovementSetup
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[FoxMind.Code.Runtime.Core.Input.Structs.ComboInput,
+        FoxMind.Code.Runtime]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ComboActivators
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[FoxMind.Code.Runtime.Core.Input.Structs.ComboInput,
+        FoxMind.Code.Runtime]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: FoxMind.Code.Runtime.Core.Input.Structs.ComboInput, FoxMind.Code.Runtime
+    - Name: Type
+      Entry: 3
+      Data: 6
+    - Name: PressType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  IsOpener: 1
+  AttackConfig: {fileID: 11400000, guid: 821ac333d059df04f843545288d14bf5, type: 2}
+  StanceCondition: 2
+  NextCombos: []

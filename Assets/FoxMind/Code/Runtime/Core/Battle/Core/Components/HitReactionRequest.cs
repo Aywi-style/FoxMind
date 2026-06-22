@@ -1,4 +1,5 @@
-﻿using FoxMind.Code.Runtime.Core.Ecs.Templates;
+﻿using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
+using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Components
     {
         public EcsPackedEntityWithWorld From;
         public EcsPackedEntityWithWorld To;
-        public HitReactionType Type;
+        public HitReactionFlags Type;
         public Vector2 ReactionVelocity;
         public float Duration;
     }

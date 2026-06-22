@@ -1,5 +1,6 @@
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
+using FoxMind.Code.Runtime.Core.Input.Enums;
 using Leopotam.EcsLite;
 using Leopotam.EcsLite.Di;
 using UnityEngine.InputSystem;
@@ -8,7 +9,6 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
 {
     /// <summary>
     /// Отслеживает, с какого типа устройства пришёл последний игровой ввод, и сохраняет это в BaseInputControlsComp.
-    /// Система намеренно смотрит на реальное устройство события, а не на PlayerInput, потому что input asset создаётся в ECS.
     /// </summary>
     public class UpdateInputControlTypeSystem : BaseEcsVisitable, IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {

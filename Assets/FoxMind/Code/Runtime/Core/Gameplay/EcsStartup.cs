@@ -8,7 +8,6 @@ using FoxMind.Code.Runtime.Core.Ecs.EcsAspects;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
 using FoxMind.Code.Runtime.Core.Input.SystemsAssembly;
-using FoxMind.Code.Runtime.Core.InputTracking.SystemsAssembly;
 using FoxMind.Code.Runtime.Core.Movement.SystemsAssembly;
 using FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly;
 using FoxMind.Code.Runtime.Core.Scenes.Init.SystemsAssembly;
@@ -32,7 +31,6 @@ namespace FoxMind.Code.Runtime.Core.Gameplay
             new ScenesInitAssembly(),
             new CameraAssembly(),
             new InputAssembly(),
-            new InputTrackingAssembly(),
             new TargetingAssembly(),
             new ComboAssembly(),
             new BattleAssembly(),

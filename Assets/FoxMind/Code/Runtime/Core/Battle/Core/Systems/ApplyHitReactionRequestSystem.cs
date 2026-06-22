@@ -1,4 +1,5 @@
 ﻿using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Movement.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
@@ -38,7 +39,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     : -1;
 
                 var duration = Mathf.Max(0.01f, request.Duration);
-                var isAirKnockdown = request.Type == HitReactionType.Knockdown && IsGrounded(targetEntity) == false;
+                var isAirKnockdown = request.Type == HitReactionFlags.Knockdown && IsGrounded(targetEntity) == false;
 
                 ref var inHitReaction = ref _inHitReactionPool.Value.Has(targetEntity)
                     ? ref _inHitReactionPool.Value.Get(targetEntity)

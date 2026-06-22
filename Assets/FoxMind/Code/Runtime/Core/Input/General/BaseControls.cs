@@ -105,43 +105,43 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""6b19c9b9-60ad-49fa-9558-a82a6858a9b1"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MeleeAttack"",
+                    ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""8c94dd59-73e9-4ec2-a99e-32758f11dfbb"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""RangeAttack"",
+                    ""name"": ""AltAttack"",
                     ""type"": ""Button"",
                     ""id"": ""6881dd0c-4a98-451f-8d6b-4df501f9a6a0"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Dash"",
+                    ""name"": ""WeaponMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""4509b5ba-9170-40f4-a5e8-e0265242f741"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Defence"",
                     ""type"": ""Button"",
                     ""id"": ""0d91d91f-a278-4e92-a079-5e4aed1e6a1d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Block"",
-                    ""type"": ""Button"",
-                    ""id"": ""1030f5cb-4050-4289-9c19-e4e35dceb64a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -150,7 +150,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""name"": ""TargetLock"",
                     ""type"": ""Button"",
                     ""id"": ""9e5bcfd3-c605-4bac-81ae-722cba199f51"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -296,7 +296,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MeleeAttack"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -307,7 +307,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MeleeAttack"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -318,7 +318,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RangeAttack"",
+                    ""action"": ""AltAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -329,7 +329,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""RangeAttack"",
+                    ""action"": ""AltAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -340,7 +340,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
+                    ""action"": ""Defence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -351,29 +351,7 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2b053c26-c065-4288-b482-74e3a5dbdfea"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Block"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bb276f63-3833-4264-95d8-32f39460bf12"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Block"",
+                    ""action"": ""Defence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -398,6 +376,28 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
                     ""action"": ""TargetLock"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c2c05581-7731-4caa-a0d1-6601eacf7748"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4c1118e-130f-4d4d-80f1-837e8e8b1171"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -408,10 +408,10 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         m_GeneralMap = asset.FindActionMap("GeneralMap", throwIfNotFound: true);
         m_GeneralMap_MoveDirection = m_GeneralMap.FindAction("MoveDirection", throwIfNotFound: true);
         m_GeneralMap_Jump = m_GeneralMap.FindAction("Jump", throwIfNotFound: true);
-        m_GeneralMap_MeleeAttack = m_GeneralMap.FindAction("MeleeAttack", throwIfNotFound: true);
-        m_GeneralMap_RangeAttack = m_GeneralMap.FindAction("RangeAttack", throwIfNotFound: true);
-        m_GeneralMap_Dash = m_GeneralMap.FindAction("Dash", throwIfNotFound: true);
-        m_GeneralMap_Block = m_GeneralMap.FindAction("Block", throwIfNotFound: true);
+        m_GeneralMap_Attack = m_GeneralMap.FindAction("Attack", throwIfNotFound: true);
+        m_GeneralMap_AltAttack = m_GeneralMap.FindAction("AltAttack", throwIfNotFound: true);
+        m_GeneralMap_WeaponMode = m_GeneralMap.FindAction("WeaponMode", throwIfNotFound: true);
+        m_GeneralMap_Defence = m_GeneralMap.FindAction("Defence", throwIfNotFound: true);
         m_GeneralMap_TargetLock = m_GeneralMap.FindAction("TargetLock", throwIfNotFound: true);
     }
 
@@ -495,10 +495,10 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
     private List<IGeneralMapActions> m_GeneralMapActionsCallbackInterfaces = new List<IGeneralMapActions>();
     private readonly InputAction m_GeneralMap_MoveDirection;
     private readonly InputAction m_GeneralMap_Jump;
-    private readonly InputAction m_GeneralMap_MeleeAttack;
-    private readonly InputAction m_GeneralMap_RangeAttack;
-    private readonly InputAction m_GeneralMap_Dash;
-    private readonly InputAction m_GeneralMap_Block;
+    private readonly InputAction m_GeneralMap_Attack;
+    private readonly InputAction m_GeneralMap_AltAttack;
+    private readonly InputAction m_GeneralMap_WeaponMode;
+    private readonly InputAction m_GeneralMap_Defence;
     private readonly InputAction m_GeneralMap_TargetLock;
     /// <summary>
     /// Provides access to input actions defined in input action map "GeneralMap".
@@ -520,21 +520,21 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_GeneralMap_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "GeneralMap/MeleeAttack".
+        /// Provides access to the underlying input action "GeneralMap/Attack".
         /// </summary>
-        public InputAction @MeleeAttack => m_Wrapper.m_GeneralMap_MeleeAttack;
+        public InputAction @Attack => m_Wrapper.m_GeneralMap_Attack;
         /// <summary>
-        /// Provides access to the underlying input action "GeneralMap/RangeAttack".
+        /// Provides access to the underlying input action "GeneralMap/AltAttack".
         /// </summary>
-        public InputAction @RangeAttack => m_Wrapper.m_GeneralMap_RangeAttack;
+        public InputAction @AltAttack => m_Wrapper.m_GeneralMap_AltAttack;
         /// <summary>
-        /// Provides access to the underlying input action "GeneralMap/Dash".
+        /// Provides access to the underlying input action "GeneralMap/WeaponMode".
         /// </summary>
-        public InputAction @Dash => m_Wrapper.m_GeneralMap_Dash;
+        public InputAction @WeaponMode => m_Wrapper.m_GeneralMap_WeaponMode;
         /// <summary>
-        /// Provides access to the underlying input action "GeneralMap/Block".
+        /// Provides access to the underlying input action "GeneralMap/Defence".
         /// </summary>
-        public InputAction @Block => m_Wrapper.m_GeneralMap_Block;
+        public InputAction @Defence => m_Wrapper.m_GeneralMap_Defence;
         /// <summary>
         /// Provides access to the underlying input action "GeneralMap/TargetLock".
         /// </summary>
@@ -571,18 +571,18 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @MeleeAttack.started += instance.OnMeleeAttack;
-            @MeleeAttack.performed += instance.OnMeleeAttack;
-            @MeleeAttack.canceled += instance.OnMeleeAttack;
-            @RangeAttack.started += instance.OnRangeAttack;
-            @RangeAttack.performed += instance.OnRangeAttack;
-            @RangeAttack.canceled += instance.OnRangeAttack;
-            @Dash.started += instance.OnDash;
-            @Dash.performed += instance.OnDash;
-            @Dash.canceled += instance.OnDash;
-            @Block.started += instance.OnBlock;
-            @Block.performed += instance.OnBlock;
-            @Block.canceled += instance.OnBlock;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @AltAttack.started += instance.OnAltAttack;
+            @AltAttack.performed += instance.OnAltAttack;
+            @AltAttack.canceled += instance.OnAltAttack;
+            @WeaponMode.started += instance.OnWeaponMode;
+            @WeaponMode.performed += instance.OnWeaponMode;
+            @WeaponMode.canceled += instance.OnWeaponMode;
+            @Defence.started += instance.OnDefence;
+            @Defence.performed += instance.OnDefence;
+            @Defence.canceled += instance.OnDefence;
             @TargetLock.started += instance.OnTargetLock;
             @TargetLock.performed += instance.OnTargetLock;
             @TargetLock.canceled += instance.OnTargetLock;
@@ -603,18 +603,18 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @MeleeAttack.started -= instance.OnMeleeAttack;
-            @MeleeAttack.performed -= instance.OnMeleeAttack;
-            @MeleeAttack.canceled -= instance.OnMeleeAttack;
-            @RangeAttack.started -= instance.OnRangeAttack;
-            @RangeAttack.performed -= instance.OnRangeAttack;
-            @RangeAttack.canceled -= instance.OnRangeAttack;
-            @Dash.started -= instance.OnDash;
-            @Dash.performed -= instance.OnDash;
-            @Dash.canceled -= instance.OnDash;
-            @Block.started -= instance.OnBlock;
-            @Block.performed -= instance.OnBlock;
-            @Block.canceled -= instance.OnBlock;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @AltAttack.started -= instance.OnAltAttack;
+            @AltAttack.performed -= instance.OnAltAttack;
+            @AltAttack.canceled -= instance.OnAltAttack;
+            @WeaponMode.started -= instance.OnWeaponMode;
+            @WeaponMode.performed -= instance.OnWeaponMode;
+            @WeaponMode.canceled -= instance.OnWeaponMode;
+            @Defence.started -= instance.OnDefence;
+            @Defence.performed -= instance.OnDefence;
+            @Defence.canceled -= instance.OnDefence;
             @TargetLock.started -= instance.OnTargetLock;
             @TargetLock.performed -= instance.OnTargetLock;
             @TargetLock.canceled -= instance.OnTargetLock;
@@ -673,33 +673,33 @@ public partial class @BaseControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "MeleeAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Attack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMeleeAttack(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "RangeAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "AltAttack" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRangeAttack(InputAction.CallbackContext context);
+        void OnAltAttack(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Dash" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "WeaponMode" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnDash(InputAction.CallbackContext context);
+        void OnWeaponMode(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Block" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Defence" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnBlock(InputAction.CallbackContext context);
+        void OnDefence(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "TargetLock" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -64,7 +64,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                             inAttackComp.AttackConfig.BaseDamage,
                             inAttackComp.AttackConfig.BaseCritChance,
                             inAttackComp.AttackConfig.BaseCritMultiplier,
-                            inAttackComp.AttackConfig.HitReactionType,
+                            inAttackComp.AttackConfig.HitReactionFlags,
                             inAttackComp.AttackConfig.ReactionVelocity,
                             inAttackComp.AttackConfig.HitReactionDuration
                             );

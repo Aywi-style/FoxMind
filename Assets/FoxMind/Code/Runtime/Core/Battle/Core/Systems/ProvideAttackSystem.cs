@@ -103,6 +103,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     var state = animancerComp.Value.Play(targetProvideAttackRequest.AttackConfig.AttackAnimation, 0.2f);
                     state.Time = 0;
                     state.Speed = animationSpeed;
+                    // state.Duration = 
                     animancerComp.Value.Animator.applyRootMotion = true;
                 }
             }

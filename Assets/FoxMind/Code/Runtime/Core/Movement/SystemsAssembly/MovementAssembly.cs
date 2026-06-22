@@ -18,9 +18,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
                 new UpdateCharacterControllerSystem(),
                 new JumpSystem(),
                 new MoveAnimationSystem(),
-
                 new DelJumpRequestSystem(),
-                new DelRegisterMotionAnimationRequestSystem(),
                 new DelRegisterMoveableRequestSystem(),
                 new DelAttackMovementLockRequestSystem(),
                 new DelAttackMovementUnlockRequestSystem(),

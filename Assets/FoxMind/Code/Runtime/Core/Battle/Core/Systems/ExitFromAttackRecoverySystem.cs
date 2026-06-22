@@ -18,16 +18,17 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
         
         private readonly EcsFilterInject<Inc<InAttackRecoveryComp>, Exc<InAttackComp>> _inAttackFilter = default;
         private readonly EcsFilterInject<Inc<InputDirectionComp>> _inputDirectionFilter = default;
-        private readonly EcsFilterInject<Inc<InputDashEvent>> _inputDashFilter = default;
-        private readonly EcsFilterInject<Inc<InputJumpEvent>> _inputJumpFilter = default;
+        private readonly EcsFilterInject<Inc<BaseInputControlsComp>> _inputControlsFilter = default;
 
+        private readonly EcsPoolInject<BaseInputControlsComp> _inputControlsPool = default;
         private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
         private readonly EcsPoolInject<InAttackMovementComp> _inAttackMovementPool = default;
         private readonly EcsPoolInject<AttackMovementUnlockRequest> _attackMovementUnlockRequestPool = default;
-        private readonly EcsPoolInject<RegisterMotionAnimationRequest> _registerMotionAnimationRequestPool = default;
         private readonly EcsPoolInject<InputDirectionComp> _inputDirectionPool = default;
 
         private float _cachedTime;
+        private bool _isDefencePressed;
+        private bool _isJumpPressed;
         
         public void Run(IEcsSystems systems)
         {
@@ -36,6 +37,15 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
             if (_inAttackFilter.Value.GetEntitiesCount() <= 0)
             {
                 return;
+            }
+            
+            foreach (var inputControlsEntity in _inputControlsFilter.Value)
+            {
+                ref var inputControlsComp = ref _inputControlsPool.Value.Get(inputControlsEntity);
+
+                _isJumpPressed = inputControlsComp.Value.GeneralMap.Jump.WasPressedThisFrame();
+                _isDefencePressed = inputControlsComp.Value.GeneralMap.Defence.WasPressedThisFrame();
+                break;
             }
             
             foreach (var inAttackEntity in _inAttackFilter.Value)
@@ -55,8 +65,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 }
 
                 bool hasModifierInput = playerIsFreeze == false
-                                        || _inputDashFilter.Value.GetEntitiesCount() > 0
-                                        || _inputJumpFilter.Value.GetEntitiesCount() > 0;
+                                        || _isDefencePressed
+                                        || _isJumpPressed;
 
                 var animLength = inAttackRecoveryComp.End - inAttackRecoveryComp.Start;
                 var continuousEnd = inAttackRecoveryComp.Start + (inAttackRecoveryComp.AttackConfig.EndOfContinuousPart * animLength);
@@ -81,8 +91,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                 {
                     _attackMovementUnlockRequestPool.Value.Add(inAttackEntity);
                 }
-
-                _registerMotionAnimationRequestPool.Value.Add(inAttackEntity);
             }
         }
 

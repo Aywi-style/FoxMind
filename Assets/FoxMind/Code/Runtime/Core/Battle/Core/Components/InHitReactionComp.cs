@@ -1,4 +1,5 @@
 ﻿using System;
+using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Components
     [Serializable]
     public struct InHitReactionComp : IEntityFeature<InHitReactionComp>
     {
-        public HitReactionType Type;
+        public HitReactionFlags Type;
         public Vector2 ReactionVelocity;
         public Vector3 WorldReactionVelocity;
         public float StartTime;

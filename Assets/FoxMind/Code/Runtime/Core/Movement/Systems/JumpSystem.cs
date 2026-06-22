@@ -12,17 +12,22 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
     /// </summary>
     public class JumpSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<InputJumpEvent>> _jumpEventFilter = default;
+        private readonly EcsFilterInject<Inc<BaseInputControlsComp>> _inputControlsFilter = default;
         private readonly EcsFilterInject<Inc<MoveableComp, JumpableComp, CharacterControllerComp>> _jumpFilter = default;
 
+        private readonly EcsPoolInject<BaseInputControlsComp> _inputControlsPool = default;
         private readonly EcsPoolInject<JumpableComp> _jumpablePool = default;
         private readonly EcsPoolInject<CharacterControllerComp> _characterControllerPool = default;
 
         public void Run(IEcsSystems systems)
         {
-            if (_jumpEventFilter.Value.GetEntitiesCount() <= 0)
+            foreach (var inputControlsEntity in _inputControlsFilter.Value)
             {
-                return;
+                ref var inputControlsComp = ref _inputControlsPool.Value.Get(inputControlsEntity);
+                if (inputControlsComp.Value.GeneralMap.Jump.WasPressedThisFrame() == false)
+                {
+                    return;
+                }
             }
             
             foreach (var movableEntity in _jumpFilter.Value)

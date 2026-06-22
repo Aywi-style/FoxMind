@@ -1,4 +1,5 @@
 using System;
+using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using Leopotam.EcsLite;
 
@@ -12,7 +13,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Components
         public int BaseDamage;
         public float BaseCritChance;
         public float BaseCritMultiplier;
-        public HitReactionType HitReactionType;
+        public HitReactionFlags HitReactionFlags;
         public UnityEngine.Vector2 ReactionVelocity;
         public float HitReactionDuration;
         public int FinalDamage;

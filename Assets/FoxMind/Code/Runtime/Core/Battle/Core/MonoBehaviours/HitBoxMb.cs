@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using UnityEngine;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
 using Leopotam.EcsLite;
@@ -19,14 +20,14 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
         [ReadOnly, ShowInInspector] private int _currentBaseDamage = 0;
         [ReadOnly, ShowInInspector] private float _currentBaseCritChance = 0;
         [ReadOnly, ShowInInspector] private float _currentBaseCritMultiplier = 0;
-        [ReadOnly, ShowInInspector] private HitReactionType _currentHitReactionType = HitReactionType.None;
+        [ReadOnly, ShowInInspector] private HitReactionFlags _currentHitReactionFlags = HitReactionFlags.None;
         [ReadOnly, ShowInInspector] private Vector2 _currentReactionVelocity = Vector2.zero;
         [ReadOnly, ShowInInspector] private float _currentHitReactionDuration = 0;
         
         public int CurrentBaseDamage => _currentBaseDamage;
         public float CurrentBaseCritChance => _currentBaseCritChance;
         public float CurrentBaseCritMultiplier => _currentBaseCritMultiplier;
-        public HitReactionType CurrentHitReactionType => _currentHitReactionType;
+        public HitReactionFlags CurrentHitReactionFlags => _currentHitReactionFlags;
         public Vector2 CurrentReactionVelocity => _currentReactionVelocity;
         public float CurrentHitReactionDuration => _currentHitReactionDuration;
 
@@ -47,7 +48,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
             int baseDamageValue,
             float baseCritChance,
             float baseCritMultiplier,
-            HitReactionType hitReactionType,
+            HitReactionFlags hitReactionFlags,
             Vector2 reactionVelocity,
             float hitReactionDuration)
         {
@@ -56,7 +57,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
             _currentBaseDamage = baseDamageValue;
             _currentBaseCritChance = baseCritChance;
             _currentBaseCritMultiplier = baseCritMultiplier;
-            _currentHitReactionType = hitReactionType;
+            _currentHitReactionFlags = hitReactionFlags;
             _currentReactionVelocity = reactionVelocity;
             _currentHitReactionDuration = hitReactionDuration > 0f ? hitReactionDuration : 0.35f;
             
@@ -77,7 +78,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.MonoBehaviours
                 hitCollider.enabled = false;
             }
 
-            _currentHitReactionType = HitReactionType.None;
+            _currentHitReactionFlags = HitReactionFlags.None;
             _currentReactionVelocity = Vector2.zero;
             _currentHitReactionDuration = 0;
             _isEnabled = false;

@@ -43,12 +43,12 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 ref var combinableComp = ref _combinablePool.Value.Get(inComboEntity);
                 ref var inComboComp = ref _inComboPool.Value.Get(inComboEntity);
 
-                combinableComp.AvailableCombos ??= new List<ComboConfig_v2>();
+                //combinableComp.AvailableCombos ??= new List<ComboConfig>();
+                combinableComp.AvailableCombos ??= new TestClass();
                 
                 combinableComp.AvailableCombos.Clear();
 
-                var isWindowForCombo = _cachedTime >= inComboComp.NextComboWindowStart && _cachedTime <= inComboComp.NextComboWindowEnd;
-                var timeToComboWindow = inComboComp.NextComboWindowStart - _cachedTime;
+                var isWindowForCombo = inComboComp.NextComboWindowStart <= _cachedTime && _cachedTime <= inComboComp.NextComboWindowEnd;
                 
                 foreach (var comboConfig in inComboComp.ComboConfig.NextCombos)
                 {
@@ -56,11 +56,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                     {
                         continue;
                     }
-
-                    var isBufferBeforeComboWindow = timeToComboWindow >= 0 && timeToComboWindow <= comboConfig.LeadTime;
                     
-                    // We allow combos either during the active window or slightly before it (LeadTime buffer).
-                    if (isWindowForCombo || isBufferBeforeComboWindow)
+                    if (isWindowForCombo)
                     {
                         combinableComp.AvailableCombos.Add(comboConfig);
                     }
@@ -80,7 +77,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             {
                 ref var combinableComp = ref _combinablePool.Value.Get(nonInComboEntity);
 
-                combinableComp.AvailableCombos ??= new List<ComboConfig_v2>();
+                //combinableComp.AvailableCombos ??= new List<ComboConfig>();
+                combinableComp.AvailableCombos ??= new TestClass();
                 
                 combinableComp.AvailableCombos.Clear();
 
@@ -97,7 +95,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
             }
         }
 
-        private bool IsComboAllowedForStance(ComboConfig_v2 comboConfig, int entity)
+        private bool IsComboAllowedForStance(ComboConfig comboConfig, int entity)
         {
             if (comboConfig == null)
             {

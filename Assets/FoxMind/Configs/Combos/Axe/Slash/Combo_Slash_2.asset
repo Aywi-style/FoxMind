@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 350e62913ff84f028e3a1bfd36e06bd2, type: 3}
+  m_Script: {fileID: 11500000, guid: deb85c8622eb400f87a0cc19156f765b, type: 3}
   m_Name: Combo_Slash_2
   m_EditorClassIdentifier: 
   serializationData:
@@ -20,14 +20,47 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: MovementSetup
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[FoxMind.Code.Runtime.Core.Input.Structs.ComboInput,
+        FoxMind.Code.Runtime]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ComboActivators
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[FoxMind.Code.Runtime.Core.Input.Structs.ComboInput,
+        FoxMind.Code.Runtime]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: FoxMind.Code.Runtime.Core.Input.Structs.ComboInput, FoxMind.Code.Runtime
+    - Name: Type
+      Entry: 3
+      Data: 5
+    - Name: PressType
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   IsOpener: 0
-  ComboConditions:
-  - Condition: 0
-    PressWindow: 0.1
-  AllowedCombos:
-    LaunchWindow: 0.405
-    Combos:
-    - {fileID: 11400000, guid: ac786c8d1971c8d44b4228c01956fbe6, type: 2}
-  AttackConfig: {fileID: 11400000, guid: a461bd6ef94c8ef40ba33d42192ddb6d, type: 2}
-  ComboEnd: 1
+  AttackConfig: {fileID: 11400000, guid: 4110c79344272a34892ba3c80a06284d, type: 2}
+  StanceCondition: 1
+  NextCombos:
+  - {fileID: 11400000, guid: e726f167ffedf0f488367c85b727affe, type: 2}

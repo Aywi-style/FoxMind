@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3203c2644fb467799eededeb4ce4beb, type: 3}
+  m_Script: {fileID: 11500000, guid: b36194bc31494c85bb6442b656088bef, type: 3}
   m_Name: Attack_Bash_2
   m_EditorClassIdentifier: 
   serializationData:
@@ -21,10 +21,17 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  AttackEnd: 1
-  AttackEndComponents: []
-  TimingComponents: []
-  Animation: {fileID: 7400000, guid: 7ab91d5c43897f0468e920b148d5b957, type: 3}
-  references:
-    version: 2
-    RefIds: []
+  <AttackAnimation>k__BackingField: {fileID: 7400000, guid: 7ab91d5c43897f0468e920b148d5b957, type: 3}
+  <BaseDamage>k__BackingField: 100
+  <BaseCritChance>k__BackingField: 0.5
+  <BaseCritMultiplier>k__BackingField: 2
+  <AnimationDurationSeconds>k__BackingField: 0.716
+  <AttackerMovement>k__BackingField:
+    Mode: 1
+    EndNormalizedTime: 1
+  <HitReactionType>k__BackingField: 3
+  <ReactionVelocity>k__BackingField: {x: 0, y: 4}
+  <HitReactionDuration>k__BackingField: 0.35
+  <EndOfContinuousPart>k__BackingField: 0.67
+  HitWindow: {x: 0.175, y: 0.62}
+  ComboWindow: {x: 0.62, y: 0.95}

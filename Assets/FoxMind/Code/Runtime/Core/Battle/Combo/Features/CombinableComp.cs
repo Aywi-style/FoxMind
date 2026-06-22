@@ -7,12 +7,10 @@ using UnityEngine;
 
 namespace FoxMind.Code.Runtime.Core.Battle.Combo.Components
 {
-    [Serializable]/*
-    [Title("Feature: CombinableComp")]
-    [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]*/
+    [Serializable]
     public struct CombinableComp : IEntityFeature<CombinableComp>
     {
         public CombosAssembly CombosAssembly;
-        [ReadOnly] public List<ComboConfig_v2> AvailableCombos;
+        [ShowInInspector] [ReadOnly] public TestClass AvailableCombos;
     }
 }

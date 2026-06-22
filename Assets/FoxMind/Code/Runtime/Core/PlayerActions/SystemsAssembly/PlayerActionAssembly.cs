@@ -11,7 +11,7 @@ namespace FoxMind.Code.Runtime.Core.PlayerActions.SystemsAssembly
         {
             EcsVisitable = new List<IEcsVisitable>()
             {
-                new PlayerDashSystem(),
+                new PlayerDefenceSystem(),
                 new PlayerLookDirectionSystem(),
                 new PlayerInputConvertToMoveDirection(),
                 new PlayerIsGroundedSystem(),
