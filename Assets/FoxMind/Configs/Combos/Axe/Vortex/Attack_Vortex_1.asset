@@ -25,13 +25,13 @@ MonoBehaviour:
   <BaseDamage>k__BackingField: 0
   <BaseCritChance>k__BackingField: 0
   <BaseCritMultiplier>k__BackingField: 0
-  <AnimationDurationSeconds>k__BackingField: 1.666
+  <AnimationDurationSeconds>k__BackingField: 1
   <AttackerMovement>k__BackingField:
     Mode: 1
     EndNormalizedTime: 1
   <HitReactionFlags>k__BackingField: 0
   <ReactionVelocity>k__BackingField: {x: 0, y: 0}
   <HitReactionDuration>k__BackingField: 0.35
-  <EndOfContinuousPart>k__BackingField: 0.3
+  <EndOfContinuousPart>k__BackingField: 0.6
   HitWindow: {x: 0.02, y: 0.24}
-  ComboWindow: {x: 0.24, y: 1}
+  ComboWindow: {x: 0.5, y: 0.6}

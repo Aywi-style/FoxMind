@@ -42,7 +42,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
         [Title("Combo Window", bold: false), SerializeField, HideLabel, MinMaxSlider(0, 1, true), PropertyOrder(3)]
         public Vector2 ComboWindow;
 
-        public float GetBaseAnimationDuration()
+        private float GetBaseAnimationDuration()
         {
             if (AnimationDurationSeconds > 0f)
             {
@@ -55,24 +55,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
         public float GetEffectiveAnimationDuration(float attackSpeed)
         {
             return GetBaseAnimationDuration() / Mathf.Max(0.01f, attackSpeed);
-        }
-
-        public float GetEffectiveAnimationSpeed(float attackSpeed)
-        {
-            var baseDuration = GetBaseAnimationDuration();
-            if (AttackAnimation == null || AttackAnimation.length <= 0f || baseDuration <= 0f)
-            {
-                return Mathf.Max(0.01f, attackSpeed);
-            }
-
-            return AttackAnimation.length / baseDuration * Mathf.Max(0.01f, attackSpeed);
-        }
-
-        public float GetAttackMovementEndNormalizedTime()
-        {
-            return AttackerMovement.EndNormalizedTime > 0f
-                ? AttackerMovement.EndNormalizedTime
-                : EndOfContinuousPart;
         }
     }
 }

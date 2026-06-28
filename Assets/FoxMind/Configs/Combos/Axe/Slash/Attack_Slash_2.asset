@@ -29,9 +29,9 @@ MonoBehaviour:
   <AttackerMovement>k__BackingField:
     Mode: 1
     EndNormalizedTime: 0
-  <HitReactionType>k__BackingField: 3
+  <HitReactionFlags>k__BackingField: 0
   <ReactionVelocity>k__BackingField: {x: 0, y: 10}
   <HitReactionDuration>k__BackingField: 0.35
   <EndOfContinuousPart>k__BackingField: 0.631
   HitWindow: {x: 0.364, y: 0.45}
-  ComboWindow: {x: 0.41, y: 0.6}
+  ComboWindow: {x: 0.41, y: 0.65}

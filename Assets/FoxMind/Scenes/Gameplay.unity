@@ -15493,6 +15493,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
+      propertyPath: managedReferences[9018695258035978333]._dashPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570863762538580].Value4.Move
       value: 
       objectReference: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
@@ -15503,10 +15507,6 @@ PrefabInstance:
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570872806768734].AllowDoubleJump
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
-      propertyPath: managedReferences[4832570872806768737].UseVerticalRootMotion
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570872806768734].AllowJumpingWhenSliding
@@ -15567,10 +15567,6 @@ PrefabInstance:
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570872806768734].JumpPostGroundingGraceTime
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
-      propertyPath: _moveableBehavioursComp._movementBehavioursOnlyInspector.Array.size
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 28404776626677681, guid: cb1d509883c232245af89aea551ff7b3, type: 3}
       propertyPath: managedReferences[4832570872806768724].CurrentMaxSpeedFromMovementBehaviour

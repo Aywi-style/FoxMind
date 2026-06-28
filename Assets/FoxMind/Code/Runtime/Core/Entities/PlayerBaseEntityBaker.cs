@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Animations.Components;
-using FoxMind.Code.Runtime.Core.Battle.Combo.Components;
-using FoxMind.Code.Runtime.Core.Battle.Components;
+using FoxMind.Code.Runtime.Core.Battle.Combo.Features;
+using FoxMind.Code.Runtime.Core.Battle.Core.Features;
 using FoxMind.Code.Runtime.Core.Battle.Targeting.Components;
 using FoxMind.Code.Runtime.Core.Camera.Components;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
@@ -27,7 +27,6 @@ namespace FoxMind.Code.Runtime.Core.Entities
         [SerializeField] private AnimatorComp _animatorComp;
         [SerializeField] private PushBoxCapsuleComp _pushBoxCapsuleComp;
         [SerializeField] private PlayerControlledComp _playerControlledComp;
-        [SerializeField] private RegisterMoveableRequest _registerMoveableRequest;
         [SerializeField] private MoveableBehavioursComp _moveableBehavioursComp;
         [SerializeField] private MotionAnimationComp _motionAnimationComp;
         [SerializeField] private JumpableComp _jumpableComp;
@@ -67,7 +66,6 @@ namespace FoxMind.Code.Runtime.Core.Entities
                 _animatorComp,
                 _pushBoxCapsuleComp,
                 _playerControlledComp,
-                _registerMoveableRequest,
                 _moveableBehavioursComp,
                 _motionAnimationComp,
                 _jumpableComp,

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using FoxMind.Code.Runtime.Core.Movement.Interfaces;
+using FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours;
 using JetBrains.Annotations;
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -15,6 +16,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
     {
         [SerializeReference] private List<IMovementBehaviour> _movementBehavioursOnlyInspector;
         [SerializeReference] [CanBeNull] public IJumpBehaviour JumpBehaviour;
+        [SerializeReference] [CanBeNull] public DashBehaviour DashBehaviour;
         public Dictionary<Type, IMovementBehaviour> MovementBehaviours;
 
         public void SetComposeValues(ref MoveableBehavioursComp component)

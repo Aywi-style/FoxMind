@@ -21,7 +21,6 @@ namespace FoxMind.Code.Runtime.Core.Entities
         [SerializeField] private CharacterControllerComp _characterControllerComp;
         [SerializeField] private MoveableComp _moveableComp;
         [SerializeField] private MoveableBehavioursComp _moveableBehavioursComp;
-        [SerializeField] private RegisterMoveableRequest _registerMoveableRequest;
         
         private List<IEntityFeature> _features;
 
@@ -47,7 +46,6 @@ namespace FoxMind.Code.Runtime.Core.Entities
                 _characterControllerComp,
                 _moveableComp,
                 _moveableBehavioursComp,
-                _registerMoveableRequest,
                 
                 _targetFindableComp,
                 _transformComp,

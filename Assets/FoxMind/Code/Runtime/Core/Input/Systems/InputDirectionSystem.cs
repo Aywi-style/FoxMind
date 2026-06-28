@@ -31,6 +31,8 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
                 ref var inputControlsComp = ref _baseInputControlsPool.Value.Get(inputEntity);
                 ref var inputDirectionComp = ref _inputDirectionPool.Value.Get(inputEntity);
                 inputDirectionComp.Direction = inputControlsComp.Value.GeneralMap.MoveDirection.ReadValue<Vector2>();
+                inputControlsComp.InputMoveDirection = inputControlsComp.Value.GeneralMap.MoveDirection.ReadValue<Vector2>();
+                
             }
         }
     }

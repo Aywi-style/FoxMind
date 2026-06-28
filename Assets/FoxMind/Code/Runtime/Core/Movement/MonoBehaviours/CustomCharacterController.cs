@@ -1,6 +1,7 @@
 using System;
 using FoxMind.Code.Runtime.Core.Movement.Interfaces;
 using FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours;
+using FoxMind.Code.Runtime.Core.Stats.Features;
 using UnityEngine;
 using KinematicCharacterController;
 using Sirenix.OdinInspector;
@@ -19,16 +20,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
 
         [field: Sirenix.OdinInspector.ReadOnly, ShowInInspector] public IMovementBehaviour CurrentMovementBehaviour { private set; get; }
         [field: Sirenix.OdinInspector.ReadOnly, ShowInInspector] public IJumpBehaviour CurrentJumpBehaviour { private set; get; }
+        [field: Sirenix.OdinInspector.ReadOnly, ShowInInspector] public DashBehaviour DashBehaviour { private set; get; }
 
         private void Start()
         {
             Motor.CharacterController = this;
-        }
-
-        public void Initialize(IMovementBehaviour baseMovementBehaviour, IJumpBehaviour baseJumpBehaviour)
-        {
-            SetCurrentMovementBehaviour(baseMovementBehaviour);
-            SetJumpBehaviour(baseJumpBehaviour);
         }
         
         public void SetCurrentMovementBehaviour(IMovementBehaviour newMovementBehaviour)
@@ -46,6 +42,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
         public void SetJumpBehaviour(IJumpBehaviour jumpBehaviour)
         {
             CurrentJumpBehaviour = jumpBehaviour;
+        }
+
+        public void SetDashBehaviour(DashBehaviour dashBehaviour)
+        {
+            DashBehaviour = dashBehaviour;
         }
         
         private void Update()
@@ -66,6 +67,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.MonoBehaviours
         public void SetJumpRequest()
         {
             CurrentJumpBehaviour?.SetJumpRequest();
+        }
+
+        public void SetDashRequest(Vector3 dashDirection, UnitStatsComp unitStats)
+        {
+            DashBehaviour?.SetDashRequest(dashDirection, unitStats);
         }
 
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)

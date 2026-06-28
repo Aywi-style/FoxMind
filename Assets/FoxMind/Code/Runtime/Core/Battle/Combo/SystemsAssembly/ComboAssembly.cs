@@ -12,12 +12,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.SystemsAssembly
             EcsVisitable = new List<IEcsVisitable>()
             {
                 new DefineActualComboSystem(),
-                new DefineWhatPlayerComboNeedToDoSystem(),
                 new ProvideComboSystem(),
-                new InComboComponentDeletingSystem(),
                 
-                new DelSelfComboAttackRequestSystem(),
-                new DelTargetProvideComboRequestSystem(),
+                // new DelSelfComboAttackRequestSystem(),
             };
         }
     }

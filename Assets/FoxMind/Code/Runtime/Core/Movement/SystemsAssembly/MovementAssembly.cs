@@ -11,17 +11,13 @@ namespace FoxMind.Code.Runtime.Core.Movement.SystemsAssembly
         {
             EcsVisitable = new List<IEcsVisitable>()
             {
-                new RemoveAttackMovementLockSystem(),
-                new ApplyAttackMovementLockSystem(),
                 new RegisterMoveableRequestSystem(),
                 new RegisterMotionAnimationsSystem(),
+                new SelectMovementBehaviourSystem(),
+                new SetMoveAndLookDirectionSystem(),
                 new UpdateCharacterControllerSystem(),
                 new JumpSystem(),
                 new MoveAnimationSystem(),
-                new DelJumpRequestSystem(),
-                new DelRegisterMoveableRequestSystem(),
-                new DelAttackMovementLockRequestSystem(),
-                new DelAttackMovementUnlockRequestSystem(),
             };
         }
     }

@@ -1,5 +1,4 @@
-﻿using FoxMind.Code.Runtime.Core.Battle.Combo.Components;
-using FoxMind.Code.Runtime.Core.Battle.Components;
+﻿using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Input.Components;
 using Leopotam.EcsLite;
@@ -15,7 +14,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
 
         private readonly EcsPoolInject<BaseInputControlsComp> _inputControlsPool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
-        private readonly EcsPoolInject<InAttackRecoveryComp> _inAttackRecoveryPool = default;
         
         public void Run(IEcsSystems systems)
         {

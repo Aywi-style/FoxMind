@@ -1,10 +1,8 @@
 ﻿using System;
 using FoxMind.Code.Runtime.Core.Battle.MonoBehaviours;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
-using UnityEngine;
-using Sirenix.OdinInspector;
 
-namespace FoxMind.Code.Runtime.Core.Battle.Components
+namespace FoxMind.Code.Runtime.Core.Battle.Core.Features
 {
     [Serializable]
     /*[Title("Feature: WeaponComp")]

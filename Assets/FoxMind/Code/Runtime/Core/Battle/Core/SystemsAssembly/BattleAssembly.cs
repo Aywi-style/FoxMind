@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FoxMind.Code.Runtime.Core.Battle.Core.Systems;
 using FoxMind.Code.Runtime.Core.Battle.Systems;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces;
@@ -12,10 +13,9 @@ namespace FoxMind.Code.Runtime.Core.Battle.Core.SystemsAssembly
             EcsVisitable = new List<IEcsVisitable>()
             {
                 new ProvideAttackSystem(),
-                new CancelAttackOnModifierInputSystem(),
+                new CancelAttackSystem(),
                 new HitBoxEnablingSystem(),
                 new HitBoxOverlapSystem(),
-                new ApplyAttackComponentsSystem(),
                 
                 new CalculateFinalDamageSystem(),
                 new CauseDamageSystem(),
@@ -24,12 +24,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Core.SystemsAssembly
                 new ApplyHitReactionMovementSystem(),
                 new InHitReactionComponentDeletingSystem(),
                 new RecoverStabilizationSystem(),
-                new TransitionFromAttackToAttackRecoverySystem(),
-                new InAttackMovementComponentDeletingSystem(),
-                new ExitFromAttackRecoverySystem(),
+                // new CancelAttackSystem(),
                 
                 new DeathSystem(),
                 
+                new CleanUpAfterAttackSystem(),
                 new DelTargetProvideAttackRequestSystem(),
                 new DelCauseDamageRequestSystem(),
                 new DelHitReactionRequestSystem(),

@@ -12,7 +12,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Components
     [InfoBox("Designer-facing entity feature. Add via EntityBaker.Features or EntityTemplateConfig.")]*/
     public struct MotionAnimationComp : IEntityFeature<MotionAnimationComp>
     {
-        public TransitionAsset Move;
+        public TransitionAsset MoveAsset;
         [ReadOnly] public MixerState<Vector2> MoveState;
         //[ReadOnly] public AnimancerState MoveState;
     }

@@ -13,12 +13,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
     /// </summary>
     public class MoveAnimationSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        readonly EcsFilterInject<Inc<MotionAnimationComp, MoveableComp, TransformComp, AnimancerComp>> _animableFilter = default;
+        readonly EcsFilterInject<Inc<MotionAnimationComp, MoveableComp, TransformComp>> _animableFilter = default;
         
         readonly EcsPoolInject<TransformComp> _transformPool = default;
         readonly EcsPoolInject<MotionAnimationComp> _motionAnimationPool = default;
         readonly EcsPoolInject<MoveableComp> _moveablePool = default;
-        readonly EcsPoolInject<AnimancerComp> _animancerPool = default;
         
         public void Run(IEcsSystems systems)
         {
@@ -41,13 +40,16 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
 
                 /*float animationX = Vector3.Dot(transform.Value.right, moveable.NormalizedMoveDirection);
                 float animationY = Vector3.Dot(transform.Value.forward, moveable.NormalizedMoveDirection);*/
-                
                 float currentSpeed = moveable.Motor.Velocity.magnitude; // Получаем величину текущей скорости
                 float normalizedSpeed;
                 float maxSpeed = moveable.CustomCharacterController.CurrentMovementBehaviour.GetMaxSpeed();
-                if (maxSpeed <= 0) { // Обработка деления на ноль
+                
+                if (maxSpeed <= 0) // Обработка деления на ноль
+                {
                     normalizedSpeed = 0;
-                } else {
+                }
+                else
+                {
                     normalizedSpeed = Mathf.Clamp01(currentSpeed / maxSpeed); // Нормализуем и ограничиваем в диапазоне [0, 1]
                 }
                 

@@ -9,11 +9,7 @@ using Leopotam.EcsLite.Di;
 
 namespace FoxMind.Code.Runtime.Core.Movement.Systems
 {
-    /// <summary>
-    /// Общая система выбора movement behaviour и передачи направления в CustomCharacterController.
-    /// Работает и для игрока и для врагов; источник направления задаётся отдельными input/AI системами через MoveableComp.
-    /// </summary>
-    public class UpdateCharacterControllerSystem : BaseEcsVisitable, IEcsRunSystem
+    public class SelectMovementBehaviourSystem : BaseEcsVisitable, IEcsRunSystem
     {
         private readonly EcsFilterInject<Inc<CharacterControllerComp, MoveableComp, MoveableBehavioursComp>> _characterControllerFilter = default;
 
@@ -33,30 +29,24 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
 
                 ref var moveable = ref _moveablePool.Value.Get(movableEntity);
                 ref var moveableBehaviours = ref _moveableBehavioursPool.Value.Get(movableEntity);
-                if (moveable.CustomCharacterController == null || moveable.CustomCharacterController.Motor == null || moveableBehaviours.MovementBehaviours == null)
+
+                SelectMovementBehaviour(movableEntity, ref moveable, ref moveableBehaviours);
+
+                if (_cachedNewController == null || _cachedNewController == moveable.CustomCharacterController.CurrentMovementBehaviour)
                 {
                     continue;
                 }
-
-                var immovableMultiply = _immovablePool.Value.Has(movableEntity) ? 0 : 1;
-                var movementInputMultiply = SelectMovementBehaviour(movableEntity, ref moveable, ref moveableBehaviours);
-
-                if (_cachedNewController != null && _cachedNewController != moveable.CustomCharacterController.CurrentMovementBehaviour)
-                {
-                    moveable.CustomCharacterController.SetCurrentMovementBehaviour(_cachedNewController);
-                }
-
-                moveable.CustomCharacterController.SetMoveDirection(moveable.NormalizedMoveDirection * immovableMultiply * movementInputMultiply);
-                moveable.CustomCharacterController.SetLookDirection(moveable.NormalizedLookDirection);
+                
+                moveable.CustomCharacterController.SetCurrentMovementBehaviour(_cachedNewController);
             }
         }
 
-        private float SelectMovementBehaviour(int movableEntity, ref MoveableComp moveable, ref MoveableBehavioursComp moveableBehaviours)
+        private void SelectMovementBehaviour(int movableEntity, ref MoveableComp moveable, ref MoveableBehavioursComp moveableBehaviours)
         {
             if (_inHitReactionPool.Value.Has(movableEntity))
             {
                 moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.HitReaction, out _cachedNewController);
-                return 0f;
+                return;
             }
 
             if (_inAttackPool.Value.Has(movableEntity))
@@ -67,20 +57,19 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 {
                     case AttackMovementMode.GroundRootMotion:
                         moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionStable, out _cachedNewController);
-                        return 0f;
+                        return;
                     case AttackMovementMode.AirRootMotion:
                         moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionAir, out _cachedNewController);
-                        return 0f;
+                        return;
                     default:
-                        return 1f;
+                        _cachedNewController = UnknownMovementBehaviour.Get();
+                        return;
                 }
             }
 
             var isGrounded = moveable.CustomCharacterController.Motor.GroundingStatus.IsStableOnGround;
 
             moveableBehaviours.MovementBehaviours.TryGetValue(isGrounded ? BehavioursConstants.Stable : BehavioursConstants.Air, out _cachedNewController);
-            
-            return 1f;
         }
     }
 }

@@ -1,4 +1,4 @@
-using FoxMind.Code.Runtime.Core.Visitor;
+using FoxMind.Code.Runtime.Plugins.Visitor;
 using Leopotam.EcsLite;
 
 namespace FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Interfaces

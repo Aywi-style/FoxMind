@@ -223,7 +223,8 @@ MonoBehaviour:
   _entity: 0
   _combinableComp:
     CombosAssembly: {fileID: 11400000, guid: be83c634f951b3247badb7d9c330225f, type: 2}
-    AvailableCombos: []
+    CurrentCombo: {fileID: 0}
+    NextCombo: {fileID: 0}
   _targetingComp:
     SoftSearchRadius: 6
     SoftSearchAngle: 70
@@ -283,11 +284,13 @@ MonoBehaviour:
     - rid: 4832570872806768736
     - rid: 4832570872806768737
     - rid: 4832570872806768738
-    - rid: 4865544819028000861
+    - rid: 9018695224176410718
     JumpBehaviour:
       rid: 4832570872806768739
+    DashBehaviour:
+      rid: 9018695258035978333
   _motionAnimationComp:
-    Move: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
+    MoveAsset: {fileID: 11400000, guid: 12d360dc45dae424b94f45e8f0df24a2, type: 2}
   _characterControllerComp:
     Value: {fileID: 4824951740370521264}
   _moveableComp:
@@ -351,13 +354,15 @@ MonoBehaviour:
         JumpSpeed: 10
         JumpPreGroundingGraceTime: 0
         JumpPostGroundingGraceTime: 0
-    - rid: 4865544819028000861
-      type: {class: AttackLauncherRootMotionBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+    - rid: 9018695224176410718
+      type: {class: HitReactionMovementBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
       data:
         motor: {fileID: 9019267054329287531}
-        OrientationSharpness: 10
-        MaxAirControlSpeed: 6
-        AirControlAcceleration: 12
+        defaultAirKnockdownSpeed: 20
+        orientationSharpness: 20
+    - rid: 9018695258035978333
+      type: {class: DashBehaviour, ns: FoxMind.Code.Runtime.Core.Movement.KinematicCharacterBehaviours, asm: FoxMind.Code.Runtime}
+      data: 
 --- !u!54 &2475979542855141883 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 8961378062448705683, guid: 43c07fe1257c9504ca6cdd076e856c9e, type: 3}

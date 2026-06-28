@@ -14,10 +14,11 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
     /// </summary>
     public class RegisterMoveableRequestSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<RegisterMoveableRequest, MoveableComp, MoveableBehavioursComp>> _requestFilter = default;
+        private readonly EcsFilterInject<Inc<MoveableComp, MoveableBehavioursComp>, Exc<RegisteredMoveableBehavioursTag>> _requestFilter = default;
 
         private readonly EcsPoolInject<MoveableComp> _moveablePool = default;
         private readonly EcsPoolInject<MoveableBehavioursComp> _moveableBehavioursPool = default;
+        private readonly EcsPoolInject<RegisteredMoveableBehavioursTag> _registeredMoveableBehavioursPool = default;
 
         public void Run(IEcsSystems systems)
         {
@@ -26,20 +27,18 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
                 ref var moveableComp = ref _moveablePool.Value.Get(movableEntity);
                 ref var moveableBehaviours = ref _moveableBehavioursPool.Value.Get(movableEntity);
 
-                if (moveableBehaviours.MovementBehaviours.ContainsKey(BehavioursConstants.HitReaction) == false)
-                {
-                    moveableBehaviours.MovementBehaviours.Add(BehavioursConstants.HitReaction, new HitReactionMovementBehaviour());
-                }
-                
-                moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.Stable, out var stableBehaviour);
-                moveableComp.CustomCharacterController.Initialize(stableBehaviour, moveableBehaviours.JumpBehaviour);
-
                 foreach (var movementBehaviour in moveableBehaviours.MovementBehaviours.Values)
                 {
                     movementBehaviour.Initialize(moveableComp.Motor);
                 }
                 
-                moveableBehaviours.JumpBehaviour.Initialize(moveableComp.Motor);
+                moveableComp.CustomCharacterController.SetJumpBehaviour(moveableBehaviours.JumpBehaviour);
+                moveableComp.CustomCharacterController.SetDashBehaviour(moveableBehaviours.DashBehaviour);
+                
+                moveableBehaviours.JumpBehaviour?.Initialize(moveableComp.Motor);
+                moveableBehaviours.DashBehaviour?.Initialize(moveableComp.Motor);
+
+                _registeredMoveableBehavioursPool.Value.Add(movableEntity);
             }
         }
     }
