@@ -18,7 +18,7 @@ namespace FoxMind.Code.Runtime.Core.Input.Components
 
         public Vector2 InputMoveDirection;
         
-        // public RingBuffer<>
+        public RingBuffer<UtilityInputData> UtilityInputHistory;
         
         public RingBuffer_ComboInputAction BufferComboInputHistory;
         public ComboInputType CurrentComboMoveInput;

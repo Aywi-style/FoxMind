@@ -15,11 +15,11 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.SystemsAssembly
         {
             EcsVisitable = new List<IEcsVisitable>
             {
-                new RegisterTargetingSystem(),
                 new ValidateCurrentTargetSystem(),
                 new SoftTargetingSystem(),
                 new HardTargetingSelectionSystem(),
                 new TargetingManualAimSystem(),
+                new UpdateDirectionToTargetSystem(),
                 new UpdateTargetingUiSystem(),
             };
         }

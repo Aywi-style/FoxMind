@@ -37,6 +37,8 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Components
         [Header("Hard Target State")]
         [ReadOnly] public bool HasHardTarget;
         [ReadOnly] public EcsPackedEntity HardTarget;
+        [ReadOnly] public Vector3 HardTargetForwardDirection;
+        [ReadOnly] public Vector3 HardTargetRightDirection => new Vector3(HardTargetForwardDirection.z, HardTargetForwardDirection.y, -HardTargetForwardDirection.x);
         [ReadOnly] public float HardTargetScore;
         
         [Header("Soft Target State")]

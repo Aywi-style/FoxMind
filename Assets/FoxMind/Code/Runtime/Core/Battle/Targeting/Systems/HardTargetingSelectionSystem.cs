@@ -19,63 +19,47 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
     {
         private readonly EcsWorldInject _world = default;
         
-        private readonly EcsFilterInject<Inc<InputTargetLockPressDownEvent>> _targetLockDownFilter = default;
-        private readonly EcsFilterInject<Inc<InputTargetLockPressUpEvent>> _targetLockUpFilter = default;
-        private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, TargetingComp, TargetingStateComp>> _targetingFilter = default;
+        private readonly EcsFilterInject<Inc<BaseInputControlsComp>> _baseInputControlsFilter = default;
+        private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, TargetingComp>> _targetingFilter = default;
         private readonly EcsFilterInject<Inc<TargetFindableComp, TransformComp>> _targetFindableFilter = default;
 
+        private readonly EcsPoolInject<BaseInputControlsComp> _baseInputControlsPool = default;
         private readonly EcsPoolInject<TransformComp> _transformPool = default;
         private readonly EcsPoolInject<TargetingComp> _targetingPool = default;
-        private readonly EcsPoolInject<TargetingStateComp> _targetingStatePool = default;
         private readonly EcsPoolInject<TargetFindableComp> _targetFindablePool = default;
         private readonly EcsPoolInject<FractionComp> _fractionPool = default;
 
         private readonly List<Candidate> _candidates = new List<Candidate>();
+        
+        private bool _hasDown = false;
 
         public void Run(IEcsSystems systems)
         {
-            var time = Time.time;
-            var hasDown = _targetLockDownFilter.Value.GetEntitiesCount() > 0;
-            var hasUp = _targetLockUpFilter.Value.GetEntitiesCount() > 0;
+            _hasDown = false;
             
-            if (hasDown == false && hasUp == false)
+            foreach (var inputEntity in _baseInputControlsFilter.Value)
+            {
+                ref var inputControlsComp = ref _baseInputControlsPool.Value.Get(inputEntity);
+
+                _hasDown = inputControlsComp.Value.GeneralMap.TargetLock.WasPressedThisFrame();
+            }
+            
+            if (_hasDown == false)
             {
                 return;
             }
-
+            
             foreach (var targetingEntity in _targetingFilter.Value)
             {
-                ref var state = ref _targetingStatePool.Value.Get(targetingEntity);
-
-                if (hasDown)
-                {
-                    state.IsPressed = true;
-                    state.PressStartTime = time;
-                }
-
-                if (hasUp == false)
-                {
-                    continue;
-                }
-
-                var pressDuration = state.IsPressed ? time - state.PressStartTime : 0f;
-                state.IsPressed = false;
-
-                if (pressDuration >= _targetingPool.Value.Get(targetingEntity).HoldThreshold)
-                {
-                    continue;
-                }
-
                 ref var targeting = ref _targetingPool.Value.Get(targetingEntity);
-                if (time - state.LastTapTime <= targeting.DoubleTapWindow)
+                
+                if (targeting.HasHardTarget && _hasDown)
                 {
                     ClearHardTarget(ref targeting);
-                    state.LastTapTime = float.MinValue;
                     continue;
                 }
 
                 SelectOrCycleTarget(targetingEntity, ref targeting);
-                state.LastTapTime = time;
             }
         }
 

@@ -17,14 +17,13 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
     {
         private const float c_deadZone = 0.1f;
         
-        private readonly EcsWorldInject _defaultWorld = default;
+        private readonly EcsWorldInject _world = default;
         
         private readonly EcsFilterInject<Inc<BaseInputControlsComp>> _baseInputControlsFilter = default;
         private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, MoveableComp, TargetingComp>> _comboFilter = default;
         
         private readonly EcsPoolInject<BaseInputControlsComp> _baseInputControlsPool = default;
-        private readonly EcsPoolInject<MoveableComp> _mobablePool = default;
-        private readonly EcsPoolInject<TransformComp> _transformPool = default;
+        private readonly EcsPoolInject<MoveableComp> _movablePool = default;
         private readonly EcsPoolInject<TargetingComp> _targetingPool = default;
         
         public void Run(IEcsSystems systems)
@@ -82,11 +81,10 @@ namespace FoxMind.Code.Runtime.Core.Input.Systems
                     continue;
                 }
                 
-                ref var moveable = ref _mobablePool.Value.Get(comboEntity);
-                ref var transform = ref _transformPool.Value.Get(comboEntity);
+                ref var moveable = ref _movablePool.Value.Get(comboEntity);
 
-                float dotX = Vector3.Dot(transform.Value.right, moveable.NormalizedMoveDirection);
-                float dotY = Vector3.Dot(transform.Value.forward, moveable.NormalizedMoveDirection);
+                float dotX = Vector3.Dot(targetingComp.HardTargetRightDirection, moveable.NormalizedMoveDirection);
+                float dotY = Vector3.Dot(targetingComp.HardTargetForwardDirection, moveable.NormalizedMoveDirection);
 
                 var absX = Math.Abs(dotX);
                 var absY = Math.Abs(dotY);

@@ -18,20 +18,20 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
     /// </summary>
     public class TargetingManualAimSystem : BaseEcsVisitable, IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<InputTargetLockPerformedComp>> _targetLockPerformedFilter = default;
+        //private readonly EcsFilterInject<Inc<InputTargetLockPerformedComp>> _targetLockPerformedFilter = default;
         private readonly EcsFilterInject<Inc<BaseInputControlsComp>> _baseInputControlsFilter = default;
-        private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, TargetingComp, TargetingStateComp>> _targetingFilter = default;
+        //private readonly EcsFilterInject<Inc<PlayerControlledComp, TransformComp, TargetingComp, TargetingStateComp>> _targetingFilter = default;
         private readonly EcsFilterInject<Inc<CameraComp, TransformComp>> _cameraFilter = default;
 
         private readonly EcsPoolInject<BaseInputControlsComp> _baseInputControlsPool = default;
         private readonly EcsPoolInject<TransformComp> _transformPool = default;
         private readonly EcsPoolInject<TargetingComp> _targetingPool = default;
-        private readonly EcsPoolInject<TargetingStateComp> _targetingStatePool = default;
+        //private readonly EcsPoolInject<TargetingStateComp> _targetingStatePool = default;
         private readonly EcsPoolInject<CameraComp> _cameraPool = default;
 
         public void Run(IEcsSystems systems)
         {
-            var isTargetHeld = _targetLockPerformedFilter.Value.GetEntitiesCount() > 0;
+            /*var isTargetHeld = _targetLockPerformedFilter.Value.GetEntitiesCount() > 0;
             var camera = GetCamera();
             var activeControlType = GetActiveControlType();
 
@@ -60,7 +60,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Targeting.Systems
 
                 targeting.IsManualAiming = true;
                 targeting.ManualAimDirection = aimDirection.normalized;
-            }
+            }*/
         }
 
         private InputControlType GetActiveControlType()

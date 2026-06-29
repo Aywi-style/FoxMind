@@ -14,8 +14,8 @@ namespace FoxMind.Code.Runtime.Core.Input.SystemsAssembly
                 new InitBaseInputControlsSystem(),
                 new UpdateInputControlTypeSystem(),
                 new InputDirectionSystem(),
+                new FullUtilityInputHistorySystem(),
                 new FullComboInputHistorySystem(),
-                new InputTargetLockSystem(),
             };
         }
     }
