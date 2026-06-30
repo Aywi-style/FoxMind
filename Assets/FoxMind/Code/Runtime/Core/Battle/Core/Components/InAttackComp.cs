@@ -17,5 +17,6 @@ namespace FoxMind.Code.Runtime.Core.Battle.Components
         
         public float NextComboWindowStart => Start + (AnimationDuration * AttackConfig.ComboWindow.x);
         public float NextComboWindowEnd => Start + (AnimationDuration * AttackConfig.ComboWindow.y);
+        public float EndOfContinuousPart => Start + (AttackConfig.EndOfContinuousPart * Duration);
     }
 }

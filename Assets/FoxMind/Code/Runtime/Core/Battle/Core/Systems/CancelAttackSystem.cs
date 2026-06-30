@@ -62,9 +62,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Systems
                     }
                 }
 
-                var continuousEnd = inAttackComp.Start + (inAttackComp.AttackConfig.EndOfContinuousPart * inAttackComp.Duration);
-
-                if ((playerInMove && _cachedTime > continuousEnd) || _isDefencePressed || _isJumpPressed || _cachedTime > inAttackComp.End)
+                if ((playerInMove && _cachedTime > inAttackComp.EndOfContinuousPart) || _isDefencePressed || _isJumpPressed || _cachedTime > inAttackComp.End)
                 {
                     _inAttackPool.Value.Del(inAttackEntity);
                 }

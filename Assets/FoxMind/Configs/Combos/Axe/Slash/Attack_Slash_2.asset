@@ -21,17 +21,32 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  <Requirements>k__BackingField:
+    <StanceCondition>k__BackingField: 1
+    <MovementSetup>k__BackingField: []
+    <Activators>k__BackingField:
+    - Type: 5
+      PressType: 0
+  <EndOfContinuousPart>k__BackingField: 0.631
+  <OverrideAnimationDurationSeconds>k__BackingField: 0
   <AttackAnimation>k__BackingField: {fileID: 7400000, guid: 56b0a4fc4686fe1419ee3652593da073, type: 3}
+  <RequiredMovementMode>k__BackingField: 1
   <BaseDamage>k__BackingField: 75
   <BaseCritChance>k__BackingField: 1.5
   <BaseCritMultiplier>k__BackingField: 3
-  <AnimationDurationSeconds>k__BackingField: 1.583
-  <AttackerMovement>k__BackingField:
-    Mode: 1
-    EndNormalizedTime: 0
-  <HitReactionFlags>k__BackingField: 0
+  <HitReactionFlags>k__BackingField: 8
   <ReactionVelocity>k__BackingField: {x: 0, y: 10}
   <HitReactionDuration>k__BackingField: 0.35
-  <EndOfContinuousPart>k__BackingField: 0.631
   HitWindow: {x: 0.364, y: 0.45}
   ComboWindow: {x: 0.41, y: 0.65}
+  <HitsSettings>k__BackingField:
+  - <DetectionMode>k__BackingField: 0
+    <Window>k__BackingField: {x: 0.364, y: 0.45}
+    <ReactionSettings>k__BackingField:
+      <Reaction>k__BackingField: 17
+      <Velocity>k__BackingField: {x: 0, y: 10}
+      <Duration>k__BackingField: 0.35
+  <IsComboPart>k__BackingField: 1
+  <NextCombos>k__BackingField:
+  - <ComboWindow>k__BackingField: {x: 0.41, y: 0.65}
+    <NextAttack>k__BackingField: {fileID: 11400000, guid: 926dc63f0e2d4ec4db04874418e8dfa2, type: 2}

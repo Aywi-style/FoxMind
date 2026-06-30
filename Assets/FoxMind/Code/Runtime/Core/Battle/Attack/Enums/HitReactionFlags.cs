@@ -1,6 +1,6 @@
 using System;
 
-namespace FoxMind.Code.Runtime.Core.Battle.Core.Enums
+namespace FoxMind.Code.Runtime.Core.Battle.Attack.Enums
 {
     /// <summary>
     /// Набор разрешённых hit reaction эффектов для юнита.

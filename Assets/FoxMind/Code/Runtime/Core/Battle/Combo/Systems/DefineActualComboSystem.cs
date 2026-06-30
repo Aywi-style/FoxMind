@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using FoxMind.Code.Runtime.Core.Battle.Combo.Configs;
 using FoxMind.Code.Runtime.Core.Battle.Combo.Enums;
 using FoxMind.Code.Runtime.Core.Battle.Combo.Features;
@@ -14,8 +15,7 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
     {
         private readonly EcsWorldInject _world = default;
         
-        private readonly EcsFilterInject<Inc<CombinableComp, InAttackComp>> _inAttackFilter = default;
-        private readonly EcsFilterInject<Inc<CombinableComp>, Exc<InAttackComp>> _nonInAttackFilter = default;
+        private readonly EcsFilterInject<Inc<CombinableComp>> _combinableFilter = default;
 
         private readonly EcsPoolInject<CombinableComp> _combinablePool = default;
         private readonly EcsPoolInject<InAttackComp> _inAttackPool = default;
@@ -27,29 +27,30 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
         {
             _cachedTime = Time.time;
 
-            DefineForInCombo();
-            DefineForNonInCombo();
-        }
+            foreach (var combinableEntity in _combinableFilter.Value)
+            {
+                ref var combinableComp = ref _combinablePool.Value.Get(combinableEntity);
 
-        private void DefineForInCombo()
-        {
-            if (_inAttackFilter.Value.GetEntitiesCount() == 0)
-            {
-                return;
-            }
-            
-            foreach (var inComboEntity in _inAttackFilter.Value)
-            {
-                ref var combinableComp = ref _combinablePool.Value.Get(inComboEntity);
-                ref var inAttackComp = ref _inAttackPool.Value.Get(inComboEntity);
-                
-                //combinableComp.AvailableCombos ??= new List<ComboConfig>();
-                combinableComp.AvailableCombos ??= new TestClass();
-                
+                combinableComp.AvailableCombos ??= new List<ComboConfig>();
                 combinableComp.AvailableCombos.Clear();
 
-                var isWindowForCombo = inAttackComp.NextComboWindowStart <= _cachedTime && _cachedTime <= inAttackComp.NextComboWindowEnd;
+                if (_inAttackPool.Value.Has(combinableEntity) == false)
+                {
+                    DefineOpeners(ref combinableComp, combinableEntity);
+                    
+                    continue;
+                }
+                
+                ref var inAttackComp = ref _inAttackPool.Value.Get(combinableEntity);
 
+                if (_cachedTime > inAttackComp.EndOfContinuousPart)
+                {
+                    DefineOpeners(ref combinableComp, combinableEntity);
+                    
+                    continue;
+                }
+                
+                var isWindowForCombo = inAttackComp.NextComboWindowStart <= _cachedTime && _cachedTime <= inAttackComp.NextComboWindowEnd;
                 if (isWindowForCombo == false)
                 {
                     continue;
@@ -57,43 +58,26 @@ namespace FoxMind.Code.Runtime.Core.Battle.Combo.Systems
                 
                 foreach (var comboConfig in combinableComp.CurrentCombo.NextCombos)
                 {
-                    if (IsComboAllowedForStance(comboConfig, inComboEntity) == false)
+                    if (IsComboAllowedForStance(comboConfig, combinableEntity) == false)
                     {
                         continue;
                     }
                     
                     combinableComp.AvailableCombos.Add(comboConfig);
                 }
-
             }
         }
 
-        private void DefineForNonInCombo()
+        private void DefineOpeners(ref CombinableComp combinableComp, int combinableEntity)
         {
-            if (_nonInAttackFilter.Value.GetEntitiesCount() == 0)
+            foreach (var comboConfig in combinableComp.CombosAssembly.OpenerCombosConfigs_v2)
             {
-                return;
-            }
-            
-            foreach (var nonInComboEntity in _nonInAttackFilter.Value)
-            {
-                ref var combinableComp = ref _combinablePool.Value.Get(nonInComboEntity);
-
-                //combinableComp.AvailableCombos ??= new List<ComboConfig>();
-                combinableComp.AvailableCombos ??= new TestClass();
-                
-                combinableComp.AvailableCombos.Clear();
-
-                foreach (var comboConfig in combinableComp.CombosAssembly.OpenerCombosConfigs_v2)
+                if (IsComboAllowedForStance(comboConfig, combinableEntity) == false)
                 {
-                    if (IsComboAllowedForStance(comboConfig, nonInComboEntity) == false)
-                    {
-                        continue;
-                    }
-
-                    combinableComp.AvailableCombos.Add(comboConfig);
+                    continue;
                 }
 
+                combinableComp.AvailableCombos.Add(comboConfig);
             }
         }
 

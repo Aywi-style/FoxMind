@@ -1,4 +1,4 @@
-﻿using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
+﻿using FoxMind.Code.Runtime.Core.Battle.Attack.Enums;
 using FoxMind.Code.Runtime.Core.Ecs.Templates;
 using Leopotam.EcsLite;
 using UnityEngine;

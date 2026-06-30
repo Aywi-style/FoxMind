@@ -1,6 +1,6 @@
 ﻿using System;
+using FoxMind.Code.Runtime.Core.Battle.Attack.Enums;
 using FoxMind.Code.Runtime.Core.Battle.Components;
-using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using FoxMind.Code.Runtime.Core.Movement.Interfaces;
 using KinematicCharacterController;
 using UnityEngine;

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
+using FoxMind.Code.Runtime.Core.Battle.Attack.Enums;
 using FoxMind.Code.Runtime.Core.Battle.Components;
-using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
 using UnityEngine;
 using FoxMind.Code.Runtime.Core.Ecs.MonoBehaviours;
 using Leopotam.EcsLite;

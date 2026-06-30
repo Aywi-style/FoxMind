@@ -53,7 +53,7 @@ namespace FoxMind.Code.Runtime.Core.Movement.Systems
             {
                 ref var attackComp = ref _inAttackPool.Value.Get(movableEntity);
                 
-                switch (attackComp.AttackConfig.AttackerMovement.Mode)
+                switch (attackComp.AttackConfig.RequiredMovementMode)
                 {
                     case AttackMovementMode.GroundRootMotion:
                         moveableBehaviours.MovementBehaviours.TryGetValue(BehavioursConstants.RootMotionStable, out _cachedNewController);

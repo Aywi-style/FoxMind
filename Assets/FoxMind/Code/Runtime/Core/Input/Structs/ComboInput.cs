@@ -3,6 +3,7 @@ using FoxMind.Code.Runtime.Core.Input.Enums;
 
 namespace FoxMind.Code.Runtime.Core.Input.Structs
 {
+    [Serializable]
     public struct ComboInput : IEquatable<ComboInput>
     {
         public ComboInputType Type;

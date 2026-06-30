@@ -11,8 +11,5 @@ namespace FoxMind.Code.Runtime.Core.Battle.Attack.Configs
     public struct AttackMovementSettings
     {
         public AttackMovementMode Mode;
-        
-        [PropertyRange(0f, 1f)]
-        public float EndNormalizedTime;
     }
 }

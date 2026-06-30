@@ -1,5 +1,5 @@
-﻿using FoxMind.Code.Runtime.Core.Battle.Components;
-using FoxMind.Code.Runtime.Core.Battle.Core.Enums;
+﻿using FoxMind.Code.Runtime.Core.Battle.Attack.Enums;
+using FoxMind.Code.Runtime.Core.Battle.Components;
 using FoxMind.Code.Runtime.Core.Ecs.SystemsAssembly.Abstracts;
 using FoxMind.Code.Runtime.Core.Movement.Components;
 using FoxMind.Code.Runtime.Core.StandaloneComponents;
